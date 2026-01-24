@@ -1,0 +1,13 @@
+[Desktop Entry]
+Version=1.0
+Name=My Product
+Comment=A pingdeck application
+# The Exec line includes %u to pass the URL to the application
+Exec=/usr/local/bin/pingdeck %u
+Terminal=false
+Type=Application
+Icon=pingdeck
+Categories=Utility;
+StartupWMClass=pingdeck
+
+ 
