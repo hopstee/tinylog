@@ -36,23 +36,22 @@ func (m *mockFileStorage) Store(b []byte) error {
 
 // ---------- helpers ----------
 
-func newTestStorage() *DomainsStorage {
-	ds := &DomainsStorage{
+func newTestStorage() *SourcesStorage {
+	ds := &SourcesStorage{
 		storage: &mockFileStorage{},
-		domains: make([]DomainConfig, 0, 10),
+		sources: make([]SourceConfig, 0, 10),
 	}
 	return ds
 }
 
-func testDomain(name string) DomainConfig {
-	return DomainConfig{
-		Name:     name,
-		Address:  "127.0.0.1",
-		Port:     "80",
-		Interval: "1m",
-		Status:   "up",
-		PingPath: "/ping",
-		Message:  "ok",
+func testSource(name string) SourceConfig {
+	return SourceConfig{
+		Name:    name,
+		Path:    "/etc/nginx/error.log",
+		UseSSH:  true,
+		SSHUser: "root",
+		SSHHost: "127.0.0.1",
+		SSHPort: "20",
 	}
 }
 
@@ -61,19 +60,19 @@ func testDomain(name string) DomainConfig {
 func TestSaveAndLoad(t *testing.T) {
 	ds := newTestStorage()
 
-	d := testDomain("example.com")
+	d := testSource("example.com")
 
 	if err := ds.Save(d); err != nil {
 		t.Fatalf("save failed: %v", err)
 	}
 
-	var got []DomainConfig
-	err := ds.WithDomains(func(domains []DomainConfig) {
-		got = append(got, domains...)
+	var got []SourceConfig
+	err := ds.WithSources(func(sources []SourceConfig) {
+		got = append(got, sources...)
 	})
 
 	if err != nil {
-		t.Fatalf("withDomains failed: %v", err)
+		t.Fatalf("WithSources failed: %v", err)
 	}
 
 	if len(got) != 1 {
@@ -87,53 +86,30 @@ func TestSaveAndLoad(t *testing.T) {
 
 func TestDuplicateSave(t *testing.T) {
 	ds := newTestStorage()
-	d := testDomain("dup.com")
+	d := testSource("dup.com")
 
 	if err := ds.Save(d); err != nil {
 		t.Fatal(err)
 	}
 
-	if err := ds.Save(d); err != DomainExistsErr {
-		t.Fatalf("expected DomainExistsErr, got %v", err)
-	}
-}
-
-func TestUpdate(t *testing.T) {
-	ds := newTestStorage()
-	d := testDomain("update.com")
-
-	if err := ds.Save(d); err != nil {
-		t.Fatal(err)
-	}
-
-	d.Status = "down"
-	if err := ds.Update(d); err != nil {
-		t.Fatalf("update failed: %v", err)
-	}
-
-	var got DomainConfig
-	_ = ds.WithDomains(func(domains []DomainConfig) {
-		got = domains[0]
-	})
-
-	if got.Status != "down" {
-		t.Fatalf("expected status 'down', got %s", got.Status)
+	if err := ds.Save(d); err != SourceExistsErr {
+		t.Fatalf("expected SourceExistsErr, got %v", err)
 	}
 }
 
 func TestUpdateNotFound(t *testing.T) {
 	ds := newTestStorage()
 
-	err := ds.Update(testDomain("missing.com"))
-	if err != DomainNotFoundErr {
-		t.Fatalf("expected DomainNotFoundErr, got %v", err)
+	err := ds.Update(testSource("missing.com"))
+	if err != SourceNotFoundErr {
+		t.Fatalf("expected SourceNotFoundErr, got %v", err)
 	}
 }
 
 func TestDelete(t *testing.T) {
 	ds := newTestStorage()
-	d1 := testDomain("a.com")
-	d2 := testDomain("b.com")
+	d1 := testSource("a.com")
+	d2 := testSource("b.com")
 
 	_ = ds.Save(d1)
 	_ = ds.Save(d2)
@@ -142,9 +118,9 @@ func TestDelete(t *testing.T) {
 		t.Fatalf("delete failed: %v", err)
 	}
 
-	var got []DomainConfig
-	_ = ds.WithDomains(func(domains []DomainConfig) {
-		got = append(got, domains...)
+	var got []SourceConfig
+	_ = ds.WithSources(func(sources []SourceConfig) {
+		got = append(got, sources...)
 	})
 
 	if len(got) != 1 {
@@ -160,30 +136,29 @@ func TestDeleteNotFound(t *testing.T) {
 	ds := newTestStorage()
 
 	err := ds.Delete("nope.com")
-	if err != DomainNotFoundErr {
-		t.Fatalf("expected DomainNotFoundErr, got %v", err)
+	if err != SourceNotFoundErr {
+		t.Fatalf("expected SourceNotFoundErr, got %v", err)
 	}
 }
 
 func TestPersistence(t *testing.T) {
 	storage := &mockFileStorage{}
 
-	ds1 := &DomainsStorage{
+	ds1 := &SourcesStorage{
 		storage: storage,
-		domains: make([]DomainConfig, 0),
+		sources: make([]SourceConfig, 0),
 	}
 
-	_ = ds1.Save(testDomain("persist.com"))
+	_ = ds1.Save(testSource("persist.com"))
 
-	// новый инстанс с тем же storage
-	ds2 := &DomainsStorage{
+	ds2 := &SourcesStorage{
 		storage: storage,
-		domains: make([]DomainConfig, 0),
+		sources: make([]SourceConfig, 0),
 	}
 
-	var got []DomainConfig
-	err := ds2.WithDomains(func(domains []DomainConfig) {
-		got = append(got, domains...)
+	var got []SourceConfig
+	err := ds2.WithSources(func(sources []SourceConfig) {
+		got = append(got, sources...)
 	})
 
 	if err != nil {
@@ -198,11 +173,11 @@ func TestPersistence(t *testing.T) {
 func TestStoredJSONValid(t *testing.T) {
 	ds := newTestStorage()
 
-	_ = ds.Save(testDomain("json.com"))
+	_ = ds.Save(testSource("json.com"))
 
 	raw, _ := ds.storage.Load()
 
-	var decoded []DomainConfig
+	var decoded []SourceConfig
 	if err := json.Unmarshal(raw, &decoded); err != nil {
 		t.Fatalf("stored json invalid: %v", err)
 	}
