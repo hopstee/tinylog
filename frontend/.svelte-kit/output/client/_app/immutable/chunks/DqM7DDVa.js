@@ -1,5 +1,5 @@
 var _a;
-import { a6 as get_first_child, a7 as is_firefox, A as create_text, a8 as TEMPLATE_FRAGMENT, a9 as TEMPLATE_USE_IMPORT_NODE, V as active_effect, h as hydrating, C as hydrate_node, aa as EFFECT_RAN, a as hydrate_next, ab as TEXT_NODE, K as set_hydrate_node } from "./BaP1QAji.js";
+import { B as create_text, a7 as get_first_child, a8 as is_firefox, V as active_effect, a9 as TEMPLATE_FRAGMENT, aa as TEMPLATE_USE_IMPORT_NODE, h as hydrating, D as hydrate_node, ab as EFFECT_RAN, a as hydrate_next, ac as COMMENT_NODE, ad as TEXT_NODE, L as set_hydrate_node } from "./C2oY_9uC.js";
 function create_fragment_from_html(html) {
   var elem = document.createElement("template");
   elem.innerHTML = html.replaceAll("<!>", "<!---->");
@@ -134,6 +134,16 @@ function append(anchor, dom) {
     dom
   );
 }
+function props_id() {
+  var _a2, _b;
+  if (hydrating && hydrate_node && hydrate_node.nodeType === COMMENT_NODE && ((_a2 = hydrate_node.textContent) == null ? void 0 : _a2.startsWith(`$`))) {
+    const id = hydrate_node.textContent.substring(1);
+    hydrate_next();
+    return id;
+  }
+  (_b = window.__svelte ?? (window.__svelte = {})).uid ?? (_b.uid = 1);
+  return `c${window.__svelte.uid++}`;
+}
 const PUBLIC_VERSION = "5";
 if (typeof window !== "undefined") {
   ((_a = window.__svelte ?? (window.__svelte = {})).v ?? (_a.v = /* @__PURE__ */ new Set())).add(PUBLIC_VERSION);
@@ -144,5 +154,6 @@ export {
   comment as c,
   from_svg as d,
   from_html as f,
+  props_id as p,
   text as t
 };

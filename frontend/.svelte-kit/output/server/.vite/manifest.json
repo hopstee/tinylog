@@ -17,6 +17,14 @@
     "file": "chunks/environment.js",
     "name": "environment"
   },
+  "_events.js": {
+    "file": "chunks/events.js",
+    "name": "events",
+    "imports": [
+      "_index2.js",
+      "_context.js"
+    ]
+  },
   "_exports.js": {
     "file": "chunks/exports.js",
     "name": "exports"
@@ -46,6 +54,7 @@
     "imports": [
       "_index2.js",
       "_context.js",
+      "_events.js",
       "_environment.js"
     ]
   },
@@ -107,7 +116,7 @@
       "_index2.js"
     ],
     "css": [
-      "_app/immutable/assets/_layout.BwHBnNHy.css"
+      "_app/immutable/assets/_layout.CLTmnlEd.css"
     ]
   },
   "src/routes/+layout.ts": {
@@ -123,8 +132,9 @@
     "isEntry": true,
     "imports": [
       "_index2.js",
-      "_index.js",
-      "_context.js"
+      "_context.js",
+      "_events.js",
+      "_index.js"
     ],
     "css": [
       "_app/immutable/assets/_page.BdrZltLN.css"

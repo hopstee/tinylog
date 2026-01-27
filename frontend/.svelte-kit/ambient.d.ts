@@ -62,13 +62,11 @@ declare module '$env/static/private' {
 	export const LANG: string;
 	export const npm_config_npm_version: string;
 	export const XPC_FLAGS: string;
-	export const PRODUCTION: string;
 	export const npm_config_node_gyp: string;
 	export const npm_package_version: string;
 	export const XPC_SERVICE_NAME: string;
 	export const SHLVL: string;
 	export const HOME: string;
-	export const npm_config_loglevel: string;
 	export const HOMEBREW_PREFIX: string;
 	export const npm_config_cache: string;
 	export const WAILS_VITE_PORT: string;
@@ -149,13 +147,11 @@ declare module '$env/dynamic/private' {
 		LANG: string;
 		npm_config_npm_version: string;
 		XPC_FLAGS: string;
-		PRODUCTION: string;
 		npm_config_node_gyp: string;
 		npm_package_version: string;
 		XPC_SERVICE_NAME: string;
 		SHLVL: string;
 		HOME: string;
-		npm_config_loglevel: string;
 		HOMEBREW_PREFIX: string;
 		npm_config_cache: string;
 		WAILS_VITE_PORT: string;

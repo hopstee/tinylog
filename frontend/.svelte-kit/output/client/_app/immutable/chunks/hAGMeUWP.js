@@ -9,8 +9,8 @@ var __privateGet = (obj, member, getter) => (__accessCheck(obj, member, "read fr
 var __privateAdd = (obj, member, value) => member.has(obj) ? __typeError("Cannot add the same private member more than once") : member instanceof WeakSet ? member.add(obj) : member.set(obj, value);
 var __privateSet = (obj, member, value, setter) => (__accessCheck(obj, member, "write to private field"), setter ? setter.call(obj, value) : member.set(obj, value), value);
 var _batches, _onscreen, _offscreen, _outroing, _transition, _commit, _discard;
-import { w as current_batch, x as resume_effect, y as destroy_effect, z as pause_effect, A as create_text, B as branch, h as hydrating, C as hydrate_node, D as move_effect, E as should_defer_append, a as hydrate_next, F as block, G as EFFECT_TRANSPARENT, H as read_hydration_instruction, I as HYDRATION_START_ELSE, J as skip_nodes, K as set_hydrate_node, L as set_hydrating, M as teardown, n as noop, N as mutable_source, g as get$1, O as set, P as define_property, Q as get_descriptor, R as props_invalid_value, S as PROPS_IS_UPDATED, T as proxy, U as is_destroying_effect, V as active_effect, W as DESTROYED, X as PROPS_IS_BINDABLE, d as untrack, l as legacy_mode_flag, Y as PROPS_IS_RUNES, Z as PROPS_IS_IMMUTABLE, i as derived, _ as derived_safe_equal, $ as PROPS_IS_LAZY_INITIAL, a0 as STATE_SYMBOL, a1 as LEGACY_PROPS, a2 as source, a3 as update, a4 as set_active_effect, a5 as is_function } from "./BaP1QAji.js";
-import { s as subscribe_to_store, g as get } from "./BYda1gcW.js";
+import { x as current_batch, y as resume_effect, z as destroy_effect, A as pause_effect, B as create_text, C as branch, h as hydrating, D as hydrate_node, E as move_effect, F as should_defer_append, a as hydrate_next, G as block, H as EFFECT_TRANSPARENT, I as read_hydration_instruction, J as HYDRATION_START_ELSE, K as skip_nodes, L as set_hydrate_node, M as set_hydrating, N as teardown, O as define_property, o as noop, P as mutable_source, g as get$1, Q as set, R as get_descriptor, S as props_invalid_value, T as PROPS_IS_UPDATED, U as proxy, V as active_effect, W as DESTROYED, X as PROPS_IS_BINDABLE, d as untrack, w as legacy_mode_flag, Y as PROPS_IS_RUNES, Z as PROPS_IS_IMMUTABLE, i as derived, _ as derived_safe_equal, $ as PROPS_IS_LAZY_INITIAL, a0 as is_destroying_effect, a1 as STATE_SYMBOL, a2 as LEGACY_PROPS, a3 as is_function, a4 as source, a5 as update, a6 as set_active_effect } from "./C2oY_9uC.js";
+import { s as subscribe_to_store, g as get } from "./TFWdNYCK.js";
 class BranchManager {
   /**
    * @param {TemplateNode} anchor
@@ -274,6 +274,39 @@ function capture_store_binding(fn) {
     is_store_binding = previous_is_store_binding;
   }
 }
+const rest_props_handler = {
+  get(target, key) {
+    if (target.exclude.includes(key)) return;
+    return target.props[key];
+  },
+  set(target, key) {
+    return false;
+  },
+  getOwnPropertyDescriptor(target, key) {
+    if (target.exclude.includes(key)) return;
+    if (key in target.props) {
+      return {
+        enumerable: true,
+        configurable: true,
+        value: target.props[key]
+      };
+    }
+  },
+  has(target, key) {
+    if (target.exclude.includes(key)) return false;
+    return key in target.props;
+  },
+  ownKeys(target) {
+    return Reflect.ownKeys(target.props).filter((key) => !target.exclude.includes(key));
+  }
+};
+// @__NO_SIDE_EFFECTS__
+function rest_props(props, exclude, name) {
+  return new Proxy(
+    { props, exclude },
+    rest_props_handler
+  );
+}
 const legacy_rest_props_handler = {
   get(target, key) {
     if (target.exclude.includes(key)) return;
@@ -527,9 +560,10 @@ function prop(props, key, flags, fallback) {
 export {
   BranchManager as B,
   store_get as a,
-  spread_props as b,
+  setup_stores as b,
   if_block as i,
   legacy_rest_props as l,
   prop as p,
-  setup_stores as s
+  rest_props as r,
+  spread_props as s
 };

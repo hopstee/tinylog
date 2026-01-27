@@ -1,5 +1,6 @@
 import { H as HYDRATION_ERROR, C as COMMENT_NODE, a as HYDRATION_END, g as get_next_sibling, b as HYDRATION_START, c as HYDRATION_START_ELSE, e as effect_tracking, d as get, r as render_effect, s as source, u as untrack, i as increment, q as queue_micro_task, f as active_effect, h as block, j as branch, B as Batch, p as pause_effect, k as create_text, l as defer_effect, m as set_active_effect, n as set_active_reaction, o as set_component_context, t as handle_error, v as active_reaction, w as component_context, x as move_effect, y as set_signal_status, D as DIRTY, z as schedule_effect, M as MAYBE_DIRTY, A as internal_set, E as destroy_effect, F as invoke_error_boundary, G as svelte_boundary_reset_onerror, I as EFFECT_TRANSPARENT, J as EFFECT_PRESERVED, K as BOUNDARY_EFFECT, L as init_operations, N as get_first_child, O as hydration_failed, P as clear_text_content, Q as component_root, R as is_passive_event, S as push, T as pop, U as set, V as LEGACY_PROPS, W as flushSync, X as mutable_source, Y as render } from "./index2.js";
-import { d as define_property, a as array_from, s as setContext } from "./context.js";
+import { a as array_from, d as define_property, s as setContext } from "./context.js";
+import { a as all_registered_events, r as root_event_handles, h as handle_event_propagation } from "./events.js";
 import "clsx";
 import "./environment.js";
 let public_env = {};
@@ -446,93 +447,6 @@ class Boundary {
     }
   }
 }
-const all_registered_events = /* @__PURE__ */ new Set();
-const root_event_handles = /* @__PURE__ */ new Set();
-let last_propagated_event = null;
-function handle_event_propagation(event) {
-  var handler_element = this;
-  var owner_document = (
-    /** @type {Node} */
-    handler_element.ownerDocument
-  );
-  var event_name = event.type;
-  var path = event.composedPath?.() || [];
-  var current_target = (
-    /** @type {null | Element} */
-    path[0] || event.target
-  );
-  last_propagated_event = event;
-  var path_idx = 0;
-  var handled_at = last_propagated_event === event && event.__root;
-  if (handled_at) {
-    var at_idx = path.indexOf(handled_at);
-    if (at_idx !== -1 && (handler_element === document || handler_element === /** @type {any} */
-    window)) {
-      event.__root = handler_element;
-      return;
-    }
-    var handler_idx = path.indexOf(handler_element);
-    if (handler_idx === -1) {
-      return;
-    }
-    if (at_idx <= handler_idx) {
-      path_idx = at_idx;
-    }
-  }
-  current_target = /** @type {Element} */
-  path[path_idx] || event.target;
-  if (current_target === handler_element) return;
-  define_property(event, "currentTarget", {
-    configurable: true,
-    get() {
-      return current_target || owner_document;
-    }
-  });
-  var previous_reaction = active_reaction;
-  var previous_effect = active_effect;
-  set_active_reaction(null);
-  set_active_effect(null);
-  try {
-    var throw_error;
-    var other_errors = [];
-    while (current_target !== null) {
-      var parent_element = current_target.assignedSlot || current_target.parentNode || /** @type {any} */
-      current_target.host || null;
-      try {
-        var delegated = current_target["__" + event_name];
-        if (delegated != null && (!/** @type {any} */
-        current_target.disabled || // DOM could've been updated already by the time this is reached, so we check this as well
-        // -> the target could not have been disabled because it emits the event in the first place
-        event.target === current_target)) {
-          delegated.call(current_target, event);
-        }
-      } catch (error) {
-        if (throw_error) {
-          other_errors.push(error);
-        } else {
-          throw_error = error;
-        }
-      }
-      if (event.cancelBubble || parent_element === handler_element || parent_element === null) {
-        break;
-      }
-      current_target = parent_element;
-    }
-    if (throw_error) {
-      for (let error of other_errors) {
-        queueMicrotask(() => {
-          throw error;
-        });
-      }
-      throw throw_error;
-    }
-  } finally {
-    event.__root = handler_element;
-    delete event.currentTarget;
-    set_active_reaction(previous_reaction);
-    set_active_effect(previous_effect);
-  }
-}
 function assign_nodes(start, end) {
   var effect = (
     /** @type {Effect} */
@@ -861,13 +775,13 @@ function Root($$renderer, $$props) {
       $$renderer2.push("<!--[-->");
       const Pyramid_0 = constructors[0];
       $$renderer2.push(`<!---->`);
-      Pyramid_0($$renderer2, {
+      Pyramid_0?.($$renderer2, {
         data: data_0,
         form,
         params: page.params,
         children: ($$renderer3) => {
           $$renderer3.push(`<!---->`);
-          Pyramid_1($$renderer3, { data: data_1, form, params: page.params });
+          Pyramid_1?.($$renderer3, { data: data_1, form, params: page.params });
           $$renderer3.push(`<!---->`);
         },
         $$slots: { default: true }
@@ -877,7 +791,7 @@ function Root($$renderer, $$props) {
       $$renderer2.push("<!--[!-->");
       const Pyramid_0 = constructors[0];
       $$renderer2.push(`<!---->`);
-      Pyramid_0($$renderer2, { data: data_0, form, params: page.params });
+      Pyramid_0?.($$renderer2, { data: data_0, form, params: page.params });
       $$renderer2.push(`<!---->`);
     }
     $$renderer2.push(`<!--]--> `);
@@ -977,7 +891,7 @@ const options = {
 		<div class="error">
 			<span class="status">` + status + '</span>\n			<div class="message">\n				<h1>' + message + "</h1>\n			</div>\n		</div>\n	</body>\n</html>\n"
   },
-  version_hash: "au4fn8"
+  version_hash: "oldx4l"
 };
 async function get_hooks() {
   let handle;

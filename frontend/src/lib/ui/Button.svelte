@@ -8,8 +8,6 @@
 </script>
 
 <script lang="ts">
-    import type { SvelteComponent } from "svelte";
-
     export let variant: ButtonVariant = "primary";
     export let size: ButtonSize = "md";
     export let loading: boolean = false;
@@ -25,7 +23,7 @@
         primary:
             "bg-primary text-primary-foreground hover:bg-primary/90 active:bg-primary/80",
         secondary:
-            "bg-secondary text-secondary-foreground hover:bg-secondary/90 active:bg-secondary/80",
+            "bg-muted text-muted-foreground hover:bg-muted/90 active:bg-muted/80",
         ghost: "bg-transparent text-foreground hover:bg-muted active:bg-muted",
         destructive:
             "bg-destructive text-destructive-foreground hover:bg-destructive/90 active:bg-destructive/80",

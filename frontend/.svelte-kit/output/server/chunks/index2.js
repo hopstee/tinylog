@@ -1,4 +1,4 @@
-import { r as run_all, c as deferred, h as safe_equals, j as equals, o as object_prototype, k as array_prototype, l as get_descriptor, b as get_prototype_of, i as is_array, m as is_extensible, p as index_of, e as escape_html, n as noop, q as set_ssr_context, t as ssr_context, u as push$1, v as pop$1 } from "./context.js";
+import { c as run_all, j as deferred, k as includes, l as safe_equals, m as equals, o as object_prototype, p as array_prototype, q as get_descriptor, b as get_prototype_of, i as is_array, t as is_extensible, u as index_of, e as escape_html, n as noop, v as set_ssr_context, w as ssr_context, x as push$1, y as pop$1 } from "./context.js";
 import { clsx as clsx$1 } from "clsx";
 import { D as DEV } from "./false.js";
 import * as devalue from "devalue";
@@ -311,7 +311,7 @@ class Batch {
         } else if ((flags & EFFECT) !== 0) {
           effects.push(effect);
         } else if (is_dirty(effect)) {
-          if ((flags & BLOCK_EFFECT) !== 0) this.#dirty_effects.add(effect);
+          if ((flags & BLOCK_EFFECT) !== 0) this.#maybe_dirty_effects.add(effect);
           update_effect(effect);
         }
         var child = effect.first;
@@ -620,7 +620,7 @@ function depends_on(reaction, sources, checked) {
   if (depends !== void 0) return depends;
   if (reaction.deps !== null) {
     for (const dep of reaction.deps) {
-      if (sources.includes(dep)) {
+      if (includes.call(sources, dep)) {
         return true;
       }
       if ((dep.f & DERIVED) !== 0 && depends_on(
@@ -751,7 +751,7 @@ function mutable_source(initial_value, immutable = false, trackable = true) {
 function set(source2, value, should_proxy = false) {
   if (active_reaction !== null && // since we are untracking the function inside `$inspect.with` we need to add this check
   // to ensure we error if state is set inside an inspect effect
-  (!untracking || (active_reaction.f & EAGER_EFFECT) !== 0) && is_runes() && (active_reaction.f & (DERIVED | BLOCK_EFFECT | ASYNC | EAGER_EFFECT)) !== 0 && !current_sources?.includes(source2)) {
+  (!untracking || (active_reaction.f & EAGER_EFFECT) !== 0) && is_runes() && (active_reaction.f & (DERIVED | BLOCK_EFFECT | ASYNC | EAGER_EFFECT)) !== 0 && (current_sources === null || !includes.call(current_sources, source2))) {
     state_unsafe_mutation();
   }
   let new_value = should_proxy ? proxy(value) : value;
@@ -1405,7 +1405,7 @@ function is_dirty(reaction) {
 function schedule_possible_effect_self_invalidation(signal, effect, root = true) {
   var reactions = signal.reactions;
   if (reactions === null) return;
-  if (current_sources?.includes(signal)) {
+  if (current_sources !== null && includes.call(current_sources, signal)) {
     return;
   }
   for (var i = 0; i < reactions.length; i++) {
@@ -1549,7 +1549,7 @@ function remove_reaction(signal, dependency) {
   if (reactions === null && (dependency.f & DERIVED) !== 0 && // Destroying a child effect while updating a parent effect can cause a dependency to appear
   // to be unused, when in fact it is used by the currently-updating parent. Checking `new_deps`
   // allows us to skip the expensive work of disconnecting and immediately reconnecting it
-  (new_deps === null || !new_deps.includes(dependency))) {
+  (new_deps === null || !includes.call(new_deps, dependency))) {
     var derived2 = (
       /** @type {Derived} */
       dependency
@@ -1602,7 +1602,7 @@ function get(signal) {
   var is_derived = (flags & DERIVED) !== 0;
   if (active_reaction !== null && !untracking) {
     var destroyed = active_effect !== null && (active_effect.f & DESTROYED) !== 0;
-    if (!destroyed && !current_sources?.includes(signal)) {
+    if (!destroyed && (current_sources === null || !includes.call(current_sources, signal))) {
       var deps = active_reaction.deps;
       if ((active_reaction.f & REACTION_IS_UPDATING) !== 0) {
         if (signal.rv < read_version) {
@@ -1620,7 +1620,7 @@ function get(signal) {
         var reactions = signal.reactions;
         if (reactions === null) {
           signal.reactions = [active_reaction];
-        } else if (!reactions.includes(active_reaction)) {
+        } else if (!includes.call(reactions, active_reaction)) {
           reactions.push(active_reaction);
         }
       }
@@ -2748,6 +2748,11 @@ function once(get_value) {
     return value;
   };
 }
+function props_id(renderer) {
+  const uid = renderer.global.uid();
+  renderer.push("<!--$" + uid + "-->");
+  return uid;
+}
 function derived(fn) {
   const get_value = once(fn);
   let updated_value;
@@ -2760,7 +2765,7 @@ function derived(fn) {
   };
 }
 export {
-  store_get as $,
+  sanitize_props as $,
   internal_set as A,
   Batch as B,
   COMMENT_NODE as C,
@@ -2789,18 +2794,21 @@ export {
   slot as Z,
   ATTACHMENT_KEY as _,
   HYDRATION_END as a,
-  unsubscribe_stores as a0,
-  sanitize_props as a1,
-  rest_props as a2,
-  attributes as a3,
-  ensure_array_like as a4,
-  element as a5,
-  bind_props as a6,
-  spread_props as a7,
-  derived as a8,
-  attr_style as a9,
+  rest_props as a0,
+  attributes as a1,
+  ensure_array_like as a2,
+  element as a3,
+  bind_props as a4,
+  spread_props as a5,
+  attr as a6,
+  derived as a7,
+  props_id as a8,
+  stringify as a9,
   attr_class as aa,
-  stringify as ab,
+  attr_style as ab,
+  store_get as ac,
+  unsubscribe_stores as ad,
+  without_reactive_context as ae,
   HYDRATION_START as b,
   HYDRATION_START_ELSE as c,
   get as d,

@@ -14,7 +14,7 @@
   "dependencies": {
     "@tabler/icons-svelte": "^3.36.1",
     "@wailsio/runtime": "latest",
-    "melt": "^0.44.0"
+    "bits-ui": "^2.15.4"
   },
   "devDependencies": {
     "@sveltejs/adapter-static": "^3.0.5",

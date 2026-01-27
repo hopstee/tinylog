@@ -5,15 +5,14 @@
     import LogsTopbar from "./LogsTopbar.svelte";
 </script>
 
-<div class="h-full w-full flex flex-col bg-background text-foreground">
-    <LogsTopbar />
+<div class="h-full w-full flex bg-background text-foreground">
+    <LogsSidebar />
 
-    <div class="flex flex-1 overflow-hidden">
-        <LogsSidebar />
-
+    <div class="flex-1 flex flex-col overflow-hidden">
+        <LogsTopbar />
         <div class="flex-1 flex flex-col overflow-hidden">
             <LogsStream />
-            <LogDetails />
+            <!-- <LogDetails /> -->
         </div>
     </div>
 </div>

@@ -1,4 +1,4 @@
-import { n as noop, d as untrack, s as safe_not_equal } from "./BaP1QAji.js";
+import { o as noop, d as untrack, q as safe_not_equal, v as lifecycle_outside_component, b as user_effect, c as component_context, w as legacy_mode_flag } from "./C2oY_9uC.js";
 function subscribe_to_store(store, run, invalidate) {
   if (store == null) {
     run(void 0);
@@ -66,8 +66,32 @@ function get(store) {
   subscribe_to_store(store, (_) => value = _)();
   return value;
 }
+function onMount(fn) {
+  if (component_context === null) {
+    lifecycle_outside_component();
+  }
+  if (legacy_mode_flag && component_context.l !== null) {
+    init_update_callbacks(component_context).m.push(fn);
+  } else {
+    user_effect(() => {
+      const cleanup = untrack(fn);
+      if (typeof cleanup === "function") return (
+        /** @type {() => void} */
+        cleanup
+      );
+    });
+  }
+}
+function init_update_callbacks(context) {
+  var l = (
+    /** @type {ComponentContextLegacy} */
+    context.l
+  );
+  return l.u ?? (l.u = { a: [], b: [], m: [] });
+}
 export {
   get as g,
+  onMount as o,
   subscribe_to_store as s,
   writable as w
 };

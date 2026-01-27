@@ -1,5 +1,6 @@
 var is_array = Array.isArray;
 var index_of = Array.prototype.indexOf;
+var includes = Array.prototype.includes;
 var array_from = Array.from;
 var define_property = Object.defineProperty;
 var get_descriptor = Object.getOwnPropertyDescriptor;
@@ -9,6 +10,9 @@ var get_prototype_of = Object.getPrototypeOf;
 var is_extensible = Object.isExtensible;
 const noop = () => {
 };
+function run(fn) {
+  return fn();
+}
 function run_all(arr) {
   for (var i = 0; i < arr.length; i++) {
     arr[i]();
@@ -78,6 +82,9 @@ function setContext(key, context) {
   get_or_init_context_map().set(key, context);
   return context;
 }
+function hasContext(key) {
+  return get_or_init_context_map().has(key);
+}
 function get_or_init_context_map(name) {
   if (ssr_context === null) {
     lifecycle_outside_component();
@@ -105,25 +112,28 @@ function get_parent_context(ssr_context2) {
 export {
   array_from as a,
   get_prototype_of as b,
-  deferred as c,
+  run_all as c,
   define_property as d,
   escape_html as e,
   fallback as f,
   getContext as g,
-  safe_equals as h,
+  hasContext as h,
   is_array as i,
-  equals as j,
-  array_prototype as k,
-  get_descriptor as l,
-  is_extensible as m,
+  deferred as j,
+  includes as k,
+  safe_equals as l,
+  equals as m,
   noop as n,
   object_prototype as o,
-  index_of as p,
-  set_ssr_context as q,
-  run_all as r,
+  array_prototype as p,
+  get_descriptor as q,
+  run as r,
   setContext as s,
-  ssr_context as t,
-  push as u,
-  pop as v,
-  safe_not_equal as w
+  is_extensible as t,
+  index_of as u,
+  set_ssr_context as v,
+  ssr_context as w,
+  push as x,
+  pop as y,
+  safe_not_equal as z
 };

@@ -1,6 +1,10 @@
 <script lang="ts">
     import { levelFilter } from "$lib/hooks/useLogsStore";
     import type { LogLevel } from "$lib/types/logs";
+    import Input from "$lib/ui/Input.svelte";
+    import { DropdownMenu } from "bits-ui";
+
+    let search: string = "";
 
     const levels: LogLevel[] = [
         "trace",
@@ -11,10 +15,10 @@
         "fatal",
     ];
 
-    function toggle(level: LogLevel) {
+    function setLevel(level: LogLevel, enabled: boolean) {
         levelFilter.update((s) => {
             const next = new Set(s);
-            next.has(level) ? next.delete(level) : next.add(level);
+            enabled ? next.add(level) : next.delete(level);
             return next;
         });
     }
@@ -25,24 +29,41 @@
     style="
         padding-left: calc(var(--titlebar-x) + 12px);
         padding-top: env(safe-area-inset-top);
-      "
+    "
 >
-    <input
-        placeholder="Search logs…"
-        class="h-7 px-2 text-sm bg-muted rounded-md outline-none"
-    />
+    <Input placeholder="Search logs…" bind:value={search} />
 
     <div class="flex gap-1">
-        {#each levels as lvl}
-            <button
-                on:click={() => toggle(lvl)}
-                class="px-2 text-xs rounded-md border transition
-                {$levelFilter.has(lvl)
-                    ? 'bg-primary/15 text-primary border-primary/30'
-                    : 'border-transparent text-muted-foreground'}"
+        <DropdownMenu.Root>
+            <DropdownMenu.Trigger>Level</DropdownMenu.Trigger>
+
+            <DropdownMenu.Content>
+                <DropdownMenu.CheckboxGroup>
+                    {#each levels as lvl}
+                        <DropdownMenu.CheckboxItem
+                            checked={$levelFilter.has(lvl)}
+                        >
+                            {lvl.toUpperCase()}
+                        </DropdownMenu.CheckboxItem>
+                    {/each}
+                </DropdownMenu.CheckboxGroup>
+            </DropdownMenu.Content>
+        </DropdownMenu.Root>
+        <!-- <Toggle
+                value={$levelFilter.has(lvl)}
+                on:valueChange={(e) => setLevel(lvl, e.detail)}
             >
-                {lvl.toUpperCase()}
-            </button>
-        {/each}
+                {#snippet children(toggle)}
+                    <button
+                        {...toggle.trigger}
+                        class="px-2 text-xs rounded-md border transition
+                                  {toggle.value
+                            ? 'bg-primary/15 text-primary border-primary/30'
+                            : 'border-transparent text-muted-foreground'}"
+                    >
+                        {lvl.toUpperCase()}
+                    </button>
+                {/snippet}
+            </Toggle> -->
     </div>
 </div>

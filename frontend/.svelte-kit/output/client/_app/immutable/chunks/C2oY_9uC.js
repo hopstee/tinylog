@@ -13,6 +13,7 @@ var _commit_callbacks, _discard_callbacks, _pending, _blocking_pending, _deferre
 const DEV = false;
 var is_array = Array.isArray;
 var index_of = Array.prototype.indexOf;
+var includes = Array.prototype.includes;
 var array_from = Array.from;
 var define_property = Object.defineProperty;
 var get_descriptor = Object.getOwnPropertyDescriptor;
@@ -42,15 +43,6 @@ function deferred() {
     reject = rej;
   });
   return { promise, resolve, reject };
-}
-function fallback(value, fallback2, lazy = false) {
-  return value === void 0 ? lazy ? (
-    /** @type {() => V} */
-    fallback2()
-  ) : (
-    /** @type {V} */
-    fallback2
-  ) : value;
 }
 function to_array(value, n) {
   if (Array.isArray(value)) {
@@ -104,6 +96,11 @@ const STALE_REACTION = new class StaleReactionError extends Error {
 const ELEMENT_NODE = 1;
 const TEXT_NODE = 3;
 const COMMENT_NODE = 8;
+function lifecycle_outside_component(name) {
+  {
+    throw new Error(`https://svelte.dev/e/lifecycle_outside_component`);
+  }
+}
 function async_derived_orphan() {
   {
     throw new Error(`https://svelte.dev/e/async_derived_orphan`);
@@ -280,6 +277,23 @@ let component_context = null;
 function set_component_context(context) {
   component_context = context;
 }
+function getContext(key) {
+  const context_map = get_or_init_context_map();
+  const result = (
+    /** @type {T} */
+    context_map.get(key)
+  );
+  return result;
+}
+function setContext(key, context) {
+  const context_map = get_or_init_context_map();
+  context_map.set(key, context);
+  return context;
+}
+function hasContext(key) {
+  const context_map = get_or_init_context_map();
+  return context_map.has(key);
+}
 function push(props, runes = false, fn) {
   component_context = {
     p: component_context,
@@ -312,6 +326,23 @@ function pop(component) {
 }
 function is_runes() {
   return !legacy_mode_flag || component_context !== null && component_context.l === null;
+}
+function get_or_init_context_map(name) {
+  if (component_context === null) {
+    lifecycle_outside_component();
+  }
+  return component_context.c ?? (component_context.c = new Map(get_parent_context(component_context) || void 0));
+}
+function get_parent_context(component_context2) {
+  let parent = component_context2.p;
+  while (parent !== null) {
+    const context_map = parent.c;
+    if (context_map !== null) {
+      return context_map;
+    }
+    parent = parent.p;
+  }
+  return null;
 }
 let micro_tasks = [];
 function run_micro_tasks() {
@@ -397,6 +428,7 @@ function defer_effect(effect2, dirty_effects, maybe_dirty_effects) {
 }
 const batches = /* @__PURE__ */ new Set();
 let current_batch = null;
+let previous_batch = null;
 let batch_values = null;
 let queued_root_effects = [];
 let last_scheduled_effect = null;
@@ -487,9 +519,11 @@ const _Batch = class _Batch {
       if (__privateGet(this, _pending) === 0) {
         __privateMethod(this, _Batch_instances, commit_fn).call(this);
       }
+      previous_batch = this;
       current_batch = null;
       flush_queued_effects(render_effects);
       flush_queued_effects(effects);
+      previous_batch = null;
       (_a = __privateGet(this, _deferred)) == null ? void 0 : _a.resolve();
     }
     batch_values = null;
@@ -635,7 +669,7 @@ traverse_effect_tree_fn = function(root, effects, render_effects) {
       } else if ((flags & EFFECT) !== 0) {
         effects.push(effect2);
       } else if (is_dirty(effect2)) {
-        if ((flags & BLOCK_EFFECT) !== 0) __privateGet(this, _dirty_effects).add(effect2);
+        if ((flags & BLOCK_EFFECT) !== 0) __privateGet(this, _maybe_dirty_effects).add(effect2);
         update_effect(effect2);
       }
       var child2 = effect2.first;
@@ -838,7 +872,7 @@ function depends_on(reaction, sources, checked) {
   if (depends !== void 0) return depends;
   if (reaction.deps !== null) {
     for (const dep of reaction.deps) {
-      if (sources.includes(dep)) {
+      if (includes.call(sources, dep)) {
         return true;
       }
       if ((dep.f & DERIVED) !== 0 && depends_on(
@@ -918,12 +952,12 @@ function capture() {
   var previous_effect = active_effect;
   var previous_reaction = active_reaction;
   var previous_component_context = component_context;
-  var previous_batch = current_batch;
+  var previous_batch2 = current_batch;
   return function restore(activate_batch = true) {
     set_active_effect(previous_effect);
     set_active_reaction(previous_reaction);
     set_component_context(previous_component_context);
-    if (activate_batch) previous_batch == null ? void 0 : previous_batch.activate();
+    if (activate_batch) previous_batch2 == null ? void 0 : previous_batch2.activate();
   };
 }
 function unset_context() {
@@ -1166,7 +1200,7 @@ function mutable_source(initial_value, immutable = false, trackable = true) {
 function set(source2, value, should_proxy = false) {
   if (active_reaction !== null && // since we are untracking the function inside `$inspect.with` we need to add this check
   // to ensure we error if state is set inside an inspect effect
-  (!untracking || (active_reaction.f & EAGER_EFFECT) !== 0) && is_runes() && (active_reaction.f & (DERIVED | BLOCK_EFFECT | ASYNC | EAGER_EFFECT)) !== 0 && !(current_sources == null ? void 0 : current_sources.includes(source2))) {
+  (!untracking || (active_reaction.f & EAGER_EFFECT) !== 0) && is_runes() && (active_reaction.f & (DERIVED | BLOCK_EFFECT | ASYNC | EAGER_EFFECT)) !== 0 && (current_sources === null || !includes.call(current_sources, source2))) {
     state_unsafe_mutation();
   }
   let new_value = should_proxy ? proxy(value) : value;
@@ -1576,6 +1610,42 @@ function clear_text_content(node) {
 function should_defer_append() {
   return false;
 }
+function autofocus(dom, value) {
+  if (value) {
+    const body = document.body;
+    dom.autofocus = true;
+    queue_micro_task(() => {
+      if (document.activeElement === body) {
+        dom.focus();
+      }
+    });
+  }
+}
+let listening_to_form_reset = false;
+function add_form_reset_listener() {
+  if (!listening_to_form_reset) {
+    listening_to_form_reset = true;
+    document.addEventListener(
+      "reset",
+      (evt) => {
+        Promise.resolve().then(() => {
+          var _a;
+          if (!evt.defaultPrevented) {
+            for (
+              const e of
+              /**@type {HTMLFormElement} */
+              evt.target.elements
+            ) {
+              (_a = e.__on_r) == null ? void 0 : _a.call(e);
+            }
+          }
+        });
+      },
+      // In the capture phase to guarantee we get noticed of it (no possibility of stopPropagation)
+      { capture: true }
+    );
+  }
+}
 function without_reactive_context(fn) {
   var previous_reaction = active_reaction;
   var previous_effect = active_effect;
@@ -1587,6 +1657,19 @@ function without_reactive_context(fn) {
     set_active_reaction(previous_reaction);
     set_active_effect(previous_effect);
   }
+}
+function listen_to_event_and_reset_event(element, event, handler, on_reset = handler) {
+  element.addEventListener(event, () => without_reactive_context(handler));
+  const prev = element.__on_r;
+  if (prev) {
+    element.__on_r = () => {
+      prev();
+      on_reset(true);
+    };
+  } else {
+    element.__on_r = () => on_reset(true);
+  }
+  add_form_reset_listener();
 }
 function validate_effect(rune) {
   if (active_effect === null) {
@@ -1697,6 +1780,13 @@ function user_pre_effect(fn) {
   validate_effect();
   return create_effect(RENDER_EFFECT | USER_EFFECT, fn, true);
 }
+function effect_root(fn) {
+  Batch.ensure();
+  const effect2 = create_effect(ROOT_EFFECT | EFFECT_PRESERVED, fn, true);
+  return () => {
+    destroy_effect(effect2);
+  };
+}
 function component_root(fn) {
   Batch.ensure();
   const effect2 = create_effect(ROOT_EFFECT | EFFECT_PRESERVED, fn, true);
@@ -1716,6 +1806,39 @@ function component_root(fn) {
 }
 function effect(fn) {
   return create_effect(EFFECT, fn, false);
+}
+function legacy_pre_effect(deps, fn) {
+  var context = (
+    /** @type {ComponentContextLegacy} */
+    component_context
+  );
+  var token = { effect: null, ran: false, deps };
+  context.l.$.push(token);
+  token.effect = render_effect(() => {
+    deps();
+    if (token.ran) return;
+    token.ran = true;
+    untrack(fn);
+  });
+}
+function legacy_pre_effect_reset() {
+  var context = (
+    /** @type {ComponentContextLegacy} */
+    component_context
+  );
+  render_effect(() => {
+    for (var token of context.l.$) {
+      token.deps();
+      var effect2 = token.effect;
+      if ((effect2.f & CLEAN) !== 0 && effect2.deps !== null) {
+        set_signal_status(effect2, MAYBE_DIRTY);
+      }
+      if (is_dirty(effect2)) {
+        update_effect(effect2);
+      }
+      token.ran = false;
+    }
+  });
 }
 function async_effect(fn) {
   return create_effect(ASYNC | EFFECT_PRESERVED, fn, true);
@@ -1981,7 +2104,7 @@ function is_dirty(reaction) {
 function schedule_possible_effect_self_invalidation(signal, effect2, root = true) {
   var reactions = signal.reactions;
   if (reactions === null) return;
-  if (current_sources == null ? void 0 : current_sources.includes(signal)) {
+  if (current_sources !== null && includes.call(current_sources, signal)) {
     return;
   }
   for (var i = 0; i < reactions.length; i++) {
@@ -2126,7 +2249,7 @@ function remove_reaction(signal, dependency) {
   if (reactions === null && (dependency.f & DERIVED) !== 0 && // Destroying a child effect while updating a parent effect can cause a dependency to appear
   // to be unused, when in fact it is used by the currently-updating parent. Checking `new_deps`
   // allows us to skip the expensive work of disconnecting and immediately reconnecting it
-  (new_deps === null || !new_deps.includes(dependency))) {
+  (new_deps === null || !includes.call(new_deps, dependency))) {
     var derived2 = (
       /** @type {Derived} */
       dependency
@@ -2186,7 +2309,7 @@ function get(signal) {
   var is_derived = (flags & DERIVED) !== 0;
   if (active_reaction !== null && !untracking) {
     var destroyed = active_effect !== null && (active_effect.f & DESTROYED) !== 0;
-    if (!destroyed && !(current_sources == null ? void 0 : current_sources.includes(signal))) {
+    if (!destroyed && (current_sources === null || !includes.call(current_sources, signal))) {
       var deps = active_reaction.deps;
       if ((active_reaction.f & REACTION_IS_UPDATING) !== 0) {
         if (signal.rv < read_version) {
@@ -2204,7 +2327,7 @@ function get(signal) {
         var reactions = signal.reactions;
         if (reactions === null) {
           signal.reactions = [active_reaction];
-        } else if (!reactions.includes(active_reaction)) {
+        } else if (!includes.call(reactions, active_reaction)) {
           reactions.push(active_reaction);
         }
       }
@@ -2329,27 +2452,27 @@ function deep_read(value, visited = /* @__PURE__ */ new Set()) {
 }
 export {
   PROPS_IS_LAZY_INITIAL as $,
-  create_text as A,
-  branch as B,
-  hydrate_node as C,
-  move_effect as D,
-  should_defer_append as E,
-  block as F,
-  EFFECT_TRANSPARENT as G,
-  read_hydration_instruction as H,
-  HYDRATION_START_ELSE as I,
-  skip_nodes as J,
-  set_hydrate_node as K,
-  set_hydrating as L,
-  teardown as M,
-  mutable_source as N,
-  set as O,
-  define_property as P,
-  get_descriptor as Q,
-  props_invalid_value as R,
-  PROPS_IS_UPDATED as S,
-  proxy as T,
-  is_destroying_effect as U,
+  pause_effect as A,
+  create_text as B,
+  branch as C,
+  hydrate_node as D,
+  move_effect as E,
+  should_defer_append as F,
+  block as G,
+  EFFECT_TRANSPARENT as H,
+  read_hydration_instruction as I,
+  HYDRATION_START_ELSE as J,
+  skip_nodes as K,
+  set_hydrate_node as L,
+  set_hydrating as M,
+  teardown as N,
+  define_property as O,
+  mutable_source as P,
+  set as Q,
+  get_descriptor as R,
+  props_invalid_value as S,
+  PROPS_IS_UPDATED as T,
+  proxy as U,
   active_effect as V,
   DESTROYED as W,
   PROPS_IS_BINDABLE as X,
@@ -2357,82 +2480,92 @@ export {
   PROPS_IS_IMMUTABLE as Z,
   derived_safe_equal as _,
   hydrate_next as a,
-  managed as a$,
-  STATE_SYMBOL as a0,
-  LEGACY_PROPS as a1,
-  source as a2,
-  update as a3,
-  set_active_effect as a4,
-  is_function as a5,
-  get_first_child as a6,
-  is_firefox as a7,
-  TEMPLATE_FRAGMENT as a8,
-  TEMPLATE_USE_IMPORT_NODE as a9,
-  HYDRATION_START as aA,
-  get_next_sibling as aB,
-  HYDRATION_ERROR as aC,
-  hydration_failed as aD,
-  clear_text_content as aE,
-  array_from as aF,
-  component_root as aG,
-  HYDRATION_END as aH,
-  hydration_mismatch as aI,
-  effect as aJ,
-  flushSync as aK,
-  tick as aL,
-  state as aM,
-  user_derived as aN,
-  is_array as aO,
-  get_prototype_of as aP,
-  object_prototype as aQ,
-  ATTACHMENT_KEY as aR,
-  EFFECT_OFFSCREEN as aS,
-  EACH_IS_CONTROLLED as aT,
+  NAMESPACE_SVG as a$,
+  is_destroying_effect as a0,
+  STATE_SYMBOL as a1,
+  LEGACY_PROPS as a2,
+  is_function as a3,
+  source as a4,
+  update as a5,
+  set_active_effect as a6,
+  get_first_child as a7,
+  is_firefox as a8,
+  TEMPLATE_FRAGMENT as a9,
+  init_operations as aA,
+  HYDRATION_START as aB,
+  get_next_sibling as aC,
+  HYDRATION_ERROR as aD,
+  hydration_failed as aE,
+  clear_text_content as aF,
+  array_from as aG,
+  component_root as aH,
+  HYDRATION_END as aI,
+  hydration_mismatch as aJ,
+  effect as aK,
+  flushSync as aL,
+  tick as aM,
+  state as aN,
+  user_derived as aO,
+  is_array as aP,
+  get_prototype_of as aQ,
+  object_prototype as aR,
+  ATTACHMENT_KEY as aS,
+  EFFECT_OFFSCREEN as aT,
   EACH_ITEM_REACTIVE as aU,
   EACH_ITEM_IMMUTABLE as aV,
   EACH_INDEX_REACTIVE as aW,
   INERT as aX,
-  EACH_IS_ANIMATED as aY,
-  ELEMENT_NODE as aZ,
-  NAMESPACE_SVG as a_,
-  EFFECT_RAN as aa,
-  TEXT_NODE as ab,
-  effect_tracking as ac,
-  render_effect as ad,
-  increment as ae,
-  queue_micro_task as af,
-  COMMENT_NODE as ag,
-  Batch as ah,
-  defer_effect as ai,
-  set_active_reaction as aj,
-  set_component_context as ak,
-  handle_error as al,
-  active_reaction as am,
-  set_signal_status as an,
-  DIRTY as ao,
-  schedule_effect as ap,
-  MAYBE_DIRTY as aq,
-  internal_set as ar,
-  next as as,
-  invoke_error_boundary as at,
-  svelte_boundary_reset_onerror as au,
-  EFFECT_PRESERVED as av,
-  BOUNDARY_EFFECT as aw,
-  svelte_boundary_reset_noop as ax,
-  without_reactive_context as ay,
-  init_operations as az,
+  EACH_IS_CONTROLLED as aY,
+  EACH_IS_ANIMATED as aZ,
+  ELEMENT_NODE as a_,
+  TEMPLATE_USE_IMPORT_NODE as aa,
+  EFFECT_RAN as ab,
+  COMMENT_NODE as ac,
+  TEXT_NODE as ad,
+  effect_tracking as ae,
+  render_effect as af,
+  increment as ag,
+  queue_micro_task as ah,
+  Batch as ai,
+  defer_effect as aj,
+  set_active_reaction as ak,
+  set_component_context as al,
+  handle_error as am,
+  active_reaction as an,
+  set_signal_status as ao,
+  DIRTY as ap,
+  schedule_effect as aq,
+  MAYBE_DIRTY as ar,
+  internal_set as as,
+  next as at,
+  invoke_error_boundary as au,
+  svelte_boundary_reset_onerror as av,
+  EFFECT_PRESERVED as aw,
+  BOUNDARY_EFFECT as ax,
+  svelte_boundary_reset_noop as ay,
+  without_reactive_context as az,
   user_effect as b,
-  select_multiple_invalid_value as b0,
-  is as b1,
-  flatten as b2,
-  UNINITIALIZED as b3,
-  NAMESPACE_HTML as b4,
-  LOADING_ATTR_SYMBOL as b5,
-  get_descriptors as b6,
-  to_array as b7,
-  update_version as b8,
-  fallback as b9,
-  settled as ba,
+  managed as b0,
+  select_multiple_invalid_value as b1,
+  is as b2,
+  add_form_reset_listener as b3,
+  LOADING_ATTR_SYMBOL as b4,
+  NAMESPACE_HTML as b5,
+  flatten as b6,
+  autofocus as b7,
+  UNINITIALIZED as b8,
+  get_descriptors as b9,
+  listen_to_event_and_reset_event as ba,
+  previous_batch as bb,
+  to_array as bc,
+  update_version as bd,
+  hasContext as be,
+  getContext as bf,
+  setContext as bg,
+  effect_root as bh,
+  legacy_pre_effect as bi,
+  legacy_pre_effect_reset as bj,
+  settled as bk,
   component_context as c,
   untrack as d,
   run as e,
@@ -2442,19 +2575,19 @@ export {
   derived as i,
   enable_legacy_mode_flag as j,
   child as k,
-  legacy_mode_flag as l,
-  reset as m,
-  noop as n,
-  first_child as o,
+  reset as l,
+  first_child as m,
+  pop as n,
+  noop as o,
   push as p,
-  pop as q,
+  safe_not_equal as q,
   run_all as r,
-  safe_not_equal as s,
+  sibling as s,
   template_effect as t,
   user_pre_effect as u,
-  sibling as v,
-  current_batch as w,
-  resume_effect as x,
-  destroy_effect as y,
-  pause_effect as z
+  lifecycle_outside_component as v,
+  legacy_mode_flag as w,
+  current_batch as x,
+  resume_effect as y,
+  destroy_effect as z
 };
