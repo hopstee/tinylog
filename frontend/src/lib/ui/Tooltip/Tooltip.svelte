@@ -35,7 +35,6 @@
                                 duration: 150,
                             }}
                         >
-                            <!-- <Tooltip.Arrow class="text-border" /> -->
                             <div
                                 class="
                                     rounded-xl border-border bg-background shadow-sm

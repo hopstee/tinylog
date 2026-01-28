@@ -1,8 +1,8 @@
 <script lang="ts">
     import { levelFilter } from "$lib/hooks/useLogsStore";
     import type { LogLevel } from "$lib/types/logs";
+    import DropdownMenu from "$lib/ui/DropdownMenu/DropdownMenu.svelte";
     import Input from "$lib/ui/Input.svelte";
-    import { DropdownMenu } from "bits-ui";
 
     let search: string = "";
 
@@ -34,7 +34,8 @@
     <Input placeholder="Search logs…" bind:value={search} />
 
     <div class="flex gap-1">
-        <DropdownMenu.Root>
+        <DropdownMenu buttonText="Level" items={levels} />
+        <!-- <DropdownMenu.Root>
             <DropdownMenu.Trigger>Level</DropdownMenu.Trigger>
 
             <DropdownMenu.Content>
@@ -48,7 +49,7 @@
                     {/each}
                 </DropdownMenu.CheckboxGroup>
             </DropdownMenu.Content>
-        </DropdownMenu.Root>
+        </DropdownMenu.Root> -->
         <!-- <Toggle
                 value={$levelFilter.has(lvl)}
                 on:valueChange={(e) => setLevel(lvl, e.detail)}
