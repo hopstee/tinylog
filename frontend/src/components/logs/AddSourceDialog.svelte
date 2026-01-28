@@ -1,30 +1,40 @@
 <script lang="ts">
-    // import { Dialog } from "melt/builders";
     import Button from "$lib/ui/Button.svelte";
     import DialogClose from "$lib/ui/Dialog/DialogClose.svelte";
     import Dialog from "$lib/ui/Dialog/Dialog.svelte";
     import Input from "$lib/ui/Input.svelte";
-    // import { Tabs } from "melt/builders";
     import {
-        IconLock,
-        IconPlane,
         IconPlus,
-        IconX,
         IconDisc,
         IconServer,
         IconTestPipe,
-        IconTestPipe2,
         IconLoader,
-        IconCloudPlus,
     } from "@tabler/icons-svelte";
-    import { Label, Separator, Tabs } from "bits-ui";
+    import { Separator } from "bits-ui";
     import DialogTrigger from "$lib/ui/Dialog/DialogTrigger.svelte";
     import DialogContent from "$lib/ui/Dialog/DialogContent.svelte";
     import DialogTitle from "$lib/ui/Dialog/DialogTitle.svelte";
     import Tooltip from "$lib/ui/Tooltip/Tooltip.svelte";
+    import Tabs from "$lib/ui/Tabs/Tabs.svelte";
+    import TabsList from "$lib/ui/Tabs/TabsList.svelte";
+    import TabsTrigger from "$lib/ui/Tabs/TabsTrigger.svelte";
+    import TabsContent from "$lib/ui/Tabs/TabsContent.svelte";
 
-    const tabsList = ["local", "ssh"];
-    let selectedTab = tabsList[0];
+    let dialogOpen = false;
+
+    const tabsList = [
+        {
+            name: "local",
+            title: "Local",
+            icon: IconDisc,
+        },
+        {
+            name: "ssh",
+            title: "SSH",
+            icon: IconServer,
+        },
+    ];
+    let selectedTab = tabsList[0].name;
     const onChangeTab = (tab: string) => {
         selectedTab = tab;
     };
@@ -41,8 +51,14 @@
 
     // Test
     let connectionTesting = false;
+    let submitLoading = false;
 
-    function submit() {
+    function sleep(ms: number) {
+        return new Promise((resolve) => setTimeout(resolve, ms));
+    }
+
+    async function submit() {
+        submitLoading = true;
         const payload = {
             selectedTab,
             connection:
@@ -54,12 +70,13 @@
         };
 
         console.log("ADD SOURCE", payload);
-        // dialog.open = false;
+        await sleep(2000);
+        submitLoading = false;
+        dialogOpen = false;
     }
 
     function testConnection() {
-        if (!connectionTesting) return;
-        console.log("test");
+        if (connectionTesting) return;
         connectionTesting = true;
         setTimeout(() => {
             connectionTesting = false;
@@ -67,7 +84,14 @@
     }
 </script>
 
-<Dialog>
+{#snippet defaultInputs()}
+    <div class="space-y-2">
+        <Input placeholder="/var/log/app.log" bind:value={logPath} />
+        <Input placeholder="Display name (optional)" bind:value={logLabel} />
+    </div>
+{/snippet}
+
+<Dialog bind:open={dialogOpen}>
     <DialogTrigger class="w-fit">
         <Button size="icon-sm" variant="ghost">
             <IconPlus size={14} />
@@ -76,45 +100,29 @@
     <DialogContent>
         <DialogTitle>Add log source</DialogTitle>
 
-        <Tabs.Root value={selectedTab} onValueChange={onChangeTab}>
+        <Tabs value={selectedTab} onValueChange={onChangeTab}>
             <div class="flex items-center justify-between">
-                <Tabs.List
-                    class="
-                        flex gap-1 w-fit
-                        p-1 text-xs font-semibold
-                        border border-border rounded-xl
-                    "
-                >
-                    <Tabs.Trigger
-                        value="local"
-                        class="
-                            flex items-center justify-center gap-1
-                            dark:data-[state=active]:bg-muted
-                            h-6 rounded-lg px-3
-                            bg-transparent data-[state=active]:bg-muted
-                        "
-                    >
-                        <IconDisc size={12} />
-                        Local
-                    </Tabs.Trigger>
-                    <Tabs.Trigger
-                        value="ssh"
-                        class="
-                            flex items-center justify-center gap-1
-                            dark:data-[state=active]:bg-muted
-                            h-6 rounded-lg px-3
-                            bg-transparent data-[state=active]:bg-muted
-                        "
-                    >
-                        <IconServer size={12} />
-                        SSH
-                    </Tabs.Trigger>
-                </Tabs.List>
+                <TabsList>
+                    {#each tabsList as tab}
+                        <TabsTrigger value={tab.name}>
+                            <svelte:component
+                                this={tab.icon}
+                                class="size-4 shrink-0"
+                            />
+                            {tab.title}
+                        </TabsTrigger>
+                    {/each}
+                </TabsList>
 
                 {#if selectedTab === "ssh"}
-                    <Tooltip triggerProps={{ onclick: testConnection }}>
+                    <Tooltip>
                         {#snippet trigger()}
-                            <Button variant="ghost" size="icon">
+                            <Button
+                                variant="ghost"
+                                size="icon"
+                                loading={connectionTesting}
+                                onclick={() => testConnection()}
+                            >
                                 {#if connectionTesting}
                                     <IconLoader
                                         size={16}
@@ -129,19 +137,11 @@
                     </Tooltip>
                 {/if}
             </div>
-            <Tabs.Content value="local" class="select-none pt-3">
-                <div class="space-y-2">
-                    <Input
-                        placeholder="/var/log/app.log"
-                        bind:value={logPath}
-                    />
-                    <Input
-                        placeholder="Display name (optional)"
-                        bind:value={logLabel}
-                    />
-                </div>
-            </Tabs.Content>
-            <Tabs.Content value="ssh" class="select-none pt-3">
+
+            <TabsContent value="local">
+                {@render defaultInputs()}
+            </TabsContent>
+            <TabsContent value="ssh">
                 <div class="space-y-2 mb-4">
                     <Input placeholder="Connection name" bind:value={name} />
                     <Input placeholder="Host" bind:value={host} />
@@ -155,25 +155,21 @@
                     </div>
                 </div>
                 <Separator.Root class="bg-muted -mx-5 mb-6 mt-5 block h-px" />
-                <div class="space-y-2">
-                    <Input
-                        placeholder="/var/log/app.log"
-                        bind:value={logPath}
-                    />
-                    <Input
-                        placeholder="Display name (optional)"
-                        bind:value={logLabel}
-                    />
-                </div>
-            </Tabs.Content>
-        </Tabs.Root>
+                {@render defaultInputs()}
+            </TabsContent>
+        </Tabs>
 
         <div class="mt-4 flex">
-            <div class="ml-auto">
+            <div class="flex space-x-1 ml-auto">
                 <DialogClose>
                     <Button variant="secondary">Cancel</Button>
                 </DialogClose>
-                <Button>Add</Button>
+                <Button onclick={submit} loading={submitLoading}>
+                    {#if submitLoading}
+                        <IconLoader class="size-4 animate-spin" />
+                    {/if}
+                    Add
+                </Button>
             </div>
         </div>
     </DialogContent>
