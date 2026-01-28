@@ -1,4 +1,4 @@
-import { c as run_all, j as deferred, k as includes, l as safe_equals, m as equals, o as object_prototype, p as array_prototype, q as get_descriptor, b as get_prototype_of, i as is_array, t as is_extensible, u as index_of, e as escape_html, n as noop, v as set_ssr_context, w as ssr_context, x as push$1, y as pop$1 } from "./context.js";
+import { j as run_all, k as deferred, l as includes, m as safe_equals, p as equals, o as object_prototype, q as array_prototype, t as get_descriptor, b as get_prototype_of, i as is_array, u as is_extensible, v as index_of, e as escape_html, n as noop, w as set_ssr_context, x as ssr_context, y as push$1, z as pop$1 } from "./context.js";
 import { clsx as clsx$1 } from "clsx";
 import { D as DEV } from "./false.js";
 import * as devalue from "devalue";
@@ -1945,6 +1945,13 @@ https://svelte.dev/e/invalid_csp`);
   error.name = "Svelte error";
   throw error;
 }
+function lifecycle_function_unavailable(name) {
+  const error = new Error(`lifecycle_function_unavailable
+\`${name}(...)\` is not available on the server
+https://svelte.dev/e/lifecycle_function_unavailable`);
+  error.name = "Svelte error";
+  throw error;
+}
 function server_context_required() {
   const error = new Error(`server_context_required
 Could not resolve \`render\` context.
@@ -2765,7 +2772,7 @@ function derived(fn) {
   };
 }
 export {
-  sanitize_props as $,
+  lifecycle_function_unavailable as $,
   internal_set as A,
   Batch as B,
   COMMENT_NODE as C,
@@ -2794,21 +2801,22 @@ export {
   slot as Z,
   ATTACHMENT_KEY as _,
   HYDRATION_END as a,
-  rest_props as a0,
-  attributes as a1,
-  ensure_array_like as a2,
-  element as a3,
-  bind_props as a4,
-  spread_props as a5,
-  attr as a6,
-  derived as a7,
-  props_id as a8,
-  stringify as a9,
-  attr_class as aa,
-  attr_style as ab,
-  store_get as ac,
-  unsubscribe_stores as ad,
-  without_reactive_context as ae,
+  sanitize_props as a0,
+  rest_props as a1,
+  attributes as a2,
+  ensure_array_like as a3,
+  element as a4,
+  bind_props as a5,
+  spread_props as a6,
+  attr as a7,
+  attr_class as a8,
+  derived as a9,
+  props_id as aa,
+  stringify as ab,
+  attr_style as ac,
+  store_get as ad,
+  unsubscribe_stores as ae,
+  without_reactive_context as af,
   HYDRATION_START as b,
   HYDRATION_START_ELSE as c,
   get as d,

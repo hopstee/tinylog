@@ -85,6 +85,9 @@ function setContext(key, context) {
 function hasContext(key) {
   return get_or_init_context_map().has(key);
 }
+function getAllContexts() {
+  return get_or_init_context_map();
+}
 function get_or_init_context_map(name) {
   if (ssr_context === null) {
     lifecycle_outside_component();
@@ -110,30 +113,31 @@ function get_parent_context(ssr_context2) {
   return null;
 }
 export {
+  safe_not_equal as A,
   array_from as a,
   get_prototype_of as b,
-  run_all as c,
+  getAllContexts as c,
   define_property as d,
   escape_html as e,
   fallback as f,
   getContext as g,
   hasContext as h,
   is_array as i,
-  deferred as j,
-  includes as k,
-  safe_equals as l,
-  equals as m,
+  run_all as j,
+  deferred as k,
+  includes as l,
+  safe_equals as m,
   noop as n,
   object_prototype as o,
-  array_prototype as p,
-  get_descriptor as q,
+  equals as p,
+  array_prototype as q,
   run as r,
   setContext as s,
-  is_extensible as t,
-  index_of as u,
-  set_ssr_context as v,
-  ssr_context as w,
-  push as x,
-  pop as y,
-  safe_not_equal as z
+  get_descriptor as t,
+  is_extensible as u,
+  index_of as v,
+  set_ssr_context as w,
+  ssr_context as x,
+  push as y,
+  pop as z
 };

@@ -1,4 +1,4 @@
-import { q as queue_micro_task, ae as without_reactive_context, n as set_active_reaction, m as set_active_effect, v as active_reaction, f as active_effect } from "./index2.js";
+import { q as queue_micro_task, af as without_reactive_context, n as set_active_reaction, m as set_active_effect, v as active_reaction, f as active_effect } from "./index2.js";
 import { d as define_property } from "./context.js";
 const all_registered_events = /* @__PURE__ */ new Set();
 const root_event_handles = /* @__PURE__ */ new Set();

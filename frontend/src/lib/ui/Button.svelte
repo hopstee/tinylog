@@ -17,7 +17,7 @@
     export let type: "button" | "submit" | "reset" = "button";
 
     const base =
-        "inline-flex items-center justify-center rounded-xl font-medium transition-all select-none";
+        "inline-flex items-center justify-center rounded-xl font-medium transition-all select-none text-sm";
 
     const variants = {
         primary:
@@ -30,11 +30,11 @@
     };
 
     const sizes = {
-        sm: "px-3 py-1.5 text-sm",
-        md: "px-4 py-2 text-base",
-        lg: "px-5 py-2.5 text-lg",
-        icon: "h-9 w-9 p-1",
-        "icon-sm": "h-7 w-7 p-2",
+        sm: "px-2 py-1 text-xs",
+        md: "px-3 py-1.5 text-sm",
+        lg: "px-4 py-2 text-md",
+        icon: "flex items-center justify-center size-8 text-sm",
+        "icon-sm": "flex items-center justify-center size-6 text-xs",
     };
 
     const isDisabled = disabled || loading;

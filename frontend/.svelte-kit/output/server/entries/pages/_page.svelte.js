@@ -1,10 +1,10 @@
 import { clsx } from "clsx";
-import { _ as ATTACHMENT_KEY, $ as sanitize_props, a0 as rest_props, a1 as attributes, a2 as ensure_array_like, a3 as element, Z as slot, a4 as bind_props, a5 as spread_props, a6 as attr, a7 as derived, a8 as props_id, a9 as stringify, aa as attr_class, ab as attr_style, ac as store_get, ad as unsubscribe_stores } from "../../chunks/index2.js";
-import { i as is_array, b as get_prototype_of, o as object_prototype, f as fallback, h as hasContext, g as getContext, s as setContext, r as run, e as escape_html } from "../../chunks/context.js";
-import { o as on } from "../../chunks/events.js";
+import { _ as ATTACHMENT_KEY, $ as lifecycle_function_unavailable, a0 as sanitize_props, a1 as rest_props, a2 as attributes, a3 as ensure_array_like, a4 as element, Z as slot, a5 as bind_props, a6 as spread_props, a7 as attr, a8 as attr_class, a9 as derived, aa as props_id, ab as stringify, ac as attr_style, ad as store_get, ae as unsubscribe_stores } from "../../chunks/index2.js";
+import { i as is_array, b as get_prototype_of, o as object_prototype, f as fallback, h as hasContext, g as getContext, s as setContext, r as run, c as getAllContexts, e as escape_html } from "../../chunks/context.js";
 import parse from "style-to-object";
-import { w as writable } from "../../chunks/index.js";
+import { o as on } from "../../chunks/events.js";
 import { isTabbable, tabbable, isFocusable, focusable } from "tabbable";
+import { w as writable } from "../../chunks/index.js";
 import { computePosition, offset, shift, limitShift, flip, size, arrow, hide } from "@floating-ui/dom";
 const empty = [];
 function snapshot(value, skip_warning = false, no_tojson = false) {
@@ -97,6 +97,12 @@ function clone(value, cloned, path, paths, original = null, no_tojson = false) {
 }
 function createAttachmentKey() {
   return Symbol(ATTACHMENT_KEY);
+}
+function mount() {
+  lifecycle_function_unavailable("mount");
+}
+function unmount() {
+  lifecycle_function_unavailable("unmount");
 }
 async function tick() {
 }
@@ -204,6 +210,42 @@ function File($$renderer, $$props) {
       $$slots: { default: true }
     }
   ]));
+}
+function Button($$renderer, $$props) {
+  let variant = fallback($$props["variant"], "primary");
+  let size2 = fallback($$props["size"], "md");
+  let loading = fallback($$props["loading"], false);
+  let disabled = fallback($$props["disabled"], false);
+  let href = fallback($$props["href"], null);
+  let type = fallback($$props["type"], "button");
+  const base = "inline-flex items-center justify-center rounded-xl font-medium transition-all select-none";
+  const variants = {
+    primary: "bg-primary text-primary-foreground hover:bg-primary/90 active:bg-primary/80",
+    secondary: "bg-muted text-muted-foreground hover:bg-muted/90 active:bg-muted/80",
+    ghost: "bg-transparent text-foreground hover:bg-muted active:bg-muted",
+    destructive: "bg-destructive text-destructive-foreground hover:bg-destructive/90 active:bg-destructive/80"
+  };
+  const sizes = {
+    sm: "px-3 py-1.5 text-sm",
+    md: "px-4 py-2 text-base",
+    lg: "px-5 py-2.5 text-lg",
+    icon: "h-9 w-9 p-1",
+    "icon-sm": "h-7 w-7 p-2"
+  };
+  const isDisabled = disabled || loading;
+  if (href) {
+    $$renderer.push("<!--[-->");
+    $$renderer.push(`<a${attr("href", href)}${attr_class(`${base} ${variants[variant]} ${sizes[size2]} ${isDisabled && "opacity-60 cursor-not-allowed"} `)}${attr("aria-disabled", isDisabled)}><!--[-->`);
+    slot($$renderer, $$props, "default", {});
+    $$renderer.push(`<!--]--></a>`);
+  } else {
+    $$renderer.push("<!--[!-->");
+    $$renderer.push(`<button${attr("type", type)}${attr_class(`${base} ${variants[variant]} ${sizes[size2]} ${isDisabled && "opacity-60 cursor-not-allowed"} `)}${attr("disabled", isDisabled, true)}><!--[-->`);
+    slot($$renderer, $$props, "default", {});
+    $$renderer.push(`<!--]--></button>`);
+  }
+  $$renderer.push(`<!--]-->`);
+  bind_props($$props, { variant, size: size2, loading, disabled, href, type });
 }
 function Input($$renderer, $$props) {
   let value = fallback($$props["value"], "");
@@ -970,8 +1012,14 @@ function attachRef(ref, onChange) {
 function boolToStr(condition) {
   return condition ? "true" : "false";
 }
+function boolToStrTrueOrUndef(condition) {
+  return condition ? "true" : void 0;
+}
 function boolToEmptyStrOrUndef(condition) {
   return condition ? "" : void 0;
+}
+function boolToTrueOrUndef(condition) {
+  return condition ? true : void 0;
 }
 function getDataOpenClosed(condition) {
   return condition ? "open" : "closed";
@@ -1714,6 +1762,435 @@ function Accordion_content($$renderer, $$props) {
     }
     $$renderer2.push(`<!--]-->`);
     bind_props($$props, { ref });
+  });
+}
+const dialogAttrs = createBitsAttrs({
+  component: "dialog",
+  parts: [
+    "content",
+    "trigger",
+    "overlay",
+    "title",
+    "description",
+    "close",
+    "cancel",
+    "action"
+  ]
+});
+const DialogRootContext = new Context("Dialog.Root | AlertDialog.Root");
+class DialogRootState {
+  static create(opts) {
+    const parent = DialogRootContext.getOr(null);
+    return DialogRootContext.set(new DialogRootState(opts, parent));
+  }
+  opts;
+  triggerNode = null;
+  contentNode = null;
+  overlayNode = null;
+  descriptionNode = null;
+  contentId = void 0;
+  titleId = void 0;
+  triggerId = void 0;
+  descriptionId = void 0;
+  cancelNode = null;
+  nestedOpenCount = 0;
+  depth;
+  parent;
+  contentPresence;
+  overlayPresence;
+  constructor(opts, parent) {
+    this.opts = opts;
+    this.parent = parent;
+    this.depth = parent ? parent.depth + 1 : 0;
+    this.handleOpen = this.handleOpen.bind(this);
+    this.handleClose = this.handleClose.bind(this);
+    this.contentPresence = new PresenceManager({
+      ref: boxWith(() => this.contentNode),
+      open: this.opts.open,
+      enabled: true,
+      onComplete: () => {
+        this.opts.onOpenChangeComplete.current(this.opts.open.current);
+      }
+    });
+    this.overlayPresence = new PresenceManager({
+      ref: boxWith(() => this.overlayNode),
+      open: this.opts.open,
+      enabled: true
+    });
+    watch(
+      () => this.opts.open.current,
+      (isOpen) => {
+        if (!this.parent) return;
+        if (isOpen) {
+          this.parent.incrementNested();
+        } else {
+          this.parent.decrementNested();
+        }
+      },
+      { lazy: true }
+    );
+  }
+  handleOpen() {
+    if (this.opts.open.current) return;
+    this.opts.open.current = true;
+  }
+  handleClose() {
+    if (!this.opts.open.current) return;
+    this.opts.open.current = false;
+  }
+  getBitsAttr = (part) => {
+    return dialogAttrs.getAttr(part, this.opts.variant.current);
+  };
+  incrementNested() {
+    this.nestedOpenCount++;
+    this.parent?.incrementNested();
+  }
+  decrementNested() {
+    if (this.nestedOpenCount === 0) return;
+    this.nestedOpenCount--;
+    this.parent?.decrementNested();
+  }
+  #sharedProps = derived(() => ({ "data-state": getDataOpenClosed(this.opts.open.current) }));
+  get sharedProps() {
+    return this.#sharedProps();
+  }
+  set sharedProps($$value) {
+    return this.#sharedProps($$value);
+  }
+}
+class DialogTriggerState {
+  static create(opts) {
+    return new DialogTriggerState(opts, DialogRootContext.get());
+  }
+  opts;
+  root;
+  attachment;
+  constructor(opts, root) {
+    this.opts = opts;
+    this.root = root;
+    this.attachment = attachRef(this.opts.ref, (v) => {
+      this.root.triggerNode = v;
+      this.root.triggerId = v?.id;
+    });
+    this.onclick = this.onclick.bind(this);
+    this.onkeydown = this.onkeydown.bind(this);
+  }
+  onclick(e) {
+    if (this.opts.disabled.current) return;
+    if (e.button > 0) return;
+    this.root.handleOpen();
+  }
+  onkeydown(e) {
+    if (this.opts.disabled.current) return;
+    if (e.key === SPACE || e.key === ENTER) {
+      e.preventDefault();
+      this.root.handleOpen();
+    }
+  }
+  #props = derived(() => ({
+    id: this.opts.id.current,
+    "aria-haspopup": "dialog",
+    "aria-expanded": boolToStr(this.root.opts.open.current),
+    "aria-controls": this.root.contentId,
+    [this.root.getBitsAttr("trigger")]: "",
+    onkeydown: this.onkeydown,
+    onclick: this.onclick,
+    disabled: this.opts.disabled.current ? true : void 0,
+    ...this.root.sharedProps,
+    ...this.attachment
+  }));
+  get props() {
+    return this.#props();
+  }
+  set props($$value) {
+    return this.#props($$value);
+  }
+}
+class DialogCloseState {
+  static create(opts) {
+    return new DialogCloseState(opts, DialogRootContext.get());
+  }
+  opts;
+  root;
+  attachment;
+  constructor(opts, root) {
+    this.opts = opts;
+    this.root = root;
+    this.attachment = attachRef(this.opts.ref);
+    this.onclick = this.onclick.bind(this);
+    this.onkeydown = this.onkeydown.bind(this);
+  }
+  onclick(e) {
+    if (this.opts.disabled.current) return;
+    if (e.button > 0) return;
+    this.root.handleClose();
+  }
+  onkeydown(e) {
+    if (this.opts.disabled.current) return;
+    if (e.key === SPACE || e.key === ENTER) {
+      e.preventDefault();
+      this.root.handleClose();
+    }
+  }
+  #props = derived(() => ({
+    id: this.opts.id.current,
+    [this.root.getBitsAttr(this.opts.variant.current)]: "",
+    onclick: this.onclick,
+    onkeydown: this.onkeydown,
+    disabled: this.opts.disabled.current ? true : void 0,
+    tabindex: 0,
+    ...this.root.sharedProps,
+    ...this.attachment
+  }));
+  get props() {
+    return this.#props();
+  }
+  set props($$value) {
+    return this.#props($$value);
+  }
+}
+class DialogTitleState {
+  static create(opts) {
+    return new DialogTitleState(opts, DialogRootContext.get());
+  }
+  opts;
+  root;
+  attachment;
+  constructor(opts, root) {
+    this.opts = opts;
+    this.root = root;
+    this.root.titleId = this.opts.id.current;
+    this.attachment = attachRef(this.opts.ref);
+    watch.pre(() => this.opts.id.current, (id) => {
+      this.root.titleId = id;
+    });
+  }
+  #props = derived(() => ({
+    id: this.opts.id.current,
+    role: "heading",
+    "aria-level": this.opts.level.current,
+    [this.root.getBitsAttr("title")]: "",
+    ...this.root.sharedProps,
+    ...this.attachment
+  }));
+  get props() {
+    return this.#props();
+  }
+  set props($$value) {
+    return this.#props($$value);
+  }
+}
+class DialogContentState {
+  static create(opts) {
+    return new DialogContentState(opts, DialogRootContext.get());
+  }
+  opts;
+  root;
+  attachment;
+  constructor(opts, root) {
+    this.opts = opts;
+    this.root = root;
+    this.attachment = attachRef(this.opts.ref, (v) => {
+      this.root.contentNode = v;
+      this.root.contentId = v?.id;
+    });
+  }
+  #snippetProps = derived(() => ({ open: this.root.opts.open.current }));
+  get snippetProps() {
+    return this.#snippetProps();
+  }
+  set snippetProps($$value) {
+    return this.#snippetProps($$value);
+  }
+  #props = derived(() => ({
+    id: this.opts.id.current,
+    role: this.root.opts.variant.current === "alert-dialog" ? "alertdialog" : "dialog",
+    "aria-modal": "true",
+    "aria-describedby": this.root.descriptionId,
+    "aria-labelledby": this.root.titleId,
+    [this.root.getBitsAttr("content")]: "",
+    style: {
+      pointerEvents: "auto",
+      outline: this.root.opts.variant.current === "alert-dialog" ? "none" : void 0,
+      "--bits-dialog-depth": this.root.depth,
+      "--bits-dialog-nested-count": this.root.nestedOpenCount
+    },
+    tabindex: this.root.opts.variant.current === "alert-dialog" ? -1 : void 0,
+    "data-nested-open": boolToEmptyStrOrUndef(this.root.nestedOpenCount > 0),
+    "data-nested": boolToEmptyStrOrUndef(this.root.parent !== null),
+    ...this.root.sharedProps,
+    ...this.attachment
+  }));
+  get props() {
+    return this.#props();
+  }
+  set props($$value) {
+    return this.#props($$value);
+  }
+  get shouldRender() {
+    return this.root.contentPresence.shouldRender;
+  }
+}
+class DialogOverlayState {
+  static create(opts) {
+    return new DialogOverlayState(opts, DialogRootContext.get());
+  }
+  opts;
+  root;
+  attachment;
+  constructor(opts, root) {
+    this.opts = opts;
+    this.root = root;
+    this.attachment = attachRef(this.opts.ref, (v) => this.root.overlayNode = v);
+  }
+  #snippetProps = derived(() => ({ open: this.root.opts.open.current }));
+  get snippetProps() {
+    return this.#snippetProps();
+  }
+  set snippetProps($$value) {
+    return this.#snippetProps($$value);
+  }
+  #props = derived(() => ({
+    id: this.opts.id.current,
+    [this.root.getBitsAttr("overlay")]: "",
+    style: {
+      pointerEvents: "auto",
+      "--bits-dialog-depth": this.root.depth,
+      "--bits-dialog-nested-count": this.root.nestedOpenCount
+    },
+    "data-nested-open": boolToEmptyStrOrUndef(this.root.nestedOpenCount > 0),
+    "data-nested": boolToEmptyStrOrUndef(this.root.parent !== null),
+    ...this.root.sharedProps,
+    ...this.attachment
+  }));
+  get props() {
+    return this.#props();
+  }
+  set props($$value) {
+    return this.#props($$value);
+  }
+  get shouldRender() {
+    return this.root.overlayPresence.shouldRender;
+  }
+}
+function Dialog_title($$renderer, $$props) {
+  $$renderer.component(($$renderer2) => {
+    const uid = props_id($$renderer2);
+    let {
+      id = createId(uid),
+      ref = null,
+      child,
+      children,
+      level = 2,
+      $$slots,
+      $$events,
+      ...restProps
+    } = $$props;
+    const titleState = DialogTitleState.create({
+      id: boxWith(() => id),
+      level: boxWith(() => level),
+      ref: boxWith(() => ref, (v) => ref = v)
+    });
+    const mergedProps = mergeProps(restProps, titleState.props);
+    if (child) {
+      $$renderer2.push("<!--[-->");
+      child($$renderer2, { props: mergedProps });
+      $$renderer2.push(`<!---->`);
+    } else {
+      $$renderer2.push("<!--[!-->");
+      $$renderer2.push(`<div${attributes({ ...mergedProps })}>`);
+      children?.($$renderer2);
+      $$renderer2.push(`<!----></div>`);
+    }
+    $$renderer2.push(`<!--]-->`);
+    bind_props($$props, { ref });
+  });
+}
+const BitsConfigContext = new Context("BitsConfig");
+function getBitsConfig() {
+  const fallback2 = new BitsConfigState(null, {});
+  return BitsConfigContext.getOr(fallback2).opts;
+}
+class BitsConfigState {
+  opts;
+  constructor(parent, opts) {
+    const resolveConfigOption = createConfigResolver(parent, opts);
+    this.opts = {
+      defaultPortalTo: resolveConfigOption((config) => config.defaultPortalTo),
+      defaultLocale: resolveConfigOption((config) => config.defaultLocale)
+    };
+  }
+}
+function createConfigResolver(parent, currentOpts) {
+  return (getter) => {
+    const configOption = boxWith(() => {
+      const value = getter(currentOpts)?.current;
+      if (value !== void 0)
+        return value;
+      if (parent === null)
+        return void 0;
+      return getter(parent.opts)?.current;
+    });
+    return configOption;
+  };
+}
+function createPropResolver(configOption, fallback2) {
+  return (getProp) => {
+    const config = getBitsConfig();
+    return boxWith(() => {
+      const propValue = getProp();
+      if (propValue !== void 0)
+        return propValue;
+      const option = configOption(config).current;
+      if (option !== void 0)
+        return option;
+      return fallback2;
+    });
+  };
+}
+const resolvePortalToProp = createPropResolver((config) => config.defaultPortalTo, "body");
+function Portal($$renderer, $$props) {
+  $$renderer.component(($$renderer2) => {
+    let { to: toProp, children, disabled } = $$props;
+    const to = resolvePortalToProp(() => toProp);
+    getAllContexts();
+    let target = getTarget();
+    function getTarget() {
+      if (!isBrowser || disabled) return null;
+      let localTarget = null;
+      if (typeof to.current === "string") {
+        const target2 = document.querySelector(to.current);
+        localTarget = target2;
+      } else {
+        localTarget = to.current;
+      }
+      return localTarget;
+    }
+    let instance;
+    function unmountInstance() {
+      if (instance) {
+        unmount();
+        instance = null;
+      }
+    }
+    watch([() => target, () => disabled], ([target2, disabled2]) => {
+      if (!target2 || disabled2) {
+        unmountInstance();
+        return;
+      }
+      instance = mount();
+      return () => {
+        unmountInstance();
+      };
+    });
+    if (disabled) {
+      $$renderer2.push("<!--[-->");
+      children?.($$renderer2);
+      $$renderer2.push(`<!---->`);
+    } else {
+      $$renderer2.push("<!--[!-->");
+    }
+    $$renderer2.push(`<!--]-->`);
   });
 }
 class CustomEventDispatcher {
@@ -3486,6 +3963,77 @@ function Scroll_lock($$renderer, $$props) {
     }
   });
 }
+function Dialog_overlay($$renderer, $$props) {
+  $$renderer.component(($$renderer2) => {
+    const uid = props_id($$renderer2);
+    let {
+      id = createId(uid),
+      forceMount = false,
+      child,
+      children,
+      ref = null,
+      $$slots,
+      $$events,
+      ...restProps
+    } = $$props;
+    const overlayState = DialogOverlayState.create({
+      id: boxWith(() => id),
+      ref: boxWith(() => ref, (v) => ref = v)
+    });
+    const mergedProps = mergeProps(restProps, overlayState.props);
+    if (overlayState.shouldRender || forceMount) {
+      $$renderer2.push("<!--[-->");
+      if (child) {
+        $$renderer2.push("<!--[-->");
+        child($$renderer2, { props: mergeProps(mergedProps), ...overlayState.snippetProps });
+        $$renderer2.push(`<!---->`);
+      } else {
+        $$renderer2.push("<!--[!-->");
+        $$renderer2.push(`<div${attributes({ ...mergeProps(mergedProps) })}>`);
+        children?.($$renderer2, overlayState.snippetProps);
+        $$renderer2.push(`<!----></div>`);
+      }
+      $$renderer2.push(`<!--]-->`);
+    } else {
+      $$renderer2.push("<!--[!-->");
+    }
+    $$renderer2.push(`<!--]-->`);
+    bind_props($$props, { ref });
+  });
+}
+function Dialog_trigger($$renderer, $$props) {
+  $$renderer.component(($$renderer2) => {
+    const uid = props_id($$renderer2);
+    let {
+      id = createId(uid),
+      ref = null,
+      children,
+      child,
+      disabled = false,
+      $$slots,
+      $$events,
+      ...restProps
+    } = $$props;
+    const triggerState = DialogTriggerState.create({
+      id: boxWith(() => id),
+      ref: boxWith(() => ref, (v) => ref = v),
+      disabled: boxWith(() => Boolean(disabled))
+    });
+    const mergedProps = mergeProps(restProps, triggerState.props);
+    if (child) {
+      $$renderer2.push("<!--[-->");
+      child($$renderer2, { props: mergedProps });
+      $$renderer2.push(`<!---->`);
+    } else {
+      $$renderer2.push("<!--[!-->");
+      $$renderer2.push(`<button${attributes({ ...mergedProps })}>`);
+      children?.($$renderer2);
+      $$renderer2.push(`<!----></button>`);
+    }
+    $$renderer2.push(`<!--]-->`);
+    bind_props($$props, { ref });
+  });
+}
 function get(valueOrGetValue) {
   return typeof valueOrGetValue === "function" ? valueOrGetValue() : valueOrGetValue;
 }
@@ -3948,6 +4496,68 @@ function Floating_layer_content_static($$renderer, $$props) {
     $$renderer2.push(`<!---->`);
   });
 }
+const separatorAttrs = createBitsAttrs({ component: "separator", parts: ["root"] });
+class SeparatorRootState {
+  static create(opts) {
+    return new SeparatorRootState(opts);
+  }
+  opts;
+  attachment;
+  constructor(opts) {
+    this.opts = opts;
+    this.attachment = attachRef(opts.ref);
+  }
+  #props = derived(() => ({
+    id: this.opts.id.current,
+    role: this.opts.decorative.current ? "none" : "separator",
+    "aria-orientation": this.opts.orientation.current,
+    "aria-hidden": boolToStrTrueOrUndef(this.opts.decorative.current),
+    "data-orientation": this.opts.orientation.current,
+    [separatorAttrs.root]: "",
+    ...this.attachment
+  }));
+  get props() {
+    return this.#props();
+  }
+  set props($$value) {
+    return this.#props($$value);
+  }
+}
+function Separator($$renderer, $$props) {
+  $$renderer.component(($$renderer2) => {
+    const uid = props_id($$renderer2);
+    let {
+      id = createId(uid),
+      ref = null,
+      child,
+      children,
+      decorative = false,
+      orientation = "horizontal",
+      $$slots,
+      $$events,
+      ...restProps
+    } = $$props;
+    const rootState = SeparatorRootState.create({
+      ref: boxWith(() => ref, (v) => ref = v),
+      id: boxWith(() => id),
+      decorative: boxWith(() => decorative),
+      orientation: boxWith(() => orientation)
+    });
+    const mergedProps = mergeProps(restProps, rootState.props);
+    if (child) {
+      $$renderer2.push("<!--[-->");
+      child($$renderer2, { props: mergedProps });
+      $$renderer2.push(`<!---->`);
+    } else {
+      $$renderer2.push("<!--[!-->");
+      $$renderer2.push(`<div${attributes({ ...mergedProps })}>`);
+      children?.($$renderer2);
+      $$renderer2.push(`<!----></div>`);
+    }
+    $$renderer2.push(`<!--]-->`);
+    bind_props($$props, { ref });
+  });
+}
 function Popper_content($$renderer, $$props) {
   let {
     content,
@@ -4401,6 +5011,170 @@ function Menu_checkbox_group($$renderer, $$props) {
     bind_props($$props, { ref, value });
   });
 }
+function Dialog($$renderer, $$props) {
+  $$renderer.component(($$renderer2) => {
+    let {
+      open = false,
+      onOpenChange = noop,
+      onOpenChangeComplete = noop,
+      children
+    } = $$props;
+    DialogRootState.create({
+      variant: boxWith(() => "dialog"),
+      open: boxWith(() => open, (v) => {
+        open = v;
+        onOpenChange(v);
+      }),
+      onOpenChangeComplete: boxWith(() => onOpenChangeComplete)
+    });
+    children?.($$renderer2);
+    $$renderer2.push(`<!---->`);
+    bind_props($$props, { open });
+  });
+}
+function Dialog_close($$renderer, $$props) {
+  $$renderer.component(($$renderer2) => {
+    const uid = props_id($$renderer2);
+    let {
+      children,
+      child,
+      id = createId(uid),
+      ref = null,
+      disabled = false,
+      $$slots,
+      $$events,
+      ...restProps
+    } = $$props;
+    const closeState = DialogCloseState.create({
+      variant: boxWith(() => "close"),
+      id: boxWith(() => id),
+      ref: boxWith(() => ref, (v) => ref = v),
+      disabled: boxWith(() => Boolean(disabled))
+    });
+    const mergedProps = mergeProps(restProps, closeState.props);
+    if (child) {
+      $$renderer2.push("<!--[-->");
+      child($$renderer2, { props: mergedProps });
+      $$renderer2.push(`<!---->`);
+    } else {
+      $$renderer2.push("<!--[!-->");
+      $$renderer2.push(`<button${attributes({ ...mergedProps })}>`);
+      children?.($$renderer2);
+      $$renderer2.push(`<!----></button>`);
+    }
+    $$renderer2.push(`<!--]-->`);
+    bind_props($$props, { ref });
+  });
+}
+function Dialog_content($$renderer, $$props) {
+  $$renderer.component(($$renderer2) => {
+    const uid = props_id($$renderer2);
+    let {
+      id = createId(uid),
+      children,
+      child,
+      ref = null,
+      forceMount = false,
+      onCloseAutoFocus = noop,
+      onOpenAutoFocus = noop,
+      onEscapeKeydown = noop,
+      onInteractOutside = noop,
+      trapFocus = true,
+      preventScroll = true,
+      restoreScrollDelay = null,
+      $$slots,
+      $$events,
+      ...restProps
+    } = $$props;
+    const contentState = DialogContentState.create({
+      id: boxWith(() => id),
+      ref: boxWith(() => ref, (v) => ref = v)
+    });
+    const mergedProps = mergeProps(restProps, contentState.props);
+    if (contentState.shouldRender || forceMount) {
+      $$renderer2.push("<!--[-->");
+      {
+        let focusScope = function($$renderer3, { props: focusScopeProps }) {
+          Escape_layer($$renderer3, spread_props([
+            mergedProps,
+            {
+              enabled: contentState.root.opts.open.current,
+              ref: contentState.opts.ref,
+              onEscapeKeydown: (e) => {
+                onEscapeKeydown(e);
+                if (e.defaultPrevented) return;
+                contentState.root.handleClose();
+              },
+              children: ($$renderer4) => {
+                Dismissible_layer($$renderer4, spread_props([
+                  mergedProps,
+                  {
+                    ref: contentState.opts.ref,
+                    enabled: contentState.root.opts.open.current,
+                    onInteractOutside: (e) => {
+                      onInteractOutside(e);
+                      if (e.defaultPrevented) return;
+                      contentState.root.handleClose();
+                    },
+                    children: ($$renderer5) => {
+                      Text_selection_layer($$renderer5, spread_props([
+                        mergedProps,
+                        {
+                          ref: contentState.opts.ref,
+                          enabled: contentState.root.opts.open.current,
+                          children: ($$renderer6) => {
+                            if (child) {
+                              $$renderer6.push("<!--[-->");
+                              if (contentState.root.opts.open.current) {
+                                $$renderer6.push("<!--[-->");
+                                Scroll_lock($$renderer6, { preventScroll, restoreScrollDelay });
+                              } else {
+                                $$renderer6.push("<!--[!-->");
+                              }
+                              $$renderer6.push(`<!--]--> `);
+                              child($$renderer6, {
+                                props: mergeProps(mergedProps, focusScopeProps),
+                                ...contentState.snippetProps
+                              });
+                              $$renderer6.push(`<!---->`);
+                            } else {
+                              $$renderer6.push("<!--[!-->");
+                              Scroll_lock($$renderer6, { preventScroll });
+                              $$renderer6.push(`<!----> <div${attributes({ ...mergeProps(mergedProps, focusScopeProps) })}>`);
+                              children?.($$renderer6);
+                              $$renderer6.push(`<!----></div>`);
+                            }
+                            $$renderer6.push(`<!--]-->`);
+                          },
+                          $$slots: { default: true }
+                        }
+                      ]));
+                    },
+                    $$slots: { default: true }
+                  }
+                ]));
+              },
+              $$slots: { default: true }
+            }
+          ]));
+        };
+        Focus_scope($$renderer2, {
+          ref: contentState.opts.ref,
+          loop: true,
+          trapFocus,
+          enabled: contentState.root.opts.open.current,
+          onOpenAutoFocus,
+          onCloseAutoFocus,
+          focusScope
+        });
+      }
+    } else {
+      $$renderer2.push("<!--[!-->");
+    }
+    $$renderer2.push(`<!--]-->`);
+    bind_props($$props, { ref });
+  });
+}
 function Menu($$renderer, $$props) {
   $$renderer.component(($$renderer2) => {
     let {
@@ -4608,6 +5382,568 @@ function Menu_trigger($$renderer, $$props) {
     bind_props($$props, { ref });
   });
 }
+const tabsAttrs = createBitsAttrs({
+  component: "tabs",
+  parts: ["root", "list", "trigger", "content"]
+});
+const TabsRootContext = new Context("Tabs.Root");
+class TabsRootState {
+  static create(opts) {
+    return TabsRootContext.set(new TabsRootState(opts));
+  }
+  opts;
+  attachment;
+  rovingFocusGroup;
+  triggerIds = [];
+  // holds the trigger ID for each value to associate it with the content
+  valueToTriggerId = new SvelteMap();
+  // holds the content ID for each value to associate it with the trigger
+  valueToContentId = new SvelteMap();
+  constructor(opts) {
+    this.opts = opts;
+    this.attachment = attachRef(opts.ref);
+    this.rovingFocusGroup = new RovingFocusGroup({
+      candidateAttr: tabsAttrs.trigger,
+      rootNode: this.opts.ref,
+      loop: this.opts.loop,
+      orientation: this.opts.orientation
+    });
+  }
+  registerTrigger(id, value) {
+    this.triggerIds.push(id);
+    this.valueToTriggerId.set(value, id);
+    return () => {
+      this.triggerIds = this.triggerIds.filter((triggerId) => triggerId !== id);
+      this.valueToTriggerId.delete(value);
+    };
+  }
+  registerContent(id, value) {
+    this.valueToContentId.set(value, id);
+    return () => {
+      this.valueToContentId.delete(value);
+    };
+  }
+  setValue(v) {
+    this.opts.value.current = v;
+  }
+  #props = derived(() => ({
+    id: this.opts.id.current,
+    "data-orientation": this.opts.orientation.current,
+    [tabsAttrs.root]: "",
+    ...this.attachment
+  }));
+  get props() {
+    return this.#props();
+  }
+  set props($$value) {
+    return this.#props($$value);
+  }
+}
+class TabsListState {
+  static create(opts) {
+    return new TabsListState(opts, TabsRootContext.get());
+  }
+  opts;
+  root;
+  attachment;
+  #isDisabled = derived(() => this.root.opts.disabled.current);
+  constructor(opts, root) {
+    this.opts = opts;
+    this.root = root;
+    this.attachment = attachRef(opts.ref);
+  }
+  #props = derived(() => ({
+    id: this.opts.id.current,
+    role: "tablist",
+    "aria-orientation": this.root.opts.orientation.current,
+    "data-orientation": this.root.opts.orientation.current,
+    [tabsAttrs.list]: "",
+    "data-disabled": boolToEmptyStrOrUndef(this.#isDisabled()),
+    ...this.attachment
+  }));
+  get props() {
+    return this.#props();
+  }
+  set props($$value) {
+    return this.#props($$value);
+  }
+}
+class TabsTriggerState {
+  static create(opts) {
+    return new TabsTriggerState(opts, TabsRootContext.get());
+  }
+  opts;
+  root;
+  attachment;
+  #tabIndex = 0;
+  #isActive = derived(() => this.root.opts.value.current === this.opts.value.current);
+  #isDisabled = derived(() => this.opts.disabled.current || this.root.opts.disabled.current);
+  #ariaControls = derived(() => this.root.valueToContentId.get(this.opts.value.current));
+  constructor(opts, root) {
+    this.opts = opts;
+    this.root = root;
+    this.attachment = attachRef(opts.ref);
+    watch([() => this.opts.id.current, () => this.opts.value.current], ([id, value]) => {
+      return this.root.registerTrigger(id, value);
+    });
+    this.onfocus = this.onfocus.bind(this);
+    this.onclick = this.onclick.bind(this);
+    this.onkeydown = this.onkeydown.bind(this);
+  }
+  #activate() {
+    if (this.root.opts.value.current === this.opts.value.current) return;
+    this.root.setValue(this.opts.value.current);
+  }
+  onfocus(_) {
+    if (this.root.opts.activationMode.current !== "automatic" || this.#isDisabled()) return;
+    this.#activate();
+  }
+  onclick(_) {
+    if (this.#isDisabled()) return;
+    this.#activate();
+  }
+  onkeydown(e) {
+    if (this.#isDisabled()) return;
+    if (e.key === SPACE || e.key === ENTER) {
+      e.preventDefault();
+      this.#activate();
+      return;
+    }
+    this.root.rovingFocusGroup.handleKeydown(this.opts.ref.current, e);
+  }
+  #props = derived(() => ({
+    id: this.opts.id.current,
+    role: "tab",
+    "data-state": getTabDataState(this.#isActive()),
+    "data-value": this.opts.value.current,
+    "data-orientation": this.root.opts.orientation.current,
+    "data-disabled": boolToEmptyStrOrUndef(this.#isDisabled()),
+    "aria-selected": boolToStr(this.#isActive()),
+    "aria-controls": this.#ariaControls(),
+    [tabsAttrs.trigger]: "",
+    disabled: boolToTrueOrUndef(this.#isDisabled()),
+    tabindex: this.#tabIndex,
+    //
+    onclick: this.onclick,
+    onfocus: this.onfocus,
+    onkeydown: this.onkeydown,
+    ...this.attachment
+  }));
+  get props() {
+    return this.#props();
+  }
+  set props($$value) {
+    return this.#props($$value);
+  }
+}
+class TabsContentState {
+  static create(opts) {
+    return new TabsContentState(opts, TabsRootContext.get());
+  }
+  opts;
+  root;
+  attachment;
+  #isActive = derived(() => this.root.opts.value.current === this.opts.value.current);
+  #ariaLabelledBy = derived(() => this.root.valueToTriggerId.get(this.opts.value.current));
+  constructor(opts, root) {
+    this.opts = opts;
+    this.root = root;
+    this.attachment = attachRef(opts.ref);
+    watch([() => this.opts.id.current, () => this.opts.value.current], ([id, value]) => {
+      return this.root.registerContent(id, value);
+    });
+  }
+  #props = derived(() => ({
+    id: this.opts.id.current,
+    role: "tabpanel",
+    hidden: boolToTrueOrUndef(!this.#isActive()),
+    tabindex: 0,
+    "data-value": this.opts.value.current,
+    "data-state": getTabDataState(this.#isActive()),
+    "aria-labelledby": this.#ariaLabelledBy(),
+    "data-orientation": this.root.opts.orientation.current,
+    [tabsAttrs.content]: "",
+    ...this.attachment
+  }));
+  get props() {
+    return this.#props();
+  }
+  set props($$value) {
+    return this.#props($$value);
+  }
+}
+function getTabDataState(condition) {
+  return condition ? "active" : "inactive";
+}
+function Tabs($$renderer, $$props) {
+  $$renderer.component(($$renderer2) => {
+    const uid = props_id($$renderer2);
+    let {
+      id = createId(uid),
+      ref = null,
+      value = "",
+      onValueChange = noop,
+      orientation = "horizontal",
+      loop = true,
+      activationMode = "automatic",
+      disabled = false,
+      children,
+      child,
+      $$slots,
+      $$events,
+      ...restProps
+    } = $$props;
+    const rootState = TabsRootState.create({
+      id: boxWith(() => id),
+      value: boxWith(() => value, (v) => {
+        value = v;
+        onValueChange(v);
+      }),
+      orientation: boxWith(() => orientation),
+      loop: boxWith(() => loop),
+      activationMode: boxWith(() => activationMode),
+      disabled: boxWith(() => disabled),
+      ref: boxWith(() => ref, (v) => ref = v)
+    });
+    const mergedProps = mergeProps(restProps, rootState.props);
+    if (child) {
+      $$renderer2.push("<!--[-->");
+      child($$renderer2, { props: mergedProps });
+      $$renderer2.push(`<!---->`);
+    } else {
+      $$renderer2.push("<!--[!-->");
+      $$renderer2.push(`<div${attributes({ ...mergedProps })}>`);
+      children?.($$renderer2);
+      $$renderer2.push(`<!----></div>`);
+    }
+    $$renderer2.push(`<!--]-->`);
+    bind_props($$props, { ref, value });
+  });
+}
+function Tabs_content($$renderer, $$props) {
+  $$renderer.component(($$renderer2) => {
+    const uid = props_id($$renderer2);
+    let {
+      children,
+      child,
+      id = createId(uid),
+      ref = null,
+      value,
+      $$slots,
+      $$events,
+      ...restProps
+    } = $$props;
+    const contentState = TabsContentState.create({
+      value: boxWith(() => value),
+      id: boxWith(() => id),
+      ref: boxWith(() => ref, (v) => ref = v)
+    });
+    const mergedProps = mergeProps(restProps, contentState.props);
+    if (child) {
+      $$renderer2.push("<!--[-->");
+      child($$renderer2, { props: mergedProps });
+      $$renderer2.push(`<!---->`);
+    } else {
+      $$renderer2.push("<!--[!-->");
+      $$renderer2.push(`<div${attributes({ ...mergedProps })}>`);
+      children?.($$renderer2);
+      $$renderer2.push(`<!----></div>`);
+    }
+    $$renderer2.push(`<!--]-->`);
+    bind_props($$props, { ref });
+  });
+}
+function Tabs_list($$renderer, $$props) {
+  $$renderer.component(($$renderer2) => {
+    const uid = props_id($$renderer2);
+    let {
+      child,
+      children,
+      id = createId(uid),
+      ref = null,
+      $$slots,
+      $$events,
+      ...restProps
+    } = $$props;
+    const listState = TabsListState.create({
+      id: boxWith(() => id),
+      ref: boxWith(() => ref, (v) => ref = v)
+    });
+    const mergedProps = mergeProps(restProps, listState.props);
+    if (child) {
+      $$renderer2.push("<!--[-->");
+      child($$renderer2, { props: mergedProps });
+      $$renderer2.push(`<!---->`);
+    } else {
+      $$renderer2.push("<!--[!-->");
+      $$renderer2.push(`<div${attributes({ ...mergedProps })}>`);
+      children?.($$renderer2);
+      $$renderer2.push(`<!----></div>`);
+    }
+    $$renderer2.push(`<!--]-->`);
+    bind_props($$props, { ref });
+  });
+}
+function Tabs_trigger($$renderer, $$props) {
+  $$renderer.component(($$renderer2) => {
+    const uid = props_id($$renderer2);
+    let {
+      child,
+      children,
+      disabled = false,
+      id = createId(uid),
+      type = "button",
+      value,
+      ref = null,
+      $$slots,
+      $$events,
+      ...restProps
+    } = $$props;
+    const triggerState = TabsTriggerState.create({
+      id: boxWith(() => id),
+      disabled: boxWith(() => disabled ?? false),
+      value: boxWith(() => value),
+      ref: boxWith(() => ref, (v) => ref = v)
+    });
+    const mergedProps = mergeProps(restProps, triggerState.props, { type });
+    if (child) {
+      $$renderer2.push("<!--[-->");
+      child($$renderer2, { props: mergedProps });
+      $$renderer2.push(`<!---->`);
+    } else {
+      $$renderer2.push("<!--[!-->");
+      $$renderer2.push(`<button${attributes({ ...mergedProps })}>`);
+      children?.($$renderer2);
+      $$renderer2.push(`<!----></button>`);
+    }
+    $$renderer2.push(`<!--]-->`);
+    bind_props($$props, { ref });
+  });
+}
+function AddSourceDialog($$renderer, $$props) {
+  $$renderer.component(($$renderer2) => {
+    let name = "";
+    let host = "";
+    let port = 22;
+    let user = "";
+    let logPath = "";
+    let logLabel = "";
+    let $$settled = true;
+    let $$inner_renderer;
+    function $$render_inner($$renderer3) {
+      Dialog($$renderer3, {
+        children: ($$renderer4) => {
+          Dialog_trigger($$renderer4, {
+            class: "\n            rounded-input bg-dark text-background shadow-mini hover:bg-dark/95\n            focus-visible:ring-foreground focus-visible:ring-offset-background\n            focus-visible:outline-hidden inline-flex h-12 items-center justify-center\n            whitespace-nowrap px-5 text-[15px] font-semibold transition-colors\n            focus-visible:ring-2 focus-visible:ring-offset-2 active:scale-[0.98]\n        ",
+            children: ($$renderer5) => {
+              $$renderer5.push(`<!---->Add log source`);
+            },
+            $$slots: { default: true }
+          });
+          $$renderer4.push(`<!----> `);
+          Portal($$renderer4, {
+            children: ($$renderer5) => {
+              Dialog_overlay($$renderer5, {
+                class: "\n                data-[state=open]:animate-in data-[state=closed]:animate-out\n                data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0\n                fixed inset-0 z-50 bg-black/80\n            "
+              });
+              $$renderer5.push(`<!----> `);
+              Dialog_content($$renderer5, {
+                class: "\n                rounded-xl bg-background shadow-popover data-[state=open]:animate-in\n                data-[state=closed]:animate-out data-[state=closed]:fade-out-0\n                data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95\n                data-[state=open]:zoom-in-95 outline-hidden fixed\n                left-[50%] top-[50%] z-50 w-full max-w-[calc(100%-2rem)]\n                translate-x-[-50%] translate-y-[-50%] border p-5\n                sm:max-w-122 md:w-full",
+                children: ($$renderer6) => {
+                  Dialog_title($$renderer6, {
+                    class: "text-lg font-semibold mb-4",
+                    children: ($$renderer7) => {
+                      $$renderer7.push(`<!---->Add log source`);
+                    },
+                    $$slots: { default: true }
+                  });
+                  $$renderer6.push(`<!----> `);
+                  Tabs($$renderer6, {
+                    value: "local",
+                    class: "bg-background-alt shadow-card w-full",
+                    children: ($$renderer7) => {
+                      Tabs_list($$renderer7, {
+                        class: "\n                        grid w-full grid-cols-2 gap-1 p-1 text-sm font-semibold\n                        border border-border rounded-lg\n                    ",
+                        children: ($$renderer8) => {
+                          Tabs_trigger($$renderer8, {
+                            value: "local",
+                            class: "\n                            dark:data-[state=active]:bg-muted text-sm\n                            h-8 rounded-md bg-transparent py-1 data-[state=active]:bg-white\n                        ",
+                            children: ($$renderer9) => {
+                              $$renderer9.push(`<!---->Local`);
+                            },
+                            $$slots: { default: true }
+                          });
+                          $$renderer8.push(`<!----> `);
+                          Tabs_trigger($$renderer8, {
+                            value: "ssh",
+                            class: "\n                            data-[state=active]:shadow-mini dark:data-[state=active]:bg-muted\n                            h-8 rounded-md bg-transparent py-1 data-[state=active]:bg-white\n                        ",
+                            children: ($$renderer9) => {
+                              $$renderer9.push(`<!---->SSH`);
+                            },
+                            $$slots: { default: true }
+                          });
+                          $$renderer8.push(`<!---->`);
+                        },
+                        $$slots: { default: true }
+                      });
+                      $$renderer7.push(`<!----> `);
+                      Tabs_content($$renderer7, {
+                        value: "local",
+                        class: "select-none pt-3",
+                        children: ($$renderer8) => {
+                          $$renderer8.push(`<div class="space-y-2">`);
+                          Input($$renderer8, {
+                            placeholder: "/var/log/app.log",
+                            get value() {
+                              return logPath;
+                            },
+                            set value($$value) {
+                              logPath = $$value;
+                              $$settled = false;
+                            }
+                          });
+                          $$renderer8.push(`<!----> `);
+                          Input($$renderer8, {
+                            placeholder: "Display name (optional)",
+                            get value() {
+                              return logLabel;
+                            },
+                            set value($$value) {
+                              logLabel = $$value;
+                              $$settled = false;
+                            }
+                          });
+                          $$renderer8.push(`<!----></div>`);
+                        },
+                        $$slots: { default: true }
+                      });
+                      $$renderer7.push(`<!----> `);
+                      Tabs_content($$renderer7, {
+                        value: "ssh",
+                        class: "select-none pt-3",
+                        children: ($$renderer8) => {
+                          $$renderer8.push(`<div class="space-y-2 mb-4">`);
+                          Input($$renderer8, {
+                            placeholder: "Connection name",
+                            get value() {
+                              return name;
+                            },
+                            set value($$value) {
+                              name = $$value;
+                              $$settled = false;
+                            }
+                          });
+                          $$renderer8.push(`<!----> `);
+                          Input($$renderer8, {
+                            placeholder: "Host",
+                            get value() {
+                              return host;
+                            },
+                            set value($$value) {
+                              host = $$value;
+                              $$settled = false;
+                            }
+                          });
+                          $$renderer8.push(`<!----> <div class="flex gap-2">`);
+                          Input($$renderer8, {
+                            placeholder: "User",
+                            get value() {
+                              return user;
+                            },
+                            set value($$value) {
+                              user = $$value;
+                              $$settled = false;
+                            }
+                          });
+                          $$renderer8.push(`<!----> `);
+                          Input($$renderer8, {
+                            type: "number",
+                            placeholder: "Port",
+                            get value() {
+                              return port;
+                            },
+                            set value($$value) {
+                              port = $$value;
+                              $$settled = false;
+                            }
+                          });
+                          $$renderer8.push(`<!----></div></div> `);
+                          Separator($$renderer8, { class: "bg-muted -mx-5 mb-6 mt-5 block h-px" });
+                          $$renderer8.push(`<!----> <div class="space-y-2">`);
+                          Input($$renderer8, {
+                            placeholder: "/var/log/app.log",
+                            get value() {
+                              return logPath;
+                            },
+                            set value($$value) {
+                              logPath = $$value;
+                              $$settled = false;
+                            }
+                          });
+                          $$renderer8.push(`<!----> `);
+                          Input($$renderer8, {
+                            placeholder: "Display name (optional)",
+                            get value() {
+                              return logLabel;
+                            },
+                            set value($$value) {
+                              logLabel = $$value;
+                              $$settled = false;
+                            }
+                          });
+                          $$renderer8.push(`<!----></div>`);
+                        },
+                        $$slots: { default: true }
+                      });
+                      $$renderer7.push(`<!---->`);
+                    },
+                    $$slots: { default: true }
+                  });
+                  $$renderer6.push(`<!----> `);
+                  Dialog_close($$renderer6, {
+                    children: ($$renderer7) => {
+                      Button($$renderer7, {
+                        variant: "secondary",
+                        children: ($$renderer8) => {
+                          $$renderer8.push(`<!---->Cancel`);
+                        },
+                        $$slots: { default: true }
+                      });
+                    },
+                    $$slots: { default: true }
+                  });
+                  $$renderer6.push(`<!----> `);
+                  Dialog_close($$renderer6, {
+                    children: ($$renderer7) => {
+                      Button($$renderer7, {
+                        children: ($$renderer8) => {
+                          $$renderer8.push(`<!---->Add`);
+                        },
+                        $$slots: { default: true }
+                      });
+                    },
+                    $$slots: { default: true }
+                  });
+                  $$renderer6.push(`<!---->`);
+                },
+                $$slots: { default: true }
+              });
+              $$renderer5.push(`<!---->`);
+            }
+          });
+          $$renderer4.push(`<!---->`);
+        },
+        $$slots: { default: true }
+      });
+    }
+    do {
+      $$settled = true;
+      $$inner_renderer = $$renderer2.copy();
+      $$render_inner($$inner_renderer);
+    } while (!$$settled);
+    $$renderer2.subsume($$inner_renderer);
+  });
+}
 function TreeItem_1($$renderer, $$props) {
   $$renderer.component(($$renderer2) => {
     let isSelected;
@@ -4629,10 +5965,10 @@ function TreeItem_1($$renderer, $$props) {
                 children: ($$renderer5) => {
                   Accordion_trigger($$renderer5, {
                     class: `
-              group flex items-center gap-2 w-full px-2 py-1 rounded-md
-              hover:bg-muted
-              ${stringify(isSelected && "bg-primary/15 text-primary")}
-            `,
+                            group flex items-center gap-2 w-full px-2 py-1 rounded-md
+                            hover:bg-muted
+                            ${stringify(isSelected && "bg-primary/15 text-primary")}
+                        `,
                     style: `padding-left: ${stringify(depth * 12 + 8)}px`,
                     children: ($$renderer6) => {
                       Chevron_right($$renderer6, {
@@ -4724,6 +6060,7 @@ function LogsSidebar($$renderer) {
   $$renderer.push(`<div class="w-56 h-full overflow-hidden border-r border-border"><div class="flex items-center gap-2 border-b border-border h-11 px-2">`);
   Input($$renderer, { placeholder: "Search file..." });
   $$renderer.push(`<!----> `);
+  AddSourceDialog($$renderer);
   $$renderer.push(`<!----></div> `);
   Tree($$renderer, { items, onSelect: console.log });
   $$renderer.push(`<!----></div>`);
