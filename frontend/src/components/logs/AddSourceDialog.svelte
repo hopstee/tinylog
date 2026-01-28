@@ -15,6 +15,7 @@
         IconTestPipe,
         IconTestPipe2,
         IconLoader,
+        IconCloudPlus,
     } from "@tabler/icons-svelte";
     import { Label, Separator, Tabs } from "bits-ui";
     import DialogTrigger from "$lib/ui/Dialog/DialogTrigger.svelte";
@@ -67,7 +68,11 @@
 </script>
 
 <Dialog>
-    <DialogTrigger>Add log source</DialogTrigger>
+    <DialogTrigger class="w-fit">
+        <Button size="icon-sm" variant="ghost">
+            <IconPlus size={14} />
+        </Button>
+    </DialogTrigger>
     <DialogContent>
         <DialogTitle>Add log source</DialogTitle>
 

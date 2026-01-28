@@ -23,7 +23,7 @@
         {@render trigger()}
     </Tooltip.Trigger>
     <Tooltip.Portal>
-        <Tooltip.Content sideOffset={8} forceMount>
+        <Tooltip.Content sideOffset={8} forceMount class="z-60">
             {#snippet child({ wrapperProps, props, open })}
                 {#if open}
                     <div {...wrapperProps}>
