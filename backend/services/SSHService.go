@@ -1,6 +1,7 @@
 package services
 
 import (
+	"context"
 	"errors"
 	"fmt"
 	"log/slog"
@@ -8,6 +9,7 @@ import (
 	"os"
 	"path/filepath"
 	"time"
+	"tinylog/backend/storage"
 
 	"golang.org/x/crypto/ssh"
 	"golang.org/x/crypto/ssh/agent"
@@ -27,7 +29,21 @@ type Creds struct {
 	Passphrase string `json:"passphrase"`
 }
 
-type SSHService struct{}
+type Connection struct {
+	Type     string `json:"type"`
+	AuthType string `json:"auth_type"`
+
+	Creds Creds `json:"credentials"`
+}
+
+type Log struct {
+	Path  string `json:"path"`
+	Label string `json:"label"`
+}
+
+type SSHService struct {
+	storage *storage.Storage
+}
 
 func (s *SSHService) TestConnection(creds Creds) bool {
 	client, err := s.Connect(creds)
@@ -152,4 +168,14 @@ func (s *SSHService) findSSHKeys() ([]string, error) {
 	}
 
 	return keys, nil
+}
+
+func (s *SSHService) AddConnection(ctx context.Context, connection storage.Connection) error {
+	_, err := s.storage.SaveConnection(ctx, connection)
+	return err
+}
+
+func (s *SSHService) AddSource(ctx context.Context, source storage.Source) error {
+	_, err := s.storage.SaveSource(ctx, source)
+	return err
 }

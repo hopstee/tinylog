@@ -1,136 +1,62 @@
 package storage
 
 import (
-	"encoding/json"
-	"errors"
-	"sync"
+	"context"
+	"database/sql"
 )
 
-type SourcesStorage struct {
-	storage Storage
-	mu      sync.Mutex
-
-	sources []SourceConfig
-	loaded  bool
+type Source struct {
+	ID           int64  `json:"id,omitempty"`
+	Path         string `json:"path"`
+	Label        string `json:"label"`
+	ConnectionID int64  `json:"connection_id,omitempty"`
 }
 
-type SourceConfig struct {
-	Name    string
-	Path    string
-	UseSSH  bool
-	SSHUser string
-	SSHHost string
-	SSHPort string
+func (s *Storage) Sources(ctx context.Context) (*sql.Rows, error) {
+	return s.Query(ctx, `
+		SELECT *
+		FROM sources
+	`)
 }
 
-var (
-	SourceExistsErr   = errors.New("Source with this name already exists")
-	SourceNotFoundErr = errors.New("Source with this name does not exists")
-)
-
-func NewSourcesStorage(appName string) *SourcesStorage {
-	return &SourcesStorage{
-		storage: NewStorage("sources.json", appName),
-		sources: make([]SourceConfig, 0, 100),
-	}
+func (s *Storage) Source(ctx context.Context, id int64) *sql.Row {
+	return s.QueryRow(ctx, `
+		SELECT *
+		FROM sources
+		WHERE id = $1
+	`, id)
 }
 
-func (ds *SourcesStorage) WithSources(fn func([]SourceConfig)) error {
-	ds.mu.Lock()
-	defer ds.mu.Unlock()
-
-	if err := ds.checkLoaded(); err != nil {
-		return nil
-	}
-
-	fn(ds.sources)
-	return nil
+func (s *Storage) SaveSource(ctx context.Context, source Source) (sql.Result, error) {
+	return s.Exec(ctx, `
+		INSERT INTO sources (path, label)
+		VALUES (?, ?)
+	`,
+		source.Path,
+		source.Label,
+	)
 }
 
-func (ds *SourcesStorage) Save(source SourceConfig) error {
-	ds.mu.Lock()
-	defer ds.mu.Unlock()
+func (s *Storage) UpdateSource(ctx context.Context, source Source) (sql.Result, error) {
+	return s.Exec(ctx, `
+		UPDATE sources
+		SET
+			path = ?,
+			label = ?
+		)
+		WHERE id = ?
 
-	if err := ds.checkLoaded(); err != nil {
-		return err
-	}
-
-	for _, d := range ds.sources {
-		if d.Name == source.Name {
-			return SourceExistsErr
-		}
-	}
-
-	ds.sources = append(ds.sources, source)
-	return ds.save()
+	`,
+		source.Path,
+		source.Label,
+		source.ID,
+	)
 }
 
-func (ds *SourcesStorage) Update(source SourceConfig) error {
-	ds.mu.Lock()
-	defer ds.mu.Unlock()
+func (s *Storage) DeleteSource(ctx context.Context, id int64) (sql.Result, error) {
+	return s.Exec(ctx, `
+		DELETE FROM sources
+		WHERE id = ?
 
-	if err := ds.checkLoaded(); err != nil {
-		return err
-	}
-
-	for i, d := range ds.sources {
-		if d.Name == source.Name {
-			ds.sources[i] = source
-			return ds.save()
-		}
-	}
-
-	return SourceNotFoundErr
-}
-
-func (ds *SourcesStorage) Delete(name string) error {
-	ds.mu.Lock()
-	defer ds.mu.Unlock()
-
-	if err := ds.checkLoaded(); err != nil {
-		return err
-	}
-
-	for i, d := range ds.sources {
-		if d.Name == name {
-			copy(ds.sources[i:], ds.sources[i+1:])
-			ds.sources[len(ds.sources)-1] = SourceConfig{}
-			ds.sources = ds.sources[:len(ds.sources)-1]
-			return ds.save()
-		}
-	}
-
-	return SourceNotFoundErr
-}
-
-func (ds *SourcesStorage) save() error {
-	b, err := json.Marshal(ds.sources)
-	if err != nil {
-		return err
-	}
-
-	return ds.storage.Store(b)
-}
-
-func (ds *SourcesStorage) checkLoaded() error {
-	if ds.loaded {
-		return nil
-	}
-
-	data, err := ds.storage.Load()
-	if err != nil {
-		return err
-	}
-
-	if len(data) == 0 {
-		ds.loaded = true
-		return nil
-	}
-
-	if err := json.Unmarshal(data, &ds.sources); err != nil {
-		return err
-	}
-
-	ds.loaded = true
-	return nil
+	`, id)
 }
