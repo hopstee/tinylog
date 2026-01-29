@@ -4,6 +4,7 @@ import (
 	"embed"
 	_ "embed"
 	"log"
+	"tinylog/backend/services"
 
 	"github.com/wailsapp/wails/v3/pkg/application"
 )
@@ -33,7 +34,10 @@ func main() {
 	app := application.New(application.Options{
 		Name:        "pingdeck",
 		Description: "A demo of using raw HTML & CSS",
-		Services:    []application.Service{},
+		Services: []application.Service{
+			// application.NewService(&services.GreetService{}),
+			application.NewService(&services.SSHService{}),
+		},
 		Assets: application.AssetOptions{
 			Handler: application.AssetFileServerFS(assets),
 		},
@@ -59,8 +63,8 @@ func main() {
 		URL:              "/",
 		Width:            800,
 		MinWidth:         800,
-		Height:           500,
-		MinHeight:        500,
+		Height:           600,
+		MinHeight:        600,
 	})
 
 	// Run the application. This blocks until the application has been exited.

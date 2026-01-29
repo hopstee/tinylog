@@ -12,15 +12,16 @@ var __privateAdd = (obj, member, value) => member.has(obj) ? __typeError("Cannot
 var __privateSet = (obj, member, value, setter) => (__accessCheck(obj, member, "write to private field"), setter ? setter.call(obj, value) : member.set(obj, value), value);
 var __privateMethod = (obj, member, method) => (__accessCheck(obj, member, "access private method"), method);
 var __superGet = (cls, obj, key2) => __reflectGet(__getProtoOf(cls), key2, obj);
-var _sources, _version, _size, _update_version, _SvelteMap_instances, source_fn, read_all_fn, _document, _subscribe, _name, _key, _size2, _observed, _options, _node, _window, _width, _height, _subscribe2, _root, _variant, _prefix, _opts, _currentTabStopId, _opts2, _currentFrame, _AnimationsComplete_instances, cleanup_fn, executeCallback_fn, _opts3, _enabled, _afterAnimations, _shouldRender, _props, _value, _isActive, _isDisabled, _contentNode, _props2, _root2, _isDisabled2, _props3, _originalStyles, _isMountAnimationPrevented, _dimensions, _open, _updateDimensions, _snippetProps, _props4, _props5, _triggerNode, _contentNode2, _overlayNode, _descriptionNode, _contentId, _titleId, _triggerId, _descriptionId, _cancelNode, _nestedOpenCount, _sharedProps, _props6, _props7, _props8, _snippetProps2, _props9, _snippetProps3, _props10, _opts4, _search, _onMatch, _getCurrentItem, _opts5, _enabled2, _isPointerInTransit, _pointerGraceArea, _GraceArea_instances, removeGraceArea_fn, createGraceArea_fn, _ignoreCloseAutoFocus, _isPointerInTransit2, _contentNode3, _triggerNode2, _search2, _timer, _handleTypeaheadSearch, _mounted, _isSub, _MenuContentState_instances, getCandidateNodes_fn, isPointerMovingToSubmenu_fn, _snippetProps4, _props11, _isFocused, _props12, _isPointerDown, _MenuItemState_instances, handleSelect_fn, _props13, _snippetProps5, _props14, _ariaControls, _props15, _groupHeadingId, _props16, _interactOutsideProp, _behaviorType, _interceptedEvents, _isResponsibleLayer, _isFocusInsideDOMTree, _documentObj, _onFocusOutside, _unsubClickListener, _handleFocus, _DismissibleLayerState_instances, addEventListeners_fn, _handleDismiss, _handleInteractOutside, _markInterceptedEvent, _markNonInterceptedEvent, _markResponsibleLayer, _isTargetWithinLayer, _resetState, isAnyEventIntercepted_fn, _onfocuscapture, _onblurcapture, _addEventListener, _onkeydown, _scopeStack, _focusHistory, _preFocusHistory, _paused, _container, _manager, _cleanupFns, _opts6, _FocusScope_instances, cleanup_fn2, handleOpenAutoFocus_fn, handleCloseAutoFocus_fn, setupEventListeners_fn, getTabbables_fn, getFirstTabbable_fn, getAllFocusables_fn, _unsubSelectionLock, _TextSelectionLayerState_instances, addEventListeners_fn2, _pointerdown, _resetSelectionLock, _factory, _subscribers, _state, _scope, _SharedState_instances, dispose_fn, _id, _initialState, _restoreScrollDelay, _countState, _transformedStyle, _updatePositionStrategy, _arrowSize, _arrowWidth, _arrowHeight, _desiredPlacement, _boundary, _hasExplicitBoundaries, _detectOverflowOptions, _availableWidth, _availableHeight, _anchorWidth, _anchorHeight, _middleware, _placedSide, _placedAlign, _arrowX, _arrowY, _cannotCenterArrow, _contentZIndex, _arrowBaseSide, _wrapperProps, _props17, _arrowStyle, _props18, _triggerIds, _props19, _isDisabled3, _props20, _tabIndex, _isActive2, _isDisabled4, _ariaControls2, _TabsTriggerState_instances, activate_fn, _props21, _isActive3, _ariaLabelledBy, _props22;
-import { b as assign_nodes, c as comment, a as append, d as from_svg, f as from_html, p as props_id, t as text } from "../chunks/DwVU-2a4.js";
-import "../chunks/C2BFkbgU.js";
-import { aP as is_array, aQ as get_prototype_of, aR as object_prototype, aS as ATTACHMENT_KEY, h as hydrating, a as hydrate_next, aT as is_runes, G as block, B as create_text, L as set_hydrate_node, a7 as get_first_child, g as get$2, I as read_hydration_instruction, J as HYDRATION_START_ELSE, K as skip_nodes, M as set_hydrating, D as hydrate_node, ac as COMMENT_NODE, aI as HYDRATION_END, as as internal_set, x as current_batch, aU as EFFECT_OFFSCREEN, C as branch, F as should_defer_append, _ as derived_safe_equal, aG as array_from, aV as EACH_ITEM_REACTIVE, aW as EACH_ITEM_IMMUTABLE, P as mutable_source, a4 as source, aX as EACH_INDEX_REACTIVE, y as resume_effect, A as pause_effect, aY as INERT, aF as clear_text_content, z as destroy_effect, ah as queue_micro_task, aC as get_next_sibling, aZ as EACH_IS_CONTROLLED, a_ as EACH_IS_ANIMATED, H as EFFECT_TRANSPARENT, a$ as ELEMENT_NODE$1, b0 as NAMESPACE_SVG, V as active_effect, N as teardown, b1 as managed, aK as effect, b2 as select_multiple_invalid_value, b3 as is, b4 as add_form_reset_listener, b5 as LOADING_ATTR_SYMBOL, b6 as NAMESPACE_HTML, b7 as flatten, b8 as autofocus, b9 as UNINITIALIZED, ba as get_descriptors, bb as listen_to_event_and_reset_event, aM as tick, d as untrack, af as render_effect, bc as previous_batch, p as push, f as deep_read_state, k as child, m as first_child, s as sibling, l as reset, n as pop, aO as user_derived, bd as to_array, t as template_effect, aN as state, U as proxy, Q as set, be as update_version, ag as increment, bf as hasContext, bg as getContext, bh as setContext, u as user_pre_effect, b as user_effect, o as noop$1, bi as getAllContexts, bj as effect_root, at as next, bk as legacy_pre_effect, bl as legacy_pre_effect_reset } from "../chunks/Bj_O7eFZ.js";
-import { i as init } from "../chunks/teB2EOha.js";
-import { B as BranchManager, l as legacy_rest_props, p as prop, s as spread_props, i as if_block, r as rest_props, a as store_get, b as setup_stores } from "../chunks/D4as1NfB.js";
-import { s as slot } from "../chunks/pKLDCTUm.js";
-import { i as is_raw_text_element, a as is_capture_event, c as create_event, d as delegate, n as normalize_attribute, b as can_delegate_event, e as createSubscriber, o as on, m as mount, u as unmount, s as set_text, f as event } from "../chunks/DoWNWf0K.js";
-import { w as writable, o as onMount } from "../chunks/CmJXhuVg.js";
+var _sources, _version, _size, _update_version, _SvelteMap_instances, source_fn, read_all_fn, _size2, _observed, _options, _node, _window, _width, _height, _subscribe, _opts, _currentTabStopId, _props, _value, _isActive, _isDisabled, _contentNode, _props2, _root, _isDisabled2, _props3, _originalStyles, _isMountAnimationPrevented, _dimensions, _open, _updateDimensions, _snippetProps, _props4, _props5, _triggerNode, _contentNode2, _overlayNode, _descriptionNode, _contentId, _titleId, _triggerId, _descriptionId, _cancelNode, _nestedOpenCount, _sharedProps, _props6, _props7, _props8, _snippetProps2, _props9, _snippetProps3, _props10, _opts2, _search, _onMatch, _getCurrentItem, _opts3, _enabled, _isPointerInTransit, _pointerGraceArea, _GraceArea_instances, removeGraceArea_fn, createGraceArea_fn, _ignoreCloseAutoFocus, _isPointerInTransit2, _contentNode3, _triggerNode2, _search2, _timer, _handleTypeaheadSearch, _mounted, _isSub, _MenuContentState_instances, getCandidateNodes_fn, isPointerMovingToSubmenu_fn, _snippetProps4, _props11, _isFocused, _props12, _isPointerDown, _MenuItemState_instances, handleSelect_fn, _props13, _snippetProps5, _props14, _ariaControls, _props15, _groupHeadingId, _props16, _interactOutsideProp, _behaviorType, _interceptedEvents, _isResponsibleLayer, _isFocusInsideDOMTree, _documentObj, _onFocusOutside, _unsubClickListener, _handleFocus, _DismissibleLayerState_instances, addEventListeners_fn, _handleDismiss, _handleInteractOutside, _markInterceptedEvent, _markNonInterceptedEvent, _markResponsibleLayer, _isTargetWithinLayer, _resetState, isAnyEventIntercepted_fn, _onfocuscapture, _onblurcapture, _addEventListener, _onkeydown, _scopeStack, _focusHistory, _preFocusHistory, _paused, _container, _manager, _cleanupFns, _opts4, _FocusScope_instances, cleanup_fn, handleOpenAutoFocus_fn, handleCloseAutoFocus_fn, setupEventListeners_fn, getTabbables_fn, getFirstTabbable_fn, getAllFocusables_fn, _unsubSelectionLock, _TextSelectionLayerState_instances, addEventListeners_fn2, _pointerdown, _resetSelectionLock, _factory, _subscribers, _state, _scope, _SharedState_instances, dispose_fn, _id, _initialState, _restoreScrollDelay, _countState, _trueName, _trueRequired, _trueDisabled, _trueReadonly, _CheckboxRootState_instances, toggle_fn, _snippetProps6, _props17, _trueChecked, _shouldRender, _props18, _transformedStyle, _updatePositionStrategy, _arrowSize, _arrowWidth, _arrowHeight, _desiredPlacement, _boundary, _hasExplicitBoundaries, _detectOverflowOptions, _availableWidth, _availableHeight, _anchorWidth, _anchorHeight, _middleware, _placedSide, _placedAlign, _arrowX, _arrowY, _cannotCenterArrow, _contentZIndex, _arrowBaseSide, _wrapperProps, _props19, _arrowStyle, _props20, _triggerIds, _props21, _isDisabled3, _props22, _tabIndex, _isActive2, _isDisabled4, _ariaControls2, _TabsTriggerState_instances, activate_fn, _props23, _isActive3, _ariaLabelledBy, _props24;
+import { d as assign_nodes, g as create_event, i as delegate, c as createSubscriber, o as on, p as props_id, e as comment, a as append, f as from_html, j as from_svg, t as text, k as event } from "../chunks/yiCpE6_S.js";
+import "../chunks/By6-EsdD.js";
+import { aU as is_array, aV as get_prototype_of, aW as object_prototype, o as hydrating, q as hydrate_next, aX as is_runes, v as block, J as create_text, y as set_hydrate_node, au as get_first_child, g as get$2, w as read_hydration_instruction, H as HYDRATION_START_ELSE, x as skip_nodes, z as set_hydrating, L as hydrate_node, ab as COMMENT_NODE, aC as HYDRATION_END, am as internal_set, D as current_batch, aY as EFFECT_OFFSCREEN, K as branch, N as should_defer_append, a3 as derived_safe_equal, aA as array_from, aZ as EACH_ITEM_REACTIVE, a_ as EACH_ITEM_IMMUTABLE, R as mutable_source, a7 as source, a$ as EACH_INDEX_REACTIVE, F as resume_effect, I as pause_effect, b0 as INERT, az as clear_text_content, G as destroy_effect, C as queue_micro_task, aw as get_next_sibling, b1 as EACH_IS_CONTROLLED, b2 as EACH_IS_ANIMATED, _ as active_effect, E as EFFECT_TRANSPARENT, b3 as BLOCK_EFFECT, aO as EFFECT_RAN, A as effect, b as untrack, b4 as TRANSITION_GLOBAL, aK as without_reactive_context, a8 as is_function, Q as noop$1, b5 as ELEMENT_NODE, b6 as NAMESPACE_SVG, O as teardown, b7 as managed, b8 as select_multiple_invalid_value, b9 as is, ba as add_form_reset_listener, bb as LOADING_ATTR_SYMBOL, bc as NAMESPACE_HTML, bd as flatten, aQ as ATTACHMENT_KEY, be as autofocus, bf as UNINITIALIZED, bg as get_descriptors, bh as listen_to_event_and_reset_event, aF as tick, B as render_effect, bi as previous_batch, aG as state, Z as proxy, V as set, bj as update_version, aJ as increment, aH as user_derived, a as user_effect, p as push, j as first_child, k as pop, m as child, n as reset, bk as getAllContexts, bl as effect_root, s as sibling, bm as writable, e as deep_read_state, bn as to_array, t as template_effect, an as next, bo as mutate, bp as legacy_pre_effect, bq as legacy_pre_effect_reset } from "../chunks/DilKp9Ls.js";
+import { a as should_intro, i as is_raw_text_element, b as set_should_intro, c as is_capture_event, n as normalize_attribute, d as can_delegate_event, m as mount, u as unmount, s as set_text } from "../chunks/TQ9JzVVz.js";
+import { i as if_block, b as bind_this, c as component } from "../chunks/BBjsIr89.js";
+import { i as init } from "../chunks/B2oYUNLw.js";
+import { i as isWritableSymbol, B as BoxSymbol, c as boxFrom, b as boxWith, d as boxFlatten, t as toReadonlyBox, e as isBox, f as isWritableBox, g as isClassValue, h as defaultWindow, j as isHTMLElement$1, C as Context, k as attachRef, P as PresenceManager, l as boolToEmptyStrOrUndef, m as getDataOpenClosed, n as boolToStr, w as watch, o as afterTick, p as createBitsAttrs, s as snippet, q as onDestroyEffect, r as isBrowser, u as getDocument, v as isSelectableInput, x as getWindow$1, y as isElement$1, D as DOMContext, z as isElementOrSVGElement, A as getAriaChecked, E as simpleBox, F as contains, G as isIOS, H as isNotNull, I as boolToStrTrueOrUndef, J as boolToTrueOrUndef, K as TooltipRootState, L as TooltipContentState, M as TooltipTriggerState, a as slot } from "../chunks/DogESqVt.js";
+import { B as BranchManager, p as prop, r as rest_props, s as spread_props, l as legacy_rest_props, a as setup_stores, b as store_get } from "../chunks/BQfkjXyb.js";
+import { o as onMount } from "../chunks/D39b7Q4Q.js";
 const empty = [];
 function snapshot(value, skip_warning = false, no_tojson = false) {
   return clone(value, /* @__PURE__ */ new Map(), "", empty, null, no_tojson);
@@ -109,9 +110,6 @@ function clone(value, cloned, path, paths, original = null, no_tojson = false) {
       value
     );
   }
-}
-function createAttachmentKey() {
-  return Symbol(ATTACHMENT_KEY);
 }
 function key(node, get_key, render_fn) {
   if (hydrating) {
@@ -323,7 +321,7 @@ function each(node, flags, get_collection, get_key, render_fn, fallback_fn = nul
   }
 }
 function reconcile(state2, array, anchor, flags, get_key) {
-  var _a, _b, _c, _d, _e, _f, _g, _h, _i;
+  var _a2, _b, _c, _d, _e, _f, _g, _h, _i;
   var is_animated = (flags & EACH_IS_ANIMATED) !== 0;
   var length = array.length;
   var items = state2.items;
@@ -344,7 +342,7 @@ function reconcile(state2, array, anchor, flags, get_key) {
       effect2 = /** @type {EachItem} */
       items.get(key2).e;
       if ((effect2.f & EFFECT_OFFSCREEN) === 0) {
-        (_b = (_a = effect2.nodes) == null ? void 0 : _a.a) == null ? void 0 : _b.measure();
+        (_b = (_a2 = effect2.nodes) == null ? void 0 : _a2.a) == null ? void 0 : _b.measure();
         (to_animate ?? (to_animate = /* @__PURE__ */ new Set())).add(effect2);
       }
     }
@@ -479,10 +477,10 @@ function reconcile(state2, array, anchor, flags, get_key) {
   }
   if (is_animated) {
     queue_micro_task(() => {
-      var _a2, _b2;
+      var _a3, _b2;
       if (to_animate === void 0) return;
       for (effect2 of to_animate) {
-        (_b2 = (_a2 = effect2.nodes) == null ? void 0 : _a2.a) == null ? void 0 : _b2.apply();
+        (_b2 = (_a3 = effect2.nodes) == null ? void 0 : _a3.a) == null ? void 0 : _b2.apply();
       }
     });
   }
@@ -533,12 +531,249 @@ function link(state2, prev, next2) {
     next2.prev = prev;
   }
 }
-function snippet(node, get_snippet, ...args) {
-  var branches = new BranchManager(node);
-  block(() => {
-    const snippet2 = get_snippet() ?? null;
-    branches.ensure(snippet2, snippet2 && ((anchor) => snippet2(anchor, ...args)));
-  }, EFFECT_TRANSPARENT);
+const now = () => performance.now();
+const raf = {
+  // don't access requestAnimationFrame eagerly outside method
+  // this allows basic testing of user code without JSDOM
+  // bunder will eval and remove ternary when the user's app is built
+  tick: (
+    /** @param {any} _ */
+    (_) => requestAnimationFrame(_)
+  ),
+  now: () => now(),
+  tasks: /* @__PURE__ */ new Set()
+};
+function run_tasks() {
+  const now2 = raf.now();
+  raf.tasks.forEach((task) => {
+    if (!task.c(now2)) {
+      raf.tasks.delete(task);
+      task.f();
+    }
+  });
+  if (raf.tasks.size !== 0) {
+    raf.tick(run_tasks);
+  }
+}
+function loop(callback) {
+  let task;
+  if (raf.tasks.size === 0) {
+    raf.tick(run_tasks);
+  }
+  return {
+    promise: new Promise((fulfill) => {
+      raf.tasks.add(task = { c: callback, f: fulfill });
+    }),
+    abort() {
+      raf.tasks.delete(task);
+    }
+  };
+}
+function dispatch_event(element2, type) {
+  without_reactive_context(() => {
+    element2.dispatchEvent(new CustomEvent(type));
+  });
+}
+function css_property_to_camelcase(style) {
+  if (style === "float") return "cssFloat";
+  if (style === "offset") return "cssOffset";
+  if (style.startsWith("--")) return style;
+  const parts = style.split("-");
+  if (parts.length === 1) return parts[0];
+  return parts[0] + parts.slice(1).map(
+    /** @param {any} word */
+    (word) => word[0].toUpperCase() + word.slice(1)
+  ).join("");
+}
+function css_to_keyframe(css) {
+  const keyframe = {};
+  const parts = css.split(";");
+  for (const part of parts) {
+    const [property, value] = part.split(":");
+    if (!property || value === void 0) break;
+    const formatted_property = css_property_to_camelcase(property.trim());
+    keyframe[formatted_property] = value.trim();
+  }
+  return keyframe;
+}
+const linear$1 = (t) => t;
+function transition(flags, element2, get_fn, get_params) {
+  var _a2;
+  var is_global = (flags & TRANSITION_GLOBAL) !== 0;
+  var direction = "both";
+  var current_options;
+  var inert = element2.inert;
+  var overflow = element2.style.overflow;
+  var intro;
+  var outro;
+  function get_options() {
+    return without_reactive_context(() => {
+      return current_options ?? (current_options = get_fn()(element2, (get_params == null ? void 0 : get_params()) ?? /** @type {P} */
+      {}, {
+        direction
+      }));
+    });
+  }
+  var transition2 = {
+    is_global,
+    in() {
+      element2.inert = inert;
+      dispatch_event(element2, "introstart");
+      intro = animate(element2, get_options(), outro, 1, () => {
+        dispatch_event(element2, "introend");
+        intro == null ? void 0 : intro.abort();
+        intro = current_options = void 0;
+        element2.style.overflow = overflow;
+      });
+    },
+    out(fn) {
+      element2.inert = true;
+      dispatch_event(element2, "outrostart");
+      outro = animate(element2, get_options(), intro, 0, () => {
+        dispatch_event(element2, "outroend");
+        fn == null ? void 0 : fn();
+      });
+    },
+    stop: () => {
+      intro == null ? void 0 : intro.abort();
+      outro == null ? void 0 : outro.abort();
+    }
+  };
+  var e = (
+    /** @type {Effect & { nodes: EffectNodes }} */
+    active_effect
+  );
+  ((_a2 = e.nodes).t ?? (_a2.t = [])).push(transition2);
+  if (should_intro) {
+    var run = is_global;
+    if (!run) {
+      var block2 = (
+        /** @type {Effect | null} */
+        e.parent
+      );
+      while (block2 && (block2.f & EFFECT_TRANSPARENT) !== 0) {
+        while (block2 = block2.parent) {
+          if ((block2.f & BLOCK_EFFECT) !== 0) break;
+        }
+      }
+      run = !block2 || (block2.f & EFFECT_RAN) !== 0;
+    }
+    if (run) {
+      effect(() => {
+        untrack(() => transition2.in());
+      });
+    }
+  }
+}
+function animate(element2, options, counterpart, t2, on_finish) {
+  var is_intro = t2 === 1;
+  if (is_function(options)) {
+    var a;
+    var aborted = false;
+    queue_micro_task(() => {
+      if (aborted) return;
+      var o = options({ direction: is_intro ? "in" : "out" });
+      a = animate(element2, o, counterpart, t2, on_finish);
+    });
+    return {
+      abort: () => {
+        aborted = true;
+        a == null ? void 0 : a.abort();
+      },
+      deactivate: () => a.deactivate(),
+      reset: () => a.reset(),
+      t: () => a.t()
+    };
+  }
+  counterpart == null ? void 0 : counterpart.deactivate();
+  if (!(options == null ? void 0 : options.duration)) {
+    on_finish();
+    return {
+      abort: noop$1,
+      deactivate: noop$1,
+      reset: noop$1,
+      t: () => t2
+    };
+  }
+  const { delay = 0, css, tick: tick2, easing = linear$1 } = options;
+  var keyframes = [];
+  if (is_intro && counterpart === void 0) {
+    if (tick2) {
+      tick2(0, 1);
+    }
+    if (css) {
+      var styles = css_to_keyframe(css(0, 1));
+      keyframes.push(styles, styles);
+    }
+  }
+  var get_t = () => 1 - t2;
+  var animation = element2.animate(keyframes, { duration: delay, fill: "forwards" });
+  animation.onfinish = () => {
+    animation.cancel();
+    var t1 = (counterpart == null ? void 0 : counterpart.t()) ?? 1 - t2;
+    counterpart == null ? void 0 : counterpart.abort();
+    var delta = t2 - t1;
+    var duration = (
+      /** @type {number} */
+      options.duration * Math.abs(delta)
+    );
+    var keyframes2 = [];
+    if (duration > 0) {
+      var needs_overflow_hidden = false;
+      if (css) {
+        var n = Math.ceil(duration / (1e3 / 60));
+        for (var i = 0; i <= n; i += 1) {
+          var t = t1 + delta * easing(i / n);
+          var styles2 = css_to_keyframe(css(t, 1 - t));
+          keyframes2.push(styles2);
+          needs_overflow_hidden || (needs_overflow_hidden = styles2.overflow === "hidden");
+        }
+      }
+      if (needs_overflow_hidden) {
+        element2.style.overflow = "hidden";
+      }
+      get_t = () => {
+        var time = (
+          /** @type {number} */
+          /** @type {globalThis.Animation} */
+          animation.currentTime
+        );
+        return t1 + delta * easing(time / duration);
+      };
+      if (tick2) {
+        loop(() => {
+          if (animation.playState !== "running") return false;
+          var t3 = get_t();
+          tick2(t3, 1 - t3);
+          return true;
+        });
+      }
+    }
+    animation = element2.animate(keyframes2, { duration, fill: "forwards" });
+    animation.onfinish = () => {
+      get_t = () => t2;
+      tick2 == null ? void 0 : tick2(t2, 1 - t2);
+      on_finish();
+    };
+  };
+  return {
+    abort: () => {
+      if (animation) {
+        animation.cancel();
+        animation.effect = null;
+        animation.onfinish = noop$1;
+      }
+    },
+    deactivate: () => {
+      on_finish = noop$1;
+    },
+    reset: () => {
+      if (t2 === 0) {
+        tick2 == null ? void 0 : tick2(1, 0);
+      }
+    },
+    t: () => get_t()
+  };
 }
 function element(node, get_tag, is_svg, render_fn, get_namespace, location) {
   let was_hydrating = hydrating;
@@ -546,7 +781,7 @@ function element(node, get_tag, is_svg, render_fn, get_namespace, location) {
     hydrate_next();
   }
   var element2 = null;
-  if (hydrating && hydrate_node.nodeType === ELEMENT_NODE$1) {
+  if (hydrating && hydrate_node.nodeType === ELEMENT_NODE) {
     element2 = /** @type {Element} */
     hydrate_node;
     hydrate_next();
@@ -558,9 +793,10 @@ function element(node, get_tag, is_svg, render_fn, get_namespace, location) {
   var branches = new BranchManager(anchor, false);
   block(() => {
     const next_tag = get_tag() || null;
-    var ns = NAMESPACE_SVG;
+    var ns = is_svg || next_tag === "svg" ? NAMESPACE_SVG : null;
     if (next_tag === null) {
       branches.ensure(null, null);
+      set_should_intro(true);
       return;
     }
     branches.ensure(next_tag, (anchor2) => {
@@ -568,7 +804,7 @@ function element(node, get_tag, is_svg, render_fn, get_namespace, location) {
         element2 = hydrating ? (
           /** @type {Element} */
           element2
-        ) : document.createElementNS(ns, next_tag);
+        ) : ns ? document.createElementNS(ns, next_tag) : document.createElement(next_tag);
         assign_nodes(element2, element2);
         if (render_fn) {
           if (hydrating && is_raw_text_element(next_tag)) {
@@ -591,10 +827,15 @@ function element(node, get_tag, is_svg, render_fn, get_namespace, location) {
         set_hydrate_node(anchor2);
       }
     });
+    set_should_intro(true);
     return () => {
+      if (next_tag) {
+        set_should_intro(false);
+      }
     };
   }, EFFECT_TRANSPARENT);
   teardown(() => {
+    set_should_intro(true);
   });
   if (was_hydrating) {
     set_hydrating(true);
@@ -1219,298 +1460,6 @@ function is_numberlike_input(input) {
 function to_number(value) {
   return value === "" ? null : +value;
 }
-const logs = writable([]);
-const selectedLog = writable(null);
-const levelFilter = writable(
-  /* @__PURE__ */ new Set(["info", "warn", "error"])
-);
-const defaultAttributes = {
-  outline: {
-    xmlns: "http://www.w3.org/2000/svg",
-    width: 24,
-    height: 24,
-    viewBox: "0 0 24 24",
-    fill: "none",
-    stroke: "currentColor",
-    "stroke-width": 2,
-    "stroke-linecap": "round",
-    "stroke-linejoin": "round"
-  },
-  filled: {
-    xmlns: "http://www.w3.org/2000/svg",
-    width: 24,
-    height: 24,
-    viewBox: "0 0 24 24",
-    fill: "currentColor",
-    stroke: "none"
-  }
-};
-var root$8 = from_svg(`<svg><!><!></svg>`);
-function Icon($$anchor, $$props) {
-  const $$sanitized_props = legacy_rest_props($$props, ["children", "$$slots", "$$events", "$$legacy"]);
-  const $$restProps = legacy_rest_props($$sanitized_props, ["type", "name", "color", "size", "stroke", "iconNode"]);
-  push($$props, false);
-  let type = prop($$props, "type", 8);
-  let name = prop($$props, "name", 8);
-  let color = prop($$props, "color", 8, "currentColor");
-  let size2 = prop($$props, "size", 8, 24);
-  let stroke = prop($$props, "stroke", 8, 2);
-  let iconNode = prop($$props, "iconNode", 8);
-  init();
-  var svg = root$8();
-  attribute_effect(svg, () => ({
-    ...defaultAttributes[type()],
-    ...$$restProps,
-    width: size2(),
-    height: size2(),
-    class: (deep_read_state(name()), deep_read_state($$sanitized_props), untrack(() => `tabler-icon tabler-icon-${name()} ${$$sanitized_props.class ?? ""}`)),
-    ...type() === "filled" ? { fill: color() } : { "stroke-width": stroke(), stroke: color() }
-  }));
-  var node = child(svg);
-  each(node, 1, iconNode, index$1, ($$anchor2, $$item) => {
-    var $$array = user_derived(() => to_array(get$2($$item), 2));
-    let tag = () => get$2($$array)[0];
-    let attrs = () => get$2($$array)[1];
-    var fragment = comment();
-    var node_1 = first_child(fragment);
-    element(node_1, tag, true, ($$element, $$anchor3) => {
-      attribute_effect($$element, () => ({ ...attrs() }));
-    });
-    append($$anchor2, fragment);
-  });
-  var node_2 = sibling(node);
-  slot(node_2, $$props, "default", {});
-  reset(svg);
-  append($$anchor, svg);
-  pop();
-}
-function Chevron_right($$anchor, $$props) {
-  const $$sanitized_props = legacy_rest_props($$props, ["children", "$$slots", "$$events", "$$legacy"]);
-  const iconNode = [["path", { "d": "M9 6l6 6l-6 6" }]];
-  Icon($$anchor, spread_props({ type: "outline", name: "chevron-right" }, () => $$sanitized_props, {
-    get iconNode() {
-      return iconNode;
-    },
-    children: ($$anchor2, $$slotProps) => {
-      var fragment_1 = comment();
-      var node = first_child(fragment_1);
-      slot(node, $$props, "default", {});
-      append($$anchor2, fragment_1);
-    },
-    $$slots: { default: true }
-  }));
-}
-function File($$anchor, $$props) {
-  const $$sanitized_props = legacy_rest_props($$props, ["children", "$$slots", "$$events", "$$legacy"]);
-  const iconNode = [
-    ["path", { "d": "M14 3v4a1 1 0 0 0 1 1h4" }],
-    [
-      "path",
-      {
-        "d": "M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2"
-      }
-    ]
-  ];
-  Icon($$anchor, spread_props({ type: "outline", name: "file" }, () => $$sanitized_props, {
-    get iconNode() {
-      return iconNode;
-    },
-    children: ($$anchor2, $$slotProps) => {
-      var fragment_1 = comment();
-      var node = first_child(fragment_1);
-      slot(node, $$props, "default", {});
-      append($$anchor2, fragment_1);
-    },
-    $$slots: { default: true }
-  }));
-}
-var root_1$3 = from_html(`<a><!></a>`);
-var root_2$f = from_html(`<button><!></button>`);
-function Button($$anchor, $$props) {
-  let variant = prop($$props, "variant", 8, "primary");
-  let size2 = prop($$props, "size", 8, "md");
-  let loading = prop($$props, "loading", 8, false);
-  let disabled = prop($$props, "disabled", 8, false);
-  let href = prop($$props, "href", 8, null);
-  let type = prop($$props, "type", 8, "button");
-  const base = "inline-flex items-center justify-center rounded-xl font-medium transition-all select-none";
-  const variants = {
-    primary: "bg-primary text-primary-foreground hover:bg-primary/90 active:bg-primary/80",
-    secondary: "bg-muted text-muted-foreground hover:bg-muted/90 active:bg-muted/80",
-    ghost: "bg-transparent text-foreground hover:bg-muted active:bg-muted",
-    destructive: "bg-destructive text-destructive-foreground hover:bg-destructive/90 active:bg-destructive/80"
-  };
-  const sizes = {
-    sm: "px-3 py-1.5 text-sm",
-    md: "px-4 py-2 text-base",
-    lg: "px-5 py-2.5 text-lg",
-    icon: "h-9 w-9 p-1",
-    "icon-sm": "h-7 w-7 p-2"
-  };
-  const isDisabled = disabled() || loading();
-  var fragment = comment();
-  var node = first_child(fragment);
-  {
-    var consequent = ($$anchor2) => {
-      var a = root_1$3();
-      var node_1 = child(a);
-      slot(node_1, $$props, "default", {});
-      reset(a);
-      template_effect(() => {
-        set_attribute(a, "href", href());
-        set_class(a, 1, (deep_read_state(variant()), deep_read_state(size2()), untrack(() => `${base} ${variants[variant()]} ${sizes[size2()]} ${isDisabled && "opacity-60 cursor-not-allowed"} `)));
-        set_attribute(a, "aria-disabled", isDisabled);
-      });
-      append($$anchor2, a);
-    };
-    var alternate = ($$anchor2) => {
-      var button = root_2$f();
-      var node_2 = child(button);
-      slot(node_2, $$props, "default", {});
-      reset(button);
-      template_effect(() => {
-        set_attribute(button, "type", type());
-        set_class(button, 1, (deep_read_state(variant()), deep_read_state(size2()), untrack(() => `${base} ${variants[variant()]} ${sizes[size2()]} ${isDisabled && "opacity-60 cursor-not-allowed"} `)));
-        button.disabled = isDisabled;
-      });
-      append($$anchor2, button);
-    };
-    if_block(node, ($$render) => {
-      if (href()) $$render(consequent);
-      else $$render(alternate, false);
-    });
-  }
-  append($$anchor, fragment);
-}
-var root$7 = from_html(`<input class="
-    w-full px-2 py-1 rounded-lg
-    border border-border
-    bg-background text-foreground
-    placeholder:text-muted-foreground
-    focus:outline-none focus:ring-2 focus:ring-ring
-    disabled:opacity-50 disabled:cursor-not-allowed
-    text-sm
-  "/>`);
-function Input($$anchor, $$props) {
-  let value = prop($$props, "value", 12, "");
-  let type = prop($$props, "type", 8, "text");
-  let placeholder = prop($$props, "placeholder", 8, "");
-  let disabled = prop($$props, "disabled", 8, false);
-  var input = root$7();
-  remove_input_defaults(input);
-  template_effect(() => {
-    set_attribute(input, "type", type());
-    set_attribute(input, "placeholder", placeholder());
-    input.disabled = disabled();
-  });
-  bind_value(input, value);
-  append($$anchor, input);
-}
-function isFunction$1(value) {
-  return typeof value === "function";
-}
-function isObject(value) {
-  return value !== null && typeof value === "object";
-}
-const CLASS_VALUE_PRIMITIVE_TYPES = ["string", "number", "bigint", "boolean"];
-function isClassValue(value) {
-  if (value === null || value === void 0)
-    return true;
-  if (CLASS_VALUE_PRIMITIVE_TYPES.includes(typeof value))
-    return true;
-  if (Array.isArray(value))
-    return value.every((item) => isClassValue(item));
-  if (typeof value === "object") {
-    if (Object.getPrototypeOf(value) !== Object.prototype)
-      return false;
-    return true;
-  }
-  return false;
-}
-const BoxSymbol = Symbol("box");
-const isWritableSymbol = Symbol("is-writable");
-function boxWith(getter, setter) {
-  const derived = user_derived(getter);
-  if (setter) {
-    return {
-      [BoxSymbol]: true,
-      [isWritableSymbol]: true,
-      get current() {
-        return get$2(derived);
-      },
-      set current(v) {
-        setter(v);
-      }
-    };
-  }
-  return {
-    [BoxSymbol]: true,
-    get current() {
-      return getter();
-    }
-  };
-}
-function isBox(value) {
-  return isObject(value) && BoxSymbol in value;
-}
-function isWritableBox(value) {
-  return isBox(value) && isWritableSymbol in value;
-}
-function boxFrom(value) {
-  if (isBox(value)) return value;
-  if (isFunction$1(value)) return boxWith(value);
-  return simpleBox(value);
-}
-function boxFlatten(boxes) {
-  return Object.entries(boxes).reduce(
-    (acc, [key2, b]) => {
-      if (!isBox(b)) {
-        return Object.assign(acc, { [key2]: b });
-      }
-      if (isWritableBox(b)) {
-        Object.defineProperty(acc, key2, {
-          get() {
-            return b.current;
-          },
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          set(v) {
-            b.current = v;
-          }
-        });
-      } else {
-        Object.defineProperty(acc, key2, {
-          get() {
-            return b.current;
-          }
-        });
-      }
-      return acc;
-    },
-    {}
-  );
-}
-function toReadonlyBox(b) {
-  if (!isWritableBox(b)) return b;
-  return {
-    [BoxSymbol]: true,
-    get current() {
-      return b.current;
-    }
-  };
-}
-function simpleBox(initialValue) {
-  let current = state(proxy(initialValue));
-  return {
-    [BoxSymbol]: true,
-    [isWritableSymbol]: true,
-    get current() {
-      return get$2(current);
-    },
-    set current(v) {
-      set(current, v, true);
-    }
-  };
-}
 function box(initialValue) {
   let current = state(proxy(initialValue));
   return {
@@ -1532,7 +1481,7 @@ box.isBox = isBox;
 box.isWritableBox = isWritableBox;
 function composeHandlers(...handlers) {
   return function(e) {
-    var _a;
+    var _a2;
     for (const handler of handlers) {
       if (!handler)
         continue;
@@ -1541,7 +1490,7 @@ function composeHandlers(...handlers) {
       if (typeof handler === "function") {
         handler.call(this, e);
       } else {
-        (_a = handler.current) == null ? void 0 : _a.call(this, e);
+        (_a2 = handler.current) == null ? void 0 : _a2.call(this, e);
       }
     }
   };
@@ -1988,18 +1937,19 @@ function mergeProps(...args) {
   }
   return result;
 }
-const defaultWindow = typeof window !== "undefined" ? window : void 0;
-function getActiveElement$1(document2) {
-  let activeElement = document2.activeElement;
-  while (activeElement == null ? void 0 : activeElement.shadowRoot) {
-    const node = activeElement.shadowRoot.activeElement;
-    if (node === activeElement)
-      break;
-    else
-      activeElement = node;
-  }
-  return activeElement;
-}
+const srOnlyStyles = {
+  position: "absolute",
+  width: "1px",
+  height: "1px",
+  padding: "0",
+  margin: "-1px",
+  overflow: "hidden",
+  clip: "rect(0, 0, 0, 0)",
+  whiteSpace: "nowrap",
+  borderWidth: "0",
+  transform: "translateX(-100%)"
+};
+const srOnlyStylesString = styleToString(srOnlyStyles);
 const _SvelteMap = class _SvelteMap extends Map {
   /**
    * @param {Iterable<readonly [K, V]> | null | undefined} [value]
@@ -2066,7 +2016,7 @@ const _SvelteMap = class _SvelteMap extends Map {
    * @param {V} value
    * */
   set(key2, value) {
-    var _a;
+    var _a2;
     var sources = __privateGet(this, _sources);
     var s = sources.get(key2);
     var prev_res = super.get(key2);
@@ -2080,7 +2030,7 @@ const _SvelteMap = class _SvelteMap extends Map {
     } else if (prev_res !== value) {
       increment(s);
       var v_reactions = version.reactions === null ? null : new Set(version.reactions);
-      var needs_version_increase = v_reactions === null || !((_a = s.reactions) == null ? void 0 : _a.every(
+      var needs_version_increase = v_reactions === null || !((_a2 = s.reactions) == null ? void 0 : _a2.every(
         (r2) => (
           /** @type {NonNullable<typeof v_reactions>} */
           v_reactions.has(r2)
@@ -2171,134 +2121,9 @@ read_all_fn = function() {
   }
 };
 let SvelteMap = _SvelteMap;
-class ActiveElement {
-  constructor(options = {}) {
-    __privateAdd(this, _document);
-    __privateAdd(this, _subscribe);
-    const { window: window2 = defaultWindow, document: document2 = window2 == null ? void 0 : window2.document } = options;
-    if (window2 === void 0) return;
-    __privateSet(this, _document, document2);
-    __privateSet(this, _subscribe, createSubscriber((update) => {
-      const cleanupFocusIn = on(window2, "focusin", update);
-      const cleanupFocusOut = on(window2, "focusout", update);
-      return () => {
-        cleanupFocusIn();
-        cleanupFocusOut();
-      };
-    }));
-  }
-  get current() {
-    var _a;
-    (_a = __privateGet(this, _subscribe)) == null ? void 0 : _a.call(this);
-    if (!__privateGet(this, _document)) return null;
-    return getActiveElement$1(__privateGet(this, _document));
-  }
-}
-_document = new WeakMap();
-_subscribe = new WeakMap();
-new ActiveElement();
 function isFunction(value) {
   return typeof value === "function";
 }
-class Context {
-  /**
-   * @param name The name of the context.
-   * This is used for generating the context key and error messages.
-   */
-  constructor(name) {
-    __privateAdd(this, _name);
-    __privateAdd(this, _key);
-    __privateSet(this, _name, name);
-    __privateSet(this, _key, Symbol(name));
-  }
-  /**
-   * The key used to get and set the context.
-   *
-   * It is not recommended to use this value directly.
-   * Instead, use the methods provided by this class.
-   */
-  get key() {
-    return __privateGet(this, _key);
-  }
-  /**
-   * Checks whether this has been set in the context of a parent component.
-   *
-   * Must be called during component initialisation.
-   */
-  exists() {
-    return hasContext(__privateGet(this, _key));
-  }
-  /**
-   * Retrieves the context that belongs to the closest parent component.
-   *
-   * Must be called during component initialisation.
-   *
-   * @throws An error if the context does not exist.
-   */
-  get() {
-    const context = getContext(__privateGet(this, _key));
-    if (context === void 0) {
-      throw new Error(`Context "${__privateGet(this, _name)}" not found`);
-    }
-    return context;
-  }
-  /**
-   * Retrieves the context that belongs to the closest parent component,
-   * or the given fallback value if the context does not exist.
-   *
-   * Must be called during component initialisation.
-   */
-  getOr(fallback) {
-    const context = getContext(__privateGet(this, _key));
-    if (context === void 0) {
-      return fallback;
-    }
-    return context;
-  }
-  /**
-   * Associates the given value with the current component and returns it.
-   *
-   * Must be called during component initialisation.
-   */
-  set(context) {
-    return setContext(__privateGet(this, _key), context);
-  }
-}
-_name = new WeakMap();
-_key = new WeakMap();
-function runEffect(flush, effect2) {
-  switch (flush) {
-    case "post":
-      user_effect(effect2);
-      break;
-    case "pre":
-      user_pre_effect(effect2);
-      break;
-  }
-}
-function runWatcher(sources, flush, effect2, options = {}) {
-  const { lazy = false } = options;
-  let active = !lazy;
-  let previousValues = Array.isArray(sources) ? [] : void 0;
-  runEffect(flush, () => {
-    const values = Array.isArray(sources) ? sources.map((source2) => source2()) : sources();
-    if (!active) {
-      active = true;
-      previousValues = values;
-      return;
-    }
-    const cleanup = untrack(() => effect2(values, previousValues));
-    previousValues = values;
-    return cleanup;
-  });
-}
-function watch(sources, effect2, options) {
-  runWatcher(sources, "post", effect2, options);
-}
-function watchPre(sources, effect2, options) {
-  runWatcher(sources, "pre", effect2, options);
-}
-watch.pre = watchPre;
 function get$1(value) {
   if (isFunction(value)) {
     return value();
@@ -2316,22 +2141,22 @@ class ElementSize {
     // we use a derived here to extract the width so that if the width doesn't change we don't get a state update
     // which we would get if we would just use a getter since the version of the subscriber will be changing
     __privateAdd(this, _width, user_derived(() => {
-      var _a;
-      (_a = get$2(__privateGet(this, _subscribe2))) == null ? void 0 : _a();
+      var _a2;
+      (_a2 = get$2(__privateGet(this, _subscribe))) == null ? void 0 : _a2();
       return this.getSize().width;
     }));
     // we use a derived here to extract the height so that if the height doesn't change we don't get a state update
     // which we would get if we would just use a getter since the version of the subscriber will be changing
     __privateAdd(this, _height, user_derived(() => {
-      var _a;
-      (_a = get$2(__privateGet(this, _subscribe2))) == null ? void 0 : _a();
+      var _a2;
+      (_a2 = get$2(__privateGet(this, _subscribe))) == null ? void 0 : _a2();
       return this.getSize().height;
     }));
     // we need to use a derived here because the class will be created before the node is bound to the ref
-    __privateAdd(this, _subscribe2, user_derived(() => {
+    __privateAdd(this, _subscribe, user_derived(() => {
       const node$ = get$1(__privateGet(this, _node));
       if (!node$) return;
-      return createSubscriber((update) => {
+      return createSubscriber((update2) => {
         if (!__privateGet(this, _window)) return;
         const observer = new (__privateGet(this, _window)).ResizeObserver((entries) => {
           __privateSet(this, _observed, true);
@@ -2341,7 +2166,7 @@ class ElementSize {
             __privateGet(this, _size2).width = boxSizeArr.reduce((acc, size2) => Math.max(acc, size2.inlineSize), 0);
             __privateGet(this, _size2).height = boxSizeArr.reduce((acc, size2) => Math.max(acc, size2.blockSize), 0);
           }
-          update();
+          update2();
         });
         observer.observe(node$);
         return () => {
@@ -2378,8 +2203,8 @@ class ElementSize {
     return __privateGet(this, _observed) ? __privateGet(this, _size2) : this.calculateSize() ?? __privateGet(this, _size2);
   }
   get current() {
-    var _a;
-    (_a = get$2(__privateGet(this, _subscribe2))) == null ? void 0 : _a();
+    var _a2;
+    (_a2 = get$2(__privateGet(this, _subscribe))) == null ? void 0 : _a2();
     return this.getSize();
   }
   get width() {
@@ -2396,213 +2221,9 @@ _node = new WeakMap();
 _window = new WeakMap();
 _width = new WeakMap();
 _height = new WeakMap();
-_subscribe2 = new WeakMap();
-function onDestroyEffect(fn) {
-  user_effect(() => {
-    return () => {
-      fn();
-    };
-  });
-}
+_subscribe = new WeakMap();
 function afterSleep(ms, cb) {
   return setTimeout(cb, ms);
-}
-function afterTick(fn) {
-  tick().then(fn);
-}
-const ELEMENT_NODE = 1;
-const DOCUMENT_NODE = 9;
-const DOCUMENT_FRAGMENT_NODE = 11;
-function isHTMLElement$2(node) {
-  return isObject(node) && node.nodeType === ELEMENT_NODE && typeof node.nodeName === "string";
-}
-function isDocument(node) {
-  return isObject(node) && node.nodeType === DOCUMENT_NODE;
-}
-function isWindow(node) {
-  var _a;
-  return isObject(node) && ((_a = node.constructor) == null ? void 0 : _a.name) === "VisualViewport";
-}
-function isNode$1(node) {
-  return isObject(node) && node.nodeType !== void 0;
-}
-function isShadowRoot$1(node) {
-  return isNode$1(node) && node.nodeType === DOCUMENT_FRAGMENT_NODE && "host" in node;
-}
-function contains(parent, child2) {
-  var _a;
-  if (!parent || !child2)
-    return false;
-  if (!isHTMLElement$2(parent) || !isHTMLElement$2(child2))
-    return false;
-  const rootNode = (_a = child2.getRootNode) == null ? void 0 : _a.call(child2);
-  if (parent === child2)
-    return true;
-  if (parent.contains(child2))
-    return true;
-  if (rootNode && isShadowRoot$1(rootNode)) {
-    let next2 = child2;
-    while (next2) {
-      if (parent === next2)
-        return true;
-      next2 = next2.parentNode || next2.host;
-    }
-  }
-  return false;
-}
-function getDocument(node) {
-  if (isDocument(node))
-    return node;
-  if (isWindow(node))
-    return node.document;
-  return (node == null ? void 0 : node.ownerDocument) ?? document;
-}
-function getWindow$1(node) {
-  var _a;
-  if (isShadowRoot$1(node))
-    return getWindow$1(node.host);
-  if (isDocument(node))
-    return node.defaultView ?? window;
-  if (isHTMLElement$2(node))
-    return ((_a = node.ownerDocument) == null ? void 0 : _a.defaultView) ?? window;
-  return window;
-}
-function getActiveElement(rootNode) {
-  let activeElement = rootNode.activeElement;
-  while (activeElement == null ? void 0 : activeElement.shadowRoot) {
-    const el = activeElement.shadowRoot.activeElement;
-    if (el === activeElement)
-      break;
-    else
-      activeElement = el;
-  }
-  return activeElement;
-}
-class DOMContext {
-  constructor(element2) {
-    __publicField(this, "element");
-    __privateAdd(this, _root, user_derived(() => {
-      if (!this.element.current) return document;
-      const rootNode = this.element.current.getRootNode() ?? document;
-      return rootNode;
-    }));
-    __publicField(this, "getDocument", () => {
-      return getDocument(this.root);
-    });
-    __publicField(this, "getWindow", () => {
-      return this.getDocument().defaultView ?? window;
-    });
-    __publicField(this, "getActiveElement", () => {
-      return getActiveElement(this.root);
-    });
-    __publicField(this, "isActiveElement", (node) => {
-      return node === this.getActiveElement();
-    });
-    __publicField(this, "querySelector", (selector) => {
-      if (!this.root) return null;
-      return this.root.querySelector(selector);
-    });
-    __publicField(this, "querySelectorAll", (selector) => {
-      if (!this.root) return [];
-      return this.root.querySelectorAll(selector);
-    });
-    __publicField(this, "setTimeout", (callback, delay) => {
-      return this.getWindow().setTimeout(callback, delay);
-    });
-    __publicField(this, "clearTimeout", (timeoutId) => {
-      return this.getWindow().clearTimeout(timeoutId);
-    });
-    if (typeof element2 === "function") {
-      this.element = boxWith(element2);
-    } else {
-      this.element = element2;
-    }
-  }
-  get root() {
-    return get$2(__privateGet(this, _root));
-  }
-  set root(value) {
-    set(__privateGet(this, _root), value);
-  }
-  getElementById(id) {
-    return this.root.getElementById(id);
-  }
-}
-_root = new WeakMap();
-function attachRef(ref, onChange) {
-  return {
-    [createAttachmentKey()]: (node) => {
-      if (isBox(ref)) {
-        ref.current = node;
-        untrack(() => onChange == null ? void 0 : onChange(node));
-        return () => {
-          if ("isConnected" in node && node.isConnected)
-            return;
-          ref.current = null;
-          onChange == null ? void 0 : onChange(null);
-        };
-      }
-      ref(node);
-      untrack(() => onChange == null ? void 0 : onChange(node));
-      return () => {
-        if ("isConnected" in node && node.isConnected)
-          return;
-        ref(null);
-        onChange == null ? void 0 : onChange(null);
-      };
-    }
-  };
-}
-function boolToStr(condition) {
-  return condition ? "true" : "false";
-}
-function boolToStrTrueOrUndef(condition) {
-  return condition ? "true" : void 0;
-}
-function boolToEmptyStrOrUndef(condition) {
-  return condition ? "" : void 0;
-}
-function boolToTrueOrUndef(condition) {
-  return condition ? true : void 0;
-}
-function getDataOpenClosed(condition) {
-  return condition ? "open" : "closed";
-}
-function getAriaChecked(checked, indeterminate) {
-  if (indeterminate) {
-    return "mixed";
-  }
-  return checked ? "true" : "false";
-}
-class BitsAttrs {
-  constructor(config) {
-    __privateAdd(this, _variant);
-    __privateAdd(this, _prefix);
-    __publicField(this, "attrs");
-    __privateSet(this, _variant, config.getVariant ? config.getVariant() : null);
-    __privateSet(this, _prefix, __privateGet(this, _variant) ? `data-${__privateGet(this, _variant)}-` : `data-${config.component}-`);
-    this.getAttr = this.getAttr.bind(this);
-    this.selector = this.selector.bind(this);
-    this.attrs = Object.fromEntries(config.parts.map((part) => [part, this.getAttr(part)]));
-  }
-  getAttr(part, variantOverride) {
-    if (variantOverride)
-      return `data-${variantOverride}-${part}`;
-    return `${__privateGet(this, _prefix)}${part}`;
-  }
-  selector(part, variantOverride) {
-    return `[${this.getAttr(part, variantOverride)}]`;
-  }
-}
-_variant = new WeakMap();
-_prefix = new WeakMap();
-function createBitsAttrs(config) {
-  const bitsAttrs = new BitsAttrs(config);
-  return {
-    ...bitsAttrs.attrs,
-    selector: bitsAttrs.selector,
-    getAttr: bitsAttrs.getAttr
-  };
 }
 const ARROW_DOWN = "ArrowDown";
 const ARROW_LEFT = "ArrowLeft";
@@ -2643,28 +2264,6 @@ function getDirectionalKeys(dir = "ltr", orientation = "horizontal") {
     prevKey: getPrevKey(dir, orientation)
   };
 }
-const isBrowser = typeof document !== "undefined";
-const isIOS = getIsIOS();
-function getIsIOS() {
-  var _a, _b;
-  return isBrowser && ((_a = window == null ? void 0 : window.navigator) == null ? void 0 : _a.userAgent) && (/iP(ad|hone|od)/.test(window.navigator.userAgent) || // The new iPad Pro Gen3 does not identify itself as iPad, but as Macintosh.
-  ((_b = window == null ? void 0 : window.navigator) == null ? void 0 : _b.maxTouchPoints) > 2 && /iPad|Macintosh/.test(window == null ? void 0 : window.navigator.userAgent));
-}
-function isHTMLElement$1(element2) {
-  return element2 instanceof HTMLElement;
-}
-function isElement$1(element2) {
-  return element2 instanceof Element;
-}
-function isElementOrSVGElement(element2) {
-  return element2 instanceof Element || element2 instanceof SVGElement;
-}
-function isNotNull(value) {
-  return value !== null;
-}
-function isSelectableInput(element2) {
-  return element2 instanceof HTMLInputElement && "select" in element2;
-}
 class RovingFocusGroup {
   constructor(opts) {
     __privateAdd(this, _opts);
@@ -2684,14 +2283,14 @@ class RovingFocusGroup {
     return [];
   }
   focusFirstCandidate() {
-    var _a;
+    var _a2;
     const items = this.getCandidateNodes();
     if (!items.length)
       return;
-    (_a = items[0]) == null ? void 0 : _a.focus();
+    (_a2 = items[0]) == null ? void 0 : _a2.focus();
   }
   handleKeydown(node, e, both = false) {
-    var _a, _b;
+    var _a2, _b;
     const rootNode = __privateGet(this, _opts).rootNode.current;
     if (!rootNode || !node)
       return;
@@ -2701,7 +2300,7 @@ class RovingFocusGroup {
     const currentIndex = items.indexOf(node);
     const dir = getElemDirection(rootNode);
     const { nextKey, prevKey } = getDirectionalKeys(dir, __privateGet(this, _opts).orientation.current);
-    const loop = __privateGet(this, _opts).loop.current;
+    const loop2 = __privateGet(this, _opts).loop.current;
     const keyToIndex = {
       [nextKey]: currentIndex + 1,
       [prevKey]: currentIndex - 1,
@@ -2718,9 +2317,9 @@ class RovingFocusGroup {
     if (itemIndex === void 0)
       return;
     e.preventDefault();
-    if (itemIndex < 0 && loop) {
+    if (itemIndex < 0 && loop2) {
       itemIndex = items.length - 1;
-    } else if (itemIndex === items.length && loop) {
+    } else if (itemIndex === items.length && loop2) {
       itemIndex = 0;
     }
     const itemToFocus = items[itemIndex];
@@ -2728,7 +2327,7 @@ class RovingFocusGroup {
       return;
     itemToFocus.focus();
     __privateGet(this, _currentTabStopId).current = itemToFocus.id;
-    (_b = (_a = __privateGet(this, _opts)).onCandidateFocus) == null ? void 0 : _b.call(_a, itemToFocus);
+    (_b = (_a2 = __privateGet(this, _opts)).onCandidateFocus) == null ? void 0 : _b.call(_a2, itemToFocus);
     return itemToFocus;
   }
   getTabIndex(node) {
@@ -2746,11 +2345,11 @@ class RovingFocusGroup {
     __privateGet(this, _currentTabStopId).current = id;
   }
   focusCurrentTabStop() {
-    var _a;
+    var _a2;
     const currentTabStopId = __privateGet(this, _currentTabStopId).current;
     if (!currentTabStopId)
       return;
-    const currentTabStop = (_a = __privateGet(this, _opts).rootNode.current) == null ? void 0 : _a.querySelector(`#${currentTabStopId}`);
+    const currentTabStop = (_a2 = __privateGet(this, _opts).rootNode.current) == null ? void 0 : _a2.querySelector(`#${currentTabStopId}`);
     if (!currentTabStop || !isHTMLElement$1(currentTabStop))
       return;
     currentTabStop.focus();
@@ -2758,86 +2357,6 @@ class RovingFocusGroup {
 }
 _opts = new WeakMap();
 _currentTabStopId = new WeakMap();
-class AnimationsComplete {
-  constructor(opts) {
-    __privateAdd(this, _AnimationsComplete_instances);
-    __privateAdd(this, _opts2);
-    __privateAdd(this, _currentFrame, null);
-    __privateSet(this, _opts2, opts);
-    onDestroyEffect(() => __privateMethod(this, _AnimationsComplete_instances, cleanup_fn).call(this));
-  }
-  run(fn) {
-    __privateMethod(this, _AnimationsComplete_instances, cleanup_fn).call(this);
-    const node = __privateGet(this, _opts2).ref.current;
-    if (!node)
-      return;
-    if (typeof node.getAnimations !== "function") {
-      __privateMethod(this, _AnimationsComplete_instances, executeCallback_fn).call(this, fn);
-      return;
-    }
-    __privateSet(this, _currentFrame, window.requestAnimationFrame(() => {
-      const animations = node.getAnimations();
-      if (animations.length === 0) {
-        __privateMethod(this, _AnimationsComplete_instances, executeCallback_fn).call(this, fn);
-        return;
-      }
-      Promise.allSettled(animations.map((animation) => animation.finished)).then(() => {
-        __privateMethod(this, _AnimationsComplete_instances, executeCallback_fn).call(this, fn);
-      });
-    }));
-  }
-}
-_opts2 = new WeakMap();
-_currentFrame = new WeakMap();
-_AnimationsComplete_instances = new WeakSet();
-cleanup_fn = function() {
-  if (!__privateGet(this, _currentFrame))
-    return;
-  window.cancelAnimationFrame(__privateGet(this, _currentFrame));
-  __privateSet(this, _currentFrame, null);
-};
-executeCallback_fn = function(fn) {
-  const execute = () => {
-    fn();
-  };
-  if (__privateGet(this, _opts2).afterTick) {
-    afterTick(execute);
-  } else {
-    execute();
-  }
-};
-class PresenceManager {
-  constructor(opts) {
-    __privateAdd(this, _opts3);
-    __privateAdd(this, _enabled);
-    __privateAdd(this, _afterAnimations);
-    __privateAdd(this, _shouldRender, state(false));
-    __privateSet(this, _opts3, opts);
-    set(__privateGet(this, _shouldRender), opts.open.current, true);
-    __privateSet(this, _enabled, opts.enabled ?? true);
-    __privateSet(this, _afterAnimations, new AnimationsComplete({ ref: __privateGet(this, _opts3).ref, afterTick: __privateGet(this, _opts3).open }));
-    watch(() => __privateGet(this, _opts3).open.current, (isOpen) => {
-      if (isOpen) set(__privateGet(this, _shouldRender), true);
-      if (!__privateGet(this, _enabled)) return;
-      __privateGet(this, _afterAnimations).run(() => {
-        var _a, _b;
-        if (isOpen === __privateGet(this, _opts3).open.current) {
-          if (!__privateGet(this, _opts3).open.current) {
-            set(__privateGet(this, _shouldRender), false);
-          }
-          (_b = (_a = __privateGet(this, _opts3)).onComplete) == null ? void 0 : _b.call(_a);
-        }
-      });
-    });
-  }
-  get shouldRender() {
-    return get$2(__privateGet(this, _shouldRender));
-  }
-}
-_opts3 = new WeakMap();
-_enabled = new WeakMap();
-_afterAnimations = new WeakMap();
-_shouldRender = new WeakMap();
 const accordionAttrs = createBitsAttrs({
   component: "accordion",
   parts: ["root", "trigger", "content", "item", "header"]
@@ -2979,8 +2498,8 @@ const _AccordionTriggerState = class _AccordionTriggerState {
   constructor(opts, itemState) {
     __publicField(this, "opts");
     __publicField(this, "itemState");
-    __privateAdd(this, _root2);
-    __privateAdd(this, _isDisabled2, user_derived(() => this.opts.disabled.current || this.itemState.opts.disabled.current || __privateGet(this, _root2).opts.disabled.current));
+    __privateAdd(this, _root);
+    __privateAdd(this, _isDisabled2, user_derived(() => this.opts.disabled.current || this.itemState.opts.disabled.current || __privateGet(this, _root).opts.disabled.current));
     __publicField(this, "attachment");
     __privateAdd(this, _props3, user_derived(() => ({
       id: this.opts.id.current,
@@ -2989,7 +2508,7 @@ const _AccordionTriggerState = class _AccordionTriggerState {
       "aria-disabled": boolToStr(get$2(__privateGet(this, _isDisabled2))),
       "data-disabled": boolToEmptyStrOrUndef(get$2(__privateGet(this, _isDisabled2))),
       "data-state": getDataOpenClosed(this.itemState.isActive),
-      "data-orientation": __privateGet(this, _root2).opts.orientation.current,
+      "data-orientation": __privateGet(this, _root).opts.orientation.current,
       [accordionAttrs.trigger]: "",
       tabindex: 0,
       onclick: this.onclick,
@@ -2998,7 +2517,7 @@ const _AccordionTriggerState = class _AccordionTriggerState {
     })));
     this.opts = opts;
     this.itemState = itemState;
-    __privateSet(this, _root2, itemState.root);
+    __privateSet(this, _root, itemState.root);
     this.onclick = this.onclick.bind(this);
     this.onkeydown = this.onkeydown.bind(this);
     this.attachment = attachRef(this.opts.ref);
@@ -3020,7 +2539,7 @@ const _AccordionTriggerState = class _AccordionTriggerState {
       this.itemState.updateValue();
       return;
     }
-    __privateGet(this, _root2).rovingFocusGroup.handleKeydown(this.opts.ref.current, e);
+    __privateGet(this, _root).rovingFocusGroup.handleKeydown(this.opts.ref.current, e);
   }
   get props() {
     return get$2(__privateGet(this, _props3));
@@ -3029,7 +2548,7 @@ const _AccordionTriggerState = class _AccordionTriggerState {
     set(__privateGet(this, _props3), value);
   }
 };
-_root2 = new WeakMap();
+_root = new WeakMap();
 _isDisabled2 = new WeakMap();
 _props3 = new WeakMap();
 let AccordionTriggerState = _AccordionTriggerState;
@@ -3178,11 +2697,11 @@ function noop() {
 function createId(prefixOrUid, uid) {
   return `bits-${prefixOrUid}`;
 }
-var root_2$e = from_html(`<div><!></div>`);
+var root_2$h = from_html(`<div><!></div>`);
 function Accordion($$anchor, $$props) {
   const uid = props_id();
   push($$props, true);
-  let disabled = prop($$props, "disabled", 3, false), value = prop($$props, "value", 15), ref = prop($$props, "ref", 15, null), id = prop($$props, "id", 19, () => createId(uid)), onValueChange = prop($$props, "onValueChange", 3, noop), loop = prop($$props, "loop", 3, true), orientation = prop($$props, "orientation", 3, "vertical"), restProps = rest_props($$props, [
+  let disabled = prop($$props, "disabled", 3, false), value = prop($$props, "value", 15), ref = prop($$props, "ref", 15, null), id = prop($$props, "id", 19, () => createId(uid)), onValueChange = prop($$props, "onValueChange", 3, noop), loop2 = prop($$props, "loop", 3, true), orientation = prop($$props, "orientation", 3, "vertical"), restProps = rest_props($$props, [
     "$$slots",
     "$$events",
     "$$legacy",
@@ -3213,7 +2732,7 @@ function Accordion($$anchor, $$props) {
     }),
     id: boxWith(() => id()),
     disabled: boxWith(() => disabled()),
-    loop: boxWith(() => loop()),
+    loop: boxWith(() => loop2()),
     orientation: boxWith(() => orientation()),
     ref: boxWith(() => ref(), (v) => ref(v))
   });
@@ -3228,7 +2747,7 @@ function Accordion($$anchor, $$props) {
       append($$anchor2, fragment_1);
     };
     var alternate = ($$anchor2) => {
-      var div = root_2$e();
+      var div = root_2$h();
       attribute_effect(div, () => ({ ...get$2(mergedProps) }));
       var node_2 = child(div);
       snippet(node_2, () => $$props.children ?? noop$1);
@@ -3243,7 +2762,7 @@ function Accordion($$anchor, $$props) {
   append($$anchor, fragment);
   pop();
 }
-var root_2$d = from_html(`<div><!></div>`);
+var root_2$g = from_html(`<div><!></div>`);
 function Accordion_item($$anchor, $$props) {
   const uid = props_id();
   push($$props, true);
@@ -3276,7 +2795,7 @@ function Accordion_item($$anchor, $$props) {
       append($$anchor2, fragment_1);
     };
     var alternate = ($$anchor2) => {
-      var div = root_2$d();
+      var div = root_2$g();
       attribute_effect(div, () => ({ ...get$2(mergedProps) }));
       var node_2 = child(div);
       snippet(node_2, () => $$props.children ?? noop$1);
@@ -3291,7 +2810,7 @@ function Accordion_item($$anchor, $$props) {
   append($$anchor, fragment);
   pop();
 }
-var root_2$c = from_html(`<div><!></div>`);
+var root_2$f = from_html(`<div><!></div>`);
 function Accordion_header($$anchor, $$props) {
   const uid = props_id();
   push($$props, true);
@@ -3321,7 +2840,7 @@ function Accordion_header($$anchor, $$props) {
       append($$anchor2, fragment_1);
     };
     var alternate = ($$anchor2) => {
-      var div = root_2$c();
+      var div = root_2$f();
       attribute_effect(div, () => ({ ...get$2(mergedProps) }));
       var node_2 = child(div);
       snippet(node_2, () => $$props.children ?? noop$1);
@@ -3336,7 +2855,7 @@ function Accordion_header($$anchor, $$props) {
   append($$anchor, fragment);
   pop();
 }
-var root_2$b = from_html(`<button><!></button>`);
+var root_2$e = from_html(`<button><!></button>`);
 function Accordion_trigger($$anchor, $$props) {
   const uid = props_id();
   push($$props, true);
@@ -3366,7 +2885,7 @@ function Accordion_trigger($$anchor, $$props) {
       append($$anchor2, fragment_1);
     };
     var alternate = ($$anchor2) => {
-      var button = root_2$b();
+      var button = root_2$e();
       attribute_effect(button, () => ({ type: "button", ...get$2(mergedProps) }));
       var node_2 = child(button);
       snippet(node_2, () => $$props.children ?? noop$1);
@@ -3381,7 +2900,7 @@ function Accordion_trigger($$anchor, $$props) {
   append($$anchor, fragment);
   pop();
 }
-var root_2$a = from_html(`<div><!></div>`);
+var root_2$d = from_html(`<div><!></div>`);
 function Accordion_content($$anchor, $$props) {
   const uid = props_id();
   push($$props, true);
@@ -3416,7 +2935,7 @@ function Accordion_content($$anchor, $$props) {
       append($$anchor2, fragment_1);
     };
     var alternate = ($$anchor2) => {
-      var div = root_2$a();
+      var div = root_2$d();
       attribute_effect(div, () => ({ ...get$2(mergedProps) }));
       var node_2 = child(div);
       snippet(node_2, () => $$props.children ?? noop$1);
@@ -3497,9 +3016,9 @@ const _DialogRootState = class _DialogRootState {
       { lazy: true }
     );
     onDestroyEffect(() => {
-      var _a;
+      var _a2;
       if (this.opts.open.current) {
-        (_a = this.parent) == null ? void 0 : _a.decrementNested();
+        (_a2 = this.parent) == null ? void 0 : _a2.decrementNested();
       }
     });
   }
@@ -3576,15 +3095,15 @@ const _DialogRootState = class _DialogRootState {
     this.opts.open.current = false;
   }
   incrementNested() {
-    var _a;
+    var _a2;
     this.nestedOpenCount++;
-    (_a = this.parent) == null ? void 0 : _a.incrementNested();
+    (_a2 = this.parent) == null ? void 0 : _a2.incrementNested();
   }
   decrementNested() {
-    var _a;
+    var _a2;
     if (this.nestedOpenCount === 0) return;
     this.nestedOpenCount--;
-    (_a = this.parent) == null ? void 0 : _a.decrementNested();
+    (_a2 = this.parent) == null ? void 0 : _a2.decrementNested();
   }
   get sharedProps() {
     return get$2(__privateGet(this, _sharedProps));
@@ -3832,7 +3351,7 @@ const _DialogOverlayState = class _DialogOverlayState {
 _snippetProps3 = new WeakMap();
 _props10 = new WeakMap();
 let DialogOverlayState = _DialogOverlayState;
-var root_2$9 = from_html(`<div><!></div>`);
+var root_2$c = from_html(`<div><!></div>`);
 function Dialog_title($$anchor, $$props) {
   const uid = props_id();
   push($$props, true);
@@ -3862,7 +3381,7 @@ function Dialog_title($$anchor, $$props) {
       append($$anchor2, fragment_1);
     };
     var alternate = ($$anchor2) => {
-      var div = root_2$9();
+      var div = root_2$c();
       attribute_effect(div, () => ({ ...get$2(mergedProps) }));
       var node_2 = child(div);
       snippet(node_2, () => $$props.children ?? noop$1);
@@ -3906,8 +3425,8 @@ class BitsConfigState {
 function createConfigResolver(parent, currentOpts) {
   return (getter) => {
     const configOption = boxWith(() => {
-      var _a, _b;
-      const value = (_a = getter(currentOpts)) == null ? void 0 : _a.current;
+      var _a2, _b;
+      const value = (_a2 = getter(currentOpts)) == null ? void 0 : _a2.current;
       if (value !== void 0)
         return value;
       if (parent === null)
@@ -4064,11 +3583,11 @@ function focus(element2, { select = false } = {}) {
     element2.select();
   }
 }
-function focusFirst(candidates, { select = false } = {}, getActiveElement2) {
-  const previouslyFocusedElement = getActiveElement2();
+function focusFirst(candidates, { select = false } = {}, getActiveElement) {
+  const previouslyFocusedElement = getActiveElement();
   for (const candidate of candidates) {
     focus(candidate, { select });
-    if (getActiveElement2() !== previouslyFocusedElement)
+    if (getActiveElement() !== previouslyFocusedElement)
       return true;
   }
 }
@@ -4091,11 +3610,11 @@ const _IsUsingKeyboard = class _IsUsingKeyboard {
       }
       _IsUsingKeyboard._refs++;
       return () => {
-        var _a;
+        var _a2;
         _IsUsingKeyboard._refs--;
         if (_IsUsingKeyboard._refs === 0) {
           set(isUsingKeyboard, false);
-          (_a = _IsUsingKeyboard._cleanup) == null ? void 0 : _a.call(_IsUsingKeyboard);
+          (_a2 = _IsUsingKeyboard._cleanup) == null ? void 0 : _a2.call(_IsUsingKeyboard);
         }
       };
     });
@@ -4593,35 +4112,35 @@ function boxAutoReset(defaultValue, options) {
 }
 class DOMTypeahead {
   constructor(opts) {
-    __privateAdd(this, _opts4);
+    __privateAdd(this, _opts2);
     __privateAdd(this, _search);
     __privateAdd(this, _onMatch, user_derived(() => {
-      if (__privateGet(this, _opts4).onMatch) return __privateGet(this, _opts4).onMatch;
+      if (__privateGet(this, _opts2).onMatch) return __privateGet(this, _opts2).onMatch;
       return (node) => node.focus();
     }));
     __privateAdd(this, _getCurrentItem, user_derived(() => {
-      if (__privateGet(this, _opts4).getCurrentItem) return __privateGet(this, _opts4).getCurrentItem;
-      return __privateGet(this, _opts4).getActiveElement;
+      if (__privateGet(this, _opts2).getCurrentItem) return __privateGet(this, _opts2).getCurrentItem;
+      return __privateGet(this, _opts2).getActiveElement;
     }));
-    __privateSet(this, _opts4, opts);
+    __privateSet(this, _opts2, opts);
     __privateSet(this, _search, boxAutoReset("", { afterMs: 1e3, getWindow: opts.getWindow }));
     this.handleTypeaheadSearch = this.handleTypeaheadSearch.bind(this);
     this.resetTypeahead = this.resetTypeahead.bind(this);
   }
   handleTypeaheadSearch(key2, candidates) {
-    var _a, _b;
+    var _a2, _b;
     if (!candidates.length) return;
     __privateGet(this, _search).current = __privateGet(this, _search).current + key2;
     const currentItem = get$2(__privateGet(this, _getCurrentItem))();
-    const currentMatch = ((_b = (_a = candidates.find((item) => item === currentItem)) == null ? void 0 : _a.textContent) == null ? void 0 : _b.trim()) ?? "";
+    const currentMatch = ((_b = (_a2 = candidates.find((item) => item === currentItem)) == null ? void 0 : _a2.textContent) == null ? void 0 : _b.trim()) ?? "";
     const values = candidates.map((item) => {
-      var _a2;
-      return ((_a2 = item.textContent) == null ? void 0 : _a2.trim()) ?? "";
+      var _a3;
+      return ((_a3 = item.textContent) == null ? void 0 : _a3.trim()) ?? "";
     });
     const nextMatch = getNextMatch(values, __privateGet(this, _search).current, currentMatch);
     const newItem = candidates.find((item) => {
-      var _a2;
-      return ((_a2 = item.textContent) == null ? void 0 : _a2.trim()) === nextMatch;
+      var _a3;
+      return ((_a3 = item.textContent) == null ? void 0 : _a3.trim()) === nextMatch;
     });
     if (newItem) get$2(__privateGet(this, _onMatch))(newItem);
     return newItem;
@@ -4633,27 +4152,27 @@ class DOMTypeahead {
     return __privateGet(this, _search).current;
   }
 }
-_opts4 = new WeakMap();
+_opts2 = new WeakMap();
 _search = new WeakMap();
 _onMatch = new WeakMap();
 _getCurrentItem = new WeakMap();
 class GraceArea {
   constructor(opts) {
     __privateAdd(this, _GraceArea_instances);
-    __privateAdd(this, _opts5);
-    __privateAdd(this, _enabled2);
+    __privateAdd(this, _opts3);
+    __privateAdd(this, _enabled);
     __privateAdd(this, _isPointerInTransit);
     __privateAdd(this, _pointerGraceArea, state(null));
-    __privateSet(this, _opts5, opts);
-    __privateSet(this, _enabled2, user_derived(() => __privateGet(this, _opts5).enabled()));
+    __privateSet(this, _opts3, opts);
+    __privateSet(this, _enabled, user_derived(() => __privateGet(this, _opts3).enabled()));
     __privateSet(this, _isPointerInTransit, boxAutoReset(false, {
       afterMs: opts.transitTimeout ?? 300,
       onChange: (value) => {
-        var _a, _b;
-        if (!get$2(__privateGet(this, _enabled2))) return;
-        (_b = (_a = __privateGet(this, _opts5)).setIsPointerInTransit) == null ? void 0 : _b.call(_a, value);
+        var _a2, _b;
+        if (!get$2(__privateGet(this, _enabled))) return;
+        (_b = (_a2 = __privateGet(this, _opts3)).setIsPointerInTransit) == null ? void 0 : _b.call(_a2, value);
       },
-      getWindow: () => getWindow$1(__privateGet(this, _opts5).triggerNode())
+      getWindow: () => getWindow$1(__privateGet(this, _opts3).triggerNode())
     }));
     watch([opts.triggerNode, opts.contentNode, opts.enabled], ([triggerNode, contentNode, enabled]) => {
       if (!triggerNode || !contentNode || !enabled) return;
@@ -4667,12 +4186,12 @@ class GraceArea {
     });
     watch(() => get$2(__privateGet(this, _pointerGraceArea)), () => {
       const handleTrackPointerGrace = (e) => {
-        var _a, _b;
+        var _a2, _b;
         if (!get$2(__privateGet(this, _pointerGraceArea))) return;
         const target = e.target;
         if (!isElement$1(target)) return;
         const pointerPosition = { x: e.clientX, y: e.clientY };
-        const hasEnteredTarget = ((_a = opts.triggerNode()) == null ? void 0 : _a.contains(target)) || ((_b = opts.contentNode()) == null ? void 0 : _b.contains(target));
+        const hasEnteredTarget = ((_a2 = opts.triggerNode()) == null ? void 0 : _a2.contains(target)) || ((_b = opts.contentNode()) == null ? void 0 : _b.contains(target));
         const isPointerOutsideGraceArea = !isPointInPolygon(pointerPosition, get$2(__privateGet(this, _pointerGraceArea)));
         if (hasEnteredTarget) {
           __privateMethod(this, _GraceArea_instances, removeGraceArea_fn).call(this);
@@ -4687,8 +4206,8 @@ class GraceArea {
     });
   }
 }
-_opts5 = new WeakMap();
-_enabled2 = new WeakMap();
+_opts3 = new WeakMap();
+_enabled = new WeakMap();
 _isPointerInTransit = new WeakMap();
 _pointerGraceArea = new WeakMap();
 _GraceArea_instances = new WeakSet();
@@ -4940,8 +4459,8 @@ const _MenuContentState = class _MenuContentState {
     __privateAdd(this, _mounted, state(false));
     __privateAdd(this, _isSub);
     __publicField(this, "onCloseAutoFocus", (e) => {
-      var _a, _b;
-      (_b = (_a = this.opts.onCloseAutoFocus).current) == null ? void 0 : _b.call(_a, e);
+      var _a2, _b;
+      (_b = (_a2 = this.opts.onCloseAutoFocus).current) == null ? void 0 : _b.call(_a2, e);
       if (e.defaultPrevented || __privateGet(this, _isSub)) return;
       if (this.parentMenu.triggerNode && isTabbable(this.parentMenu.triggerNode)) {
         e.preventDefault();
@@ -4981,8 +4500,8 @@ const _MenuContentState = class _MenuContentState {
       contentNode: () => this.parentMenu.contentNode,
       triggerNode: () => this.parentMenu.triggerNode,
       enabled: () => {
-        var _a;
-        return this.parentMenu.opts.open.current && Boolean((_a = this.parentMenu.triggerNode) == null ? void 0 : _a.hasAttribute(this.parentMenu.root.getBitsAttr("sub-trigger")));
+        var _a2;
+        return this.parentMenu.opts.open.current && Boolean((_a2 = this.parentMenu.triggerNode) == null ? void 0 : _a2.hasAttribute(this.parentMenu.root.getBitsAttr("sub-trigger")));
       },
       onPointerExit: () => {
         this.parentMenu.opts.open.current = false;
@@ -5054,7 +4573,7 @@ const _MenuContentState = class _MenuContentState {
     }
   }
   onkeydown(e) {
-    var _a, _b;
+    var _a2, _b;
     if (e.defaultPrevented) return;
     if (e.key === TAB) {
       this.handleTabKeyDown(e);
@@ -5063,7 +4582,7 @@ const _MenuContentState = class _MenuContentState {
     const target = e.target;
     const currentTarget = e.currentTarget;
     if (!isHTMLElement$1(target) || !isHTMLElement$1(currentTarget)) return;
-    const isKeydownInside = ((_a = target.closest(`[${this.parentMenu.root.getBitsAttr("content")}]`)) == null ? void 0 : _a.id) === this.parentMenu.contentId.current;
+    const isKeydownInside = ((_a2 = target.closest(`[${this.parentMenu.root.getBitsAttr("content")}]`)) == null ? void 0 : _a2.id) === this.parentMenu.contentId.current;
     const isModifierKey = e.ctrlKey || e.altKey || e.metaKey;
     const isCharacterKey = e.key.length === 1;
     const kbdFocusedEl = this.rovingFocusGroup.handleKeydown(target, e);
@@ -5084,10 +4603,10 @@ const _MenuContentState = class _MenuContentState {
     focusFirst(candidateNodes, { select: false }, () => this.domContext.getActiveElement());
   }
   onblur(e) {
-    var _a, _b;
+    var _a2, _b;
     if (!isElement$1(e.currentTarget)) return;
     if (!isElement$1(e.target)) return;
-    if (!((_b = (_a = e.currentTarget).contains) == null ? void 0 : _b.call(_a, e.target))) {
+    if (!((_b = (_a2 = e.currentTarget).contains) == null ? void 0 : _b.call(_a2, e.target))) {
       this.domContext.getWindow().clearTimeout(__privateGet(this, _timer));
       this.search = "";
     }
@@ -5111,9 +4630,9 @@ const _MenuContentState = class _MenuContentState {
     return false;
   }
   handleInteractOutside(e) {
-    var _a;
+    var _a2;
     if (!isElementOrSVGElement(e.target)) return;
-    const triggerId = (_a = this.parentMenu.triggerNode) == null ? void 0 : _a.id;
+    const triggerId = (_a2 = this.parentMenu.triggerNode) == null ? void 0 : _a2.id;
     if (e.target.id === triggerId) {
       e.preventDefault();
       return;
@@ -5263,11 +4782,11 @@ const _MenuItemState = class _MenuItemState {
     __privateMethod(this, _MenuItemState_instances, handleSelect_fn).call(this);
   }
   onpointerup(e) {
-    var _a;
+    var _a2;
     if (e.defaultPrevented) return;
     if (!__privateGet(this, _isPointerDown)) {
       if (!isHTMLElement$1(e.currentTarget)) return;
-      (_a = e.currentTarget) == null ? void 0 : _a.click();
+      (_a2 = e.currentTarget) == null ? void 0 : _a2.click();
     }
   }
   onpointerdown(_) {
@@ -5503,10 +5022,10 @@ const _DismissibleLayerState = class _DismissibleLayerState {
       if (event2.defaultPrevented) return;
       if (!this.opts.ref.current) return;
       afterTick(() => {
-        var _a, _b;
+        var _a2, _b;
         if (!this.opts.ref.current || __privateGet(this, _isTargetWithinLayer).call(this, event2.target)) return;
         if (event2.target && !__privateGet(this, _isFocusInsideDOMTree)) {
-          (_b = (_a = __privateGet(this, _onFocusOutside)).current) == null ? void 0 : _b.call(_a, event2);
+          (_b = (_a2 = __privateGet(this, _onFocusOutside)).current) == null ? void 0 : _b.call(_a2, event2);
         }
       });
     });
@@ -5861,8 +5380,8 @@ const _FocusScope = class _FocusScope {
     __privateAdd(this, _container, null);
     __privateAdd(this, _manager, FocusScopeManager.getInstance());
     __privateAdd(this, _cleanupFns, []);
-    __privateAdd(this, _opts6);
-    __privateSet(this, _opts6, opts);
+    __privateAdd(this, _opts4);
+    __privateSet(this, _opts4, opts);
   }
   get paused() {
     return __privateGet(this, _paused);
@@ -5884,7 +5403,7 @@ const _FocusScope = class _FocusScope {
   }
   unmount() {
     if (!__privateGet(this, _container)) return;
-    __privateMethod(this, _FocusScope_instances, cleanup_fn2).call(this);
+    __privateMethod(this, _FocusScope_instances, cleanup_fn).call(this);
     __privateMethod(this, _FocusScope_instances, handleCloseAutoFocus_fn).call(this);
     __privateGet(this, _manager).unregister(this);
     __privateGet(this, _manager).clearPreFocusMemory(this);
@@ -5917,9 +5436,9 @@ _paused = new WeakMap();
 _container = new WeakMap();
 _manager = new WeakMap();
 _cleanupFns = new WeakMap();
-_opts6 = new WeakMap();
+_opts4 = new WeakMap();
 _FocusScope_instances = new WeakSet();
-cleanup_fn2 = function() {
+cleanup_fn = function() {
   for (const fn of __privateGet(this, _cleanupFns)) {
     fn();
   }
@@ -5928,7 +5447,7 @@ cleanup_fn2 = function() {
 handleOpenAutoFocus_fn = function() {
   if (!__privateGet(this, _container)) return;
   const event2 = new CustomEvent("focusScope.onOpenAutoFocus", { bubbles: false, cancelable: true });
-  __privateGet(this, _opts6).onOpenAutoFocus.current(event2);
+  __privateGet(this, _opts4).onOpenAutoFocus.current(event2);
   if (!event2.defaultPrevented) {
     requestAnimationFrame(() => {
       if (!__privateGet(this, _container)) return;
@@ -5943,9 +5462,9 @@ handleOpenAutoFocus_fn = function() {
   }
 };
 handleCloseAutoFocus_fn = function() {
-  var _a, _b;
+  var _a2, _b;
   const event2 = new CustomEvent("focusScope.onCloseAutoFocus", { bubbles: false, cancelable: true });
-  (_b = (_a = __privateGet(this, _opts6).onCloseAutoFocus).current) == null ? void 0 : _b.call(_a, event2);
+  (_b = (_a2 = __privateGet(this, _opts4).onCloseAutoFocus).current) == null ? void 0 : _b.call(_a2, event2);
   if (!event2.defaultPrevented) {
     const preFocusedElement = __privateGet(this, _manager).getPreFocusMemory(this);
     if (preFocusedElement && document.contains(preFocusedElement)) {
@@ -5958,7 +5477,7 @@ handleCloseAutoFocus_fn = function() {
   }
 };
 setupEventListeners_fn = function() {
-  if (!__privateGet(this, _container) || !__privateGet(this, _opts6).trap.current) return;
+  if (!__privateGet(this, _container) || !__privateGet(this, _opts4).trap.current) return;
   const container = __privateGet(this, _container);
   const doc = container.ownerDocument;
   const handleFocus = (e) => {
@@ -5981,7 +5500,7 @@ setupEventListeners_fn = function() {
     }
   };
   const handleKeydown = (e) => {
-    if (!__privateGet(this, _opts6).loop || __privateGet(this, _paused) || e.key !== "Tab") return;
+    if (!__privateGet(this, _opts4).loop || __privateGet(this, _paused) || e.key !== "Tab") return;
     if (!__privateGet(this, _manager).isActiveScope(this)) return;
     const tabbables = __privateMethod(this, _FocusScope_instances, getTabbables_fn).call(this);
     if (tabbables.length < 2) return;
@@ -6028,11 +5547,11 @@ getAllFocusables_fn = function() {
 let FocusScope = _FocusScope;
 function Focus_scope($$anchor, $$props) {
   push($$props, true);
-  let enabled = prop($$props, "enabled", 3, false), trapFocus = prop($$props, "trapFocus", 3, false), loop = prop($$props, "loop", 3, false), onCloseAutoFocus = prop($$props, "onCloseAutoFocus", 3, noop), onOpenAutoFocus = prop($$props, "onOpenAutoFocus", 3, noop);
+  let enabled = prop($$props, "enabled", 3, false), trapFocus = prop($$props, "trapFocus", 3, false), loop2 = prop($$props, "loop", 3, false), onCloseAutoFocus = prop($$props, "onCloseAutoFocus", 3, noop), onOpenAutoFocus = prop($$props, "onOpenAutoFocus", 3, noop);
   const focusScopeState = FocusScope.use({
     enabled: boxWith(() => enabled()),
     trap: boxWith(() => trapFocus()),
-    loop: loop(),
+    loop: loop2(),
     onCloseAutoFocus: boxWith(() => onCloseAutoFocus()),
     onOpenAutoFocus: boxWith(() => onOpenAutoFocus()),
     ref: $$props.ref
@@ -6219,13 +5738,13 @@ const bodyLockStackCount = new SharedState(() => {
     }
   }
   watch(() => anyLocked.current, () => {
-    var _a, _b;
+    var _a2, _b;
     if (!anyLocked.current) return;
     ensureInitialStyleCaptured();
     isInCleanupTransition = false;
     const htmlStyle = getComputedStyle(document.documentElement);
     const bodyStyle = getComputedStyle(document.body);
-    const hasStableGutter = ((_a = htmlStyle.scrollbarGutter) == null ? void 0 : _a.includes("stable")) || ((_b = bodyStyle.scrollbarGutter) == null ? void 0 : _b.includes("stable"));
+    const hasStableGutter = ((_a2 = htmlStyle.scrollbarGutter) == null ? void 0 : _a2.includes("stable")) || ((_b = bodyStyle.scrollbarGutter) == null ? void 0 : _b.includes("stable"));
     const verticalScrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
     const paddingRight = Number.parseInt(bodyStyle.paddingRight ?? "0", 10);
     const config = {
@@ -6313,7 +5832,7 @@ function Scroll_lock($$anchor, $$props) {
   }
   pop();
 }
-var root_3$3 = from_html(`<div><!></div>`);
+var root_3$4 = from_html(`<div><!></div>`);
 function Dialog_overlay($$anchor, $$props) {
   const uid = props_id();
   push($$props, true);
@@ -6352,7 +5871,7 @@ function Dialog_overlay($$anchor, $$props) {
           append($$anchor3, fragment_2);
         };
         var alternate = ($$anchor3) => {
-          var div = root_3$3();
+          var div = root_3$4();
           attribute_effect(div, ($0) => ({ ...$0 }), [() => mergeProps(get$2(mergedProps))]);
           var node_3 = child(div);
           snippet(node_3, () => $$props.children ?? noop$1, () => overlayState.snippetProps);
@@ -6373,7 +5892,7 @@ function Dialog_overlay($$anchor, $$props) {
   append($$anchor, fragment);
   pop();
 }
-var root_2$8 = from_html(`<button><!></button>`);
+var root_2$b = from_html(`<button><!></button>`);
 function Dialog_trigger($$anchor, $$props) {
   const uid = props_id();
   push($$props, true);
@@ -6403,7 +5922,7 @@ function Dialog_trigger($$anchor, $$props) {
       append($$anchor2, fragment_1);
     };
     var alternate = ($$anchor2) => {
-      var button = root_2$8();
+      var button = root_2$b();
       attribute_effect(button, () => ({ ...get$2(mergedProps) }));
       var node_2 = child(button);
       snippet(node_2, () => $$props.children ?? noop$1);
@@ -6415,6 +5934,398 @@ function Dialog_trigger($$anchor, $$props) {
       else $$render(alternate, false);
     });
   }
+  append($$anchor, fragment);
+  pop();
+}
+function Button($$anchor, $$props) {
+  push($$props, true);
+  let disabled = prop($$props, "disabled", 3, false), ref = prop($$props, "ref", 15, null), restProps = rest_props($$props, [
+    "$$slots",
+    "$$events",
+    "$$legacy",
+    "href",
+    "type",
+    "children",
+    "disabled",
+    "ref"
+  ]);
+  var fragment = comment();
+  var node = first_child(fragment);
+  element(node, () => $$props.href ? "a" : "button", false, ($$element, $$anchor2) => {
+    bind_this($$element, ($$value) => ref($$value), () => ref());
+    attribute_effect($$element, () => ({
+      "data-button-root": true,
+      type: $$props.href ? void 0 : $$props.type,
+      href: $$props.href && !disabled() ? $$props.href : void 0,
+      disabled: $$props.href ? void 0 : disabled(),
+      "aria-disabled": $$props.href ? disabled() : void 0,
+      role: $$props.href && disabled() ? "link" : void 0,
+      tabindex: $$props.href && disabled() ? -1 : 0,
+      ...restProps
+    }));
+    var fragment_1 = comment();
+    var node_1 = first_child(fragment_1);
+    snippet(node_1, () => $$props.children ?? noop$1);
+    append($$anchor2, fragment_1);
+  });
+  append($$anchor, fragment);
+  pop();
+}
+const checkboxAttrs = createBitsAttrs({
+  component: "checkbox",
+  parts: ["root", "group", "group-label", "input"]
+});
+const CheckboxGroupContext = new Context("Checkbox.Group");
+const CheckboxRootContext = new Context("Checkbox.Root");
+const _CheckboxRootState = class _CheckboxRootState {
+  constructor(opts, group) {
+    __privateAdd(this, _CheckboxRootState_instances);
+    __publicField(this, "opts");
+    __publicField(this, "group");
+    __privateAdd(this, _trueName, user_derived(() => {
+      if (this.group && this.group.opts.name.current) return this.group.opts.name.current;
+      return this.opts.name.current;
+    }));
+    __privateAdd(this, _trueRequired, user_derived(() => {
+      if (this.group && this.group.opts.required.current) return true;
+      return this.opts.required.current;
+    }));
+    __privateAdd(this, _trueDisabled, user_derived(() => {
+      if (this.group && this.group.opts.disabled.current) return true;
+      return this.opts.disabled.current;
+    }));
+    __privateAdd(this, _trueReadonly, user_derived(() => {
+      if (this.group && this.group.opts.readonly.current) return true;
+      return this.opts.readonly.current;
+    }));
+    __publicField(this, "attachment");
+    __privateAdd(this, _snippetProps6, user_derived(() => ({
+      checked: this.opts.checked.current,
+      indeterminate: this.opts.indeterminate.current
+    })));
+    __privateAdd(this, _props17, user_derived(() => ({
+      id: this.opts.id.current,
+      role: "checkbox",
+      type: this.opts.type.current,
+      disabled: this.trueDisabled,
+      "aria-checked": getAriaChecked(this.opts.checked.current, this.opts.indeterminate.current),
+      "aria-required": boolToStr(this.trueRequired),
+      "aria-readonly": boolToStr(this.trueReadonly),
+      "data-disabled": boolToEmptyStrOrUndef(this.trueDisabled),
+      "data-readonly": boolToEmptyStrOrUndef(this.trueReadonly),
+      "data-state": getCheckboxDataState(this.opts.checked.current, this.opts.indeterminate.current),
+      [checkboxAttrs.root]: "",
+      onclick: this.onclick,
+      onkeydown: this.onkeydown,
+      ...this.attachment
+    })));
+    this.opts = opts;
+    this.group = group;
+    this.attachment = attachRef(this.opts.ref);
+    this.onkeydown = this.onkeydown.bind(this);
+    this.onclick = this.onclick.bind(this);
+    watch.pre(
+      [
+        () => {
+          var _a2;
+          return snapshot((_a2 = this.group) == null ? void 0 : _a2.opts.value.current);
+        },
+        () => this.opts.value.current
+      ],
+      ([groupValue, value]) => {
+        if (!groupValue || !value) return;
+        this.opts.checked.current = groupValue.includes(value);
+      }
+    );
+    watch.pre(() => this.opts.checked.current, (checked) => {
+      var _a2, _b;
+      if (!this.group) return;
+      if (checked) {
+        (_a2 = this.group) == null ? void 0 : _a2.addValue(this.opts.value.current);
+      } else {
+        (_b = this.group) == null ? void 0 : _b.removeValue(this.opts.value.current);
+      }
+    });
+  }
+  static create(opts, group = null) {
+    return CheckboxRootContext.set(new _CheckboxRootState(opts, group));
+  }
+  get trueName() {
+    return get$2(__privateGet(this, _trueName));
+  }
+  set trueName(value) {
+    set(__privateGet(this, _trueName), value);
+  }
+  get trueRequired() {
+    return get$2(__privateGet(this, _trueRequired));
+  }
+  set trueRequired(value) {
+    set(__privateGet(this, _trueRequired), value);
+  }
+  get trueDisabled() {
+    return get$2(__privateGet(this, _trueDisabled));
+  }
+  set trueDisabled(value) {
+    set(__privateGet(this, _trueDisabled), value);
+  }
+  get trueReadonly() {
+    return get$2(__privateGet(this, _trueReadonly));
+  }
+  set trueReadonly(value) {
+    set(__privateGet(this, _trueReadonly), value);
+  }
+  onkeydown(e) {
+    if (this.trueDisabled || this.trueReadonly) return;
+    if (e.key === ENTER) {
+      e.preventDefault();
+      if (this.opts.type.current === "submit") {
+        const form = e.currentTarget.closest("form");
+        form == null ? void 0 : form.requestSubmit();
+      }
+      return;
+    }
+    if (e.key === SPACE) {
+      e.preventDefault();
+      __privateMethod(this, _CheckboxRootState_instances, toggle_fn).call(this);
+    }
+  }
+  onclick(e) {
+    if (this.trueDisabled || this.trueReadonly) return;
+    if (this.opts.type.current === "submit") {
+      __privateMethod(this, _CheckboxRootState_instances, toggle_fn).call(this);
+      return;
+    }
+    e.preventDefault();
+    __privateMethod(this, _CheckboxRootState_instances, toggle_fn).call(this);
+  }
+  get snippetProps() {
+    return get$2(__privateGet(this, _snippetProps6));
+  }
+  set snippetProps(value) {
+    set(__privateGet(this, _snippetProps6), value);
+  }
+  get props() {
+    return get$2(__privateGet(this, _props17));
+  }
+  set props(value) {
+    set(__privateGet(this, _props17), value);
+  }
+};
+_trueName = new WeakMap();
+_trueRequired = new WeakMap();
+_trueDisabled = new WeakMap();
+_trueReadonly = new WeakMap();
+_CheckboxRootState_instances = new WeakSet();
+toggle_fn = function() {
+  if (this.opts.indeterminate.current) {
+    this.opts.indeterminate.current = false;
+    this.opts.checked.current = true;
+  } else {
+    this.opts.checked.current = !this.opts.checked.current;
+  }
+};
+_snippetProps6 = new WeakMap();
+_props17 = new WeakMap();
+let CheckboxRootState = _CheckboxRootState;
+const _CheckboxInputState = class _CheckboxInputState {
+  constructor(root2) {
+    __publicField(this, "root");
+    __privateAdd(this, _trueChecked, user_derived(() => {
+      if (!this.root.group) return this.root.opts.checked.current;
+      if (this.root.opts.value.current !== void 0 && this.root.group.opts.value.current.includes(this.root.opts.value.current)) {
+        return true;
+      }
+      return false;
+    }));
+    __privateAdd(this, _shouldRender, user_derived(() => Boolean(this.root.trueName)));
+    __privateAdd(this, _props18, user_derived(() => ({
+      type: "checkbox",
+      checked: this.root.opts.checked.current === true,
+      disabled: this.root.trueDisabled,
+      required: this.root.trueRequired,
+      name: this.root.trueName,
+      value: this.root.opts.value.current,
+      readonly: this.root.trueReadonly,
+      onfocus: this.onfocus
+    })));
+    this.root = root2;
+    this.onfocus = this.onfocus.bind(this);
+  }
+  static create() {
+    return new _CheckboxInputState(CheckboxRootContext.get());
+  }
+  get trueChecked() {
+    return get$2(__privateGet(this, _trueChecked));
+  }
+  set trueChecked(value) {
+    set(__privateGet(this, _trueChecked), value);
+  }
+  get shouldRender() {
+    return get$2(__privateGet(this, _shouldRender));
+  }
+  set shouldRender(value) {
+    set(__privateGet(this, _shouldRender), value);
+  }
+  onfocus(_) {
+    if (!isHTMLElement$1(this.root.opts.ref.current)) return;
+    this.root.opts.ref.current.focus();
+  }
+  get props() {
+    return get$2(__privateGet(this, _props18));
+  }
+  set props(value) {
+    set(__privateGet(this, _props18), value);
+  }
+};
+_trueChecked = new WeakMap();
+_shouldRender = new WeakMap();
+_props18 = new WeakMap();
+let CheckboxInputState = _CheckboxInputState;
+function getCheckboxDataState(checked, indeterminate) {
+  if (indeterminate) return "indeterminate";
+  return checked ? "checked" : "unchecked";
+}
+var root_1$6 = from_html(`<input/>`);
+var root_2$a = from_html(`<input/>`);
+function Hidden_input($$anchor, $$props) {
+  push($$props, true);
+  let value = prop($$props, "value", 15), restProps = rest_props($$props, ["$$slots", "$$events", "$$legacy", "value"]);
+  const mergedProps = user_derived(() => mergeProps(restProps, {
+    "aria-hidden": "true",
+    tabindex: -1,
+    style: srOnlyStylesString
+  }));
+  var fragment = comment();
+  var node = first_child(fragment);
+  {
+    var consequent = ($$anchor2) => {
+      var input = root_1$6();
+      attribute_effect(input, () => ({ ...get$2(mergedProps), value: value() }), void 0, void 0, void 0, void 0, true);
+      append($$anchor2, input);
+    };
+    var alternate = ($$anchor2) => {
+      var input_1 = root_2$a();
+      attribute_effect(input_1, () => ({ ...get$2(mergedProps) }), void 0, void 0, void 0, void 0, true);
+      bind_value(input_1, value);
+      append($$anchor2, input_1);
+    };
+    if_block(node, ($$render) => {
+      if (get$2(mergedProps).type === "checkbox") $$render(consequent);
+      else $$render(alternate, false);
+    });
+  }
+  append($$anchor, fragment);
+  pop();
+}
+function Checkbox_input($$anchor, $$props) {
+  push($$props, false);
+  const inputState = CheckboxInputState.create();
+  init();
+  var fragment = comment();
+  var node = first_child(fragment);
+  {
+    var consequent = ($$anchor2) => {
+      Hidden_input($$anchor2, spread_props(() => inputState.props));
+    };
+    if_block(node, ($$render) => {
+      if (inputState.shouldRender) $$render(consequent);
+    });
+  }
+  append($$anchor, fragment);
+  pop();
+}
+var root_2$9 = from_html(`<button><!></button>`);
+var root$9 = from_html(`<!> <!>`, 1);
+function Checkbox($$anchor, $$props) {
+  const uid = props_id();
+  push($$props, true);
+  let checked = prop($$props, "checked", 15, false), ref = prop($$props, "ref", 15, null), disabled = prop($$props, "disabled", 3, false), required = prop($$props, "required", 3, false), name = prop($$props, "name", 19, () => void 0), value = prop($$props, "value", 3, "on"), id = prop($$props, "id", 19, () => createId(uid)), indeterminate = prop($$props, "indeterminate", 15, false), type = prop($$props, "type", 3, "button"), restProps = rest_props($$props, [
+    "$$slots",
+    "$$events",
+    "$$legacy",
+    "checked",
+    "ref",
+    "onCheckedChange",
+    "children",
+    "disabled",
+    "required",
+    "name",
+    "value",
+    "id",
+    "indeterminate",
+    "onIndeterminateChange",
+    "child",
+    "type",
+    "readonly"
+  ]);
+  const group = CheckboxGroupContext.getOr(null);
+  if (group && value()) {
+    if (group.opts.value.current.includes(value())) {
+      checked(true);
+    } else {
+      checked(false);
+    }
+  }
+  watch.pre(() => value(), () => {
+    if (group && value()) {
+      if (group.opts.value.current.includes(value())) {
+        checked(true);
+      } else {
+        checked(false);
+      }
+    }
+  });
+  const rootState = CheckboxRootState.create(
+    {
+      checked: boxWith(() => checked(), (v) => {
+        var _a2;
+        checked(v);
+        (_a2 = $$props.onCheckedChange) == null ? void 0 : _a2.call($$props, v);
+      }),
+      disabled: boxWith(() => disabled() ?? false),
+      required: boxWith(() => required()),
+      name: boxWith(() => name()),
+      value: boxWith(() => value()),
+      id: boxWith(() => id()),
+      ref: boxWith(() => ref(), (v) => ref(v)),
+      indeterminate: boxWith(() => indeterminate(), (v) => {
+        var _a2;
+        indeterminate(v);
+        (_a2 = $$props.onIndeterminateChange) == null ? void 0 : _a2.call($$props, v);
+      }),
+      type: boxWith(() => type()),
+      readonly: boxWith(() => Boolean($$props.readonly))
+    },
+    group
+  );
+  const mergedProps = user_derived(() => mergeProps({ ...restProps }, rootState.props));
+  var fragment = root$9();
+  var node = first_child(fragment);
+  {
+    var consequent = ($$anchor2) => {
+      var fragment_1 = comment();
+      var node_1 = first_child(fragment_1);
+      {
+        let $0 = user_derived(() => ({ props: get$2(mergedProps), ...rootState.snippetProps }));
+        snippet(node_1, () => $$props.child, () => get$2($0));
+      }
+      append($$anchor2, fragment_1);
+    };
+    var alternate = ($$anchor2) => {
+      var button = root_2$9();
+      attribute_effect(button, () => ({ ...get$2(mergedProps) }));
+      var node_2 = child(button);
+      snippet(node_2, () => $$props.children ?? noop$1, () => rootState.snippetProps);
+      reset(button);
+      append($$anchor2, button);
+    };
+    if_block(node, ($$render) => {
+      if ($$props.child) $$render(consequent);
+      else $$render(alternate, false);
+    });
+  }
+  var node_3 = sibling(node, 2);
+  Checkbox_input(node_3, {});
   append($$anchor, fragment);
   pop();
 }
@@ -7932,7 +7843,7 @@ function observeMove(element2, onMove) {
   refresh(true);
   return cleanup;
 }
-function autoUpdate(reference, floating, update, options) {
+function autoUpdate(reference, floating, update2, options) {
   if (options === void 0) {
     options = {};
   }
@@ -7946,12 +7857,12 @@ function autoUpdate(reference, floating, update, options) {
   const referenceEl = unwrapElement(reference);
   const ancestors = ancestorScroll || ancestorResize ? [...referenceEl ? getOverflowAncestors(referenceEl) : [], ...getOverflowAncestors(floating)] : [];
   ancestors.forEach((ancestor) => {
-    ancestorScroll && ancestor.addEventListener("scroll", update, {
+    ancestorScroll && ancestor.addEventListener("scroll", update2, {
       passive: true
     });
-    ancestorResize && ancestor.addEventListener("resize", update);
+    ancestorResize && ancestor.addEventListener("resize", update2);
   });
-  const cleanupIo = referenceEl && layoutShift ? observeMove(referenceEl, update) : null;
+  const cleanupIo = referenceEl && layoutShift ? observeMove(referenceEl, update2) : null;
   let reobserveFrame = -1;
   let resizeObserver = null;
   if (elementResize) {
@@ -7965,7 +7876,7 @@ function autoUpdate(reference, floating, update, options) {
           (_resizeObserver = resizeObserver) == null || _resizeObserver.observe(floating);
         });
       }
-      update();
+      update2();
     });
     if (referenceEl && !animationFrame) {
       resizeObserver.observe(referenceEl);
@@ -7980,17 +7891,17 @@ function autoUpdate(reference, floating, update, options) {
   function frameLoop() {
     const nextRefRect = getBoundingClientRect(reference);
     if (prevRefRect && !rectsAreEqual(prevRefRect, nextRefRect)) {
-      update();
+      update2();
     }
     prevRefRect = nextRefRect;
     frameId = requestAnimationFrame(frameLoop);
   }
-  update();
+  update2();
   return () => {
     var _resizeObserver2;
     ancestors.forEach((ancestor) => {
-      ancestorScroll && ancestor.removeEventListener("scroll", update);
-      ancestorResize && ancestor.removeEventListener("resize", update);
+      ancestorScroll && ancestor.removeEventListener("scroll", update2);
+      ancestorResize && ancestor.removeEventListener("resize", update2);
     });
     cleanupIo == null || cleanupIo();
     (_resizeObserver2 = resizeObserver) == null || _resizeObserver2.disconnect();
@@ -8079,7 +7990,7 @@ function useFloating(options) {
     };
   });
   let whileElementsMountedCleanup;
-  function update() {
+  function update2() {
     if (reference.current === null || floating.current === null) return;
     computePosition(reference.current, floating.current, {
       middleware: get$2(middlewareOption),
@@ -8107,18 +8018,18 @@ function useFloating(options) {
   function attach2() {
     cleanup();
     if (whileElementsMountedOption === void 0) {
-      update();
+      update2();
       return;
     }
     if (reference.current === null || floating.current === null) return;
-    whileElementsMountedCleanup = whileElementsMountedOption(reference.current, floating.current, update);
+    whileElementsMountedCleanup = whileElementsMountedOption(reference.current, floating.current, update2);
   }
   function reset2() {
     if (!get$2(openOption)) {
       set(isPositioned, false);
     }
   }
-  user_effect(update);
+  user_effect(update2);
   user_effect(attach2);
   user_effect(reset2);
   user_effect(() => cleanup);
@@ -8141,7 +8052,7 @@ function useFloating(options) {
       return get$2(floatingStyles);
     },
     get update() {
-      return update;
+      return update2;
     }
   };
 }
@@ -8190,16 +8101,16 @@ const _FloatingContentState = class _FloatingContentState {
     __privateAdd(this, _updatePositionStrategy);
     __privateAdd(this, _arrowSize, new ElementSize(() => this.arrowRef.current ?? void 0));
     __privateAdd(this, _arrowWidth, user_derived(() => {
-      var _a;
-      return ((_a = __privateGet(this, _arrowSize)) == null ? void 0 : _a.width) ?? 0;
+      var _a2;
+      return ((_a2 = __privateGet(this, _arrowSize)) == null ? void 0 : _a2.width) ?? 0;
     }));
     __privateAdd(this, _arrowHeight, user_derived(() => {
-      var _a;
-      return ((_a = __privateGet(this, _arrowSize)) == null ? void 0 : _a.height) ?? 0;
+      var _a2;
+      return ((_a2 = __privateGet(this, _arrowSize)) == null ? void 0 : _a2.height) ?? 0;
     }));
     __privateAdd(this, _desiredPlacement, user_derived(() => {
-      var _a;
-      return ((_a = this.opts.side) == null ? void 0 : _a.current) + (this.opts.align.current !== "center" ? `-${this.opts.align.current}` : "");
+      var _a2;
+      return ((_a2 = this.opts.side) == null ? void 0 : _a2.current) + (this.opts.align.current !== "center" ? `-${this.opts.align.current}` : "");
     }));
     __privateAdd(this, _boundary, user_derived(() => Array.isArray(this.opts.collisionBoundary.current) ? this.opts.collisionBoundary.current : [this.opts.collisionBoundary.current]));
     __privateAdd(this, _hasExplicitBoundaries, user_derived(() => get$2(__privateGet(this, _boundary)).length > 0));
@@ -8248,21 +8159,21 @@ const _FloatingContentState = class _FloatingContentState {
     __privateAdd(this, _placedSide, user_derived(() => getSideFromPlacement(this.floating.placement)));
     __privateAdd(this, _placedAlign, user_derived(() => getAlignFromPlacement(this.floating.placement)));
     __privateAdd(this, _arrowX, user_derived(() => {
-      var _a;
-      return ((_a = this.floating.middlewareData.arrow) == null ? void 0 : _a.x) ?? 0;
+      var _a2;
+      return ((_a2 = this.floating.middlewareData.arrow) == null ? void 0 : _a2.x) ?? 0;
     }));
     __privateAdd(this, _arrowY, user_derived(() => {
-      var _a;
-      return ((_a = this.floating.middlewareData.arrow) == null ? void 0 : _a.y) ?? 0;
+      var _a2;
+      return ((_a2 = this.floating.middlewareData.arrow) == null ? void 0 : _a2.y) ?? 0;
     }));
     __privateAdd(this, _cannotCenterArrow, user_derived(() => {
-      var _a;
-      return ((_a = this.floating.middlewareData.arrow) == null ? void 0 : _a.centerOffset) !== 0;
+      var _a2;
+      return ((_a2 = this.floating.middlewareData.arrow) == null ? void 0 : _a2.centerOffset) !== 0;
     }));
     __privateAdd(this, _contentZIndex, state());
     __privateAdd(this, _arrowBaseSide, user_derived(() => OPPOSITE_SIDE[this.placedSide]));
     __privateAdd(this, _wrapperProps, user_derived(() => {
-      var _a, _b, _c;
+      var _a2, _b, _c;
       return {
         id: this.opts.wrapperId.current,
         "data-bits-floating-content-wrapper": "",
@@ -8271,7 +8182,7 @@ const _FloatingContentState = class _FloatingContentState {
           transform: this.floating.isPositioned ? this.floating.floatingStyles.transform : "translate(0, -200%)",
           minWidth: "max-content",
           zIndex: this.contentZIndex,
-          "--bits-floating-transform-origin": `${(_a = this.floating.middlewareData.transformOrigin) == null ? void 0 : _a.x} ${(_b = this.floating.middlewareData.transformOrigin) == null ? void 0 : _b.y}`,
+          "--bits-floating-transform-origin": `${(_a2 = this.floating.middlewareData.transformOrigin) == null ? void 0 : _a2.x} ${(_b = this.floating.middlewareData.transformOrigin) == null ? void 0 : _b.y}`,
           "--bits-floating-available-width": `${get$2(__privateGet(this, _availableWidth))}px`,
           "--bits-floating-available-height": `${get$2(__privateGet(this, _availableHeight))}px`,
           "--bits-floating-anchor-width": `${get$2(__privateGet(this, _anchorWidth))}px`,
@@ -8283,7 +8194,7 @@ const _FloatingContentState = class _FloatingContentState {
         ...this.wrapperAttachment
       };
     }));
-    __privateAdd(this, _props17, user_derived(() => ({
+    __privateAdd(this, _props19, user_derived(() => ({
       "data-side": this.placedSide,
       "data-align": this.placedAlign,
       style: styleToString({ ...get$2(__privateGet(this, _transformedStyle)) }),
@@ -8317,9 +8228,9 @@ const _FloatingContentState = class _FloatingContentState {
       middleware: () => this.middleware,
       reference: this.root.anchorNode,
       whileElementsMounted: (...args) => {
-        var _a;
+        var _a2;
         const cleanup = autoUpdate(...args, {
-          animationFrame: ((_a = __privateGet(this, _updatePositionStrategy)) == null ? void 0 : _a.current) === "always"
+          animationFrame: ((_a2 = __privateGet(this, _updatePositionStrategy)) == null ? void 0 : _a2.current) === "always"
         });
         return cleanup;
       },
@@ -8328,9 +8239,9 @@ const _FloatingContentState = class _FloatingContentState {
       alignOffset: () => this.opts.alignOffset.current
     });
     user_effect(() => {
-      var _a;
+      var _a2;
       if (!this.floating.isPositioned) return;
-      (_a = this.opts.onPlaced) == null ? void 0 : _a.current();
+      (_a2 = this.opts.onPlaced) == null ? void 0 : _a2.current();
     });
     watch(() => this.contentRef.current, (contentNode) => {
       if (!contentNode) return;
@@ -8411,10 +8322,10 @@ const _FloatingContentState = class _FloatingContentState {
     set(__privateGet(this, _wrapperProps), value);
   }
   get props() {
-    return get$2(__privateGet(this, _props17));
+    return get$2(__privateGet(this, _props19));
   }
   set props(value) {
-    set(__privateGet(this, _props17), value);
+    set(__privateGet(this, _props19), value);
   }
   get arrowStyle() {
     return get$2(__privateGet(this, _arrowStyle));
@@ -8445,7 +8356,7 @@ _cannotCenterArrow = new WeakMap();
 _contentZIndex = new WeakMap();
 _arrowBaseSide = new WeakMap();
 _wrapperProps = new WeakMap();
-_props17 = new WeakMap();
+_props19 = new WeakMap();
 _arrowStyle = new WeakMap();
 let FloatingContentState = _FloatingContentState;
 class FloatingAnchorState {
@@ -8469,9 +8380,9 @@ function transformOrigin(options) {
     name: "transformOrigin",
     options,
     fn(data) {
-      var _a, _b, _c;
+      var _a2, _b, _c;
       const { placement, rects, middlewareData } = data;
-      const cannotCenterArrow = ((_a = middlewareData.arrow) == null ? void 0 : _a.centerOffset) !== 0;
+      const cannotCenterArrow = ((_a2 = middlewareData.arrow) == null ? void 0 : _a2.centerOffset) !== 0;
       const isArrowHidden = cannotCenterArrow;
       const arrowWidth = isArrowHidden ? 0 : options.arrowWidth;
       const arrowHeight = isArrowHidden ? 0 : options.arrowHeight;
@@ -8573,8 +8484,8 @@ function Floating_layer_content($$anchor, $$props) {
 function Floating_layer_content_static($$anchor, $$props) {
   push($$props, true);
   onMount(() => {
-    var _a;
-    (_a = $$props.onPlaced) == null ? void 0 : _a.call($$props);
+    var _a2;
+    (_a2 = $$props.onPlaced) == null ? void 0 : _a2.call($$props);
   });
   var fragment = comment();
   var node = first_child(fragment);
@@ -8587,7 +8498,7 @@ const _SeparatorRootState = class _SeparatorRootState {
   constructor(opts) {
     __publicField(this, "opts");
     __publicField(this, "attachment");
-    __privateAdd(this, _props18, user_derived(() => ({
+    __privateAdd(this, _props20, user_derived(() => ({
       id: this.opts.id.current,
       role: this.opts.decorative.current ? "none" : "separator",
       "aria-orientation": this.opts.orientation.current,
@@ -8603,15 +8514,15 @@ const _SeparatorRootState = class _SeparatorRootState {
     return new _SeparatorRootState(opts);
   }
   get props() {
-    return get$2(__privateGet(this, _props18));
+    return get$2(__privateGet(this, _props20));
   }
   set props(value) {
-    set(__privateGet(this, _props18), value);
+    set(__privateGet(this, _props20), value);
   }
 };
-_props18 = new WeakMap();
+_props20 = new WeakMap();
 let SeparatorRootState = _SeparatorRootState;
-var root_2$7 = from_html(`<div><!></div>`);
+var root_2$8 = from_html(`<div><!></div>`);
 function Separator($$anchor, $$props) {
   const uid = props_id();
   push($$props, true);
@@ -8643,7 +8554,7 @@ function Separator($$anchor, $$props) {
       append($$anchor2, fragment_1);
     };
     var alternate = ($$anchor2) => {
-      var div = root_2$7();
+      var div = root_2$8();
       attribute_effect(div, () => ({ ...get$2(mergedProps) }));
       var node_2 = child(div);
       snippet(node_2, () => $$props.children ?? noop$1);
@@ -8700,7 +8611,7 @@ function Popper_content($$anchor, $$props) {
   }
   append($$anchor, fragment);
 }
-var root_1$2 = from_html(`<!> <!>`, 1);
+var root_1$5 = from_html(`<!> <!>`, 1);
 function Popper_layer_inner($$anchor, $$props) {
   push($$props, true);
   let interactOutsideBehavior = prop($$props, "interactOutsideBehavior", 3, "close"), trapFocus = prop($$props, "trapFocus", 3, true), isValidEvent2 = prop($$props, "isValidEvent", 3, () => false), customAnchor = prop($$props, "customAnchor", 3, null), isStatic = prop($$props, "isStatic", 3, false), tooltip = prop($$props, "tooltip", 3, false), contentPointerEvents = prop($$props, "contentPointerEvents", 3, "auto"), restProps = rest_props($$props, [
@@ -8750,7 +8661,7 @@ function Popper_layer_inner($$anchor, $$props) {
     const content = ($$anchor2, $$arg0) => {
       let floatingProps = () => $$arg0 == null ? void 0 : $$arg0().props;
       let wrapperProps = () => $$arg0 == null ? void 0 : $$arg0().wrapperProps;
-      var fragment_1 = root_1$2();
+      var fragment_1 = root_1$5();
       var node = first_child(fragment_1);
       {
         var consequent = ($$anchor3) => {
@@ -9290,7 +9201,7 @@ function Popper_layer_force_mount($$anchor, $$props) {
     { forceMount: true }
   ));
 }
-var root_2$6 = from_html(`<div><!></div>`);
+var root_2$7 = from_html(`<div><!></div>`);
 function Menu_checkbox_item($$anchor, $$props) {
   const uid = props_id();
   push($$props, true);
@@ -9371,7 +9282,7 @@ function Menu_checkbox_item($$anchor, $$props) {
       append($$anchor2, fragment_1);
     };
     var alternate = ($$anchor2) => {
-      var div = root_2$6();
+      var div = root_2$7();
       attribute_effect(div, () => ({ ...get$2(mergedProps) }));
       var node_2 = child(div);
       snippet(node_2, () => $$props.children ?? noop$1, () => ({ checked: checked(), indeterminate: indeterminate() }));
@@ -9386,7 +9297,7 @@ function Menu_checkbox_item($$anchor, $$props) {
   append($$anchor, fragment);
   pop();
 }
-var root_2$5 = from_html(`<div><!></div>`);
+var root_2$6 = from_html(`<div><!></div>`);
 function Menu_checkbox_group($$anchor, $$props) {
   const uid = props_id();
   push($$props, true);
@@ -9421,7 +9332,7 @@ function Menu_checkbox_group($$anchor, $$props) {
       append($$anchor2, fragment_1);
     };
     var alternate = ($$anchor2) => {
-      var div = root_2$5();
+      var div = root_2$6();
       attribute_effect(div, () => ({ ...get$2(mergedProps) }));
       var node_2 = child(div);
       snippet(node_2, () => $$props.children ?? noop$1);
@@ -9453,7 +9364,7 @@ function Dialog($$anchor, $$props) {
   append($$anchor, fragment);
   pop();
 }
-var root_2$4 = from_html(`<button><!></button>`);
+var root_2$5 = from_html(`<button><!></button>`);
 function Dialog_close($$anchor, $$props) {
   const uid = props_id();
   push($$props, true);
@@ -9484,7 +9395,7 @@ function Dialog_close($$anchor, $$props) {
       append($$anchor2, fragment_1);
     };
     var alternate = ($$anchor2) => {
-      var button = root_2$4();
+      var button = root_2$5();
       attribute_effect(button, () => ({ ...get$2(mergedProps) }));
       var node_2 = child(button);
       snippet(node_2, () => $$props.children ?? noop$1);
@@ -9499,8 +9410,8 @@ function Dialog_close($$anchor, $$props) {
   append($$anchor, fragment);
   pop();
 }
-var root_6$2 = from_html(`<!> <!>`, 1);
-var root_8$1 = from_html(`<!> <div><!></div>`, 1);
+var root_6 = from_html(`<!> <!>`, 1);
+var root_8$2 = from_html(`<!> <div><!></div>`, 1);
 function Dialog_content($$anchor, $$props) {
   const uid = props_id();
   push($$props, true);
@@ -9571,7 +9482,7 @@ function Dialog_content($$anchor, $$props) {
                       var node_1 = first_child(fragment_5);
                       {
                         var consequent_1 = ($$anchor7) => {
-                          var fragment_6 = root_6$2();
+                          var fragment_6 = root_6();
                           var node_2 = first_child(fragment_6);
                           {
                             var consequent = ($$anchor8) => {
@@ -9599,7 +9510,7 @@ function Dialog_content($$anchor, $$props) {
                           append($$anchor7, fragment_6);
                         };
                         var alternate = ($$anchor7) => {
-                          var fragment_8 = root_8$1();
+                          var fragment_8 = root_8$2();
                           var node_4 = first_child(fragment_8);
                           Scroll_lock(node_4, {
                             get preventScroll() {
@@ -9691,11 +9602,11 @@ function Menu($$anchor, $$props) {
   pop();
 }
 var root_4$1 = from_html(`<div><div><!></div></div>`);
-var root_9 = from_html(`<div><div><!></div></div>`);
+var root_9$1 = from_html(`<div><div><!></div></div>`);
 function Dropdown_menu_content($$anchor, $$props) {
   const uid = props_id();
   push($$props, true);
-  let id = prop($$props, "id", 19, () => createId(uid)), ref = prop($$props, "ref", 15, null), loop = prop($$props, "loop", 3, true), onInteractOutside = prop($$props, "onInteractOutside", 3, noop), onEscapeKeydown = prop($$props, "onEscapeKeydown", 3, noop), onCloseAutoFocus = prop($$props, "onCloseAutoFocus", 3, noop), forceMount = prop($$props, "forceMount", 3, false), trapFocus = prop($$props, "trapFocus", 3, false), restProps = rest_props($$props, [
+  let id = prop($$props, "id", 19, () => createId(uid)), ref = prop($$props, "ref", 15, null), loop2 = prop($$props, "loop", 3, true), onInteractOutside = prop($$props, "onInteractOutside", 3, noop), onEscapeKeydown = prop($$props, "onEscapeKeydown", 3, noop), onCloseAutoFocus = prop($$props, "onCloseAutoFocus", 3, noop), forceMount = prop($$props, "forceMount", 3, false), trapFocus = prop($$props, "trapFocus", 3, false), restProps = rest_props($$props, [
     "$$slots",
     "$$events",
     "$$legacy",
@@ -9712,7 +9623,7 @@ function Dropdown_menu_content($$anchor, $$props) {
   ]);
   const contentState = MenuContentState.create({
     id: boxWith(() => id()),
-    loop: boxWith(() => loop()),
+    loop: boxWith(() => loop2()),
     ref: boxWith(() => ref(), (v) => ref(v)),
     onCloseAutoFocus: boxWith(() => onCloseAutoFocus())
   });
@@ -9789,7 +9700,7 @@ function Dropdown_menu_content($$anchor, $$props) {
             return trapFocus();
           },
           get loop() {
-            return loop();
+            return loop2();
           },
           forceMount: true,
           get id() {
@@ -9830,7 +9741,7 @@ function Dropdown_menu_content($$anchor, $$props) {
                   append($$anchor5, fragment_7);
                 };
                 var alternate_1 = ($$anchor5) => {
-                  var div_2 = root_9();
+                  var div_2 = root_9$1();
                   attribute_effect(div_2, () => ({ ...wrapperProps() }));
                   var div_3 = child(div_2);
                   attribute_effect(div_3, () => ({ ...get$2(finalProps) }));
@@ -9860,7 +9771,7 @@ function Dropdown_menu_content($$anchor, $$props) {
                 return trapFocus();
               },
               get loop() {
-                return loop();
+                return loop2();
               },
               forceMount: false,
               get id() {
@@ -9892,7 +9803,7 @@ function Dropdown_menu_content($$anchor, $$props) {
   append($$anchor, fragment);
   pop();
 }
-var root_3$2 = from_html(`<button><!></button>`);
+var root_3$3 = from_html(`<button><!></button>`);
 function Menu_trigger($$anchor, $$props) {
   const uid = props_id();
   push($$props, true);
@@ -9931,7 +9842,7 @@ function Menu_trigger($$anchor, $$props) {
           append($$anchor3, fragment_2);
         };
         var alternate = ($$anchor3) => {
-          var button = root_3$2();
+          var button = root_3$3();
           attribute_effect(button, () => ({ ...get$2(mergedProps) }));
           var node_2 = child(button);
           snippet(node_2, () => $$props.children ?? noop$1);
@@ -9962,7 +9873,7 @@ const _TabsRootState = class _TabsRootState {
     __privateAdd(this, _triggerIds, state(proxy([])));
     __publicField(this, "valueToTriggerId", new SvelteMap());
     __publicField(this, "valueToContentId", new SvelteMap());
-    __privateAdd(this, _props19, user_derived(() => ({
+    __privateAdd(this, _props21, user_derived(() => ({
       id: this.opts.id.current,
       "data-orientation": this.opts.orientation.current,
       [tabsAttrs.root]: "",
@@ -10004,14 +9915,14 @@ const _TabsRootState = class _TabsRootState {
     this.opts.value.current = v;
   }
   get props() {
-    return get$2(__privateGet(this, _props19));
+    return get$2(__privateGet(this, _props21));
   }
   set props(value) {
-    set(__privateGet(this, _props19), value);
+    set(__privateGet(this, _props21), value);
   }
 };
 _triggerIds = new WeakMap();
-_props19 = new WeakMap();
+_props21 = new WeakMap();
 let TabsRootState = _TabsRootState;
 const _TabsListState = class _TabsListState {
   constructor(opts, root2) {
@@ -10019,7 +9930,7 @@ const _TabsListState = class _TabsListState {
     __publicField(this, "root");
     __publicField(this, "attachment");
     __privateAdd(this, _isDisabled3, user_derived(() => this.root.opts.disabled.current));
-    __privateAdd(this, _props20, user_derived(() => ({
+    __privateAdd(this, _props22, user_derived(() => ({
       id: this.opts.id.current,
       role: "tablist",
       "aria-orientation": this.root.opts.orientation.current,
@@ -10036,14 +9947,14 @@ const _TabsListState = class _TabsListState {
     return new _TabsListState(opts, TabsRootContext.get());
   }
   get props() {
-    return get$2(__privateGet(this, _props20));
+    return get$2(__privateGet(this, _props22));
   }
   set props(value) {
-    set(__privateGet(this, _props20), value);
+    set(__privateGet(this, _props22), value);
   }
 };
 _isDisabled3 = new WeakMap();
-_props20 = new WeakMap();
+_props22 = new WeakMap();
 let TabsListState = _TabsListState;
 const _TabsTriggerState = class _TabsTriggerState {
   constructor(opts, root2) {
@@ -10055,7 +9966,7 @@ const _TabsTriggerState = class _TabsTriggerState {
     __privateAdd(this, _isActive2, user_derived(() => this.root.opts.value.current === this.opts.value.current));
     __privateAdd(this, _isDisabled4, user_derived(() => this.opts.disabled.current || this.root.opts.disabled.current));
     __privateAdd(this, _ariaControls2, user_derived(() => this.root.valueToContentId.get(this.opts.value.current)));
-    __privateAdd(this, _props21, user_derived(() => ({
+    __privateAdd(this, _props23, user_derived(() => ({
       id: this.opts.id.current,
       role: "tab",
       "data-state": getTabDataState(get$2(__privateGet(this, _isActive2))),
@@ -10112,10 +10023,10 @@ const _TabsTriggerState = class _TabsTriggerState {
     this.root.rovingFocusGroup.handleKeydown(this.opts.ref.current, e);
   }
   get props() {
-    return get$2(__privateGet(this, _props21));
+    return get$2(__privateGet(this, _props23));
   }
   set props(value) {
-    set(__privateGet(this, _props21), value);
+    set(__privateGet(this, _props23), value);
   }
 };
 _tabIndex = new WeakMap();
@@ -10127,7 +10038,7 @@ activate_fn = function() {
   if (this.root.opts.value.current === this.opts.value.current) return;
   this.root.setValue(this.opts.value.current);
 };
-_props21 = new WeakMap();
+_props23 = new WeakMap();
 let TabsTriggerState = _TabsTriggerState;
 const _TabsContentState = class _TabsContentState {
   constructor(opts, root2) {
@@ -10136,7 +10047,7 @@ const _TabsContentState = class _TabsContentState {
     __publicField(this, "attachment");
     __privateAdd(this, _isActive3, user_derived(() => this.root.opts.value.current === this.opts.value.current));
     __privateAdd(this, _ariaLabelledBy, user_derived(() => this.root.valueToTriggerId.get(this.opts.value.current)));
-    __privateAdd(this, _props22, user_derived(() => ({
+    __privateAdd(this, _props24, user_derived(() => ({
       id: this.opts.id.current,
       role: "tabpanel",
       hidden: boolToTrueOrUndef(!get$2(__privateGet(this, _isActive3))),
@@ -10159,24 +10070,24 @@ const _TabsContentState = class _TabsContentState {
     return new _TabsContentState(opts, TabsRootContext.get());
   }
   get props() {
-    return get$2(__privateGet(this, _props22));
+    return get$2(__privateGet(this, _props24));
   }
   set props(value) {
-    set(__privateGet(this, _props22), value);
+    set(__privateGet(this, _props24), value);
   }
 };
 _isActive3 = new WeakMap();
 _ariaLabelledBy = new WeakMap();
-_props22 = new WeakMap();
+_props24 = new WeakMap();
 let TabsContentState = _TabsContentState;
 function getTabDataState(condition) {
   return condition ? "active" : "inactive";
 }
-var root_2$3 = from_html(`<div><!></div>`);
+var root_2$4 = from_html(`<div><!></div>`);
 function Tabs($$anchor, $$props) {
   const uid = props_id();
   push($$props, true);
-  let id = prop($$props, "id", 19, () => createId(uid)), ref = prop($$props, "ref", 15, null), value = prop($$props, "value", 15, ""), onValueChange = prop($$props, "onValueChange", 3, noop), orientation = prop($$props, "orientation", 3, "horizontal"), loop = prop($$props, "loop", 3, true), activationMode = prop($$props, "activationMode", 3, "automatic"), disabled = prop($$props, "disabled", 3, false), restProps = rest_props($$props, [
+  let id = prop($$props, "id", 19, () => createId(uid)), ref = prop($$props, "ref", 15, null), value = prop($$props, "value", 15, ""), onValueChange = prop($$props, "onValueChange", 3, noop), orientation = prop($$props, "orientation", 3, "horizontal"), loop2 = prop($$props, "loop", 3, true), activationMode = prop($$props, "activationMode", 3, "automatic"), disabled = prop($$props, "disabled", 3, false), restProps = rest_props($$props, [
     "$$slots",
     "$$events",
     "$$legacy",
@@ -10198,7 +10109,7 @@ function Tabs($$anchor, $$props) {
       onValueChange()(v);
     }),
     orientation: boxWith(() => orientation()),
-    loop: boxWith(() => loop()),
+    loop: boxWith(() => loop2()),
     activationMode: boxWith(() => activationMode()),
     disabled: boxWith(() => disabled()),
     ref: boxWith(() => ref(), (v) => ref(v))
@@ -10214,7 +10125,7 @@ function Tabs($$anchor, $$props) {
       append($$anchor2, fragment_1);
     };
     var alternate = ($$anchor2) => {
-      var div = root_2$3();
+      var div = root_2$4();
       attribute_effect(div, () => ({ ...get$2(mergedProps) }));
       var node_2 = child(div);
       snippet(node_2, () => $$props.children ?? noop$1);
@@ -10229,7 +10140,7 @@ function Tabs($$anchor, $$props) {
   append($$anchor, fragment);
   pop();
 }
-var root_2$2 = from_html(`<div><!></div>`);
+var root_2$3 = from_html(`<div><!></div>`);
 function Tabs_content($$anchor, $$props) {
   const uid = props_id();
   push($$props, true);
@@ -10259,7 +10170,7 @@ function Tabs_content($$anchor, $$props) {
       append($$anchor2, fragment_1);
     };
     var alternate = ($$anchor2) => {
-      var div = root_2$2();
+      var div = root_2$3();
       attribute_effect(div, () => ({ ...get$2(mergedProps) }));
       var node_2 = child(div);
       snippet(node_2, () => $$props.children ?? noop$1);
@@ -10274,7 +10185,7 @@ function Tabs_content($$anchor, $$props) {
   append($$anchor, fragment);
   pop();
 }
-var root_2$1 = from_html(`<div><!></div>`);
+var root_2$2 = from_html(`<div><!></div>`);
 function Tabs_list($$anchor, $$props) {
   const uid = props_id();
   push($$props, true);
@@ -10302,7 +10213,7 @@ function Tabs_list($$anchor, $$props) {
       append($$anchor2, fragment_1);
     };
     var alternate = ($$anchor2) => {
-      var div = root_2$1();
+      var div = root_2$2();
       attribute_effect(div, () => ({ ...get$2(mergedProps) }));
       var node_2 = child(div);
       snippet(node_2, () => $$props.children ?? noop$1);
@@ -10317,7 +10228,7 @@ function Tabs_list($$anchor, $$props) {
   append($$anchor, fragment);
   pop();
 }
-var root_2 = from_html(`<button><!></button>`);
+var root_2$1 = from_html(`<button><!></button>`);
 function Tabs_trigger($$anchor, $$props) {
   const uid = props_id();
   push($$props, true);
@@ -10350,7 +10261,7 @@ function Tabs_trigger($$anchor, $$props) {
       append($$anchor2, fragment_1);
     };
     var alternate = ($$anchor2) => {
-      var button = root_2();
+      var button = root_2$1();
       attribute_effect(button, () => ({ ...get$2(mergedProps) }));
       var node_2 = child(button);
       snippet(node_2, () => $$props.children ?? noop$1);
@@ -10365,272 +10276,3426 @@ function Tabs_trigger($$anchor, $$props) {
   append($$anchor, fragment);
   pop();
 }
-var root_7 = from_html(`<!> <!>`, 1);
-var root_10 = from_html(`<div class="space-y-2"><!> <!></div>`);
-var root_11 = from_html(`<div class="space-y-2 mb-4"><!> <!> <div class="flex gap-2"><!> <!></div></div> <!> <div class="space-y-2"><!> <!></div>`, 1);
-var root_6$1 = from_html(`<!> <!> <!>`, 1);
-var root_4 = from_html(`<!> <!> <!> <!>`, 1);
-var root_3$1 = from_html(`<!> <!>`, 1);
-var root_1$1 = from_html(`<!> <!>`, 1);
-function AddSourceDialog($$anchor, $$props) {
-  push($$props, false);
-  let name = mutable_source("");
-  let host = mutable_source("");
-  let port = mutable_source(22);
-  let user = mutable_source("");
-  let logPath = mutable_source("");
-  let logLabel = mutable_source("");
-  init();
-  Dialog($$anchor, {
+function Tooltip($$anchor, $$props) {
+  push($$props, true);
+  let open = prop($$props, "open", 15, false), onOpenChange = prop($$props, "onOpenChange", 3, noop), onOpenChangeComplete = prop($$props, "onOpenChangeComplete", 3, noop);
+  TooltipRootState.create({
+    open: boxWith(() => open(), (v) => {
+      open(v);
+      onOpenChange()(v);
+    }),
+    delayDuration: boxWith(() => $$props.delayDuration),
+    disableCloseOnTriggerClick: boxWith(() => $$props.disableCloseOnTriggerClick),
+    disableHoverableContent: boxWith(() => $$props.disableHoverableContent),
+    ignoreNonKeyboardFocus: boxWith(() => $$props.ignoreNonKeyboardFocus),
+    disabled: boxWith(() => $$props.disabled),
+    onOpenChangeComplete: boxWith(() => onOpenChangeComplete())
+  });
+  Floating_layer($$anchor, {
+    tooltip: true,
     children: ($$anchor2, $$slotProps) => {
-      var fragment_1 = root_1$1();
+      var fragment_1 = comment();
       var node = first_child(fragment_1);
-      Dialog_trigger(node, {
-        class: "\n            rounded-input bg-dark text-background shadow-mini hover:bg-dark/95\n            focus-visible:ring-foreground focus-visible:ring-offset-background\n            focus-visible:outline-hidden inline-flex h-12 items-center justify-center\n            whitespace-nowrap px-5 text-[15px] font-semibold transition-colors\n            focus-visible:ring-2 focus-visible:ring-offset-2 active:scale-[0.98]\n        ",
-        children: ($$anchor3, $$slotProps2) => {
-          next();
-          var text$1 = text("Add log source");
-          append($$anchor3, text$1);
-        },
-        $$slots: { default: true }
-      });
-      var node_1 = sibling(node, 2);
-      Portal(node_1, {
-        children: ($$anchor3, $$slotProps2) => {
-          var fragment_2 = root_3$1();
-          var node_2 = first_child(fragment_2);
-          Dialog_overlay(node_2, {
-            class: "\n                data-[state=open]:animate-in data-[state=closed]:animate-out\n                data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0\n                fixed inset-0 z-50 bg-black/80\n            "
-          });
-          var node_3 = sibling(node_2, 2);
-          Dialog_content(node_3, {
-            class: "\n                rounded-xl bg-background shadow-popover data-[state=open]:animate-in\n                data-[state=closed]:animate-out data-[state=closed]:fade-out-0\n                data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95\n                data-[state=open]:zoom-in-95 outline-hidden fixed\n                left-[50%] top-[50%] z-50 w-full max-w-[calc(100%-2rem)]\n                translate-x-[-50%] translate-y-[-50%] border p-5\n                sm:max-w-122 md:w-full",
-            children: ($$anchor4, $$slotProps3) => {
-              var fragment_3 = root_4();
-              var node_4 = first_child(fragment_3);
-              Dialog_title(node_4, {
-                class: "text-lg font-semibold mb-4",
-                children: ($$anchor5, $$slotProps4) => {
-                  next();
-                  var text_1 = text("Add log source");
-                  append($$anchor5, text_1);
-                },
-                $$slots: { default: true }
-              });
-              var node_5 = sibling(node_4, 2);
-              Tabs(node_5, {
-                value: "local",
-                class: "bg-background-alt shadow-card w-full",
-                children: ($$anchor5, $$slotProps4) => {
-                  var fragment_4 = root_6$1();
-                  var node_6 = first_child(fragment_4);
-                  Tabs_list(node_6, {
-                    class: "\n                        grid w-full grid-cols-2 gap-1 p-1 text-sm font-semibold\n                        border border-border rounded-lg\n                    ",
-                    children: ($$anchor6, $$slotProps5) => {
-                      var fragment_5 = root_7();
-                      var node_7 = first_child(fragment_5);
-                      Tabs_trigger(node_7, {
-                        value: "local",
-                        class: "\n                            dark:data-[state=active]:bg-muted text-sm\n                            h-8 rounded-md bg-transparent py-1 data-[state=active]:bg-white\n                        ",
-                        children: ($$anchor7, $$slotProps6) => {
-                          next();
-                          var text_2 = text("Local");
-                          append($$anchor7, text_2);
-                        },
-                        $$slots: { default: true }
-                      });
-                      var node_8 = sibling(node_7, 2);
-                      Tabs_trigger(node_8, {
-                        value: "ssh",
-                        class: "\n                            data-[state=active]:shadow-mini dark:data-[state=active]:bg-muted\n                            h-8 rounded-md bg-transparent py-1 data-[state=active]:bg-white\n                        ",
-                        children: ($$anchor7, $$slotProps6) => {
-                          next();
-                          var text_3 = text("SSH");
-                          append($$anchor7, text_3);
-                        },
-                        $$slots: { default: true }
-                      });
-                      append($$anchor6, fragment_5);
-                    },
-                    $$slots: { default: true }
-                  });
-                  var node_9 = sibling(node_6, 2);
-                  Tabs_content(node_9, {
-                    value: "local",
-                    class: "select-none pt-3",
-                    children: ($$anchor6, $$slotProps5) => {
-                      var div = root_10();
-                      var node_10 = child(div);
-                      Input(node_10, {
-                        placeholder: "/var/log/app.log",
-                        get value() {
-                          return get$2(logPath);
-                        },
-                        set value($$value) {
-                          set(logPath, $$value);
-                        },
-                        $$legacy: true
-                      });
-                      var node_11 = sibling(node_10, 2);
-                      Input(node_11, {
-                        placeholder: "Display name (optional)",
-                        get value() {
-                          return get$2(logLabel);
-                        },
-                        set value($$value) {
-                          set(logLabel, $$value);
-                        },
-                        $$legacy: true
-                      });
-                      reset(div);
-                      append($$anchor6, div);
-                    },
-                    $$slots: { default: true }
-                  });
-                  var node_12 = sibling(node_9, 2);
-                  Tabs_content(node_12, {
-                    value: "ssh",
-                    class: "select-none pt-3",
-                    children: ($$anchor6, $$slotProps5) => {
-                      var fragment_6 = root_11();
-                      var div_1 = first_child(fragment_6);
-                      var node_13 = child(div_1);
-                      Input(node_13, {
-                        placeholder: "Connection name",
-                        get value() {
-                          return get$2(name);
-                        },
-                        set value($$value) {
-                          set(name, $$value);
-                        },
-                        $$legacy: true
-                      });
-                      var node_14 = sibling(node_13, 2);
-                      Input(node_14, {
-                        placeholder: "Host",
-                        get value() {
-                          return get$2(host);
-                        },
-                        set value($$value) {
-                          set(host, $$value);
-                        },
-                        $$legacy: true
-                      });
-                      var div_2 = sibling(node_14, 2);
-                      var node_15 = child(div_2);
-                      Input(node_15, {
-                        placeholder: "User",
-                        get value() {
-                          return get$2(user);
-                        },
-                        set value($$value) {
-                          set(user, $$value);
-                        },
-                        $$legacy: true
-                      });
-                      var node_16 = sibling(node_15, 2);
-                      Input(node_16, {
-                        type: "number",
-                        placeholder: "Port",
-                        get value() {
-                          return get$2(port);
-                        },
-                        set value($$value) {
-                          set(port, $$value);
-                        },
-                        $$legacy: true
-                      });
-                      reset(div_2);
-                      reset(div_1);
-                      var node_17 = sibling(div_1, 2);
-                      Separator(node_17, { class: "bg-muted -mx-5 mb-6 mt-5 block h-px" });
-                      var div_3 = sibling(node_17, 2);
-                      var node_18 = child(div_3);
-                      Input(node_18, {
-                        placeholder: "/var/log/app.log",
-                        get value() {
-                          return get$2(logPath);
-                        },
-                        set value($$value) {
-                          set(logPath, $$value);
-                        },
-                        $$legacy: true
-                      });
-                      var node_19 = sibling(node_18, 2);
-                      Input(node_19, {
-                        placeholder: "Display name (optional)",
-                        get value() {
-                          return get$2(logLabel);
-                        },
-                        set value($$value) {
-                          set(logLabel, $$value);
-                        },
-                        $$legacy: true
-                      });
-                      reset(div_3);
-                      append($$anchor6, fragment_6);
-                    },
-                    $$slots: { default: true }
-                  });
-                  append($$anchor5, fragment_4);
-                },
-                $$slots: { default: true }
-              });
-              var node_20 = sibling(node_5, 2);
-              Dialog_close(node_20, {
-                children: ($$anchor5, $$slotProps4) => {
-                  Button($$anchor5, {
-                    variant: "secondary",
-                    children: ($$anchor6, $$slotProps5) => {
-                      next();
-                      var text_4 = text("Cancel");
-                      append($$anchor6, text_4);
-                    },
-                    $$slots: { default: true }
-                  });
-                },
-                $$slots: { default: true }
-              });
-              var node_21 = sibling(node_20, 2);
-              Dialog_close(node_21, {
-                children: ($$anchor5, $$slotProps4) => {
-                  Button($$anchor5, {
-                    children: ($$anchor6, $$slotProps5) => {
-                      next();
-                      var text_5 = text("Add");
-                      append($$anchor6, text_5);
-                    },
-                    $$slots: { default: true }
-                  });
-                },
-                $$slots: { default: true }
-              });
-              append($$anchor4, fragment_3);
-            },
-            $$slots: { default: true }
-          });
-          append($$anchor3, fragment_2);
-        },
-        $$slots: { default: true }
-      });
+      snippet(node, () => $$props.children ?? noop$1);
       append($$anchor2, fragment_1);
     },
     $$slots: { default: true }
   });
   pop();
 }
-var root_5 = from_html(`<!> <span> </span>`, 1);
-var root_6 = from_html(`<ul class="relative ml-2"><div class="absolute left-1 top-0 bottom-0 w-px bg-border"></div> <!></ul>`);
+var root_4 = from_html(`<div><div><!></div></div>`);
+var root_9 = from_html(`<div><div><!></div></div>`);
+function Tooltip_content($$anchor, $$props) {
+  const uid = props_id();
+  push($$props, true);
+  let id = prop($$props, "id", 19, () => createId(uid)), ref = prop($$props, "ref", 15, null), side = prop($$props, "side", 3, "top"), sideOffset = prop($$props, "sideOffset", 3, 0), align = prop($$props, "align", 3, "center"), avoidCollisions = prop($$props, "avoidCollisions", 3, true), arrowPadding = prop($$props, "arrowPadding", 3, 0), sticky = prop($$props, "sticky", 3, "partial"), hideWhenDetached = prop($$props, "hideWhenDetached", 3, false), collisionPadding = prop($$props, "collisionPadding", 3, 0), onInteractOutside = prop($$props, "onInteractOutside", 3, noop), onEscapeKeydown = prop($$props, "onEscapeKeydown", 3, noop), forceMount = prop($$props, "forceMount", 3, false), restProps = rest_props($$props, [
+    "$$slots",
+    "$$events",
+    "$$legacy",
+    "children",
+    "child",
+    "id",
+    "ref",
+    "side",
+    "sideOffset",
+    "align",
+    "avoidCollisions",
+    "arrowPadding",
+    "sticky",
+    "strategy",
+    "hideWhenDetached",
+    "collisionPadding",
+    "onInteractOutside",
+    "onEscapeKeydown",
+    "forceMount"
+  ]);
+  const contentState = TooltipContentState.create({
+    id: boxWith(() => id()),
+    ref: boxWith(() => ref(), (v) => ref(v)),
+    onInteractOutside: boxWith(() => onInteractOutside()),
+    onEscapeKeydown: boxWith(() => onEscapeKeydown())
+  });
+  const floatingProps = user_derived(() => ({
+    side: side(),
+    sideOffset: sideOffset(),
+    align: align(),
+    avoidCollisions: avoidCollisions(),
+    arrowPadding: arrowPadding(),
+    sticky: sticky(),
+    hideWhenDetached: hideWhenDetached(),
+    collisionPadding: collisionPadding(),
+    strategy: $$props.strategy
+  }));
+  const mergedProps = user_derived(() => mergeProps(restProps, get$2(floatingProps), contentState.props));
+  var fragment = comment();
+  var node = first_child(fragment);
+  {
+    var consequent_1 = ($$anchor2) => {
+      {
+        const popper = ($$anchor3, $$arg0) => {
+          let props = () => $$arg0 == null ? void 0 : $$arg0().props;
+          let wrapperProps = () => $$arg0 == null ? void 0 : $$arg0().wrapperProps;
+          const mergedProps2 = user_derived(() => mergeProps(props(), { style: getFloatingContentCSSVars("tooltip") }));
+          var fragment_2 = comment();
+          var node_1 = first_child(fragment_2);
+          {
+            var consequent = ($$anchor4) => {
+              var fragment_3 = comment();
+              var node_2 = first_child(fragment_3);
+              {
+                let $02 = user_derived(() => ({
+                  props: get$2(mergedProps2),
+                  wrapperProps: wrapperProps(),
+                  ...contentState.snippetProps
+                }));
+                snippet(node_2, () => $$props.child, () => get$2($02));
+              }
+              append($$anchor4, fragment_3);
+            };
+            var alternate = ($$anchor4) => {
+              var div = root_4();
+              attribute_effect(div, () => ({ ...wrapperProps() }));
+              var div_1 = child(div);
+              attribute_effect(div_1, () => ({ ...get$2(mergedProps2) }));
+              var node_3 = child(div_1);
+              snippet(node_3, () => $$props.children ?? noop$1);
+              reset(div_1);
+              reset(div);
+              append($$anchor4, div);
+            };
+            if_block(node_1, ($$render) => {
+              if ($$props.child) $$render(consequent);
+              else $$render(alternate, false);
+            });
+          }
+          append($$anchor3, fragment_2);
+        };
+        let $0 = user_derived(() => contentState.root.disableHoverableContent ? "none" : "auto");
+        Popper_layer_force_mount($$anchor2, spread_props(() => get$2(mergedProps), () => contentState.popperProps, {
+          get enabled() {
+            return contentState.root.opts.open.current;
+          },
+          get id() {
+            return id();
+          },
+          trapFocus: false,
+          loop: false,
+          preventScroll: false,
+          forceMount: true,
+          get ref() {
+            return contentState.opts.ref;
+          },
+          tooltip: true,
+          get shouldRender() {
+            return contentState.shouldRender;
+          },
+          get contentPointerEvents() {
+            return get$2($0);
+          },
+          popper,
+          $$slots: { popper: true }
+        }));
+      }
+    };
+    var alternate_2 = ($$anchor2) => {
+      var fragment_4 = comment();
+      var node_4 = first_child(fragment_4);
+      {
+        var consequent_3 = ($$anchor3) => {
+          {
+            const popper = ($$anchor4, $$arg0) => {
+              let props = () => $$arg0 == null ? void 0 : $$arg0().props;
+              let wrapperProps = () => $$arg0 == null ? void 0 : $$arg0().wrapperProps;
+              const mergedProps2 = user_derived(() => mergeProps(props(), { style: getFloatingContentCSSVars("tooltip") }));
+              var fragment_6 = comment();
+              var node_5 = first_child(fragment_6);
+              {
+                var consequent_2 = ($$anchor5) => {
+                  var fragment_7 = comment();
+                  var node_6 = first_child(fragment_7);
+                  {
+                    let $02 = user_derived(() => ({
+                      props: get$2(mergedProps2),
+                      wrapperProps: wrapperProps(),
+                      ...contentState.snippetProps
+                    }));
+                    snippet(node_6, () => $$props.child, () => get$2($02));
+                  }
+                  append($$anchor5, fragment_7);
+                };
+                var alternate_1 = ($$anchor5) => {
+                  var div_2 = root_9();
+                  attribute_effect(div_2, () => ({ ...wrapperProps() }));
+                  var div_3 = child(div_2);
+                  attribute_effect(div_3, () => ({ ...get$2(mergedProps2) }));
+                  var node_7 = child(div_3);
+                  snippet(node_7, () => $$props.children ?? noop$1);
+                  reset(div_3);
+                  reset(div_2);
+                  append($$anchor5, div_2);
+                };
+                if_block(node_5, ($$render) => {
+                  if ($$props.child) $$render(consequent_2);
+                  else $$render(alternate_1, false);
+                });
+              }
+              append($$anchor4, fragment_6);
+            };
+            let $0 = user_derived(() => contentState.root.disableHoverableContent ? "none" : "auto");
+            Popper_layer($$anchor3, spread_props(() => get$2(mergedProps), () => contentState.popperProps, {
+              get open() {
+                return contentState.root.opts.open.current;
+              },
+              get id() {
+                return id();
+              },
+              trapFocus: false,
+              loop: false,
+              preventScroll: false,
+              forceMount: false,
+              get ref() {
+                return contentState.opts.ref;
+              },
+              tooltip: true,
+              get shouldRender() {
+                return contentState.shouldRender;
+              },
+              get contentPointerEvents() {
+                return get$2($0);
+              },
+              popper,
+              $$slots: { popper: true }
+            }));
+          }
+        };
+        if_block(
+          node_4,
+          ($$render) => {
+            if (!forceMount()) $$render(consequent_3);
+          },
+          true
+        );
+      }
+      append($$anchor2, fragment_4);
+    };
+    if_block(node, ($$render) => {
+      if (forceMount()) $$render(consequent_1);
+      else $$render(alternate_2, false);
+    });
+  }
+  append($$anchor, fragment);
+  pop();
+}
+var root_3$2 = from_html(`<button><!></button>`);
+function Tooltip_trigger($$anchor, $$props) {
+  const uid = props_id();
+  push($$props, true);
+  let id = prop($$props, "id", 19, () => createId(uid)), disabled = prop($$props, "disabled", 3, false), type = prop($$props, "type", 3, "button"), ref = prop($$props, "ref", 15, null), restProps = rest_props($$props, [
+    "$$slots",
+    "$$events",
+    "$$legacy",
+    "children",
+    "child",
+    "id",
+    "disabled",
+    "type",
+    "ref"
+  ]);
+  const triggerState = TooltipTriggerState.create({
+    id: boxWith(() => id()),
+    disabled: boxWith(() => disabled() ?? false),
+    ref: boxWith(() => ref(), (v) => ref(v))
+  });
+  const mergedProps = user_derived(() => mergeProps(restProps, triggerState.props, { type: type() }));
+  Floating_layer_anchor($$anchor, {
+    get id() {
+      return id();
+    },
+    get ref() {
+      return triggerState.opts.ref;
+    },
+    tooltip: true,
+    children: ($$anchor2, $$slotProps) => {
+      var fragment_1 = comment();
+      var node = first_child(fragment_1);
+      {
+        var consequent = ($$anchor3) => {
+          var fragment_2 = comment();
+          var node_1 = first_child(fragment_2);
+          snippet(node_1, () => $$props.child, () => ({ props: get$2(mergedProps) }));
+          append($$anchor3, fragment_2);
+        };
+        var alternate = ($$anchor3) => {
+          var button = root_3$2();
+          attribute_effect(button, () => ({ ...get$2(mergedProps) }));
+          var node_2 = child(button);
+          snippet(node_2, () => $$props.children ?? noop$1);
+          reset(button);
+          append($$anchor3, button);
+        };
+        if_block(node, ($$render) => {
+          if ($$props.child) $$render(consequent);
+          else $$render(alternate, false);
+        });
+      }
+      append($$anchor2, fragment_1);
+    },
+    $$slots: { default: true }
+  });
+  pop();
+}
+const logs = writable([]);
+const selectedLog = writable(null);
+const levelFilter = writable(
+  /* @__PURE__ */ new Set(["info", "warn", "error"])
+);
+const defaultAttributes = {
+  outline: {
+    xmlns: "http://www.w3.org/2000/svg",
+    width: 24,
+    height: 24,
+    viewBox: "0 0 24 24",
+    fill: "none",
+    stroke: "currentColor",
+    "stroke-width": 2,
+    "stroke-linecap": "round",
+    "stroke-linejoin": "round"
+  },
+  filled: {
+    xmlns: "http://www.w3.org/2000/svg",
+    width: 24,
+    height: 24,
+    viewBox: "0 0 24 24",
+    fill: "currentColor",
+    stroke: "none"
+  }
+};
+var root$8 = from_svg(`<svg><!><!></svg>`);
+function Icon($$anchor, $$props) {
+  const $$sanitized_props = legacy_rest_props($$props, ["children", "$$slots", "$$events", "$$legacy"]);
+  const $$restProps = legacy_rest_props($$sanitized_props, ["type", "name", "color", "size", "stroke", "iconNode"]);
+  push($$props, false);
+  let type = prop($$props, "type", 8);
+  let name = prop($$props, "name", 8);
+  let color = prop($$props, "color", 8, "currentColor");
+  let size2 = prop($$props, "size", 8, 24);
+  let stroke = prop($$props, "stroke", 8, 2);
+  let iconNode = prop($$props, "iconNode", 8);
+  init();
+  var svg = root$8();
+  attribute_effect(svg, () => ({
+    ...defaultAttributes[type()],
+    ...$$restProps,
+    width: size2(),
+    height: size2(),
+    class: (deep_read_state(name()), deep_read_state($$sanitized_props), untrack(() => `tabler-icon tabler-icon-${name()} ${$$sanitized_props.class ?? ""}`)),
+    ...type() === "filled" ? { fill: color() } : { "stroke-width": stroke(), stroke: color() }
+  }));
+  var node = child(svg);
+  each(node, 1, iconNode, index$1, ($$anchor2, $$item) => {
+    var $$array = user_derived(() => to_array(get$2($$item), 2));
+    let tag = () => get$2($$array)[0];
+    let attrs = () => get$2($$array)[1];
+    var fragment = comment();
+    var node_1 = first_child(fragment);
+    element(node_1, tag, true, ($$element, $$anchor3) => {
+      attribute_effect($$element, () => ({ ...attrs() }));
+    });
+    append($$anchor2, fragment);
+  });
+  var node_2 = sibling(node);
+  slot(node_2, $$props, "default", {});
+  reset(svg);
+  append($$anchor, svg);
+  pop();
+}
+function Check($$anchor, $$props) {
+  const $$sanitized_props = legacy_rest_props($$props, ["children", "$$slots", "$$events", "$$legacy"]);
+  const iconNode = [["path", { "d": "M5 12l5 5l10 -10" }]];
+  Icon($$anchor, spread_props({ type: "outline", name: "check" }, () => $$sanitized_props, {
+    get iconNode() {
+      return iconNode;
+    },
+    children: ($$anchor2, $$slotProps) => {
+      var fragment_1 = comment();
+      var node = first_child(fragment_1);
+      slot(node, $$props, "default", {});
+      append($$anchor2, fragment_1);
+    },
+    $$slots: { default: true }
+  }));
+}
+function Disc($$anchor, $$props) {
+  const $$sanitized_props = legacy_rest_props($$props, ["children", "$$slots", "$$events", "$$legacy"]);
+  const iconNode = [
+    ["path", { "d": "M3 12a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" }],
+    ["path", { "d": "M11 12a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" }],
+    ["path", { "d": "M7 12a5 5 0 0 1 5 -5" }],
+    ["path", { "d": "M12 17a5 5 0 0 0 5 -5" }]
+  ];
+  Icon($$anchor, spread_props({ type: "outline", name: "disc" }, () => $$sanitized_props, {
+    get iconNode() {
+      return iconNode;
+    },
+    children: ($$anchor2, $$slotProps) => {
+      var fragment_1 = comment();
+      var node = first_child(fragment_1);
+      slot(node, $$props, "default", {});
+      append($$anchor2, fragment_1);
+    },
+    $$slots: { default: true }
+  }));
+}
+function File($$anchor, $$props) {
+  const $$sanitized_props = legacy_rest_props($$props, ["children", "$$slots", "$$events", "$$legacy"]);
+  const iconNode = [
+    ["path", { "d": "M14 3v4a1 1 0 0 0 1 1h4" }],
+    [
+      "path",
+      {
+        "d": "M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2"
+      }
+    ]
+  ];
+  Icon($$anchor, spread_props({ type: "outline", name: "file" }, () => $$sanitized_props, {
+    get iconNode() {
+      return iconNode;
+    },
+    children: ($$anchor2, $$slotProps) => {
+      var fragment_1 = comment();
+      var node = first_child(fragment_1);
+      slot(node, $$props, "default", {});
+      append($$anchor2, fragment_1);
+    },
+    $$slots: { default: true }
+  }));
+}
+function Forms($$anchor, $$props) {
+  const $$sanitized_props = legacy_rest_props($$props, ["children", "$$slots", "$$events", "$$legacy"]);
+  const iconNode = [
+    ["path", { "d": "M12 3a3 3 0 0 0 -3 3v12a3 3 0 0 0 3 3" }],
+    ["path", { "d": "M6 3a3 3 0 0 1 3 3v12a3 3 0 0 1 -3 3" }],
+    ["path", { "d": "M13 7h7a1 1 0 0 1 1 1v8a1 1 0 0 1 -1 1h-7" }],
+    ["path", { "d": "M5 7h-1a1 1 0 0 0 -1 1v8a1 1 0 0 0 1 1h1" }],
+    ["path", { "d": "M17 12h.01" }],
+    ["path", { "d": "M13 12h.01" }]
+  ];
+  Icon($$anchor, spread_props({ type: "outline", name: "forms" }, () => $$sanitized_props, {
+    get iconNode() {
+      return iconNode;
+    },
+    children: ($$anchor2, $$slotProps) => {
+      var fragment_1 = comment();
+      var node = first_child(fragment_1);
+      slot(node, $$props, "default", {});
+      append($$anchor2, fragment_1);
+    },
+    $$slots: { default: true }
+  }));
+}
+function Loader($$anchor, $$props) {
+  const $$sanitized_props = legacy_rest_props($$props, ["children", "$$slots", "$$events", "$$legacy"]);
+  const iconNode = [
+    ["path", { "d": "M12 6l0 -3" }],
+    ["path", { "d": "M16.25 7.75l2.15 -2.15" }],
+    ["path", { "d": "M18 12l3 0" }],
+    ["path", { "d": "M16.25 16.25l2.15 2.15" }],
+    ["path", { "d": "M12 18l0 3" }],
+    ["path", { "d": "M7.75 16.25l-2.15 2.15" }],
+    ["path", { "d": "M6 12l-3 0" }],
+    ["path", { "d": "M7.75 7.75l-2.15 -2.15" }]
+  ];
+  Icon($$anchor, spread_props({ type: "outline", name: "loader" }, () => $$sanitized_props, {
+    get iconNode() {
+      return iconNode;
+    },
+    children: ($$anchor2, $$slotProps) => {
+      var fragment_1 = comment();
+      var node = first_child(fragment_1);
+      slot(node, $$props, "default", {});
+      append($$anchor2, fragment_1);
+    },
+    $$slots: { default: true }
+  }));
+}
+function Minus($$anchor, $$props) {
+  const $$sanitized_props = legacy_rest_props($$props, ["children", "$$slots", "$$events", "$$legacy"]);
+  const iconNode = [["path", { "d": "M5 12l14 0" }]];
+  Icon($$anchor, spread_props({ type: "outline", name: "minus" }, () => $$sanitized_props, {
+    get iconNode() {
+      return iconNode;
+    },
+    children: ($$anchor2, $$slotProps) => {
+      var fragment_1 = comment();
+      var node = first_child(fragment_1);
+      slot(node, $$props, "default", {});
+      append($$anchor2, fragment_1);
+    },
+    $$slots: { default: true }
+  }));
+}
+function Password($$anchor, $$props) {
+  const $$sanitized_props = legacy_rest_props($$props, ["children", "$$slots", "$$events", "$$legacy"]);
+  const iconNode = [
+    ["path", { "d": "M12 10v4" }],
+    ["path", { "d": "M10 13l4 -2" }],
+    ["path", { "d": "M10 11l4 2" }],
+    ["path", { "d": "M5 10v4" }],
+    ["path", { "d": "M3 13l4 -2" }],
+    ["path", { "d": "M3 11l4 2" }],
+    ["path", { "d": "M19 10v4" }],
+    ["path", { "d": "M17 13l4 -2" }],
+    ["path", { "d": "M17 11l4 2" }]
+  ];
+  Icon($$anchor, spread_props({ type: "outline", name: "password" }, () => $$sanitized_props, {
+    get iconNode() {
+      return iconNode;
+    },
+    children: ($$anchor2, $$slotProps) => {
+      var fragment_1 = comment();
+      var node = first_child(fragment_1);
+      slot(node, $$props, "default", {});
+      append($$anchor2, fragment_1);
+    },
+    $$slots: { default: true }
+  }));
+}
+function Plus($$anchor, $$props) {
+  const $$sanitized_props = legacy_rest_props($$props, ["children", "$$slots", "$$events", "$$legacy"]);
+  const iconNode = [
+    ["path", { "d": "M12 5l0 14" }],
+    ["path", { "d": "M5 12l14 0" }]
+  ];
+  Icon($$anchor, spread_props({ type: "outline", name: "plus" }, () => $$sanitized_props, {
+    get iconNode() {
+      return iconNode;
+    },
+    children: ($$anchor2, $$slotProps) => {
+      var fragment_1 = comment();
+      var node = first_child(fragment_1);
+      slot(node, $$props, "default", {});
+      append($$anchor2, fragment_1);
+    },
+    $$slots: { default: true }
+  }));
+}
+function Server_2($$anchor, $$props) {
+  const $$sanitized_props = legacy_rest_props($$props, ["children", "$$slots", "$$events", "$$legacy"]);
+  const iconNode = [
+    [
+      "path",
+      {
+        "d": "M3 7a3 3 0 0 1 3 -3h12a3 3 0 0 1 3 3v2a3 3 0 0 1 -3 3h-12a3 3 0 0 1 -3 -3v-2"
+      }
+    ],
+    [
+      "path",
+      {
+        "d": "M3 15a3 3 0 0 1 3 -3h12a3 3 0 0 1 3 3v2a3 3 0 0 1 -3 3h-12a3 3 0 0 1 -3 -3l0 -2"
+      }
+    ],
+    ["path", { "d": "M7 8l0 .01" }],
+    ["path", { "d": "M7 16l0 .01" }],
+    ["path", { "d": "M11 8h6" }],
+    ["path", { "d": "M11 16h6" }]
+  ];
+  Icon($$anchor, spread_props({ type: "outline", name: "server-2" }, () => $$sanitized_props, {
+    get iconNode() {
+      return iconNode;
+    },
+    children: ($$anchor2, $$slotProps) => {
+      var fragment_1 = comment();
+      var node = first_child(fragment_1);
+      slot(node, $$props, "default", {});
+      append($$anchor2, fragment_1);
+    },
+    $$slots: { default: true }
+  }));
+}
+function Server($$anchor, $$props) {
+  const $$sanitized_props = legacy_rest_props($$props, ["children", "$$slots", "$$events", "$$legacy"]);
+  const iconNode = [
+    [
+      "path",
+      {
+        "d": "M3 7a3 3 0 0 1 3 -3h12a3 3 0 0 1 3 3v2a3 3 0 0 1 -3 3h-12a3 3 0 0 1 -3 -3"
+      }
+    ],
+    [
+      "path",
+      {
+        "d": "M3 15a3 3 0 0 1 3 -3h12a3 3 0 0 1 3 3v2a3 3 0 0 1 -3 3h-12a3 3 0 0 1 -3 -3l0 -2"
+      }
+    ],
+    ["path", { "d": "M7 8l0 .01" }],
+    ["path", { "d": "M7 16l0 .01" }]
+  ];
+  Icon($$anchor, spread_props({ type: "outline", name: "server" }, () => $$sanitized_props, {
+    get iconNode() {
+      return iconNode;
+    },
+    children: ($$anchor2, $$slotProps) => {
+      var fragment_1 = comment();
+      var node = first_child(fragment_1);
+      slot(node, $$props, "default", {});
+      append($$anchor2, fragment_1);
+    },
+    $$slots: { default: true }
+  }));
+}
+function Test_pipe($$anchor, $$props) {
+  const $$sanitized_props = legacy_rest_props($$props, ["children", "$$slots", "$$events", "$$legacy"]);
+  const iconNode = [
+    [
+      "path",
+      {
+        "d": "M20 8.04l-12.122 12.124a2.857 2.857 0 1 1 -4.041 -4.04l12.122 -12.124"
+      }
+    ],
+    ["path", { "d": "M7 13h8" }],
+    ["path", { "d": "M19 15l1.5 1.6a2 2 0 1 1 -3 0l1.5 -1.6" }],
+    ["path", { "d": "M15 3l6 6" }]
+  ];
+  Icon($$anchor, spread_props({ type: "outline", name: "test-pipe" }, () => $$sanitized_props, {
+    get iconNode() {
+      return iconNode;
+    },
+    children: ($$anchor2, $$slotProps) => {
+      var fragment_1 = comment();
+      var node = first_child(fragment_1);
+      slot(node, $$props, "default", {});
+      append($$anchor2, fragment_1);
+    },
+    $$slots: { default: true }
+  }));
+}
+function Button_1($$anchor, $$props) {
+  let variant = prop($$props, "variant", 3, "primary"), size2 = prop($$props, "size", 3, "md"), loading = prop($$props, "loading", 3, false), disabled = prop($$props, "disabled", 3, false), rest = rest_props($$props, [
+    "$$slots",
+    "$$events",
+    "$$legacy",
+    "variant",
+    "size",
+    "loading",
+    "disabled",
+    "children"
+  ]);
+  const base = "flex gap-1 items-center justify-center rounded-xl font-medium transition-all select-none text-sm";
+  const variants = {
+    primary: "bg-primary text-primary-foreground hover:bg-primary/90 active:bg-primary/80",
+    secondary: "bg-muted text-muted-foreground hover:bg-muted/90 active:bg-muted/80",
+    ghost: "bg-transparent text-foreground hover:bg-muted active:bg-muted",
+    destructive: "bg-destructive text-destructive-foreground hover:bg-destructive/90 active:bg-destructive/80"
+  };
+  const sizes = {
+    sm: "px-2 h-6 text-xs",
+    md: "px-3 h-8 text-sm",
+    lg: "px-4 h-10 text-md",
+    icon: "flex items-center justify-center size-8 text-sm",
+    "icon-sm": "flex items-center justify-center size-6 text-xs"
+  };
+  const isDisabled = user_derived(() => disabled() || loading());
+  const disabledClass = user_derived(() => get$2(isDisabled) ? "opacity-60 cursor-not-allowed" : "");
+  const className = user_derived(() => `${base} ${variants[variant()]} ${sizes[size2()]} ${get$2(disabledClass)}`);
+  var fragment = comment();
+  var node = first_child(fragment);
+  component(node, () => Button, ($$anchor2, Button_Root) => {
+    Button_Root($$anchor2, spread_props(() => rest, {
+      get class() {
+        return get$2(className);
+      },
+      get disabled() {
+        return get$2(isDisabled);
+      },
+      children: ($$anchor3, $$slotProps) => {
+        var fragment_1 = comment();
+        var node_1 = first_child(fragment_1);
+        snippet(node_1, () => $$props.children ?? noop$1);
+        append($$anchor3, fragment_1);
+      },
+      $$slots: { default: true }
+    }));
+  });
+  append($$anchor, fragment);
+}
+const urlAlphabet = "useandom-26T198340PX75pxJACKVERYMINDBUSHWOLF_GQZbfghjklqvwyzrict";
+function nanoid(size2 = 21) {
+  let id = "";
+  let i = size2 | 0;
+  while (i--) {
+    id += urlAlphabet[Math.random() * 64 | 0];
+  }
+  return id;
+}
+const runtimeURL = window.location.origin + "/wails/runtime";
+const objectNames = Object.freeze({
+  Call: 0,
+  Clipboard: 1,
+  Application: 2,
+  Events: 3,
+  ContextMenu: 4,
+  Dialog: 5,
+  Window: 6,
+  Screens: 7,
+  System: 8,
+  Browser: 9,
+  CancelCall: 10,
+  IOS: 11
+});
+let clientId = nanoid();
+function newRuntimeCaller(object, windowName = "") {
+  return function(method, args = null) {
+    return runtimeCallWithID(object, method, windowName, args);
+  };
+}
+async function runtimeCallWithID(objectID, method, windowName, args) {
+  var _a2, _b;
+  let url = new URL(runtimeURL);
+  let body = {
+    object: objectID,
+    method
+  };
+  if (args !== null && args !== void 0) {
+    body.args = args;
+  }
+  let headers = {
+    ["x-wails-client-id"]: clientId,
+    ["Content-Type"]: "application/json"
+  };
+  if (windowName) {
+    headers["x-wails-window-name"] = windowName;
+  }
+  let response = await fetch(url, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(body)
+  });
+  if (!response.ok) {
+    throw new Error(await response.text());
+  }
+  if (((_b = (_a2 = response.headers.get("Content-Type")) === null || _a2 === void 0 ? void 0 : _a2.indexOf("application/json")) !== null && _b !== void 0 ? _b : -1) !== -1) {
+    return response.json();
+  } else {
+    return response.text();
+  }
+}
+newRuntimeCaller(objectNames.System);
+const _invoke = function() {
+  var _a2, _b, _c, _d, _e, _f;
+  try {
+    if ((_b = (_a2 = window.chrome) === null || _a2 === void 0 ? void 0 : _a2.webview) === null || _b === void 0 ? void 0 : _b.postMessage) {
+      return window.chrome.webview.postMessage.bind(window.chrome.webview);
+    } else if ((_e = (_d = (_c = window.webkit) === null || _c === void 0 ? void 0 : _c.messageHandlers) === null || _d === void 0 ? void 0 : _d["external"]) === null || _e === void 0 ? void 0 : _e.postMessage) {
+      return window.webkit.messageHandlers["external"].postMessage.bind(window.webkit.messageHandlers["external"]);
+    } else if ((_f = window.wails) === null || _f === void 0 ? void 0 : _f.invoke) {
+      return (msg) => window.wails.invoke(typeof msg === "string" ? msg : JSON.stringify(msg));
+    }
+  } catch (e) {
+  }
+  console.warn("\n%c⚠️ Browser Environment Detected %c\n\n%cOnly UI previews are available in the browser. For full functionality, please run the application in desktop mode.\nMore information at: https://v3.wails.io/learn/build/#using-a-browser-for-development\n", "background: #ffffff; color: #000000; font-weight: bold; padding: 4px 8px; border-radius: 4px; border: 2px solid #000000;", "background: transparent;", "color: #ffffff; font-style: italic; font-weight: bold;");
+  return null;
+}();
+function invoke(msg) {
+  _invoke === null || _invoke === void 0 ? void 0 : _invoke(msg);
+}
+function IsWindows() {
+  var _a2, _b;
+  return ((_b = (_a2 = window._wails) === null || _a2 === void 0 ? void 0 : _a2.environment) === null || _b === void 0 ? void 0 : _b.OS) === "windows";
+}
+function IsDebug() {
+  var _a2, _b;
+  return Boolean((_b = (_a2 = window._wails) === null || _a2 === void 0 ? void 0 : _a2.environment) === null || _b === void 0 ? void 0 : _b.Debug);
+}
+function canTrackButtons() {
+  return new MouseEvent("mousedown").buttons === 0;
+}
+function eventTarget(event2) {
+  var _a2;
+  if (event2.target instanceof HTMLElement) {
+    return event2.target;
+  } else if (!(event2.target instanceof HTMLElement) && event2.target instanceof Node) {
+    return (_a2 = event2.target.parentElement) !== null && _a2 !== void 0 ? _a2 : document.body;
+  } else {
+    return document.body;
+  }
+}
+document.addEventListener("DOMContentLoaded", () => {
+});
+window.addEventListener("contextmenu", contextMenuHandler);
+const call$1 = newRuntimeCaller(objectNames.ContextMenu);
+const ContextMenuOpen = 0;
+function openContextMenu(id, x, y, data) {
+  void call$1(ContextMenuOpen, { id, x, y, data });
+}
+function contextMenuHandler(event2) {
+  const target = eventTarget(event2);
+  const customContextMenu = window.getComputedStyle(target).getPropertyValue("--custom-contextmenu").trim();
+  if (customContextMenu) {
+    event2.preventDefault();
+    const data = window.getComputedStyle(target).getPropertyValue("--custom-contextmenu-data");
+    openContextMenu(customContextMenu, event2.clientX, event2.clientY, data);
+  } else {
+    processDefaultContextMenu(event2, target);
+  }
+}
+function processDefaultContextMenu(event2, target) {
+  if (IsDebug()) {
+    return;
+  }
+  switch (window.getComputedStyle(target).getPropertyValue("--default-contextmenu").trim()) {
+    case "show":
+      return;
+    case "hide":
+      event2.preventDefault();
+      return;
+  }
+  if (target.isContentEditable) {
+    return;
+  }
+  const selection = window.getSelection();
+  const hasSelection = selection && selection.toString().length > 0;
+  if (hasSelection) {
+    for (let i = 0; i < selection.rangeCount; i++) {
+      const range = selection.getRangeAt(i);
+      const rects = range.getClientRects();
+      for (let j = 0; j < rects.length; j++) {
+        const rect = rects[j];
+        if (document.elementFromPoint(rect.left, rect.top) === target) {
+          return;
+        }
+      }
+    }
+  }
+  if (target instanceof HTMLInputElement || target instanceof HTMLTextAreaElement) {
+    if (hasSelection || !target.readOnly && !target.disabled) {
+      return;
+    }
+  }
+  event2.preventDefault();
+}
+function GetFlag(key2) {
+  try {
+    return window._wails.flags[key2];
+  } catch (e) {
+    throw new Error("Unable to retrieve flag '" + key2 + "': " + e, { cause: e });
+  }
+}
+let canDrag = false;
+let dragging = false;
+let resizable = false;
+let canResize = false;
+let resizing = false;
+let resizeEdge = "";
+let defaultCursor = "auto";
+let buttons = 0;
+const buttonsTracked = canTrackButtons();
+window._wails = window._wails || {};
+window._wails.setResizable = (value) => {
+  resizable = value;
+  if (!resizable) {
+    canResize = resizing = false;
+    setResize();
+  }
+};
+let dragInitDone = false;
+function isMobile() {
+  var _a2, _b;
+  const os = (_b = (_a2 = window._wails) === null || _a2 === void 0 ? void 0 : _a2.environment) === null || _b === void 0 ? void 0 : _b.OS;
+  if (os === "ios" || os === "android")
+    return true;
+  const ua = navigator.userAgent || navigator.vendor || window.opera || "";
+  return /android|iphone|ipad|ipod|iemobile|wpdesktop/i.test(ua);
+}
+function tryInitDragHandlers() {
+  if (dragInitDone)
+    return;
+  if (isMobile())
+    return;
+  window.addEventListener("mousedown", update, { capture: true });
+  window.addEventListener("mousemove", update, { capture: true });
+  window.addEventListener("mouseup", update, { capture: true });
+  for (const ev of ["click", "contextmenu", "dblclick"]) {
+    window.addEventListener(ev, suppressEvent, { capture: true });
+  }
+  dragInitDone = true;
+}
+tryInitDragHandlers();
+document.addEventListener("DOMContentLoaded", tryInitDragHandlers, { once: true });
+let dragEnvPolls = 0;
+const dragEnvPoll = window.setInterval(() => {
+  if (dragInitDone) {
+    window.clearInterval(dragEnvPoll);
+    return;
+  }
+  tryInitDragHandlers();
+  if (++dragEnvPolls > 100) {
+    window.clearInterval(dragEnvPoll);
+  }
+}, 50);
+function suppressEvent(event2) {
+  if (dragging || resizing) {
+    event2.stopImmediatePropagation();
+    event2.stopPropagation();
+    event2.preventDefault();
+  }
+}
+const MouseDown = 0;
+const MouseUp = 1;
+const MouseMove = 2;
+function update(event2) {
+  let eventType, eventButtons = event2.buttons;
+  switch (event2.type) {
+    case "mousedown":
+      eventType = MouseDown;
+      if (!buttonsTracked) {
+        eventButtons = buttons | 1 << event2.button;
+      }
+      break;
+    case "mouseup":
+      eventType = MouseUp;
+      if (!buttonsTracked) {
+        eventButtons = buttons & ~(1 << event2.button);
+      }
+      break;
+    default:
+      eventType = MouseMove;
+      if (!buttonsTracked) {
+        eventButtons = buttons;
+      }
+      break;
+  }
+  let released = buttons & ~eventButtons;
+  let pressed = eventButtons & ~buttons;
+  buttons = eventButtons;
+  if (eventType === MouseDown && !(pressed & event2.button)) {
+    released |= 1 << event2.button;
+    pressed |= 1 << event2.button;
+  }
+  if (eventType !== MouseMove && resizing || dragging && (eventType === MouseDown || event2.button !== 0)) {
+    event2.stopImmediatePropagation();
+    event2.stopPropagation();
+    event2.preventDefault();
+  }
+  if (released & 1) {
+    primaryUp();
+  }
+  if (pressed & 1) {
+    primaryDown(event2);
+  }
+  if (eventType === MouseMove) {
+    onMouseMove(event2);
+  }
+}
+function primaryDown(event2) {
+  canDrag = false;
+  canResize = false;
+  if (!IsWindows()) {
+    if (event2.type === "mousedown" && event2.button === 0 && event2.detail !== 1) {
+      return;
+    }
+  }
+  if (resizeEdge) {
+    canResize = true;
+    return;
+  }
+  const target = eventTarget(event2);
+  const style = window.getComputedStyle(target);
+  canDrag = style.getPropertyValue("--wails-draggable").trim() === "drag" && (event2.offsetX - parseFloat(style.paddingLeft) < target.clientWidth && event2.offsetY - parseFloat(style.paddingTop) < target.clientHeight);
+}
+function primaryUp(event2) {
+  canDrag = false;
+  dragging = false;
+  canResize = false;
+  resizing = false;
+}
+const cursorForEdge = Object.freeze({
+  "se-resize": "nwse-resize",
+  "sw-resize": "nesw-resize",
+  "nw-resize": "nwse-resize",
+  "ne-resize": "nesw-resize",
+  "w-resize": "ew-resize",
+  "n-resize": "ns-resize",
+  "s-resize": "ns-resize",
+  "e-resize": "ew-resize"
+});
+function setResize(edge) {
+  if (edge) {
+    if (!resizeEdge) {
+      defaultCursor = document.body.style.cursor;
+    }
+    document.body.style.cursor = cursorForEdge[edge];
+  } else if (!edge && resizeEdge) {
+    document.body.style.cursor = defaultCursor;
+  }
+  resizeEdge = edge || "";
+}
+function onMouseMove(event2) {
+  if (canResize && resizeEdge) {
+    resizing = true;
+    invoke("wails:resize:" + resizeEdge);
+  } else if (canDrag) {
+    dragging = true;
+    invoke("wails:drag");
+  }
+  if (dragging || resizing) {
+    canDrag = canResize = false;
+    return;
+  }
+  if (!resizable || !IsWindows()) {
+    if (resizeEdge) {
+      setResize();
+    }
+    return;
+  }
+  const resizeHandleHeight = GetFlag("system.resizeHandleHeight") || 5;
+  const resizeHandleWidth = GetFlag("system.resizeHandleWidth") || 5;
+  const cornerExtra = GetFlag("resizeCornerExtra") || 10;
+  const rightBorder = window.outerWidth - event2.clientX < resizeHandleWidth;
+  const leftBorder = event2.clientX < resizeHandleWidth;
+  const topBorder = event2.clientY < resizeHandleHeight;
+  const bottomBorder = window.outerHeight - event2.clientY < resizeHandleHeight;
+  const rightCorner = window.outerWidth - event2.clientX < resizeHandleWidth + cornerExtra;
+  const leftCorner = event2.clientX < resizeHandleWidth + cornerExtra;
+  const topCorner = event2.clientY < resizeHandleHeight + cornerExtra;
+  const bottomCorner = window.outerHeight - event2.clientY < resizeHandleHeight + cornerExtra;
+  if (!leftCorner && !topCorner && !bottomCorner && !rightCorner) {
+    setResize();
+  } else if (rightCorner && bottomCorner)
+    setResize("se-resize");
+  else if (leftCorner && bottomCorner)
+    setResize("sw-resize");
+  else if (leftCorner && topCorner)
+    setResize("nw-resize");
+  else if (topCorner && rightCorner)
+    setResize("ne-resize");
+  else if (leftBorder)
+    setResize("w-resize");
+  else if (topBorder)
+    setResize("n-resize");
+  else if (bottomBorder)
+    setResize("s-resize");
+  else if (rightBorder)
+    setResize("e-resize");
+  else
+    setResize();
+}
+var fnToStr = Function.prototype.toString;
+var reflectApply = typeof Reflect === "object" && Reflect !== null && Reflect.apply;
+var badArrayLike;
+var isCallableMarker;
+if (typeof reflectApply === "function" && typeof Object.defineProperty === "function") {
+  try {
+    badArrayLike = Object.defineProperty({}, "length", {
+      get: function() {
+        throw isCallableMarker;
+      }
+    });
+    isCallableMarker = {};
+    reflectApply(function() {
+      throw 42;
+    }, null, badArrayLike);
+  } catch (_) {
+    if (_ !== isCallableMarker) {
+      reflectApply = null;
+    }
+  }
+} else {
+  reflectApply = null;
+}
+var constructorRegex = /^\s*class\b/;
+var isES6ClassFn = function isES6ClassFunction(value) {
+  try {
+    var fnStr = fnToStr.call(value);
+    return constructorRegex.test(fnStr);
+  } catch (e) {
+    return false;
+  }
+};
+var tryFunctionObject = function tryFunctionToStr(value) {
+  try {
+    if (isES6ClassFn(value)) {
+      return false;
+    }
+    fnToStr.call(value);
+    return true;
+  } catch (e) {
+    return false;
+  }
+};
+var toStr = Object.prototype.toString;
+var objectClass = "[object Object]";
+var fnClass = "[object Function]";
+var genClass = "[object GeneratorFunction]";
+var ddaClass = "[object HTMLAllCollection]";
+var ddaClass2 = "[object HTML document.all class]";
+var ddaClass3 = "[object HTMLCollection]";
+var hasToStringTag = typeof Symbol === "function" && !!Symbol.toStringTag;
+var isIE68 = !(0 in [,]);
+var isDDA = function isDocumentDotAll() {
+  return false;
+};
+if (typeof document === "object") {
+  var all = document.all;
+  if (toStr.call(all) === toStr.call(document.all)) {
+    isDDA = function isDocumentDotAll2(value) {
+      if ((isIE68 || !value) && (typeof value === "undefined" || typeof value === "object")) {
+        try {
+          var str = toStr.call(value);
+          return (str === ddaClass || str === ddaClass2 || str === ddaClass3 || str === objectClass) && value("") == null;
+        } catch (e) {
+        }
+      }
+      return false;
+    };
+  }
+}
+function isCallableRefApply(value) {
+  if (isDDA(value)) {
+    return true;
+  }
+  if (!value) {
+    return false;
+  }
+  if (typeof value !== "function" && typeof value !== "object") {
+    return false;
+  }
+  try {
+    reflectApply(value, null, badArrayLike);
+  } catch (e) {
+    if (e !== isCallableMarker) {
+      return false;
+    }
+  }
+  return !isES6ClassFn(value) && tryFunctionObject(value);
+}
+function isCallableNoRefApply(value) {
+  if (isDDA(value)) {
+    return true;
+  }
+  if (!value) {
+    return false;
+  }
+  if (typeof value !== "function" && typeof value !== "object") {
+    return false;
+  }
+  if (hasToStringTag) {
+    return tryFunctionObject(value);
+  }
+  if (isES6ClassFn(value)) {
+    return false;
+  }
+  var strClass = toStr.call(value);
+  if (strClass !== fnClass && strClass !== genClass && !/^\[object HTML/.test(strClass)) {
+    return false;
+  }
+  return tryFunctionObject(value);
+}
+const isCallable = reflectApply ? isCallableRefApply : isCallableNoRefApply;
+var _a;
+class CancelError extends Error {
+  /**
+   * Constructs a new `CancelError` instance.
+   * @param message - The error message.
+   * @param options - Options to be forwarded to the Error constructor.
+   */
+  constructor(message, options) {
+    super(message, options);
+    this.name = "CancelError";
+  }
+}
+class CancelledRejectionError extends Error {
+  /**
+   * Constructs a new `CancelledRejectionError` instance.
+   * @param promise - The promise that caused the error originally.
+   * @param reason - The rejection reason.
+   * @param info - An optional informative message specifying the circumstances in which the error was thrown.
+   *               Defaults to the string `"Unhandled rejection in cancelled promise."`.
+   */
+  constructor(promise, reason, info) {
+    super((info !== null && info !== void 0 ? info : "Unhandled rejection in cancelled promise.") + " Reason: " + errorMessage(reason), { cause: reason });
+    this.promise = promise;
+    this.name = "CancelledRejectionError";
+  }
+}
+const barrierSym = Symbol("barrier");
+const cancelImplSym = Symbol("cancelImpl");
+const species = (_a = Symbol.species) !== null && _a !== void 0 ? _a : Symbol("speciesPolyfill");
+class CancellablePromise extends Promise {
+  /**
+   * Creates a new `CancellablePromise`.
+   *
+   * @param executor - A callback used to initialize the promise. This callback is passed two arguments:
+   *                   a `resolve` callback used to resolve the promise with a value
+   *                   or the result of another promise (possibly cancellable),
+   *                   and a `reject` callback used to reject the promise with a provided reason or error.
+   *                   If the value provided to the `resolve` callback is a thenable _and_ cancellable object
+   *                   (it has a `then` _and_ a `cancel` method),
+   *                   cancellation requests will be forwarded to that object and the oncancelled will not be invoked anymore.
+   *                   If any one of the two callbacks is called _after_ the promise has been cancelled,
+   *                   the provided values will be cancelled and resolved as usual,
+   *                   but their results will be discarded.
+   *                   However, if the resolution process ultimately ends up in a rejection
+   *                   that is not due to cancellation, the rejection reason
+   *                   will be wrapped in a {@link CancelledRejectionError}
+   *                   and bubbled up as an unhandled rejection.
+   * @param oncancelled - It is the caller's responsibility to ensure that any operation
+   *                      started by the executor is properly halted upon cancellation.
+   *                      This optional callback can be used to that purpose.
+   *                      It will be called _synchronously_ with a cancellation cause
+   *                      when cancellation is requested, _after_ the promise has already rejected
+   *                      with a {@link CancelError}, but _before_
+   *                      any {@link then}/{@link catch}/{@link finally} callback runs.
+   *                      If the callback returns a thenable, the promise returned from {@link cancel}
+   *                      will only fulfill after the former has settled.
+   *                      Unhandled exceptions or rejections from the callback will be wrapped
+   *                      in a {@link CancelledRejectionError} and bubbled up as unhandled rejections.
+   *                      If the `resolve` callback is called before cancellation with a cancellable promise,
+   *                      cancellation requests on this promise will be diverted to that promise,
+   *                      and the original `oncancelled` callback will be discarded.
+   */
+  constructor(executor, oncancelled) {
+    let resolve;
+    let reject;
+    super((res, rej) => {
+      resolve = res;
+      reject = rej;
+    });
+    if (this.constructor[species] !== Promise) {
+      throw new TypeError("CancellablePromise does not support transparent subclassing. Please refrain from overriding the [Symbol.species] static property.");
+    }
+    let promise = {
+      promise: this,
+      resolve,
+      reject,
+      get oncancelled() {
+        return oncancelled !== null && oncancelled !== void 0 ? oncancelled : null;
+      },
+      set oncancelled(cb) {
+        oncancelled = cb !== null && cb !== void 0 ? cb : void 0;
+      }
+    };
+    const state2 = {
+      get root() {
+        return state2;
+      },
+      resolving: false,
+      settled: false
+    };
+    void Object.defineProperties(this, {
+      [barrierSym]: {
+        configurable: false,
+        enumerable: false,
+        writable: true,
+        value: null
+      },
+      [cancelImplSym]: {
+        configurable: false,
+        enumerable: false,
+        writable: false,
+        value: cancellerFor(promise, state2)
+      }
+    });
+    const rejector = rejectorFor(promise, state2);
+    try {
+      executor(resolverFor(promise, state2), rejector);
+    } catch (err) {
+      if (state2.resolving) {
+        console.log("Unhandled exception in CancellablePromise executor.", err);
+      } else {
+        rejector(err);
+      }
+    }
+  }
+  /**
+   * Cancels immediately the execution of the operation associated with this promise.
+   * The promise rejects with a {@link CancelError} instance as reason,
+   * with the {@link CancelError#cause} property set to the given argument, if any.
+   *
+   * Has no effect if called after the promise has already settled;
+   * repeated calls in particular are safe, but only the first one
+   * will set the cancellation cause.
+   *
+   * The `CancelError` exception _need not_ be handled explicitly _on the promises that are being cancelled:_
+   * cancelling a promise with no attached rejection handler does not trigger an unhandled rejection event.
+   * Therefore, the following idioms are all equally correct:
+   * ```ts
+   * new CancellablePromise((resolve, reject) => { ... }).cancel();
+   * new CancellablePromise((resolve, reject) => { ... }).then(...).cancel();
+   * new CancellablePromise((resolve, reject) => { ... }).then(...).catch(...).cancel();
+   * ```
+   * Whenever some cancelled promise in a chain rejects with a `CancelError`
+   * with the same cancellation cause as itself, the error will be discarded silently.
+   * However, the `CancelError` _will still be delivered_ to all attached rejection handlers
+   * added by {@link then} and related methods:
+   * ```ts
+   * let cancellable = new CancellablePromise((resolve, reject) => { ... });
+   * cancellable.then(() => { ... }).catch(console.log);
+   * cancellable.cancel(); // A CancelError is printed to the console.
+   * ```
+   * If the `CancelError` is not handled downstream by the time it reaches
+   * a _non-cancelled_ promise, it _will_ trigger an unhandled rejection event,
+   * just like normal rejections would:
+   * ```ts
+   * let cancellable = new CancellablePromise((resolve, reject) => { ... });
+   * let chained = cancellable.then(() => { ... }).then(() => { ... }); // No catch...
+   * cancellable.cancel(); // Unhandled rejection event on chained!
+   * ```
+   * Therefore, it is important to either cancel whole promise chains from their tail,
+   * as shown in the correct idioms above, or take care of handling errors everywhere.
+   *
+   * @returns A cancellable promise that _fulfills_ after the cancel callback (if any)
+   * and all handlers attached up to the call to cancel have run.
+   * If the cancel callback returns a thenable, the promise returned by `cancel`
+   * will also wait for that thenable to settle.
+   * This enables callers to wait for the cancelled operation to terminate
+   * without being forced to handle potential errors at the call site.
+   * ```ts
+   * cancellable.cancel().then(() => {
+   *     // Cleanup finished, it's safe to do something else.
+   * }, (err) => {
+   *     // Unreachable: the promise returned from cancel will never reject.
+   * });
+   * ```
+   * Note that the returned promise will _not_ handle implicitly any rejection
+   * that might have occurred already in the cancelled chain.
+   * It will just track whether registered handlers have been executed or not.
+   * Therefore, unhandled rejections will never be silently handled by calling cancel.
+   */
+  cancel(cause) {
+    return new CancellablePromise((resolve) => {
+      Promise.all([
+        this[cancelImplSym](new CancelError("Promise cancelled.", { cause })),
+        currentBarrier(this)
+      ]).then(() => resolve(), () => resolve());
+    });
+  }
+  /**
+   * Binds promise cancellation to the abort event of the given {@link AbortSignal}.
+   * If the signal has already aborted, the promise will be cancelled immediately.
+   * When either condition is verified, the cancellation cause will be set
+   * to the signal's abort reason (see {@link AbortSignal#reason}).
+   *
+   * Has no effect if called (or if the signal aborts) _after_ the promise has already settled.
+   * Only the first signal to abort will set the cancellation cause.
+   *
+   * For more details about the cancellation process,
+   * see {@link cancel} and the `CancellablePromise` constructor.
+   *
+   * This method enables `await`ing cancellable promises without having
+   * to store them for future cancellation, e.g.:
+   * ```ts
+   * await longRunningOperation().cancelOn(signal);
+   * ```
+   * instead of:
+   * ```ts
+   * let promiseToBeCancelled = longRunningOperation();
+   * await promiseToBeCancelled;
+   * ```
+   *
+   * @returns This promise, for method chaining.
+   */
+  cancelOn(signal) {
+    if (signal.aborted) {
+      void this.cancel(signal.reason);
+    } else {
+      signal.addEventListener("abort", () => void this.cancel(signal.reason), { capture: true });
+    }
+    return this;
+  }
+  /**
+   * Attaches callbacks for the resolution and/or rejection of the `CancellablePromise`.
+   *
+   * The optional `oncancelled` argument will be invoked when the returned promise is cancelled,
+   * with the same semantics as the `oncancelled` argument of the constructor.
+   * When the parent promise rejects or is cancelled, the `onrejected` callback will run,
+   * _even after the returned promise has been cancelled:_
+   * in that case, should it reject or throw, the reason will be wrapped
+   * in a {@link CancelledRejectionError} and bubbled up as an unhandled rejection.
+   *
+   * @param onfulfilled The callback to execute when the Promise is resolved.
+   * @param onrejected The callback to execute when the Promise is rejected.
+   * @returns A `CancellablePromise` for the completion of whichever callback is executed.
+   * The returned promise is hooked up to propagate cancellation requests up the chain, but not down:
+   *
+   *   - if the parent promise is cancelled, the `onrejected` handler will be invoked with a `CancelError`
+   *     and the returned promise _will resolve regularly_ with its result;
+   *   - conversely, if the returned promise is cancelled, _the parent promise is cancelled too;_
+   *     the `onrejected` handler will still be invoked with the parent's `CancelError`,
+   *     but its result will be discarded
+   *     and the returned promise will reject with a `CancelError` as well.
+   *
+   * The promise returned from {@link cancel} will fulfill only after all attached handlers
+   * up the entire promise chain have been run.
+   *
+   * If either callback returns a cancellable promise,
+   * cancellation requests will be diverted to it,
+   * and the specified `oncancelled` callback will be discarded.
+   */
+  then(onfulfilled, onrejected, oncancelled) {
+    if (!(this instanceof CancellablePromise)) {
+      throw new TypeError("CancellablePromise.prototype.then called on an invalid object.");
+    }
+    if (!isCallable(onfulfilled)) {
+      onfulfilled = identity;
+    }
+    if (!isCallable(onrejected)) {
+      onrejected = thrower;
+    }
+    if (onfulfilled === identity && onrejected == thrower) {
+      return new CancellablePromise((resolve) => resolve(this));
+    }
+    const barrier = {};
+    this[barrierSym] = barrier;
+    return new CancellablePromise((resolve, reject) => {
+      void super.then((value) => {
+        var _a2;
+        if (this[barrierSym] === barrier) {
+          this[barrierSym] = null;
+        }
+        (_a2 = barrier.resolve) === null || _a2 === void 0 ? void 0 : _a2.call(barrier);
+        try {
+          resolve(onfulfilled(value));
+        } catch (err) {
+          reject(err);
+        }
+      }, (reason) => {
+        var _a2;
+        if (this[barrierSym] === barrier) {
+          this[barrierSym] = null;
+        }
+        (_a2 = barrier.resolve) === null || _a2 === void 0 ? void 0 : _a2.call(barrier);
+        try {
+          resolve(onrejected(reason));
+        } catch (err) {
+          reject(err);
+        }
+      });
+    }, async (cause) => {
+      try {
+        return oncancelled === null || oncancelled === void 0 ? void 0 : oncancelled(cause);
+      } finally {
+        await this.cancel(cause);
+      }
+    });
+  }
+  /**
+   * Attaches a callback for only the rejection of the Promise.
+   *
+   * The optional `oncancelled` argument will be invoked when the returned promise is cancelled,
+   * with the same semantics as the `oncancelled` argument of the constructor.
+   * When the parent promise rejects or is cancelled, the `onrejected` callback will run,
+   * _even after the returned promise has been cancelled:_
+   * in that case, should it reject or throw, the reason will be wrapped
+   * in a {@link CancelledRejectionError} and bubbled up as an unhandled rejection.
+   *
+   * It is equivalent to
+   * ```ts
+   * cancellablePromise.then(undefined, onrejected, oncancelled);
+   * ```
+   * and the same caveats apply.
+   *
+   * @returns A Promise for the completion of the callback.
+   * Cancellation requests on the returned promise
+   * will propagate up the chain to the parent promise,
+   * but not in the other direction.
+   *
+   * The promise returned from {@link cancel} will fulfill only after all attached handlers
+   * up the entire promise chain have been run.
+   *
+   * If `onrejected` returns a cancellable promise,
+   * cancellation requests will be diverted to it,
+   * and the specified `oncancelled` callback will be discarded.
+   * See {@link then} for more details.
+   */
+  catch(onrejected, oncancelled) {
+    return this.then(void 0, onrejected, oncancelled);
+  }
+  /**
+   * Attaches a callback that is invoked when the CancellablePromise is settled (fulfilled or rejected). The
+   * resolved value cannot be accessed or modified from the callback.
+   * The returned promise will settle in the same state as the original one
+   * after the provided callback has completed execution,
+   * unless the callback throws or returns a rejecting promise,
+   * in which case the returned promise will reject as well.
+   *
+   * The optional `oncancelled` argument will be invoked when the returned promise is cancelled,
+   * with the same semantics as the `oncancelled` argument of the constructor.
+   * Once the parent promise settles, the `onfinally` callback will run,
+   * _even after the returned promise has been cancelled:_
+   * in that case, should it reject or throw, the reason will be wrapped
+   * in a {@link CancelledRejectionError} and bubbled up as an unhandled rejection.
+   *
+   * This method is implemented in terms of {@link then} and the same caveats apply.
+   * It is polyfilled, hence available in every OS/webview version.
+   *
+   * @returns A Promise for the completion of the callback.
+   * Cancellation requests on the returned promise
+   * will propagate up the chain to the parent promise,
+   * but not in the other direction.
+   *
+   * The promise returned from {@link cancel} will fulfill only after all attached handlers
+   * up the entire promise chain have been run.
+   *
+   * If `onfinally` returns a cancellable promise,
+   * cancellation requests will be diverted to it,
+   * and the specified `oncancelled` callback will be discarded.
+   * See {@link then} for more details.
+   */
+  finally(onfinally, oncancelled) {
+    if (!(this instanceof CancellablePromise)) {
+      throw new TypeError("CancellablePromise.prototype.finally called on an invalid object.");
+    }
+    if (!isCallable(onfinally)) {
+      return this.then(onfinally, onfinally, oncancelled);
+    }
+    return this.then((value) => CancellablePromise.resolve(onfinally()).then(() => value), (reason) => CancellablePromise.resolve(onfinally()).then(() => {
+      throw reason;
+    }), oncancelled);
+  }
+  /**
+   * We use the `[Symbol.species]` static property, if available,
+   * to disable the built-in automatic subclassing features from {@link Promise}.
+   * It is critical for performance reasons that extenders do not override this.
+   * Once the proposal at https://github.com/tc39/proposal-rm-builtin-subclassing
+   * is either accepted or retired, this implementation will have to be revised accordingly.
+   *
+   * @ignore
+   * @internal
+   */
+  static get [species]() {
+    return Promise;
+  }
+  static all(values) {
+    let collected = Array.from(values);
+    const promise = collected.length === 0 ? CancellablePromise.resolve(collected) : new CancellablePromise((resolve, reject) => {
+      void Promise.all(collected).then(resolve, reject);
+    }, (cause) => cancelAll(promise, collected, cause));
+    return promise;
+  }
+  static allSettled(values) {
+    let collected = Array.from(values);
+    const promise = collected.length === 0 ? CancellablePromise.resolve(collected) : new CancellablePromise((resolve, reject) => {
+      void Promise.allSettled(collected).then(resolve, reject);
+    }, (cause) => cancelAll(promise, collected, cause));
+    return promise;
+  }
+  static any(values) {
+    let collected = Array.from(values);
+    const promise = collected.length === 0 ? CancellablePromise.resolve(collected) : new CancellablePromise((resolve, reject) => {
+      void Promise.any(collected).then(resolve, reject);
+    }, (cause) => cancelAll(promise, collected, cause));
+    return promise;
+  }
+  static race(values) {
+    let collected = Array.from(values);
+    const promise = new CancellablePromise((resolve, reject) => {
+      void Promise.race(collected).then(resolve, reject);
+    }, (cause) => cancelAll(promise, collected, cause));
+    return promise;
+  }
+  /**
+   * Creates a new cancelled CancellablePromise for the provided cause.
+   *
+   * @group Static Methods
+   */
+  static cancel(cause) {
+    const p = new CancellablePromise(() => {
+    });
+    p.cancel(cause);
+    return p;
+  }
+  /**
+   * Creates a new CancellablePromise that cancels
+   * after the specified timeout, with the provided cause.
+   *
+   * If the {@link AbortSignal.timeout} factory method is available,
+   * it is used to base the timeout on _active_ time rather than _elapsed_ time.
+   * Otherwise, `timeout` falls back to {@link setTimeout}.
+   *
+   * @group Static Methods
+   */
+  static timeout(milliseconds, cause) {
+    const promise = new CancellablePromise(() => {
+    });
+    if (AbortSignal && typeof AbortSignal === "function" && AbortSignal.timeout && typeof AbortSignal.timeout === "function") {
+      AbortSignal.timeout(milliseconds).addEventListener("abort", () => void promise.cancel(cause));
+    } else {
+      setTimeout(() => void promise.cancel(cause), milliseconds);
+    }
+    return promise;
+  }
+  static sleep(milliseconds, value) {
+    return new CancellablePromise((resolve) => {
+      setTimeout(() => resolve(value), milliseconds);
+    });
+  }
+  /**
+   * Creates a new rejected CancellablePromise for the provided reason.
+   *
+   * @group Static Methods
+   */
+  static reject(reason) {
+    return new CancellablePromise((_, reject) => reject(reason));
+  }
+  static resolve(value) {
+    if (value instanceof CancellablePromise) {
+      return value;
+    }
+    return new CancellablePromise((resolve) => resolve(value));
+  }
+  /**
+   * Creates a new CancellablePromise and returns it in an object, along with its resolve and reject functions
+   * and a getter/setter for the cancellation callback.
+   *
+   * This method is polyfilled, hence available in every OS/webview version.
+   *
+   * @group Static Methods
+   */
+  static withResolvers() {
+    let result = { oncancelled: null };
+    result.promise = new CancellablePromise((resolve, reject) => {
+      result.resolve = resolve;
+      result.reject = reject;
+    }, (cause) => {
+      var _a2;
+      (_a2 = result.oncancelled) === null || _a2 === void 0 ? void 0 : _a2.call(result, cause);
+    });
+    return result;
+  }
+}
+function cancellerFor(promise, state2) {
+  let cancellationPromise = void 0;
+  return (reason) => {
+    if (!state2.settled) {
+      state2.settled = true;
+      state2.reason = reason;
+      promise.reject(reason);
+      void Promise.prototype.then.call(promise.promise, void 0, (err) => {
+        if (err !== reason) {
+          throw err;
+        }
+      });
+    }
+    if (!state2.reason || !promise.oncancelled) {
+      return;
+    }
+    cancellationPromise = new Promise((resolve) => {
+      try {
+        resolve(promise.oncancelled(state2.reason.cause));
+      } catch (err) {
+        Promise.reject(new CancelledRejectionError(promise.promise, err, "Unhandled exception in oncancelled callback."));
+      }
+    }).catch((reason2) => {
+      Promise.reject(new CancelledRejectionError(promise.promise, reason2, "Unhandled rejection in oncancelled callback."));
+    });
+    promise.oncancelled = null;
+    return cancellationPromise;
+  };
+}
+function resolverFor(promise, state2) {
+  return (value) => {
+    if (state2.resolving) {
+      return;
+    }
+    state2.resolving = true;
+    if (value === promise.promise) {
+      if (state2.settled) {
+        return;
+      }
+      state2.settled = true;
+      promise.reject(new TypeError("A promise cannot be resolved with itself."));
+      return;
+    }
+    if (value != null && (typeof value === "object" || typeof value === "function")) {
+      let then;
+      try {
+        then = value.then;
+      } catch (err) {
+        state2.settled = true;
+        promise.reject(err);
+        return;
+      }
+      if (isCallable(then)) {
+        try {
+          let cancel = value.cancel;
+          if (isCallable(cancel)) {
+            const oncancelled = (cause) => {
+              Reflect.apply(cancel, value, [cause]);
+            };
+            if (state2.reason) {
+              void cancellerFor(Object.assign(Object.assign({}, promise), { oncancelled }), state2)(state2.reason);
+            } else {
+              promise.oncancelled = oncancelled;
+            }
+          }
+        } catch (_a2) {
+        }
+        const newState = {
+          root: state2.root,
+          resolving: false,
+          get settled() {
+            return this.root.settled;
+          },
+          set settled(value2) {
+            this.root.settled = value2;
+          },
+          get reason() {
+            return this.root.reason;
+          }
+        };
+        const rejector = rejectorFor(promise, newState);
+        try {
+          Reflect.apply(then, value, [resolverFor(promise, newState), rejector]);
+        } catch (err) {
+          rejector(err);
+        }
+        return;
+      }
+    }
+    if (state2.settled) {
+      return;
+    }
+    state2.settled = true;
+    promise.resolve(value);
+  };
+}
+function rejectorFor(promise, state2) {
+  return (reason) => {
+    if (state2.resolving) {
+      return;
+    }
+    state2.resolving = true;
+    if (state2.settled) {
+      try {
+        if (reason instanceof CancelError && state2.reason instanceof CancelError && Object.is(reason.cause, state2.reason.cause)) {
+          return;
+        }
+      } catch (_a2) {
+      }
+      void Promise.reject(new CancelledRejectionError(promise.promise, reason));
+    } else {
+      state2.settled = true;
+      promise.reject(reason);
+    }
+  };
+}
+function cancelAll(parent, values, cause) {
+  const results = [];
+  for (const value of values) {
+    let cancel;
+    try {
+      if (!isCallable(value.then)) {
+        continue;
+      }
+      cancel = value.cancel;
+      if (!isCallable(cancel)) {
+        continue;
+      }
+    } catch (_a2) {
+      continue;
+    }
+    let result;
+    try {
+      result = Reflect.apply(cancel, value, [cause]);
+    } catch (err) {
+      Promise.reject(new CancelledRejectionError(parent, err, "Unhandled exception in cancel method."));
+      continue;
+    }
+    if (!result) {
+      continue;
+    }
+    results.push((result instanceof Promise ? result : Promise.resolve(result)).catch((reason) => {
+      Promise.reject(new CancelledRejectionError(parent, reason, "Unhandled rejection in cancel method."));
+    }));
+  }
+  return Promise.all(results);
+}
+function identity(x) {
+  return x;
+}
+function thrower(reason) {
+  throw reason;
+}
+function errorMessage(err) {
+  try {
+    if (err instanceof Error || typeof err !== "object" || err.toString !== Object.prototype.toString) {
+      return "" + err;
+    }
+  } catch (_a2) {
+  }
+  try {
+    return JSON.stringify(err);
+  } catch (_b) {
+  }
+  try {
+    return Object.prototype.toString.call(err);
+  } catch (_c) {
+  }
+  return "<could not convert error to string>";
+}
+function currentBarrier(promise) {
+  var _a2;
+  let pwr = (_a2 = promise[barrierSym]) !== null && _a2 !== void 0 ? _a2 : {};
+  if (!("promise" in pwr)) {
+    Object.assign(pwr, promiseWithResolvers());
+  }
+  if (promise[barrierSym] == null) {
+    pwr.resolve();
+    promise[barrierSym] = pwr;
+  }
+  return pwr.promise;
+}
+let promiseWithResolvers = Promise.withResolvers;
+if (promiseWithResolvers && typeof promiseWithResolvers === "function") {
+  promiseWithResolvers = promiseWithResolvers.bind(Promise);
+} else {
+  promiseWithResolvers = function() {
+    let resolve;
+    let reject;
+    const promise = new Promise((res, rej) => {
+      resolve = res;
+      reject = rej;
+    });
+    return { promise, resolve, reject };
+  };
+}
+window._wails = window._wails || {};
+const call = newRuntimeCaller(objectNames.Call);
+const cancelCall = newRuntimeCaller(objectNames.CancelCall);
+const callResponses = /* @__PURE__ */ new Map();
+const CallBinding = 0;
+const CancelMethod = 0;
+function generateID() {
+  let result;
+  do {
+    result = nanoid();
+  } while (callResponses.has(result));
+  return result;
+}
+function Call(options) {
+  const id = generateID();
+  const result = CancellablePromise.withResolvers();
+  callResponses.set(id, { resolve: result.resolve, reject: result.reject });
+  const request = call(CallBinding, Object.assign({ "call-id": id }, options));
+  let running = true;
+  request.then((res) => {
+    running = false;
+    callResponses.delete(id);
+    result.resolve(res);
+  }, (err) => {
+    running = false;
+    callResponses.delete(id);
+    result.reject(err);
+  });
+  const cancel = () => {
+    callResponses.delete(id);
+    return cancelCall(CancelMethod, { "call-id": id }).catch((err) => {
+      console.error("Error while requesting binding call cancellation:", err);
+    });
+  };
+  result.oncancelled = () => {
+    if (running) {
+      return cancel();
+    } else {
+      return request.then(cancel);
+    }
+  };
+  return result.promise;
+}
+function ByID(methodID, ...args) {
+  return Call({ methodID, args });
+}
+const DROP_TARGET_ATTRIBUTE = "data-file-drop-target";
+const DROP_TARGET_ACTIVE_CLASS = "file-drop-target-active";
+let currentDropTarget = null;
+const PositionMethod = 0;
+const CenterMethod = 1;
+const CloseMethod = 2;
+const DisableSizeConstraintsMethod = 3;
+const EnableSizeConstraintsMethod = 4;
+const FocusMethod = 5;
+const ForceReloadMethod = 6;
+const FullscreenMethod = 7;
+const GetScreenMethod = 8;
+const GetZoomMethod = 9;
+const HeightMethod = 10;
+const HideMethod = 11;
+const IsFocusedMethod = 12;
+const IsFullscreenMethod = 13;
+const IsMaximisedMethod = 14;
+const IsMinimisedMethod = 15;
+const MaximiseMethod = 16;
+const MinimiseMethod = 17;
+const NameMethod = 18;
+const OpenDevToolsMethod = 19;
+const RelativePositionMethod = 20;
+const ReloadMethod = 21;
+const ResizableMethod = 22;
+const RestoreMethod = 23;
+const SetPositionMethod = 24;
+const SetAlwaysOnTopMethod = 25;
+const SetBackgroundColourMethod = 26;
+const SetFramelessMethod = 27;
+const SetFullscreenButtonEnabledMethod = 28;
+const SetMaxSizeMethod = 29;
+const SetMinSizeMethod = 30;
+const SetRelativePositionMethod = 31;
+const SetResizableMethod = 32;
+const SetSizeMethod = 33;
+const SetTitleMethod = 34;
+const SetZoomMethod = 35;
+const ShowMethod = 36;
+const SizeMethod = 37;
+const ToggleFullscreenMethod = 38;
+const ToggleMaximiseMethod = 39;
+const ToggleFramelessMethod = 40;
+const UnFullscreenMethod = 41;
+const UnMaximiseMethod = 42;
+const UnMinimiseMethod = 43;
+const WidthMethod = 44;
+const ZoomMethod = 45;
+const ZoomInMethod = 46;
+const ZoomOutMethod = 47;
+const ZoomResetMethod = 48;
+const SnapAssistMethod = 49;
+const FilesDropped = 50;
+const PrintMethod = 51;
+function getDropTargetElement(element2) {
+  if (!element2) {
+    return null;
+  }
+  return element2.closest(`[${DROP_TARGET_ATTRIBUTE}]`);
+}
+function canResolveFilePaths() {
+  var _a2, _b, _c, _d;
+  if (((_b = (_a2 = window.chrome) === null || _a2 === void 0 ? void 0 : _a2.webview) === null || _b === void 0 ? void 0 : _b.postMessageWithAdditionalObjects) == null) {
+    return false;
+  }
+  return ((_d = (_c = window._wails) === null || _c === void 0 ? void 0 : _c.flags) === null || _d === void 0 ? void 0 : _d.enableFileDrop) === true;
+}
+function resolveFilePaths(x, y, files) {
+  var _a2, _b;
+  if ((_b = (_a2 = window.chrome) === null || _a2 === void 0 ? void 0 : _a2.webview) === null || _b === void 0 ? void 0 : _b.postMessageWithAdditionalObjects) {
+    window.chrome.webview.postMessageWithAdditionalObjects(`file:drop:${x}:${y}`, files);
+  }
+}
+let nativeDragActive = false;
+function cleanupNativeDrag() {
+  nativeDragActive = false;
+  if (currentDropTarget) {
+    currentDropTarget.classList.remove(DROP_TARGET_ACTIVE_CLASS);
+    currentDropTarget = null;
+  }
+}
+function handleDragEnter() {
+  var _a2, _b;
+  if (((_b = (_a2 = window._wails) === null || _a2 === void 0 ? void 0 : _a2.flags) === null || _b === void 0 ? void 0 : _b.enableFileDrop) === false) {
+    return;
+  }
+  nativeDragActive = true;
+}
+function handleDragLeave() {
+  cleanupNativeDrag();
+}
+function handleDragOver(x, y) {
+  var _a2, _b;
+  if (!nativeDragActive)
+    return;
+  if (((_b = (_a2 = window._wails) === null || _a2 === void 0 ? void 0 : _a2.flags) === null || _b === void 0 ? void 0 : _b.enableFileDrop) === false) {
+    return;
+  }
+  const targetElement = document.elementFromPoint(x, y);
+  const dropTarget = getDropTargetElement(targetElement);
+  if (currentDropTarget && currentDropTarget !== dropTarget) {
+    currentDropTarget.classList.remove(DROP_TARGET_ACTIVE_CLASS);
+  }
+  if (dropTarget) {
+    dropTarget.classList.add(DROP_TARGET_ACTIVE_CLASS);
+    currentDropTarget = dropTarget;
+  } else {
+    currentDropTarget = null;
+  }
+}
+const callerSym = Symbol("caller");
+class Window {
+  /**
+   * Initialises a window object with the specified name.
+   *
+   * @private
+   * @param name - The name of the target window.
+   */
+  constructor(name = "") {
+    this[callerSym] = newRuntimeCaller(objectNames.Window, name);
+    for (const method of Object.getOwnPropertyNames(Window.prototype)) {
+      if (method !== "constructor" && typeof this[method] === "function") {
+        this[method] = this[method].bind(this);
+      }
+    }
+  }
+  /**
+   * Gets the specified window.
+   *
+   * @param name - The name of the window to get.
+   * @returns The corresponding window object.
+   */
+  Get(name) {
+    return new Window(name);
+  }
+  /**
+   * Returns the absolute position of the window.
+   *
+   * @returns The current absolute position of the window.
+   */
+  Position() {
+    return this[callerSym](PositionMethod);
+  }
+  /**
+   * Centers the window on the screen.
+   */
+  Center() {
+    return this[callerSym](CenterMethod);
+  }
+  /**
+   * Closes the window.
+   */
+  Close() {
+    return this[callerSym](CloseMethod);
+  }
+  /**
+   * Disables min/max size constraints.
+   */
+  DisableSizeConstraints() {
+    return this[callerSym](DisableSizeConstraintsMethod);
+  }
+  /**
+   * Enables min/max size constraints.
+   */
+  EnableSizeConstraints() {
+    return this[callerSym](EnableSizeConstraintsMethod);
+  }
+  /**
+   * Focuses the window.
+   */
+  Focus() {
+    return this[callerSym](FocusMethod);
+  }
+  /**
+   * Forces the window to reload the page assets.
+   */
+  ForceReload() {
+    return this[callerSym](ForceReloadMethod);
+  }
+  /**
+   * Switches the window to fullscreen mode.
+   */
+  Fullscreen() {
+    return this[callerSym](FullscreenMethod);
+  }
+  /**
+   * Returns the screen that the window is on.
+   *
+   * @returns The screen the window is currently on.
+   */
+  GetScreen() {
+    return this[callerSym](GetScreenMethod);
+  }
+  /**
+   * Returns the current zoom level of the window.
+   *
+   * @returns The current zoom level.
+   */
+  GetZoom() {
+    return this[callerSym](GetZoomMethod);
+  }
+  /**
+   * Returns the height of the window.
+   *
+   * @returns The current height of the window.
+   */
+  Height() {
+    return this[callerSym](HeightMethod);
+  }
+  /**
+   * Hides the window.
+   */
+  Hide() {
+    return this[callerSym](HideMethod);
+  }
+  /**
+   * Returns true if the window is focused.
+   *
+   * @returns Whether the window is currently focused.
+   */
+  IsFocused() {
+    return this[callerSym](IsFocusedMethod);
+  }
+  /**
+   * Returns true if the window is fullscreen.
+   *
+   * @returns Whether the window is currently fullscreen.
+   */
+  IsFullscreen() {
+    return this[callerSym](IsFullscreenMethod);
+  }
+  /**
+   * Returns true if the window is maximised.
+   *
+   * @returns Whether the window is currently maximised.
+   */
+  IsMaximised() {
+    return this[callerSym](IsMaximisedMethod);
+  }
+  /**
+   * Returns true if the window is minimised.
+   *
+   * @returns Whether the window is currently minimised.
+   */
+  IsMinimised() {
+    return this[callerSym](IsMinimisedMethod);
+  }
+  /**
+   * Maximises the window.
+   */
+  Maximise() {
+    return this[callerSym](MaximiseMethod);
+  }
+  /**
+   * Minimises the window.
+   */
+  Minimise() {
+    return this[callerSym](MinimiseMethod);
+  }
+  /**
+   * Returns the name of the window.
+   *
+   * @returns The name of the window.
+   */
+  Name() {
+    return this[callerSym](NameMethod);
+  }
+  /**
+   * Opens the development tools pane.
+   */
+  OpenDevTools() {
+    return this[callerSym](OpenDevToolsMethod);
+  }
+  /**
+   * Returns the relative position of the window to the screen.
+   *
+   * @returns The current relative position of the window.
+   */
+  RelativePosition() {
+    return this[callerSym](RelativePositionMethod);
+  }
+  /**
+   * Reloads the page assets.
+   */
+  Reload() {
+    return this[callerSym](ReloadMethod);
+  }
+  /**
+   * Returns true if the window is resizable.
+   *
+   * @returns Whether the window is currently resizable.
+   */
+  Resizable() {
+    return this[callerSym](ResizableMethod);
+  }
+  /**
+   * Restores the window to its previous state if it was previously minimised, maximised or fullscreen.
+   */
+  Restore() {
+    return this[callerSym](RestoreMethod);
+  }
+  /**
+   * Sets the absolute position of the window.
+   *
+   * @param x - The desired horizontal absolute position of the window.
+   * @param y - The desired vertical absolute position of the window.
+   */
+  SetPosition(x, y) {
+    return this[callerSym](SetPositionMethod, { x, y });
+  }
+  /**
+   * Sets the window to be always on top.
+   *
+   * @param alwaysOnTop - Whether the window should stay on top.
+   */
+  SetAlwaysOnTop(alwaysOnTop) {
+    return this[callerSym](SetAlwaysOnTopMethod, { alwaysOnTop });
+  }
+  /**
+   * Sets the background colour of the window.
+   *
+   * @param r - The desired red component of the window background.
+   * @param g - The desired green component of the window background.
+   * @param b - The desired blue component of the window background.
+   * @param a - The desired alpha component of the window background.
+   */
+  SetBackgroundColour(r2, g, b, a) {
+    return this[callerSym](SetBackgroundColourMethod, { r: r2, g, b, a });
+  }
+  /**
+   * Removes the window frame and title bar.
+   *
+   * @param frameless - Whether the window should be frameless.
+   */
+  SetFrameless(frameless) {
+    return this[callerSym](SetFramelessMethod, { frameless });
+  }
+  /**
+   * Disables the system fullscreen button.
+   *
+   * @param enabled - Whether the fullscreen button should be enabled.
+   */
+  SetFullscreenButtonEnabled(enabled) {
+    return this[callerSym](SetFullscreenButtonEnabledMethod, { enabled });
+  }
+  /**
+   * Sets the maximum size of the window.
+   *
+   * @param width - The desired maximum width of the window.
+   * @param height - The desired maximum height of the window.
+   */
+  SetMaxSize(width, height) {
+    return this[callerSym](SetMaxSizeMethod, { width, height });
+  }
+  /**
+   * Sets the minimum size of the window.
+   *
+   * @param width - The desired minimum width of the window.
+   * @param height - The desired minimum height of the window.
+   */
+  SetMinSize(width, height) {
+    return this[callerSym](SetMinSizeMethod, { width, height });
+  }
+  /**
+   * Sets the relative position of the window to the screen.
+   *
+   * @param x - The desired horizontal relative position of the window.
+   * @param y - The desired vertical relative position of the window.
+   */
+  SetRelativePosition(x, y) {
+    return this[callerSym](SetRelativePositionMethod, { x, y });
+  }
+  /**
+   * Sets whether the window is resizable.
+   *
+   * @param resizable - Whether the window should be resizable.
+   */
+  SetResizable(resizable2) {
+    return this[callerSym](SetResizableMethod, { resizable: resizable2 });
+  }
+  /**
+   * Sets the size of the window.
+   *
+   * @param width - The desired width of the window.
+   * @param height - The desired height of the window.
+   */
+  SetSize(width, height) {
+    return this[callerSym](SetSizeMethod, { width, height });
+  }
+  /**
+   * Sets the title of the window.
+   *
+   * @param title - The desired title of the window.
+   */
+  SetTitle(title) {
+    return this[callerSym](SetTitleMethod, { title });
+  }
+  /**
+   * Sets the zoom level of the window.
+   *
+   * @param zoom - The desired zoom level.
+   */
+  SetZoom(zoom) {
+    return this[callerSym](SetZoomMethod, { zoom });
+  }
+  /**
+   * Shows the window.
+   */
+  Show() {
+    return this[callerSym](ShowMethod);
+  }
+  /**
+   * Returns the size of the window.
+   *
+   * @returns The current size of the window.
+   */
+  Size() {
+    return this[callerSym](SizeMethod);
+  }
+  /**
+   * Toggles the window between fullscreen and normal.
+   */
+  ToggleFullscreen() {
+    return this[callerSym](ToggleFullscreenMethod);
+  }
+  /**
+   * Toggles the window between maximised and normal.
+   */
+  ToggleMaximise() {
+    return this[callerSym](ToggleMaximiseMethod);
+  }
+  /**
+   * Toggles the window between frameless and normal.
+   */
+  ToggleFrameless() {
+    return this[callerSym](ToggleFramelessMethod);
+  }
+  /**
+   * Un-fullscreens the window.
+   */
+  UnFullscreen() {
+    return this[callerSym](UnFullscreenMethod);
+  }
+  /**
+   * Un-maximises the window.
+   */
+  UnMaximise() {
+    return this[callerSym](UnMaximiseMethod);
+  }
+  /**
+   * Un-minimises the window.
+   */
+  UnMinimise() {
+    return this[callerSym](UnMinimiseMethod);
+  }
+  /**
+   * Returns the width of the window.
+   *
+   * @returns The current width of the window.
+   */
+  Width() {
+    return this[callerSym](WidthMethod);
+  }
+  /**
+   * Zooms the window.
+   */
+  Zoom() {
+    return this[callerSym](ZoomMethod);
+  }
+  /**
+   * Increases the zoom level of the webview content.
+   */
+  ZoomIn() {
+    return this[callerSym](ZoomInMethod);
+  }
+  /**
+   * Decreases the zoom level of the webview content.
+   */
+  ZoomOut() {
+    return this[callerSym](ZoomOutMethod);
+  }
+  /**
+   * Resets the zoom level of the webview content.
+   */
+  ZoomReset() {
+    return this[callerSym](ZoomResetMethod);
+  }
+  /**
+   * Handles file drops originating from platform-specific code (e.g., macOS/Linux native drag-and-drop).
+   * Gathers information about the drop target element and sends it back to the Go backend.
+   *
+   * @param filenames - An array of file paths (strings) that were dropped.
+   * @param x - The x-coordinate of the drop event (CSS pixels).
+   * @param y - The y-coordinate of the drop event (CSS pixels).
+   */
+  HandlePlatformFileDrop(filenames, x, y) {
+    var _a2, _b;
+    if (((_b = (_a2 = window._wails) === null || _a2 === void 0 ? void 0 : _a2.flags) === null || _b === void 0 ? void 0 : _b.enableFileDrop) === false) {
+      return;
+    }
+    const element2 = document.elementFromPoint(x, y);
+    const dropTarget = getDropTargetElement(element2);
+    if (!dropTarget) {
+      return;
+    }
+    const elementDetails = {
+      id: dropTarget.id,
+      classList: Array.from(dropTarget.classList),
+      attributes: {}
+    };
+    for (let i = 0; i < dropTarget.attributes.length; i++) {
+      const attr = dropTarget.attributes[i];
+      elementDetails.attributes[attr.name] = attr.value;
+    }
+    const payload = {
+      filenames,
+      x,
+      y,
+      elementDetails
+    };
+    this[callerSym](FilesDropped, payload);
+    cleanupNativeDrag();
+  }
+  /* Triggers Windows 11 Snap Assist feature (Windows only).
+   * This is equivalent to pressing Win+Z and shows snap layout options.
+   */
+  SnapAssist() {
+    return this[callerSym](SnapAssistMethod);
+  }
+  /**
+   * Opens the print dialog for the window.
+   */
+  Print() {
+    return this[callerSym](PrintMethod);
+  }
+}
+const thisWindow = new Window("");
+function setupDropTargetListeners() {
+  const docElement = document.documentElement;
+  let dragEnterCounter = 0;
+  docElement.addEventListener("dragenter", (event2) => {
+    var _a2, _b, _c;
+    if (!((_a2 = event2.dataTransfer) === null || _a2 === void 0 ? void 0 : _a2.types.includes("Files"))) {
+      return;
+    }
+    event2.preventDefault();
+    if (((_c = (_b = window._wails) === null || _b === void 0 ? void 0 : _b.flags) === null || _c === void 0 ? void 0 : _c.enableFileDrop) === false) {
+      event2.dataTransfer.dropEffect = "none";
+      return;
+    }
+    dragEnterCounter++;
+    const targetElement = document.elementFromPoint(event2.clientX, event2.clientY);
+    const dropTarget = getDropTargetElement(targetElement);
+    if (currentDropTarget && currentDropTarget !== dropTarget) {
+      currentDropTarget.classList.remove(DROP_TARGET_ACTIVE_CLASS);
+    }
+    if (dropTarget) {
+      dropTarget.classList.add(DROP_TARGET_ACTIVE_CLASS);
+      event2.dataTransfer.dropEffect = "copy";
+      currentDropTarget = dropTarget;
+    } else {
+      event2.dataTransfer.dropEffect = "none";
+      currentDropTarget = null;
+    }
+  }, false);
+  docElement.addEventListener("dragover", (event2) => {
+    var _a2, _b, _c;
+    if (!((_a2 = event2.dataTransfer) === null || _a2 === void 0 ? void 0 : _a2.types.includes("Files"))) {
+      return;
+    }
+    event2.preventDefault();
+    if (((_c = (_b = window._wails) === null || _b === void 0 ? void 0 : _b.flags) === null || _c === void 0 ? void 0 : _c.enableFileDrop) === false) {
+      event2.dataTransfer.dropEffect = "none";
+      return;
+    }
+    const targetElement = document.elementFromPoint(event2.clientX, event2.clientY);
+    const dropTarget = getDropTargetElement(targetElement);
+    if (currentDropTarget && currentDropTarget !== dropTarget) {
+      currentDropTarget.classList.remove(DROP_TARGET_ACTIVE_CLASS);
+    }
+    if (dropTarget) {
+      if (!dropTarget.classList.contains(DROP_TARGET_ACTIVE_CLASS)) {
+        dropTarget.classList.add(DROP_TARGET_ACTIVE_CLASS);
+      }
+      event2.dataTransfer.dropEffect = "copy";
+      currentDropTarget = dropTarget;
+    } else {
+      event2.dataTransfer.dropEffect = "none";
+      currentDropTarget = null;
+    }
+  }, false);
+  docElement.addEventListener("dragleave", (event2) => {
+    var _a2, _b, _c;
+    if (!((_a2 = event2.dataTransfer) === null || _a2 === void 0 ? void 0 : _a2.types.includes("Files"))) {
+      return;
+    }
+    event2.preventDefault();
+    if (((_c = (_b = window._wails) === null || _b === void 0 ? void 0 : _b.flags) === null || _c === void 0 ? void 0 : _c.enableFileDrop) === false) {
+      return;
+    }
+    if (event2.relatedTarget === null) {
+      return;
+    }
+    dragEnterCounter--;
+    if (dragEnterCounter === 0 || currentDropTarget && !currentDropTarget.contains(event2.relatedTarget)) {
+      if (currentDropTarget) {
+        currentDropTarget.classList.remove(DROP_TARGET_ACTIVE_CLASS);
+        currentDropTarget = null;
+      }
+      dragEnterCounter = 0;
+    }
+  }, false);
+  docElement.addEventListener("drop", (event2) => {
+    var _a2, _b, _c;
+    if (!((_a2 = event2.dataTransfer) === null || _a2 === void 0 ? void 0 : _a2.types.includes("Files"))) {
+      return;
+    }
+    event2.preventDefault();
+    if (((_c = (_b = window._wails) === null || _b === void 0 ? void 0 : _b.flags) === null || _c === void 0 ? void 0 : _c.enableFileDrop) === false) {
+      return;
+    }
+    dragEnterCounter = 0;
+    if (currentDropTarget) {
+      currentDropTarget.classList.remove(DROP_TARGET_ACTIVE_CLASS);
+      currentDropTarget = null;
+    }
+    if (canResolveFilePaths()) {
+      const files = [];
+      if (event2.dataTransfer.items) {
+        for (const item of event2.dataTransfer.items) {
+          if (item.kind === "file") {
+            const file = item.getAsFile();
+            if (file)
+              files.push(file);
+          }
+        }
+      } else if (event2.dataTransfer.files) {
+        for (const file of event2.dataTransfer.files) {
+          files.push(file);
+        }
+      }
+      if (files.length > 0) {
+        resolveFilePaths(event2.clientX, event2.clientY, files);
+      }
+    }
+  }, false);
+}
+if (typeof window !== "undefined" && typeof document !== "undefined") {
+  setupDropTargetListeners();
+}
+window._wails = window._wails || {};
+window._wails.invoke = invoke;
+window._wails.clientId = clientId;
+window._wails.handlePlatformFileDrop = thisWindow.HandlePlatformFileDrop.bind(thisWindow);
+window._wails.handleDragEnter = handleDragEnter;
+window._wails.handleDragLeave = handleDragLeave;
+window._wails.handleDragOver = handleDragOver;
+invoke("wails:runtime:ready");
+function loadOptionalScript(url) {
+  return fetch(url, { method: "HEAD" }).then((response) => {
+    if (response.ok) {
+      const script = document.createElement("script");
+      script.src = url;
+      document.head.appendChild(script);
+    }
+  }).catch(() => {
+  });
+}
+loadOptionalScript("/wails/custom.js");
+function DialogClose($$anchor, $$props) {
+  Dialog_close($$anchor, {
+    children: ($$anchor2, $$slotProps) => {
+      var fragment_1 = comment();
+      var node = first_child(fragment_1);
+      slot(node, $$props, "default", {});
+      append($$anchor2, fragment_1);
+    },
+    $$slots: { default: true }
+  });
+}
+function Dialog_1($$anchor, $$props) {
+  push($$props, true);
+  let open = prop($$props, "open", 15, false);
+  var fragment = comment();
+  var node = first_child(fragment);
+  component(node, () => Dialog, ($$anchor2, Dialog_Root) => {
+    Dialog_Root($$anchor2, {
+      get open() {
+        return open();
+      },
+      set open($$value) {
+        open($$value);
+      },
+      children: ($$anchor3, $$slotProps) => {
+        var fragment_1 = comment();
+        var node_1 = first_child(fragment_1);
+        snippet(node_1, () => $$props.children ?? noop$1);
+        append($$anchor3, fragment_1);
+      },
+      $$slots: { default: true }
+    });
+  });
+  append($$anchor, fragment);
+  pop();
+}
+var root$7 = from_html(`<input class="
+        w-full px-2 py-1.5 rounded-xl
+        border border-border
+        bg-background text-foreground
+        placeholder:text-muted-foreground
+        focus:outline-none focus:ring-2 focus:ring-ring
+        disabled:opacity-50 disabled:cursor-not-allowed
+        text-sm
+    "/>`);
+function Input($$anchor, $$props) {
+  let value = prop($$props, "value", 12, "");
+  let type = prop($$props, "type", 8, "text");
+  let placeholder = prop($$props, "placeholder", 8, "");
+  let disabled = prop($$props, "disabled", 8, false);
+  var input = root$7();
+  remove_input_defaults(input);
+  template_effect(() => {
+    set_attribute(input, "type", type());
+    set_attribute(input, "placeholder", placeholder());
+    input.disabled = disabled();
+  });
+  bind_value(input, value);
+  append($$anchor, input);
+}
+function DialogTrigger($$anchor, $$props) {
+  Dialog_trigger($$anchor, {
+    children: ($$anchor2, $$slotProps) => {
+      var fragment_1 = comment();
+      var node = first_child(fragment_1);
+      slot(node, $$props, "default", {});
+      append($$anchor2, fragment_1);
+    },
+    $$slots: { default: true }
+  });
+}
+const linear = (x) => x;
+function cubic_out(t) {
+  const f = t - 1;
+  return f * f * f + 1;
+}
+function split_css_unit(value) {
+  const split = typeof value === "string" && value.match(/^\s*(-?[\d.]+)([^\s]*)\s*$/);
+  return split ? [parseFloat(split[1]), split[2] || "px"] : [
+    /** @type {number} */
+    value,
+    "px"
+  ];
+}
+function fade(node, { delay = 0, duration = 400, easing = linear } = {}) {
+  const o = +getComputedStyle(node).opacity;
+  return {
+    delay,
+    duration,
+    easing,
+    css: (t) => `opacity: ${t * o}`
+  };
+}
+function fly(node, { delay = 0, duration = 400, easing = cubic_out, x = 0, y = 0, opacity = 0 } = {}) {
+  const style = getComputedStyle(node);
+  const target_opacity = +style.opacity;
+  const transform = style.transform === "none" ? "" : style.transform;
+  const od = target_opacity * (1 - opacity);
+  const [x_value, x_unit] = split_css_unit(x);
+  const [y_value, y_unit] = split_css_unit(y);
+  return {
+    delay,
+    duration,
+    easing,
+    css: (t, u) => `
+			transform: ${transform} translate(${(1 - t) * x_value}${x_unit}, ${(1 - t) * y_value}${y_unit});
+			opacity: ${target_opacity - od * u}`
+  };
+}
+function slide(node, { delay = 0, duration = 400, easing = cubic_out, axis = "y" } = {}) {
+  const style = getComputedStyle(node);
+  const opacity = +style.opacity;
+  const primary_property = axis === "y" ? "height" : "width";
+  const primary_property_value = parseFloat(style[primary_property]);
+  const secondary_properties = axis === "y" ? ["top", "bottom"] : ["left", "right"];
+  const capitalized_secondary_properties = secondary_properties.map(
+    (e) => (
+      /** @type {'Left' | 'Right' | 'Top' | 'Bottom'} */
+      `${e[0].toUpperCase()}${e.slice(1)}`
+    )
+  );
+  const padding_start_value = parseFloat(style[`padding${capitalized_secondary_properties[0]}`]);
+  const padding_end_value = parseFloat(style[`padding${capitalized_secondary_properties[1]}`]);
+  const margin_start_value = parseFloat(style[`margin${capitalized_secondary_properties[0]}`]);
+  const margin_end_value = parseFloat(style[`margin${capitalized_secondary_properties[1]}`]);
+  const border_width_start_value = parseFloat(
+    style[`border${capitalized_secondary_properties[0]}Width`]
+  );
+  const border_width_end_value = parseFloat(
+    style[`border${capitalized_secondary_properties[1]}Width`]
+  );
+  return {
+    delay,
+    duration,
+    easing,
+    css: (t) => `overflow: hidden;opacity: ${Math.min(t * 20, 1) * opacity};${primary_property}: ${t * primary_property_value}px;padding-${secondary_properties[0]}: ${t * padding_start_value}px;padding-${secondary_properties[1]}: ${t * padding_end_value}px;margin-${secondary_properties[0]}: ${t * margin_start_value}px;margin-${secondary_properties[1]}: ${t * margin_end_value}px;border-${secondary_properties[0]}-width: ${t * border_width_start_value}px;border-${secondary_properties[1]}-width: ${t * border_width_end_value}px;min-${primary_property}: 0`
+  };
+}
+var root_3$1 = from_html(`<div></div>`);
+var root_5$4 = from_html(`<div class="fixed inset-0 grid place-items-center"><div><!></div></div>`);
+var root_1$4 = from_html(`<!> <!>`, 1);
+function DialogContent($$anchor, $$props) {
+  Portal($$anchor, {
+    children: ($$anchor2, $$slotProps) => {
+      var fragment_1 = root_1$4();
+      var node = first_child(fragment_1);
+      {
+        const child2 = ($$anchor3, $$arg0) => {
+          let props = () => $$arg0 == null ? void 0 : $$arg0().props;
+          let open = () => $$arg0 == null ? void 0 : $$arg0().open;
+          var fragment_2 = comment();
+          var node_1 = first_child(fragment_2);
+          {
+            var consequent = ($$anchor4) => {
+              var div = root_3$1();
+              attribute_effect(div, () => ({
+                ...props(),
+                class: "fixed inset-0 bg-black/10 backdrop-blur-xs"
+              }));
+              transition(3, div, () => fade, () => ({ duration: 150 }));
+              append($$anchor4, div);
+            };
+            if_block(node_1, ($$render) => {
+              if (open()) $$render(consequent);
+            });
+          }
+          append($$anchor3, fragment_2);
+        };
+        Dialog_overlay(node, { forceMount: true, child: child2, $$slots: { child: true } });
+      }
+      var node_2 = sibling(node, 2);
+      {
+        const child$1 = ($$anchor3, $$arg0) => {
+          let props = () => $$arg0 == null ? void 0 : $$arg0().props;
+          let open = () => $$arg0 == null ? void 0 : $$arg0().open;
+          var fragment_3 = comment();
+          var node_3 = first_child(fragment_3);
+          {
+            var consequent_1 = ($$anchor4) => {
+              var div_1 = root_5$4();
+              var div_2 = child(div_1);
+              attribute_effect(div_2, () => ({ ...props() }));
+              var node_4 = child(div_2);
+              slot(node_4, $$props, "default", {});
+              reset(div_2);
+              reset(div_1);
+              transition(3, div_2, () => fly, () => ({ y: -20, opacity: 0, duration: 150 }));
+              append($$anchor4, div_1);
+            };
+            if_block(node_3, ($$render) => {
+              if (open()) $$render(consequent_1);
+            });
+          }
+          append($$anchor3, fragment_3);
+        };
+        Dialog_content(node_2, {
+          class: "\n            rounded-3xl bg-background shadow-popover data-[state=open]:animate-in\n            data-[state=closed]:animate-out data-[state=closed]:fade-out-0\n            data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95\n            data-[state=open]:zoom-in-95 outline-hidden p-5\n            sm:max-w-122 md:w-full\n        ",
+          forceMount: true,
+          child: child$1,
+          $$slots: { child: true }
+        });
+      }
+      append($$anchor2, fragment_1);
+    },
+    $$slots: { default: true }
+  });
+}
+function DialogTitle($$anchor, $$props) {
+  Dialog_title($$anchor, {
+    class: "text-lg font-semibold mb-4",
+    children: ($$anchor2, $$slotProps) => {
+      var fragment_1 = comment();
+      var node = first_child(fragment_1);
+      slot(node, $$props, "default", {});
+      append($$anchor2, fragment_1);
+    },
+    $$slots: { default: true }
+  });
+}
+var root_5$3 = from_html(`<div><div><div class="
+                                    rounded-xl border-border bg-background shadow-sm
+                                    outline-hidden z-0 flex items-center justify-center border
+                                    px-3 py-1.5 text-xs font-medium
+                                "><!></div></div></div>`);
+var root_1$3 = from_html(`<!> <!>`, 1);
+function Tooltip_1($$anchor, $$props) {
+  push($$props, true);
+  let open = prop($$props, "open", 15, false), triggerProps = prop($$props, "triggerProps", 19, () => ({})), delayDuration = prop($$props, "delayDuration", 3, 500), restProps = rest_props($$props, [
+    "$$slots",
+    "$$events",
+    "$$legacy",
+    "open",
+    "children",
+    "trigger",
+    "triggerProps",
+    "delayDuration"
+  ]);
+  var fragment = comment();
+  var node = first_child(fragment);
+  component(node, () => Tooltip, ($$anchor2, Tooltip_Root) => {
+    Tooltip_Root($$anchor2, spread_props(() => restProps, {
+      get delayDuration() {
+        return delayDuration();
+      },
+      get open() {
+        return open();
+      },
+      set open($$value) {
+        open($$value);
+      },
+      children: ($$anchor3, $$slotProps) => {
+        var fragment_1 = root_1$3();
+        var node_1 = first_child(fragment_1);
+        component(node_1, () => Tooltip_trigger, ($$anchor4, Tooltip_Trigger) => {
+          Tooltip_Trigger($$anchor4, spread_props(triggerProps, {
+            children: ($$anchor5, $$slotProps2) => {
+              var fragment_2 = comment();
+              var node_2 = first_child(fragment_2);
+              snippet(node_2, () => $$props.trigger);
+              append($$anchor5, fragment_2);
+            },
+            $$slots: { default: true }
+          }));
+        });
+        var node_3 = sibling(node_1, 2);
+        component(node_3, () => Portal, ($$anchor4, Tooltip_Portal) => {
+          Tooltip_Portal($$anchor4, {
+            children: ($$anchor5, $$slotProps2) => {
+              var fragment_3 = comment();
+              var node_4 = first_child(fragment_3);
+              {
+                const child$1 = ($$anchor6, $$arg0) => {
+                  let wrapperProps = () => $$arg0 == null ? void 0 : $$arg0().wrapperProps;
+                  let props = () => $$arg0 == null ? void 0 : $$arg0().props;
+                  let open2 = () => $$arg0 == null ? void 0 : $$arg0().open;
+                  var fragment_4 = comment();
+                  var node_5 = first_child(fragment_4);
+                  {
+                    var consequent = ($$anchor7) => {
+                      var div = root_5$3();
+                      attribute_effect(div, () => ({ ...wrapperProps() }));
+                      var div_1 = child(div);
+                      attribute_effect(div_1, () => ({ ...props() }));
+                      var div_2 = child(div_1);
+                      var node_6 = child(div_2);
+                      snippet(node_6, () => $$props.children ?? noop$1);
+                      reset(div_2);
+                      reset(div_1);
+                      reset(div);
+                      transition(3, div_1, () => fly, () => ({ y: 10, opacity: 0, duration: 150 }));
+                      append($$anchor7, div);
+                    };
+                    if_block(node_5, ($$render) => {
+                      if (open2()) $$render(consequent);
+                    });
+                  }
+                  append($$anchor6, fragment_4);
+                };
+                component(node_4, () => Tooltip_content, ($$anchor6, Tooltip_Content) => {
+                  Tooltip_Content($$anchor6, {
+                    sideOffset: 8,
+                    forceMount: true,
+                    class: "z-60",
+                    child: child$1,
+                    $$slots: { child: true }
+                  });
+                });
+              }
+              append($$anchor5, fragment_3);
+            },
+            $$slots: { default: true }
+          });
+        });
+        append($$anchor3, fragment_1);
+      },
+      $$slots: { default: true }
+    }));
+  });
+  append($$anchor, fragment);
+  pop();
+}
+function Tabs_1($$anchor, $$props) {
+  let value = prop($$props, "value", 8);
+  let onValueChange = prop($$props, "onValueChange", 8);
+  Tabs($$anchor, {
+    get value() {
+      return value();
+    },
+    get onValueChange() {
+      return onValueChange();
+    },
+    children: ($$anchor2, $$slotProps) => {
+      var fragment_1 = comment();
+      var node = first_child(fragment_1);
+      slot(node, $$props, "default", {});
+      append($$anchor2, fragment_1);
+    },
+    $$slots: { default: true }
+  });
+}
+function TabsList($$anchor, $$props) {
+  Tabs_list($$anchor, {
+    class: "\n        flex gap-1 w-fit\n        p-1 text-xs font-semibold\n        border border-border rounded-xl\n    ",
+    children: ($$anchor2, $$slotProps) => {
+      var fragment_1 = comment();
+      var node = first_child(fragment_1);
+      slot(node, $$props, "default", {});
+      append($$anchor2, fragment_1);
+    },
+    $$slots: { default: true }
+  });
+}
+function TabsTrigger($$anchor, $$props) {
+  let value = prop($$props, "value", 8);
+  Tabs_trigger($$anchor, {
+    get value() {
+      return value();
+    },
+    class: "\n        flex items-center justify-center gap-1\n        h-6 px-3 rounded-lg\n        bg-transparent\n        transition-colors\n        data-[state=active]:bg-muted\n        dark:data-[state=active]:bg-muted\n    ",
+    children: ($$anchor2, $$slotProps) => {
+      var fragment_1 = comment();
+      var node = first_child(fragment_1);
+      slot(node, $$props, "default", {});
+      append($$anchor2, fragment_1);
+    },
+    $$slots: { default: true }
+  });
+}
+function TabsContent($$anchor, $$props) {
+  let value = prop($$props, "value", 8);
+  Tabs_content($$anchor, {
+    get value() {
+      return value();
+    },
+    class: "select-none pt-3",
+    children: ($$anchor2, $$slotProps) => {
+      var fragment_1 = comment();
+      var node = first_child(fragment_1);
+      slot(node, $$props, "default", {});
+      append($$anchor2, fragment_1);
+    },
+    $$slots: { default: true }
+  });
+}
+function TestConnection(creds) {
+  return ByID(734208430, creds);
+}
+var root_1$2 = from_html(`<div class="space-y-2"><!> <!></div>`);
+var root_10$1 = from_html(`<!> `, 1);
+var root_12 = from_html(`<span><!></span>`);
+var root_11 = from_html(`<div class="flex items-center space-x-1"><!> <!></div>`);
+var root_26 = from_html(`<!> `, 1);
+var root_23 = from_html(`<!> <!> <!>`, 1);
+var root_22 = from_html(`<div class="space-y-2 mb-4"><!> <!> <div class="flex gap-2"><!> <!></div></div> <!> <!> <!>`, 1);
+var root_7 = from_html(`<div class="flex items-center justify-between"><!> <!></div> <!> <!>`, 1);
+var root_31 = from_html(`<!> Add`, 1);
+var root_5$2 = from_html(`<!> <!> <div class="mt-4 flex"><div class="flex space-x-1 ml-auto"><!> <!></div></div>`, 1);
+var root_2 = from_html(`<!> <!>`, 1);
+function AddSourceDialog($$anchor, $$props) {
+  push($$props, false);
+  const defaultInputs = ($$anchor2) => {
+    var div = root_1$2();
+    var node = child(div);
+    Input(node, {
+      placeholder: "/var/log/app.log",
+      get value() {
+        return get$2(logPath);
+      },
+      set value($$value) {
+        set(logPath, $$value);
+      },
+      $$legacy: true
+    });
+    var node_1 = sibling(node, 2);
+    Input(node_1, {
+      placeholder: "Display name (optional)",
+      get value() {
+        return get$2(logLabel);
+      },
+      set value($$value) {
+        set(logLabel, $$value);
+      },
+      $$legacy: true
+    });
+    reset(div);
+    append($$anchor2, div);
+  };
+  let dialogOpen = mutable_source(false);
+  const connTypesList = [
+    { name: "local", title: "Local", icon: Disc },
+    { name: "ssh", title: "SSH", icon: Server }
+  ];
+  let selectedConnType = mutable_source(connTypesList[0].name);
+  const onChangeConnTab = (tab) => {
+    set(selectedConnType, tab);
+  };
+  const authTypesList = [
+    { name: "pass", title: "Password", icon: Password },
+    { name: "pub_key", title: "Passphrase", icon: Forms }
+  ];
+  let selectedAuthType = mutable_source(authTypesList[0].name);
+  console.log(get$2(selectedAuthType));
+  const onChangeAuthTab = (tab) => {
+    set(selectedAuthType, tab);
+  };
+  let name = mutable_source("");
+  let host = mutable_source("164.92.194.64");
+  let port = mutable_source(22);
+  let user = mutable_source("root");
+  let pass = mutable_source("");
+  let passphrase = mutable_source("");
+  let logPath = mutable_source("");
+  let logLabel = mutable_source("");
+  const connection = mutable_source({
+    testingesting: false,
+    success: false,
+    failed: false,
+    showMessage: false
+  });
+  let submitLoading = mutable_source(false);
+  function sleep(ms) {
+    return new Promise((resolve) => setTimeout(resolve, ms));
+  }
+  async function submit() {
+    set(submitLoading, true);
+    const payload = {
+      selectedConnType: get$2(selectedConnType),
+      connection: get$2(selectedConnType) === "local" ? null : {
+        name: get$2(name),
+        host: get$2(host),
+        port: get$2(port),
+        user: get$2(user)
+      },
+      log: {
+        path: get$2(logPath),
+        label: get$2(logLabel) || get$2(logPath).split("/").pop()
+      }
+    };
+    console.log("ADD SOURCE", payload);
+    await sleep(2e3);
+    set(submitLoading, false);
+    set(dialogOpen, false);
+  }
+  async function testConnection() {
+    if (get$2(connection).testingesting) return;
+    mutate(connection, get$2(connection).testingesting = true);
+    const creds = {
+      host: get$2(host),
+      port: String(get$2(port)),
+      user: get$2(user),
+      password: get$2(pass),
+      passphrase: get$2(passphrase)
+    };
+    const res = await TestConnection(creds);
+    if (!res) {
+      mutate(connection, get$2(connection).failed = true);
+    } else {
+      mutate(connection, get$2(connection).success = true);
+    }
+    mutate(connection, get$2(connection).testingesting = false);
+    mutate(connection, get$2(connection).showMessage = true);
+    setTimeout(
+      () => {
+        mutate(connection, get$2(connection).failed = false);
+        mutate(connection, get$2(connection).success = false);
+        mutate(connection, get$2(connection).showMessage = false);
+      },
+      2e3
+    );
+  }
+  init();
+  Dialog_1($$anchor, {
+    get open() {
+      return get$2(dialogOpen);
+    },
+    set open($$value) {
+      set(dialogOpen, $$value);
+    },
+    children: ($$anchor2, $$slotProps) => {
+      var fragment_1 = root_2();
+      var node_2 = first_child(fragment_1);
+      DialogTrigger(node_2, {
+        class: "w-fit",
+        children: ($$anchor3, $$slotProps2) => {
+          Button_1($$anchor3, {
+            size: "icon-sm",
+            variant: "ghost",
+            children: ($$anchor4, $$slotProps3) => {
+              Plus($$anchor4, { size: 14 });
+            },
+            $$slots: { default: true }
+          });
+        },
+        $$slots: { default: true }
+      });
+      var node_3 = sibling(node_2, 2);
+      DialogContent(node_3, {
+        children: ($$anchor3, $$slotProps2) => {
+          var fragment_4 = root_5$2();
+          var node_4 = first_child(fragment_4);
+          DialogTitle(node_4, {
+            children: ($$anchor4, $$slotProps3) => {
+              next();
+              var text$1 = text("Add log source");
+              append($$anchor4, text$1);
+            },
+            $$slots: { default: true }
+          });
+          var node_5 = sibling(node_4, 2);
+          Tabs_1(node_5, {
+            get value() {
+              return get$2(selectedConnType);
+            },
+            onValueChange: onChangeConnTab,
+            children: ($$anchor4, $$slotProps3) => {
+              var fragment_5 = root_7();
+              var div_1 = first_child(fragment_5);
+              var node_6 = child(div_1);
+              TabsList(node_6, {
+                children: ($$anchor5, $$slotProps4) => {
+                  var fragment_6 = comment();
+                  var node_7 = first_child(fragment_6);
+                  each(node_7, 1, () => connTypesList, index$1, ($$anchor6, tab) => {
+                    TabsTrigger($$anchor6, {
+                      get value() {
+                        return get$2(tab).name;
+                      },
+                      children: ($$anchor7, $$slotProps5) => {
+                        var fragment_8 = root_10$1();
+                        var node_8 = first_child(fragment_8);
+                        component(node_8, () => get$2(tab).icon, ($$anchor8, $$component) => {
+                          $$component($$anchor8, { class: "size-4 shrink-0" });
+                        });
+                        var text_1 = sibling(node_8);
+                        template_effect(() => set_text(text_1, ` ${get$2(tab).title ?? ""}`));
+                        append($$anchor7, fragment_8);
+                      },
+                      $$slots: { default: true }
+                    });
+                  });
+                  append($$anchor5, fragment_6);
+                },
+                $$slots: { default: true }
+              });
+              var node_9 = sibling(node_6, 2);
+              {
+                var consequent_4 = ($$anchor5) => {
+                  var div_2 = root_11();
+                  var node_10 = child(div_2);
+                  {
+                    var consequent_2 = ($$anchor6) => {
+                      var span = root_12();
+                      let classes;
+                      var node_11 = child(span);
+                      {
+                        var consequent = ($$anchor7) => {
+                          var text_2 = text("Не удалось подключиться");
+                          append($$anchor7, text_2);
+                        };
+                        var alternate = ($$anchor7) => {
+                          var fragment_9 = comment();
+                          var node_12 = first_child(fragment_9);
+                          {
+                            var consequent_1 = ($$anchor8) => {
+                              var text_3 = text("Успешно подключились");
+                              append($$anchor8, text_3);
+                            };
+                            if_block(
+                              node_12,
+                              ($$render) => {
+                                if (get$2(connection).success) $$render(consequent_1);
+                              },
+                              true
+                            );
+                          }
+                          append($$anchor7, fragment_9);
+                        };
+                        if_block(node_11, ($$render) => {
+                          if (get$2(connection).failed) $$render(consequent);
+                          else $$render(alternate, false);
+                        });
+                      }
+                      reset(span);
+                      template_effect(() => classes = set_class(span, 1, "text-xs", null, classes, {
+                        "text-secondary": get$2(connection).success,
+                        "text-destructive": get$2(connection).failed
+                      }));
+                      transition(3, span, () => fade, () => ({ duration: 150 }));
+                      append($$anchor6, span);
+                    };
+                    if_block(node_10, ($$render) => {
+                      if (get$2(connection).showMessage) $$render(consequent_2);
+                    });
+                  }
+                  var node_13 = sibling(node_10, 2);
+                  {
+                    const trigger = ($$anchor6) => {
+                      Button_1($$anchor6, {
+                        variant: "ghost",
+                        size: "icon",
+                        get loading() {
+                          return get$2(connection).testingesting;
+                        },
+                        onclick: () => testConnection(),
+                        children: ($$anchor7, $$slotProps4) => {
+                          var fragment_11 = comment();
+                          var node_14 = first_child(fragment_11);
+                          {
+                            var consequent_3 = ($$anchor8) => {
+                              Loader($$anchor8, { size: 16, class: "animate-spin" });
+                            };
+                            var alternate_1 = ($$anchor8) => {
+                              Test_pipe($$anchor8, { size: 16 });
+                            };
+                            if_block(node_14, ($$render) => {
+                              if (get$2(connection).testingesting) $$render(consequent_3);
+                              else $$render(alternate_1, false);
+                            });
+                          }
+                          append($$anchor7, fragment_11);
+                        },
+                        $$slots: { default: true }
+                      });
+                    };
+                    Tooltip_1(node_13, {
+                      trigger,
+                      children: ($$anchor6, $$slotProps4) => {
+                        next();
+                        var text_4 = text("Test SSH connection");
+                        append($$anchor6, text_4);
+                      },
+                      $$slots: { trigger: true, default: true }
+                    });
+                  }
+                  reset(div_2);
+                  append($$anchor5, div_2);
+                };
+                if_block(node_9, ($$render) => {
+                  if (get$2(selectedConnType) === "ssh") $$render(consequent_4);
+                });
+              }
+              reset(div_1);
+              var node_15 = sibling(div_1, 2);
+              TabsContent(node_15, {
+                value: "local",
+                children: ($$anchor5, $$slotProps4) => {
+                  defaultInputs($$anchor5);
+                },
+                $$slots: { default: true }
+              });
+              var node_16 = sibling(node_15, 2);
+              TabsContent(node_16, {
+                value: "ssh",
+                children: ($$anchor5, $$slotProps4) => {
+                  var fragment_15 = root_22();
+                  var div_3 = first_child(fragment_15);
+                  var node_17 = child(div_3);
+                  Input(node_17, {
+                    placeholder: "Connection name",
+                    get value() {
+                      return get$2(name);
+                    },
+                    set value($$value) {
+                      set(name, $$value);
+                    },
+                    $$legacy: true
+                  });
+                  var node_18 = sibling(node_17, 2);
+                  Input(node_18, {
+                    placeholder: "Host",
+                    get value() {
+                      return get$2(host);
+                    },
+                    set value($$value) {
+                      set(host, $$value);
+                    },
+                    $$legacy: true
+                  });
+                  var div_4 = sibling(node_18, 2);
+                  var node_19 = child(div_4);
+                  Input(node_19, {
+                    placeholder: "User",
+                    get value() {
+                      return get$2(user);
+                    },
+                    set value($$value) {
+                      set(user, $$value);
+                    },
+                    $$legacy: true
+                  });
+                  var node_20 = sibling(node_19, 2);
+                  Input(node_20, {
+                    type: "number",
+                    placeholder: "Port",
+                    get value() {
+                      return get$2(port);
+                    },
+                    set value($$value) {
+                      set(port, $$value);
+                    },
+                    $$legacy: true
+                  });
+                  reset(div_4);
+                  reset(div_3);
+                  var node_21 = sibling(div_3, 2);
+                  Tabs_1(node_21, {
+                    get value() {
+                      return get$2(selectedAuthType);
+                    },
+                    onValueChange: onChangeAuthTab,
+                    children: ($$anchor6, $$slotProps5) => {
+                      var fragment_16 = root_23();
+                      var node_22 = first_child(fragment_16);
+                      TabsList(node_22, {
+                        children: ($$anchor7, $$slotProps6) => {
+                          var fragment_17 = comment();
+                          var node_23 = first_child(fragment_17);
+                          each(node_23, 1, () => authTypesList, index$1, ($$anchor8, tab) => {
+                            TabsTrigger($$anchor8, {
+                              get value() {
+                                return get$2(tab).name;
+                              },
+                              children: ($$anchor9, $$slotProps7) => {
+                                var fragment_19 = root_26();
+                                var node_24 = first_child(fragment_19);
+                                component(node_24, () => get$2(tab).icon, ($$anchor10, $$component) => {
+                                  $$component($$anchor10, { class: "size-4 shrink-0" });
+                                });
+                                var text_5 = sibling(node_24);
+                                template_effect(() => set_text(text_5, ` ${get$2(tab).title ?? ""}`));
+                                append($$anchor9, fragment_19);
+                              },
+                              $$slots: { default: true }
+                            });
+                          });
+                          append($$anchor7, fragment_17);
+                        },
+                        $$slots: { default: true }
+                      });
+                      var node_25 = sibling(node_22, 2);
+                      TabsContent(node_25, {
+                        value: "pass",
+                        children: ($$anchor7, $$slotProps6) => {
+                          Input($$anchor7, {
+                            type: "password",
+                            placeholder: "Password",
+                            get value() {
+                              return get$2(pass);
+                            },
+                            set value($$value) {
+                              set(pass, $$value);
+                            },
+                            $$legacy: true
+                          });
+                        },
+                        $$slots: { default: true }
+                      });
+                      var node_26 = sibling(node_25, 2);
+                      TabsContent(node_26, {
+                        value: "pub_key",
+                        children: ($$anchor7, $$slotProps6) => {
+                          Input($$anchor7, {
+                            type: "password",
+                            placeholder: "Key passphrase (optional)",
+                            get value() {
+                              return get$2(passphrase);
+                            },
+                            set value($$value) {
+                              set(passphrase, $$value);
+                            },
+                            $$legacy: true
+                          });
+                        },
+                        $$slots: { default: true }
+                      });
+                      append($$anchor6, fragment_16);
+                    },
+                    $$slots: { default: true }
+                  });
+                  var node_27 = sibling(node_21, 2);
+                  Separator(node_27, { class: "bg-muted -mx-5 mb-6 mt-5 block h-px" });
+                  var node_28 = sibling(node_27, 2);
+                  defaultInputs(node_28);
+                  append($$anchor5, fragment_15);
+                },
+                $$slots: { default: true }
+              });
+              append($$anchor4, fragment_5);
+            },
+            $$slots: { default: true }
+          });
+          var div_5 = sibling(node_5, 2);
+          var div_6 = child(div_5);
+          var node_29 = child(div_6);
+          DialogClose(node_29, {
+            children: ($$anchor4, $$slotProps3) => {
+              Button_1($$anchor4, {
+                variant: "secondary",
+                children: ($$anchor5, $$slotProps4) => {
+                  next();
+                  var text_6 = text("Cancel");
+                  append($$anchor5, text_6);
+                },
+                $$slots: { default: true }
+              });
+            },
+            $$slots: { default: true }
+          });
+          var node_30 = sibling(node_29, 2);
+          Button_1(node_30, {
+            onclick: submit,
+            get loading() {
+              return get$2(submitLoading);
+            },
+            children: ($$anchor4, $$slotProps3) => {
+              var fragment_23 = root_31();
+              var node_31 = first_child(fragment_23);
+              {
+                var consequent_5 = ($$anchor5) => {
+                  Loader($$anchor5, { class: "size-4 animate-spin" });
+                };
+                if_block(node_31, ($$render) => {
+                  if (get$2(submitLoading)) $$render(consequent_5);
+                });
+              }
+              next();
+              append($$anchor4, fragment_23);
+            },
+            $$slots: { default: true }
+          });
+          reset(div_6);
+          reset(div_5);
+          append($$anchor3, fragment_4);
+        },
+        $$slots: { default: true }
+      });
+      append($$anchor2, fragment_1);
+    },
+    $$slots: { default: true },
+    $$legacy: true
+  });
+  pop();
+}
+function quintOut(t) {
+  return --t * t * t * t * t + 1;
+}
+var root_5$1 = from_html(`<!> <span> </span>`, 1);
+var root_8$1 = from_html(`<div><ul class="relative"><div class="absolute top-0 bottom-0 w-px bg-border z-50"></div> <!></ul></div>`);
 var root_3 = from_html(`<!> <!>`, 1);
-var root_8 = from_html(`<button><!> <span> </span></button>`);
+var root_10 = from_html(`<div class="py-px"><button><!> <span> </span></button></div>`);
 var root$6 = from_html(`<li><!></li>`);
 function TreeItem_1($$anchor, $$props) {
   push($$props, false);
+  const $openNodes = () => store_get(openNodes, "$openNodes", $$stores);
+  const [$$stores, $$cleanup] = setup_stores();
   const isSelected = mutable_source();
   let item = prop($$props, "item", 8);
   let depth = prop($$props, "depth", 8, 0);
   let selected = prop($$props, "selected", 8);
   let onSelect = prop($$props, "onSelect", 8);
+  const openNodes = writable(/* @__PURE__ */ new Set());
   legacy_pre_effect(() => (deep_read_state(selected()), deep_read_state(item())), () => {
     set(isSelected, selected() === item().id);
   });
@@ -10639,116 +13704,154 @@ function TreeItem_1($$anchor, $$props) {
   var li = root$6();
   var node = child(li);
   {
-    var consequent = ($$anchor2) => {
-      Accordion($$anchor2, {
-        type: "single",
-        children: ($$anchor3, $$slotProps) => {
-          Accordion_item($$anchor3, {
-            get value() {
-              return deep_read_state(item()), untrack(() => item().id);
-            },
-            children: ($$anchor4, $$slotProps2) => {
-              var fragment_2 = root_3();
-              var node_1 = first_child(fragment_2);
-              Accordion_header(node_1, {
-                children: ($$anchor5, $$slotProps3) => {
-                  {
-                    let $0 = derived_safe_equal(() => get$2(isSelected) && "bg-primary/15 text-primary");
-                    let $1 = derived_safe_equal(() => depth() * 12 + 8);
-                    Accordion_trigger($$anchor5, {
-                      get class() {
-                        return `
+    var consequent_2 = ($$anchor2) => {
+      {
+        let $0 = derived_safe_equal(() => ($openNodes(), untrack(() => [...$openNodes()])));
+        Accordion($$anchor2, {
+          type: "multiple",
+          get value() {
+            return get$2($0);
+          },
+          onValueChange: (v) => openNodes.set(new Set(v)),
+          children: ($$anchor3, $$slotProps) => {
+            Accordion_item($$anchor3, {
+              get value() {
+                return deep_read_state(item()), untrack(() => item().id);
+              },
+              children: ($$anchor4, $$slotProps2) => {
+                var fragment_2 = root_3();
+                var node_1 = first_child(fragment_2);
+                Accordion_header(node_1, {
+                  children: ($$anchor5, $$slotProps3) => {
+                    {
+                      let $02 = derived_safe_equal(() => get$2(isSelected) && "bg-primary/15 hover:bg-primary/15 text-primary");
+                      let $1 = derived_safe_equal(() => depth() + 0.5);
+                      Accordion_trigger($$anchor5, {
+                        get class() {
+                          return `
                             group flex items-center gap-2 w-full px-2 py-1 rounded-md
                             hover:bg-muted
-                            ${get$2($0) ?? ""}
+                            ${get$2($02) ?? ""}
                         `;
-                      },
-                      get style() {
-                        return `padding-left: ${get$2($1) ?? ""}px`;
-                      },
-                      children: ($$anchor6, $$slotProps4) => {
-                        var fragment_4 = root_5();
-                        var node_2 = first_child(fragment_4);
-                        Chevron_right(node_2, {
-                          class: "h-4 w-4 transition-transform group-data-[state=open]:rotate-90"
-                        });
-                        var span = sibling(node_2, 2);
-                        var text2 = child(span, true);
-                        reset(span);
-                        template_effect(() => set_text(text2, (deep_read_state(item()), untrack(() => item().label))));
-                        append($$anchor6, fragment_4);
-                      },
-                      $$slots: { default: true }
-                    });
-                  }
-                },
-                $$slots: { default: true }
-              });
-              var node_3 = sibling(node_1, 2);
-              Accordion_content(node_3, {
-                children: ($$anchor5, $$slotProps3) => {
-                  var ul = root_6();
-                  var node_4 = sibling(child(ul), 2);
-                  each(node_4, 1, () => (deep_read_state(item()), untrack(() => item().children)), (child2) => child2.id, ($$anchor6, child2) => {
-                    {
-                      let $0 = derived_safe_equal(() => depth() + 1);
-                      TreeItem_1($$anchor6, {
-                        get item() {
-                          return get$2(child2);
                         },
-                        get depth() {
-                          return get$2($0);
+                        get style() {
+                          return `padding-left: ${get$2($1) ?? ""}rem`;
                         },
-                        get selected() {
-                          return selected();
+                        children: ($$anchor6, $$slotProps4) => {
+                          var fragment_4 = root_5$1();
+                          var node_2 = first_child(fragment_4);
+                          {
+                            var consequent = ($$anchor7) => {
+                              var fragment_5 = comment();
+                              var node_3 = first_child(fragment_5);
+                              component(node_3, () => item().icon, ($$anchor8, $$component) => {
+                                $$component($$anchor8, { class: "size-4 shrink-0" });
+                              });
+                              append($$anchor7, fragment_5);
+                            };
+                            if_block(node_2, ($$render) => {
+                              if (deep_read_state(item()), untrack(() => item().icon)) $$render(consequent);
+                            });
+                          }
+                          var span = sibling(node_2, 2);
+                          var text2 = child(span, true);
+                          reset(span);
+                          template_effect(() => set_text(text2, (deep_read_state(item()), untrack(() => item().label))));
+                          append($$anchor6, fragment_4);
                         },
-                        get onSelect() {
-                          return onSelect();
-                        }
+                        $$slots: { default: true }
                       });
                     }
-                  });
-                  reset(ul);
-                  append($$anchor5, ul);
-                },
-                $$slots: { default: true }
-              });
-              append($$anchor4, fragment_2);
-            },
-            $$slots: { default: true }
-          });
-        },
-        $$slots: { default: true }
-      });
+                  },
+                  $$slots: { default: true }
+                });
+                var node_4 = sibling(node_1, 2);
+                {
+                  const child$1 = ($$anchor5, $$arg0) => {
+                    let props = () => $$arg0 == null ? void 0 : $$arg0().props;
+                    let open = () => $$arg0 == null ? void 0 : $$arg0().open;
+                    var fragment_6 = comment();
+                    var node_5 = first_child(fragment_6);
+                    {
+                      var consequent_1 = ($$anchor6) => {
+                        var div = root_8$1();
+                        attribute_effect(div, () => ({ ...props() }));
+                        var ul = child(div);
+                        var div_1 = child(ul);
+                        var node_6 = sibling(div_1, 2);
+                        each(node_6, 1, () => (deep_read_state(item()), untrack(() => item().children)), (child2) => child2.id, ($$anchor7, child2, $$index, $$array) => {
+                          {
+                            let $02 = derived_safe_equal(() => depth() + 1);
+                            TreeItem_1($$anchor7, {
+                              get item() {
+                                return get$2(child2);
+                              },
+                              get depth() {
+                                return get$2($02);
+                              },
+                              get selected() {
+                                return selected();
+                              },
+                              get onSelect() {
+                                return onSelect();
+                              }
+                            });
+                          }
+                        });
+                        reset(ul);
+                        reset(div);
+                        template_effect(() => set_style(div_1, `left: ${depth() + 1}rem`));
+                        transition(3, div, () => slide, () => ({ duration: 220, easing: quintOut }));
+                        append($$anchor6, div);
+                      };
+                      if_block(node_5, ($$render) => {
+                        if (open()) $$render(consequent_1);
+                      });
+                    }
+                    append($$anchor5, fragment_6);
+                  };
+                  Accordion_content(node_4, { forceMount: true, child: child$1, $$slots: { child: true } });
+                }
+                append($$anchor4, fragment_2);
+              },
+              $$slots: { default: true }
+            });
+          },
+          $$slots: { default: true }
+        });
+      }
     };
     var alternate = ($$anchor2) => {
-      var button = root_8();
-      var node_5 = child(button);
-      File(node_5, { class: "h-4 w-4 opacity-60" });
-      var span_1 = sibling(node_5, 2);
+      var div_2 = root_10();
+      var button = child(div_2);
+      var node_7 = child(button);
+      File(node_7, { class: "size-4 shrink-0" });
+      var span_1 = sibling(node_7, 2);
       var text_1 = child(span_1, true);
       reset(span_1);
       reset(button);
+      reset(div_2);
       template_effect(() => {
         set_class(button, 1, `
-                flex items-center gap-2 w-full px-2 py-1 rounded-md
-                hover:bg-muted
-                ${(get$2(isSelected) && "bg-primary/15 text-primary") ?? ""}
-            `);
-        set_style(button, `padding-left: ${depth() * 12 + 28}px`);
+                    flex items-center gap-2 w-full px-2 py-1 rounded-md
+                    hover:bg-muted
+                    ${(get$2(isSelected) && "bg-primary/15 hover:bg-primary/15 text-primary") ?? ""}
+                `);
+        set_style(button, `padding-left: ${depth() + 0.5}rem`);
         set_text(text_1, (deep_read_state(item()), untrack(() => item().label)));
       });
       event("click", button, () => onSelect()(item().id));
-      append($$anchor2, button);
+      append($$anchor2, div_2);
     };
     if_block(node, ($$render) => {
-      if (deep_read_state(item()), untrack(() => item().children)) $$render(consequent);
+      if (deep_read_state(item()), untrack(() => item().children)) $$render(consequent_2);
       else $$render(alternate, false);
     });
   }
   reset(li);
   append($$anchor, li);
   pop();
+  $$cleanup();
 }
 var root$5 = from_html(`<ul class="text-sm select-none"></ul>`);
 function Tree($$anchor, $$props) {
@@ -10773,12 +13876,13 @@ function Tree($$anchor, $$props) {
   reset(ul);
   append($$anchor, ul);
 }
-var root$4 = from_html(`<div class="w-56 h-full overflow-hidden border-r border-border"><div class="flex items-center gap-2 border-b border-border h-11 px-2"><!> <!></div> <!></div>`);
+var root$4 = from_html(`<div class="flex flex-col w-56 h-full overflow-hidden border-r border-border"><div class="flex items-center gap-2 border-b border-border h-11 px-2"><!> <!></div> <div class="flex-1 h-full overflow-auto p-2"><!></div></div>`);
 function LogsSidebar($$anchor) {
   const items = [
     {
       id: "local",
       label: "Local",
+      icon: Disc,
       children: [
         { id: "local-syslog", label: "syslog", path: "/var/log/syslog" },
         { id: "local-app", label: "app.log", path: "~/logs/app.log" }
@@ -10787,6 +13891,7 @@ function LogsSidebar($$anchor) {
     {
       id: "ssh",
       label: "SSH",
+      icon: Server_2,
       children: [
         {
           id: "ssh-1",
@@ -10807,6 +13912,7 @@ function LogsSidebar($$anchor) {
       ]
     }
   ];
+  let selectedItem = mutable_source("");
   var div = root$4();
   var div_1 = child(div);
   var node = child(div_1);
@@ -10814,13 +13920,18 @@ function LogsSidebar($$anchor) {
   var node_1 = sibling(node, 2);
   AddSourceDialog(node_1, {});
   reset(div_1);
-  var node_2 = sibling(div_1, 2);
+  var div_2 = sibling(div_1, 2);
+  var node_2 = child(div_2);
   Tree(node_2, {
     get items() {
       return items;
     },
-    onSelect: console.log
+    onSelect: (id) => set(selectedItem, id),
+    get selected() {
+      return get$2(selectedItem);
+    }
   });
+  reset(div_2);
   reset(div);
   append($$anchor, div);
 }
@@ -10853,8 +13964,8 @@ function LogRow($$anchor, $$props) {
   reset(div);
   template_effect(
     ($0, $1) => {
-      var _a;
-      classes = set_class(div, 1, "flex gap-3 px-3 py-1 cursor-pointer hover:bg-muted svelte-1k3731m", null, classes, { selected: ((_a = $selectedLog()) == null ? void 0 : _a.id) === log().id });
+      var _a2;
+      classes = set_class(div, 1, "flex gap-3 px-3 py-1 cursor-pointer hover:bg-muted svelte-1k3731m", null, classes, { selected: ((_a2 = $selectedLog()) == null ? void 0 : _a2.id) === log().id });
       set_text(text2, $0);
       set_class(
         span_1,
@@ -10905,15 +14016,246 @@ function LogsStream($$anchor, $$props) {
   pop();
   $$cleanup();
 }
+var root_1$1 = from_html(`<div class="text-background inline-flex items-center justify-center"><!></div>`);
+function Checkbox_1($$anchor, $$props) {
+  push($$props, true);
+  let id = prop($$props, "id", 19, useId), checked = prop($$props, "checked", 15, false), ref = prop($$props, "ref", 15, null);
+  prop($$props, "labelRef", 11, null);
+  let restProps = rest_props($$props, [
+    "$$slots",
+    "$$events",
+    "$$legacy",
+    "id",
+    "checked",
+    "ref",
+    "labelRef"
+  ]);
+  var fragment = comment();
+  var node = first_child(fragment);
+  {
+    const children = ($$anchor2, $$arg0) => {
+      let checked2 = () => $$arg0 == null ? void 0 : $$arg0().checked;
+      let indeterminate = () => $$arg0 == null ? void 0 : $$arg0().indeterminate;
+      var div = root_1$1();
+      var node_1 = child(div);
+      {
+        var consequent = ($$anchor3) => {
+          Minus($$anchor3, { class: "size-3" });
+        };
+        var alternate = ($$anchor3) => {
+          var fragment_2 = comment();
+          var node_2 = first_child(fragment_2);
+          {
+            var consequent_1 = ($$anchor4) => {
+              Check($$anchor4, { class: "size-3" });
+            };
+            if_block(
+              node_2,
+              ($$render) => {
+                if (checked2()) $$render(consequent_1);
+              },
+              true
+            );
+          }
+          append($$anchor3, fragment_2);
+        };
+        if_block(node_1, ($$render) => {
+          if (indeterminate()) $$render(consequent);
+          else $$render(alternate, false);
+        });
+      }
+      reset(div);
+      append($$anchor2, div);
+    };
+    component(node, () => Checkbox, ($$anchor2, Checkbox_Root) => {
+      Checkbox_Root($$anchor2, spread_props(
+        {
+          get id() {
+            return id();
+          }
+        },
+        () => restProps,
+        {
+          class: "border-muted bg-foreground data-[state=unchecked]:border-border-input data-[state=unchecked]:bg-background data-[state=unchecked]:hover:border-dark-40 peer inline-flex size-4 items-center justify-center rounded-md border transition-all duration-150 ease-in-out active:scale-[0.98]",
+          get checked() {
+            return checked();
+          },
+          set checked($$value) {
+            checked($$value);
+          },
+          get ref() {
+            return ref();
+          },
+          set ref($$value) {
+            ref($$value);
+          },
+          children,
+          $$slots: { default: true }
+        }
+      ));
+    });
+  }
+  append($$anchor, fragment);
+  pop();
+}
+var root_8 = from_html(`<!> `, 1);
+var root_5 = from_html(`<div><div><!></div></div>`);
 var root_1 = from_html(`<!> <!>`, 1);
+function DropdownMenu_1($$anchor, $$props) {
+  push($$props, true);
+  let open = prop($$props, "open", 15, false), restProps = rest_props($$props, [
+    "$$slots",
+    "$$events",
+    "$$legacy",
+    "open",
+    "children",
+    "buttonText",
+    "items",
+    "contentProps"
+  ]);
+  let selectedItems = state(proxy([]));
+  var fragment = comment();
+  var node = first_child(fragment);
+  component(node, () => Menu, ($$anchor2, DropdownMenu_Root) => {
+    DropdownMenu_Root($$anchor2, spread_props(() => restProps, {
+      get open() {
+        return open();
+      },
+      set open($$value) {
+        open($$value);
+      },
+      children: ($$anchor3, $$slotProps) => {
+        var fragment_1 = root_1();
+        var node_1 = first_child(fragment_1);
+        component(node_1, () => Menu_trigger, ($$anchor4, DropdownMenu_Trigger) => {
+          DropdownMenu_Trigger($$anchor4, {
+            class: "\n            px-2 py-1.5 rounded-xl\n            border border-border\n            bg-background text-foreground\n            placeholder:text-muted-foreground\n            focus:outline-none focus:ring-2 focus:ring-ring\n            disabled:opacity-50 disabled:cursor-not-allowed\n            text-sm\n        ",
+            children: ($$anchor5, $$slotProps2) => {
+              next();
+              var text$1 = text();
+              template_effect(() => set_text(text$1, $$props.buttonText));
+              append($$anchor5, text$1);
+            },
+            $$slots: { default: true }
+          });
+        });
+        var node_2 = sibling(node_1, 2);
+        component(node_2, () => Portal, ($$anchor4, DropdownMenu_Portal) => {
+          DropdownMenu_Portal($$anchor4, {
+            children: ($$anchor5, $$slotProps2) => {
+              var fragment_3 = comment();
+              var node_3 = first_child(fragment_3);
+              {
+                const child$1 = ($$anchor6, $$arg0) => {
+                  let wrapperProps = () => $$arg0 == null ? void 0 : $$arg0().wrapperProps;
+                  let props = () => $$arg0 == null ? void 0 : $$arg0().props;
+                  let open2 = () => $$arg0 == null ? void 0 : $$arg0().open;
+                  var fragment_4 = comment();
+                  var node_4 = first_child(fragment_4);
+                  {
+                    var consequent = ($$anchor7) => {
+                      var div = root_5();
+                      attribute_effect(div, () => ({ ...wrapperProps() }));
+                      var div_1 = child(div);
+                      attribute_effect(div_1, () => ({ ...props() }));
+                      var node_5 = child(div_1);
+                      component(node_5, () => Menu_checkbox_group, ($$anchor8, DropdownMenu_CheckboxGroup) => {
+                        DropdownMenu_CheckboxGroup($$anchor8, {
+                          get "aria-label"() {
+                            return $$props.buttonText;
+                          },
+                          get value() {
+                            return get$2(selectedItems);
+                          },
+                          set value($$value) {
+                            set(selectedItems, $$value, true);
+                          },
+                          children: ($$anchor9, $$slotProps3) => {
+                            var fragment_5 = comment();
+                            var node_6 = first_child(fragment_5);
+                            each(node_6, 17, () => $$props.items, index$1, ($$anchor10, item) => {
+                              var fragment_6 = comment();
+                              var node_7 = first_child(fragment_6);
+                              {
+                                const children = ($$anchor11, $$arg02) => {
+                                  let checked = () => $$arg02 == null ? void 0 : $$arg02().checked;
+                                  var fragment_7 = root_8();
+                                  var node_8 = first_child(fragment_7);
+                                  {
+                                    let $0 = user_derived(() => checked() === true);
+                                    Checkbox_1(node_8, {
+                                      get checked() {
+                                        return get$2($0);
+                                      },
+                                      get labelText() {
+                                        return get$2(item);
+                                      }
+                                    });
+                                  }
+                                  var text_1 = sibling(node_8);
+                                  template_effect(() => set_text(text_1, ` ${get$2(item) ?? ""}`));
+                                  append($$anchor11, fragment_7);
+                                };
+                                component(node_7, () => Menu_checkbox_item, ($$anchor11, DropdownMenu_CheckboxItem) => {
+                                  DropdownMenu_CheckboxItem($$anchor11, {
+                                    get value() {
+                                      return get$2(item);
+                                    },
+                                    closeOnSelect: false,
+                                    class: "flex items-center gap-1 hover:bg-muted px-2 py-1 transition-all rounded-lg",
+                                    children,
+                                    $$slots: { default: true }
+                                  });
+                                });
+                              }
+                              append($$anchor10, fragment_6);
+                            });
+                            append($$anchor9, fragment_5);
+                          },
+                          $$slots: { default: true }
+                        });
+                      });
+                      reset(div_1);
+                      reset(div);
+                      transition(3, div_1, () => fly, () => ({ y: -10, opacity: 0, duration: 150 }));
+                      append($$anchor7, div);
+                    };
+                    if_block(node_4, ($$render) => {
+                      if (open2()) $$render(consequent);
+                    });
+                  }
+                  append($$anchor6, fragment_4);
+                };
+                component(node_3, () => Dropdown_menu_content, ($$anchor6, DropdownMenu_Content) => {
+                  DropdownMenu_Content($$anchor6, spread_props(() => $$props.contentProps, {
+                    class: "p-1 border border-border bg-background shadow-md rounded-xl",
+                    forceMount: true,
+                    align: "end",
+                    sideOffset: 8,
+                    child: child$1,
+                    $$slots: { child: true }
+                  }));
+                });
+              }
+              append($$anchor5, fragment_3);
+            },
+            $$slots: { default: true }
+          });
+        });
+        append($$anchor3, fragment_1);
+      },
+      $$slots: { default: true }
+    }));
+  });
+  append($$anchor, fragment);
+  pop();
+}
 var root$1 = from_html(`<div class="h-11 flex items-center gap-3 px-3 border-b border-border" style="
         padding-left: calc(var(--titlebar-x) + 12px);
         padding-top: env(safe-area-inset-top);
     "><!> <div class="flex gap-1"><!></div></div>`);
 function LogsTopbar($$anchor, $$props) {
   push($$props, false);
-  const $levelFilter = () => store_get(levelFilter, "$levelFilter", $$stores);
-  const [$$stores, $$cleanup] = setup_stores();
   let search = mutable_source("");
   const levels = ["trace", "debug", "info", "warn", "error", "fatal"];
   init();
@@ -10931,58 +14273,16 @@ function LogsTopbar($$anchor, $$props) {
   });
   var div_1 = sibling(node, 2);
   var node_1 = child(div_1);
-  Menu(node_1, {
-    children: ($$anchor2, $$slotProps) => {
-      var fragment = root_1();
-      var node_2 = first_child(fragment);
-      Menu_trigger(node_2, {
-        children: ($$anchor3, $$slotProps2) => {
-          next();
-          var text$1 = text("Level");
-          append($$anchor3, text$1);
-        },
-        $$slots: { default: true }
-      });
-      var node_3 = sibling(node_2, 2);
-      Dropdown_menu_content(node_3, {
-        children: ($$anchor3, $$slotProps2) => {
-          Menu_checkbox_group($$anchor3, {
-            children: ($$anchor4, $$slotProps3) => {
-              var fragment_2 = comment();
-              var node_4 = first_child(fragment_2);
-              each(node_4, 1, () => levels, index$1, ($$anchor5, lvl) => {
-                {
-                  let $0 = derived_safe_equal(() => $levelFilter().has(get$2(lvl)));
-                  Menu_checkbox_item($$anchor5, {
-                    get checked() {
-                      return get$2($0);
-                    },
-                    children: ($$anchor6, $$slotProps4) => {
-                      next();
-                      var text_1 = text();
-                      template_effect(($02) => set_text(text_1, $02), [() => get$2(lvl).toUpperCase()]);
-                      append($$anchor6, text_1);
-                    },
-                    $$slots: { default: true }
-                  });
-                }
-              });
-              append($$anchor4, fragment_2);
-            },
-            $$slots: { default: true }
-          });
-        },
-        $$slots: { default: true }
-      });
-      append($$anchor2, fragment);
-    },
-    $$slots: { default: true }
+  DropdownMenu_1(node_1, {
+    buttonText: "Level",
+    get items() {
+      return levels;
+    }
   });
   reset(div_1);
   reset(div);
   append($$anchor, div);
   pop();
-  $$cleanup();
 }
 var root = from_html(`<div class="h-full w-full flex bg-background text-foreground"><!> <div class="flex-1 flex flex-col overflow-hidden"><!> <div class="flex-1 flex flex-col overflow-hidden"><!></div></div></div>`);
 function LogsViewer($$anchor) {

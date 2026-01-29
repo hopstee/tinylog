@@ -1,4 +1,5 @@
 <script lang="ts">
+    import { Dialogs } from "@wailsio/runtime";
     import Button from "$lib/ui/Button.svelte";
     import DialogClose from "$lib/ui/Dialog/DialogClose.svelte";
     import Dialog from "$lib/ui/Dialog/Dialog.svelte";
@@ -9,6 +10,9 @@
         IconServer,
         IconTestPipe,
         IconLoader,
+        IconPassword,
+        IconKey,
+        IconForms,
     } from "@tabler/icons-svelte";
     import { Separator } from "bits-ui";
     import DialogTrigger from "$lib/ui/Dialog/DialogTrigger.svelte";
@@ -19,10 +23,13 @@
     import TabsList from "$lib/ui/Tabs/TabsList.svelte";
     import TabsTrigger from "$lib/ui/Tabs/TabsTrigger.svelte";
     import TabsContent from "$lib/ui/Tabs/TabsContent.svelte";
+    import { SSHService } from "../../../bindings/tinylog/backend/services";
+    import { Creds } from "../../../bindings/tinylog/backend/services/models";
+    import { fade } from "svelte/transition";
 
     let dialogOpen = false;
 
-    const tabsList = [
+    const connTypesList = [
         {
             name: "local",
             title: "Local",
@@ -34,23 +41,50 @@
             icon: IconServer,
         },
     ];
-    let selectedTab = tabsList[0].name;
-    const onChangeTab = (tab: string) => {
-        selectedTab = tab;
+
+    let selectedConnType = connTypesList[0].name;
+    const onChangeConnTab = (tab: string) => {
+        selectedConnType = tab;
+    };
+
+    const authTypesList = [
+        {
+            name: "pass",
+            title: "Password",
+            icon: IconPassword,
+        },
+        {
+            name: "pub_key",
+            title: "Passphrase",
+            icon: IconForms,
+        },
+    ];
+    let selectedAuthType = authTypesList[0].name;
+    console.log(selectedAuthType);
+    const onChangeAuthTab = (tab: string) => {
+        selectedAuthType = tab;
     };
 
     // SSH
     let name = "";
-    let host = "";
+    let host = "164.92.194.64";
     let port = 22;
-    let user = "";
+    let user = "root";
+    let pass = "";
+    let passphrase = "";
 
     // Log
     let logPath = "";
     let logLabel = "";
 
     // Test
-    let connectionTesting = false;
+    const connection = {
+        testingesting: false,
+        success: false,
+        failed: false,
+        showMessage: false,
+    };
+
     let submitLoading = false;
 
     function sleep(ms: number) {
@@ -60,9 +94,11 @@
     async function submit() {
         submitLoading = true;
         const payload = {
-            selectedTab,
+            selectedConnType,
             connection:
-                selectedTab === "local" ? null : { name, host, port, user },
+                selectedConnType === "local"
+                    ? null
+                    : { name, host, port, user },
             log: {
                 path: logPath,
                 label: logLabel || logPath.split("/").pop(),
@@ -75,11 +111,32 @@
         dialogOpen = false;
     }
 
-    function testConnection() {
-        if (connectionTesting) return;
-        connectionTesting = true;
+    async function testConnection() {
+        if (connection.testingesting) return;
+        connection.testingesting = true;
+
+        const creds: Creds = {
+            host: host,
+            port: String(port),
+            user: user,
+            password: pass,
+            passphrase: passphrase,
+        };
+        const res = await SSHService.TestConnection(creds);
+
+        if (!res) {
+            connection.failed = true;
+        } else {
+            connection.success = true;
+        }
+
+        connection.testingesting = false;
+        connection.showMessage = true;
+
         setTimeout(() => {
-            connectionTesting = false;
+            connection.failed = false;
+            connection.success = false;
+            connection.showMessage = false;
         }, 2000);
     }
 </script>
@@ -100,10 +157,10 @@
     <DialogContent>
         <DialogTitle>Add log source</DialogTitle>
 
-        <Tabs value={selectedTab} onValueChange={onChangeTab}>
+        <Tabs value={selectedConnType} onValueChange={onChangeConnTab}>
             <div class="flex items-center justify-between">
                 <TabsList>
-                    {#each tabsList as tab}
+                    {#each connTypesList as tab}
                         <TabsTrigger value={tab.name}>
                             <svelte:component
                                 this={tab.icon}
@@ -114,27 +171,43 @@
                     {/each}
                 </TabsList>
 
-                {#if selectedTab === "ssh"}
-                    <Tooltip>
-                        {#snippet trigger()}
-                            <Button
-                                variant="ghost"
-                                size="icon"
-                                loading={connectionTesting}
-                                onclick={() => testConnection()}
+                {#if selectedConnType === "ssh"}
+                    <div class="flex items-center space-x-1">
+                        {#if connection.showMessage}
+                            <span
+                                class="text-xs"
+                                class:text-secondary={connection.success}
+                                class:text-destructive={connection.failed}
+                                transition:fade={{ duration: 150 }}
                             >
-                                {#if connectionTesting}
-                                    <IconLoader
-                                        size={16}
-                                        class="animate-spin"
-                                    />
-                                {:else}
-                                    <IconTestPipe size={16} />
+                                {#if connection.failed}
+                                    Не удалось подключиться
+                                {:else if connection.success}
+                                    Успешно подключились
                                 {/if}
-                            </Button>
-                        {/snippet}
-                        Test SSH connection
-                    </Tooltip>
+                            </span>
+                        {/if}
+                        <Tooltip>
+                            {#snippet trigger()}
+                                <Button
+                                    variant="ghost"
+                                    size="icon"
+                                    loading={connection.testingesting}
+                                    onclick={() => testConnection()}
+                                >
+                                    {#if connection.testingesting}
+                                        <IconLoader
+                                            size={16}
+                                            class="animate-spin"
+                                        />
+                                    {:else}
+                                        <IconTestPipe size={16} />
+                                    {/if}
+                                </Button>
+                            {/snippet}
+                            Test SSH connection
+                        </Tooltip>
+                    </div>
                 {/if}
             </div>
 
@@ -154,6 +227,36 @@
                         />
                     </div>
                 </div>
+
+                <Tabs value={selectedAuthType} onValueChange={onChangeAuthTab}>
+                    <TabsList>
+                        {#each authTypesList as tab}
+                            <TabsTrigger value={tab.name}>
+                                <svelte:component
+                                    this={tab.icon}
+                                    class="size-4 shrink-0"
+                                />
+                                {tab.title}
+                            </TabsTrigger>
+                        {/each}
+                    </TabsList>
+
+                    <TabsContent value="pass">
+                        <Input
+                            type="password"
+                            placeholder="Password"
+                            bind:value={pass}
+                        />
+                    </TabsContent>
+                    <TabsContent value="pub_key">
+                        <Input
+                            type="password"
+                            placeholder="Key passphrase (optional)"
+                            bind:value={passphrase}
+                        />
+                    </TabsContent>
+                </Tabs>
+
                 <Separator.Root class="bg-muted -mx-5 mb-6 mt-5 block h-px" />
                 {@render defaultInputs()}
             </TabsContent>

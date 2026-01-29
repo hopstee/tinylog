@@ -30,7 +30,7 @@
                 <div class="fixed inset-0 grid place-items-center">
                     <div
                         {...props}
-                        transition:fly={{ y: 20, opacity: 0, duration: 150 }}
+                        transition:fly={{ y: -20, opacity: 0, duration: 150 }}
                     >
                         <slot />
                     </div>

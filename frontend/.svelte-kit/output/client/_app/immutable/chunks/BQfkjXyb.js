@@ -9,8 +9,7 @@ var __privateGet = (obj, member, getter) => (__accessCheck(obj, member, "read fr
 var __privateAdd = (obj, member, value) => member.has(obj) ? __typeError("Cannot add the same private member more than once") : member instanceof WeakSet ? member.add(obj) : member.set(obj, value);
 var __privateSet = (obj, member, value, setter) => (__accessCheck(obj, member, "write to private field"), setter ? setter.call(obj, value) : member.set(obj, value), value);
 var _batches, _onscreen, _offscreen, _outroing, _transition, _commit, _discard;
-import { x as current_batch, y as resume_effect, z as destroy_effect, A as pause_effect, B as create_text, C as branch, h as hydrating, D as hydrate_node, E as move_effect, F as should_defer_append, a as hydrate_next, G as block, H as EFFECT_TRANSPARENT, I as read_hydration_instruction, J as HYDRATION_START_ELSE, K as skip_nodes, L as set_hydrate_node, M as set_hydrating, N as teardown, O as define_property, o as noop, P as mutable_source, g as get$1, Q as set, R as get_descriptor, S as props_invalid_value, T as PROPS_IS_UPDATED, U as proxy, V as active_effect, W as DESTROYED, X as PROPS_IS_BINDABLE, d as untrack, w as legacy_mode_flag, Y as PROPS_IS_RUNES, Z as PROPS_IS_IMMUTABLE, i as derived, _ as derived_safe_equal, $ as PROPS_IS_LAZY_INITIAL, a0 as is_destroying_effect, a1 as STATE_SYMBOL, a2 as LEGACY_PROPS, a3 as is_function, a4 as source, a5 as update, a6 as set_active_effect } from "./Bj_O7eFZ.js";
-import { s as subscribe_to_store, g as get } from "./CmJXhuVg.js";
+import { D as current_batch, F as resume_effect, G as destroy_effect, I as pause_effect, J as create_text, K as branch, o as hydrating, L as hydrate_node, M as move_effect, N as should_defer_append, O as teardown, P as define_property, Q as noop, R as mutable_source, T as subscribe_to_store, U as get, g as get$1, V as set, W as get_descriptor, X as props_invalid_value, Y as PROPS_IS_UPDATED, Z as proxy, _ as active_effect, $ as DESTROYED, a0 as PROPS_IS_BINDABLE, b as untrack, h as legacy_mode_flag, a1 as PROPS_IS_RUNES, a2 as PROPS_IS_IMMUTABLE, f as derived, a3 as derived_safe_equal, a4 as PROPS_IS_LAZY_INITIAL, a5 as is_destroying_effect, S as STATE_SYMBOL, a6 as LEGACY_PROPS, a7 as source, a8 as is_function, a9 as update, aa as set_active_effect } from "./DilKp9Ls.js";
 class BranchManager {
   /**
    * @param {TemplateNode} anchor
@@ -186,38 +185,6 @@ _outroing = new WeakMap();
 _transition = new WeakMap();
 _commit = new WeakMap();
 _discard = new WeakMap();
-function if_block(node, fn, elseif = false) {
-  if (hydrating) {
-    hydrate_next();
-  }
-  var branches = new BranchManager(node);
-  var flags = elseif ? EFFECT_TRANSPARENT : 0;
-  function update_branch(condition, fn2) {
-    if (hydrating) {
-      const is_else = read_hydration_instruction(node) === HYDRATION_START_ELSE;
-      if (condition === is_else) {
-        var anchor = skip_nodes();
-        set_hydrate_node(anchor);
-        branches.anchor = anchor;
-        set_hydrating(false);
-        branches.ensure(condition, fn2);
-        set_hydrating(true);
-        return;
-      }
-    }
-    branches.ensure(condition, fn2);
-  }
-  block(() => {
-    var has_branch = false;
-    fn((fn2, flag = true) => {
-      has_branch = true;
-      update_branch(flag, fn2);
-    });
-    if (!has_branch) {
-      update_branch(false, null);
-    }
-  }, flags);
-}
 let is_store_binding = false;
 let IS_UNMOUNTED = Symbol();
 function store_get(store, store_name, stores) {
@@ -559,9 +526,8 @@ function prop(props, key, flags, fallback) {
 }
 export {
   BranchManager as B,
-  store_get as a,
-  setup_stores as b,
-  if_block as i,
+  setup_stores as a,
+  store_get as b,
   legacy_rest_props as l,
   prop as p,
   rest_props as r,

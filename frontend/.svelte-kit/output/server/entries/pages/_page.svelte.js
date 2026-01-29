@@ -1,11 +1,12 @@
 import { clsx } from "clsx";
-import { _ as ATTACHMENT_KEY, $ as lifecycle_function_unavailable, a0 as sanitize_props, a1 as rest_props, a2 as attributes, a3 as ensure_array_like, a4 as element, Z as slot, a5 as bind_props, a6 as spread_props, a7 as attr, a8 as attr_class, a9 as derived, aa as props_id, ab as stringify, ac as attr_style, ad as store_get, ae as unsubscribe_stores } from "../../chunks/index2.js";
-import { i as is_array, b as get_prototype_of, o as object_prototype, f as fallback, h as hasContext, g as getContext, s as setContext, r as run, c as getAllContexts, e as escape_html } from "../../chunks/context.js";
+import { a1 as derived, a2 as on, a3 as props_id, a4 as attributes, a5 as bind_props, a6 as element, a7 as spread_props, a8 as sanitize_props, a9 as rest_props, aa as ensure_array_like, a0 as slot, ab as attr, ac as attr_class, ad as stringify, ae as attr_style, af as store_get, ag as unsubscribe_stores } from "../../chunks/index2.js";
+import { Create, Call } from "@wailsio/runtime";
+import { i as isWritableSymbol, B as BoxSymbol, a as boxFrom, b as boxWith, c as boxFlatten, t as toReadonlyBox, d as isBox, e as isWritableBox, f as isClassValue, g as defaultWindow, h as createSubscriber, j as isHTMLElement, C as Context, k as attachRef, P as PresenceManager, w as watch, l as afterTick, m as createBitsAttrs, n as boolToEmptyStrOrUndef, o as getDataOpenClosed, p as boolToStr, q as isBrowser, r as mount, u as unmount, s as getDocument, v as isSelectableInput, x as getWindow, y as isElement, D as DOMContext, z as isElementOrSVGElement, A as getAriaChecked, E as simpleBox, F as contains, S as SvelteMap, G as isIOS, H as isNotNull, I as boolToStrTrueOrUndef, J as boolToTrueOrUndef, K as TooltipRootState, L as TooltipContentState, M as TooltipTriggerState } from "../../chunks/tooltip.svelte.js";
 import parse from "style-to-object";
-import { o as on } from "../../chunks/events.js";
+import { i as is_array, b as get_prototype_of, o as object_prototype, c as getAllContexts, f as fallback, e as escape_html } from "../../chunks/context.js";
 import { isTabbable, tabbable, isFocusable, focusable } from "tabbable";
-import { w as writable } from "../../chunks/index.js";
 import { computePosition, offset, shift, limitShift, flip, size, arrow, hide } from "@floating-ui/dom";
+import { w as writable } from "../../chunks/index.js";
 const empty = [];
 function snapshot(value, skip_warning = false, no_tojson = false) {
   return clone(value, /* @__PURE__ */ new Map(), "", empty, null, no_tojson);
@@ -94,271 +95,6 @@ function clone(value, cloned, path, paths, original = null, no_tojson = false) {
       value
     );
   }
-}
-function createAttachmentKey() {
-  return Symbol(ATTACHMENT_KEY);
-}
-function mount() {
-  lifecycle_function_unavailable("mount");
-}
-function unmount() {
-  lifecycle_function_unavailable("unmount");
-}
-async function tick() {
-}
-const logs = writable([]);
-const selectedLog = writable(null);
-const levelFilter = writable(
-  /* @__PURE__ */ new Set(["info", "warn", "error"])
-);
-const defaultAttributes = {
-  outline: {
-    xmlns: "http://www.w3.org/2000/svg",
-    width: 24,
-    height: 24,
-    viewBox: "0 0 24 24",
-    fill: "none",
-    stroke: "currentColor",
-    "stroke-width": 2,
-    "stroke-linecap": "round",
-    "stroke-linejoin": "round"
-  },
-  filled: {
-    xmlns: "http://www.w3.org/2000/svg",
-    width: 24,
-    height: 24,
-    viewBox: "0 0 24 24",
-    fill: "currentColor",
-    stroke: "none"
-  }
-};
-function Icon($$renderer, $$props) {
-  const $$sanitized_props = sanitize_props($$props);
-  const $$restProps = rest_props($$sanitized_props, ["type", "name", "color", "size", "stroke", "iconNode"]);
-  $$renderer.component(($$renderer2) => {
-    let type = $$props["type"];
-    let name = $$props["name"];
-    let color = fallback($$props["color"], "currentColor");
-    let size2 = fallback($$props["size"], 24);
-    let stroke = fallback($$props["stroke"], 2);
-    let iconNode = $$props["iconNode"];
-    $$renderer2.push(`<svg${attributes(
-      {
-        ...defaultAttributes[type],
-        ...$$restProps,
-        width: size2,
-        height: size2,
-        class: `tabler-icon tabler-icon-${name} ${$$sanitized_props.class ?? ""}`,
-        ...type === "filled" ? { fill: color } : { "stroke-width": stroke, stroke: color }
-      },
-      void 0,
-      void 0,
-      void 0,
-      3
-    )}><!--[-->`);
-    const each_array = ensure_array_like(iconNode);
-    for (let $$index = 0, $$length = each_array.length; $$index < $$length; $$index++) {
-      let [tag, attrs] = each_array[$$index];
-      element($$renderer2, tag, () => {
-        $$renderer2.push(`${attributes({ ...attrs }, void 0, void 0, void 0, 3)}`);
-      });
-    }
-    $$renderer2.push(`<!--]--><!--[-->`);
-    slot($$renderer2, $$props, "default", {});
-    $$renderer2.push(`<!--]--></svg>`);
-    bind_props($$props, { type, name, color, size: size2, stroke, iconNode });
-  });
-}
-function Chevron_right($$renderer, $$props) {
-  const $$sanitized_props = sanitize_props($$props);
-  const iconNode = [["path", { "d": "M9 6l6 6l-6 6" }]];
-  Icon($$renderer, spread_props([
-    { type: "outline", name: "chevron-right" },
-    $$sanitized_props,
-    {
-      iconNode,
-      children: ($$renderer2) => {
-        $$renderer2.push(`<!--[-->`);
-        slot($$renderer2, $$props, "default", {});
-        $$renderer2.push(`<!--]-->`);
-      },
-      $$slots: { default: true }
-    }
-  ]));
-}
-function File($$renderer, $$props) {
-  const $$sanitized_props = sanitize_props($$props);
-  const iconNode = [
-    ["path", { "d": "M14 3v4a1 1 0 0 0 1 1h4" }],
-    [
-      "path",
-      {
-        "d": "M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2"
-      }
-    ]
-  ];
-  Icon($$renderer, spread_props([
-    { type: "outline", name: "file" },
-    $$sanitized_props,
-    {
-      iconNode,
-      children: ($$renderer2) => {
-        $$renderer2.push(`<!--[-->`);
-        slot($$renderer2, $$props, "default", {});
-        $$renderer2.push(`<!--]-->`);
-      },
-      $$slots: { default: true }
-    }
-  ]));
-}
-function Button($$renderer, $$props) {
-  let variant = fallback($$props["variant"], "primary");
-  let size2 = fallback($$props["size"], "md");
-  let loading = fallback($$props["loading"], false);
-  let disabled = fallback($$props["disabled"], false);
-  let href = fallback($$props["href"], null);
-  let type = fallback($$props["type"], "button");
-  const base = "inline-flex items-center justify-center rounded-xl font-medium transition-all select-none";
-  const variants = {
-    primary: "bg-primary text-primary-foreground hover:bg-primary/90 active:bg-primary/80",
-    secondary: "bg-muted text-muted-foreground hover:bg-muted/90 active:bg-muted/80",
-    ghost: "bg-transparent text-foreground hover:bg-muted active:bg-muted",
-    destructive: "bg-destructive text-destructive-foreground hover:bg-destructive/90 active:bg-destructive/80"
-  };
-  const sizes = {
-    sm: "px-3 py-1.5 text-sm",
-    md: "px-4 py-2 text-base",
-    lg: "px-5 py-2.5 text-lg",
-    icon: "h-9 w-9 p-1",
-    "icon-sm": "h-7 w-7 p-2"
-  };
-  const isDisabled = disabled || loading;
-  if (href) {
-    $$renderer.push("<!--[-->");
-    $$renderer.push(`<a${attr("href", href)}${attr_class(`${base} ${variants[variant]} ${sizes[size2]} ${isDisabled && "opacity-60 cursor-not-allowed"} `)}${attr("aria-disabled", isDisabled)}><!--[-->`);
-    slot($$renderer, $$props, "default", {});
-    $$renderer.push(`<!--]--></a>`);
-  } else {
-    $$renderer.push("<!--[!-->");
-    $$renderer.push(`<button${attr("type", type)}${attr_class(`${base} ${variants[variant]} ${sizes[size2]} ${isDisabled && "opacity-60 cursor-not-allowed"} `)}${attr("disabled", isDisabled, true)}><!--[-->`);
-    slot($$renderer, $$props, "default", {});
-    $$renderer.push(`<!--]--></button>`);
-  }
-  $$renderer.push(`<!--]-->`);
-  bind_props($$props, { variant, size: size2, loading, disabled, href, type });
-}
-function Input($$renderer, $$props) {
-  let value = fallback($$props["value"], "");
-  let type = fallback($$props["type"], "text");
-  let placeholder = fallback($$props["placeholder"], "");
-  let disabled = fallback($$props["disabled"], false);
-  $$renderer.push(`<input${attr("value", value)}${attr("type", type)}${attr("placeholder", placeholder)}${attr("disabled", disabled, true)} class="w-full px-2 py-1 rounded-lg border border-border bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring disabled:opacity-50 disabled:cursor-not-allowed text-sm"/>`);
-  bind_props($$props, { value, type, placeholder, disabled });
-}
-function isFunction$1(value) {
-  return typeof value === "function";
-}
-function isObject(value) {
-  return value !== null && typeof value === "object";
-}
-const CLASS_VALUE_PRIMITIVE_TYPES = ["string", "number", "bigint", "boolean"];
-function isClassValue(value) {
-  if (value === null || value === void 0)
-    return true;
-  if (CLASS_VALUE_PRIMITIVE_TYPES.includes(typeof value))
-    return true;
-  if (Array.isArray(value))
-    return value.every((item) => isClassValue(item));
-  if (typeof value === "object") {
-    if (Object.getPrototypeOf(value) !== Object.prototype)
-      return false;
-    return true;
-  }
-  return false;
-}
-const BoxSymbol = Symbol("box");
-const isWritableSymbol = Symbol("is-writable");
-function boxWith(getter, setter) {
-  const derived2 = getter();
-  if (setter) {
-    return {
-      [BoxSymbol]: true,
-      [isWritableSymbol]: true,
-      get current() {
-        return derived2;
-      },
-      set current(v) {
-        setter(v);
-      }
-    };
-  }
-  return {
-    [BoxSymbol]: true,
-    get current() {
-      return getter();
-    }
-  };
-}
-function isBox(value) {
-  return isObject(value) && BoxSymbol in value;
-}
-function isWritableBox(value) {
-  return isBox(value) && isWritableSymbol in value;
-}
-function boxFrom(value) {
-  if (isBox(value)) return value;
-  if (isFunction$1(value)) return boxWith(value);
-  return simpleBox(value);
-}
-function boxFlatten(boxes) {
-  return Object.entries(boxes).reduce(
-    (acc, [key, b]) => {
-      if (!isBox(b)) {
-        return Object.assign(acc, { [key]: b });
-      }
-      if (isWritableBox(b)) {
-        Object.defineProperty(acc, key, {
-          get() {
-            return b.current;
-          },
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          set(v) {
-            b.current = v;
-          }
-        });
-      } else {
-        Object.defineProperty(acc, key, {
-          get() {
-            return b.current;
-          }
-        });
-      }
-      return acc;
-    },
-    {}
-  );
-}
-function toReadonlyBox(b) {
-  if (!isWritableBox(b)) return b;
-  return {
-    [BoxSymbol]: true,
-    get current() {
-      return b.current;
-    }
-  };
-}
-function simpleBox(initialValue) {
-  let current = initialValue;
-  return {
-    [BoxSymbol]: true,
-    [isWritableSymbol]: true,
-    get current() {
-      return current;
-    },
-    set current(v) {
-      current = v;
-    }
-  };
 }
 function box(initialValue) {
   let current = initialValue;
@@ -684,116 +420,22 @@ function mergeProps(...args) {
   }
   return result;
 }
-const defaultWindow = void 0;
-function getActiveElement$1(document2) {
-  let activeElement = document2.activeElement;
-  while (activeElement?.shadowRoot) {
-    const node = activeElement.shadowRoot.activeElement;
-    if (node === activeElement)
-      break;
-    else
-      activeElement = node;
-  }
-  return activeElement;
-}
-const SvelteMap = globalThis.Map;
-function createSubscriber(_) {
-  return () => {
-  };
-}
-class ActiveElement {
-  #document;
-  #subscribe;
-  constructor(options = {}) {
-    const { window: window2 = defaultWindow, document: document2 = window2?.document } = options;
-    if (window2 === void 0) return;
-    this.#document = document2;
-    this.#subscribe = createSubscriber();
-  }
-  get current() {
-    this.#subscribe?.();
-    if (!this.#document) return null;
-    return getActiveElement$1(this.#document);
-  }
-}
-new ActiveElement();
+const srOnlyStyles = {
+  position: "absolute",
+  width: "1px",
+  height: "1px",
+  padding: "0",
+  margin: "-1px",
+  overflow: "hidden",
+  clip: "rect(0, 0, 0, 0)",
+  whiteSpace: "nowrap",
+  borderWidth: "0",
+  transform: "translateX(-100%)"
+};
+const srOnlyStylesString = styleToString(srOnlyStyles);
 function isFunction(value) {
   return typeof value === "function";
 }
-class Context {
-  #name;
-  #key;
-  /**
-   * @param name The name of the context.
-   * This is used for generating the context key and error messages.
-   */
-  constructor(name) {
-    this.#name = name;
-    this.#key = Symbol(name);
-  }
-  /**
-   * The key used to get and set the context.
-   *
-   * It is not recommended to use this value directly.
-   * Instead, use the methods provided by this class.
-   */
-  get key() {
-    return this.#key;
-  }
-  /**
-   * Checks whether this has been set in the context of a parent component.
-   *
-   * Must be called during component initialisation.
-   */
-  exists() {
-    return hasContext(this.#key);
-  }
-  /**
-   * Retrieves the context that belongs to the closest parent component.
-   *
-   * Must be called during component initialisation.
-   *
-   * @throws An error if the context does not exist.
-   */
-  get() {
-    const context = getContext(this.#key);
-    if (context === void 0) {
-      throw new Error(`Context "${this.#name}" not found`);
-    }
-    return context;
-  }
-  /**
-   * Retrieves the context that belongs to the closest parent component,
-   * or the given fallback value if the context does not exist.
-   *
-   * Must be called during component initialisation.
-   */
-  getOr(fallback2) {
-    const context = getContext(this.#key);
-    if (context === void 0) {
-      return fallback2;
-    }
-    return context;
-  }
-  /**
-   * Associates the given value with the current component and returns it.
-   *
-   * Must be called during component initialisation.
-   */
-  set(context) {
-    return setContext(this.#key, context);
-  }
-}
-function runWatcher(sources, flush, effect, options = {}) {
-  const { lazy = false } = options;
-}
-function watch(sources, effect, options) {
-  runWatcher(sources, "post", effect, options);
-}
-function watchPre(sources, effect, options) {
-  runWatcher(sources, "pre", effect, options);
-}
-watch.pre = watchPre;
 function get$1(value) {
   if (isFunction(value)) {
     return value();
@@ -867,197 +509,6 @@ class ElementSize {
 function afterSleep(ms, cb) {
   return setTimeout(cb, ms);
 }
-function afterTick(fn) {
-  tick().then(fn);
-}
-const ELEMENT_NODE = 1;
-const DOCUMENT_NODE = 9;
-const DOCUMENT_FRAGMENT_NODE = 11;
-function isHTMLElement$1(node) {
-  return isObject(node) && node.nodeType === ELEMENT_NODE && typeof node.nodeName === "string";
-}
-function isDocument(node) {
-  return isObject(node) && node.nodeType === DOCUMENT_NODE;
-}
-function isWindow(node) {
-  return isObject(node) && node.constructor?.name === "VisualViewport";
-}
-function isNode(node) {
-  return isObject(node) && node.nodeType !== void 0;
-}
-function isShadowRoot(node) {
-  return isNode(node) && node.nodeType === DOCUMENT_FRAGMENT_NODE && "host" in node;
-}
-function contains(parent, child) {
-  if (!parent || !child)
-    return false;
-  if (!isHTMLElement$1(parent) || !isHTMLElement$1(child))
-    return false;
-  const rootNode = child.getRootNode?.();
-  if (parent === child)
-    return true;
-  if (parent.contains(child))
-    return true;
-  if (rootNode && isShadowRoot(rootNode)) {
-    let next = child;
-    while (next) {
-      if (parent === next)
-        return true;
-      next = next.parentNode || next.host;
-    }
-  }
-  return false;
-}
-function getDocument(node) {
-  if (isDocument(node))
-    return node;
-  if (isWindow(node))
-    return node.document;
-  return node?.ownerDocument ?? document;
-}
-function getWindow(node) {
-  if (isShadowRoot(node))
-    return getWindow(node.host);
-  if (isDocument(node))
-    return node.defaultView ?? window;
-  if (isHTMLElement$1(node))
-    return node.ownerDocument?.defaultView ?? window;
-  return window;
-}
-function getActiveElement(rootNode) {
-  let activeElement = rootNode.activeElement;
-  while (activeElement?.shadowRoot) {
-    const el = activeElement.shadowRoot.activeElement;
-    if (el === activeElement)
-      break;
-    else
-      activeElement = el;
-  }
-  return activeElement;
-}
-class DOMContext {
-  element;
-  #root = derived(() => {
-    if (!this.element.current) return document;
-    const rootNode = this.element.current.getRootNode() ?? document;
-    return rootNode;
-  });
-  get root() {
-    return this.#root();
-  }
-  set root($$value) {
-    return this.#root($$value);
-  }
-  constructor(element2) {
-    if (typeof element2 === "function") {
-      this.element = boxWith(element2);
-    } else {
-      this.element = element2;
-    }
-  }
-  getDocument = () => {
-    return getDocument(this.root);
-  };
-  getWindow = () => {
-    return this.getDocument().defaultView ?? window;
-  };
-  getActiveElement = () => {
-    return getActiveElement(this.root);
-  };
-  isActiveElement = (node) => {
-    return node === this.getActiveElement();
-  };
-  getElementById(id) {
-    return this.root.getElementById(id);
-  }
-  querySelector = (selector) => {
-    if (!this.root) return null;
-    return this.root.querySelector(selector);
-  };
-  querySelectorAll = (selector) => {
-    if (!this.root) return [];
-    return this.root.querySelectorAll(selector);
-  };
-  setTimeout = (callback, delay) => {
-    return this.getWindow().setTimeout(callback, delay);
-  };
-  clearTimeout = (timeoutId) => {
-    return this.getWindow().clearTimeout(timeoutId);
-  };
-}
-function attachRef(ref, onChange) {
-  return {
-    [createAttachmentKey()]: (node) => {
-      if (isBox(ref)) {
-        ref.current = node;
-        run(() => onChange?.(node));
-        return () => {
-          if ("isConnected" in node && node.isConnected)
-            return;
-          ref.current = null;
-          onChange?.(null);
-        };
-      }
-      ref(node);
-      run(() => onChange?.(node));
-      return () => {
-        if ("isConnected" in node && node.isConnected)
-          return;
-        ref(null);
-        onChange?.(null);
-      };
-    }
-  };
-}
-function boolToStr(condition) {
-  return condition ? "true" : "false";
-}
-function boolToStrTrueOrUndef(condition) {
-  return condition ? "true" : void 0;
-}
-function boolToEmptyStrOrUndef(condition) {
-  return condition ? "" : void 0;
-}
-function boolToTrueOrUndef(condition) {
-  return condition ? true : void 0;
-}
-function getDataOpenClosed(condition) {
-  return condition ? "open" : "closed";
-}
-function getAriaChecked(checked, indeterminate) {
-  if (indeterminate) {
-    return "mixed";
-  }
-  return checked ? "true" : "false";
-}
-class BitsAttrs {
-  #variant;
-  #prefix;
-  attrs;
-  constructor(config) {
-    this.#variant = config.getVariant ? config.getVariant() : null;
-    this.#prefix = this.#variant ? `data-${this.#variant}-` : `data-${config.component}-`;
-    this.getAttr = this.getAttr.bind(this);
-    this.selector = this.selector.bind(this);
-    this.attrs = Object.fromEntries(config.parts.map((part) => [part, this.getAttr(part)]));
-  }
-  getAttr(part, variantOverride) {
-    if (variantOverride)
-      return `data-${variantOverride}-${part}`;
-    return `${this.#prefix}${part}`;
-  }
-  selector(part, variantOverride) {
-    return `[${this.getAttr(part, variantOverride)}]`;
-  }
-}
-function createBitsAttrs(config) {
-  const bitsAttrs = new BitsAttrs(config);
-  return {
-    ...bitsAttrs.attrs,
-    selector: bitsAttrs.selector,
-    getAttr: bitsAttrs.getAttr
-  };
-}
 const ARROW_DOWN = "ArrowDown";
 const ARROW_LEFT = "ArrowLeft";
 const ARROW_RIGHT = "ArrowRight";
@@ -1096,27 +547,6 @@ function getDirectionalKeys(dir = "ltr", orientation = "horizontal") {
     nextKey: getNextKey(dir, orientation),
     prevKey: getPrevKey(dir, orientation)
   };
-}
-const isBrowser = typeof document !== "undefined";
-const isIOS = getIsIOS();
-function getIsIOS() {
-  return isBrowser && window?.navigator?.userAgent && (/iP(ad|hone|od)/.test(window.navigator.userAgent) || // The new iPad Pro Gen3 does not identify itself as iPad, but as Macintosh.
-  window?.navigator?.maxTouchPoints > 2 && /iPad|Macintosh/.test(window?.navigator.userAgent));
-}
-function isHTMLElement(element2) {
-  return element2 instanceof HTMLElement;
-}
-function isElement(element2) {
-  return element2 instanceof Element;
-}
-function isElementOrSVGElement(element2) {
-  return element2 instanceof Element || element2 instanceof SVGElement;
-}
-function isNotNull(value) {
-  return value !== null;
-}
-function isSelectableInput(element2) {
-  return element2 instanceof HTMLInputElement && "select" in element2;
 }
 class RovingFocusGroup {
   #opts;
@@ -1195,76 +625,6 @@ class RovingFocusGroup {
     if (!currentTabStop || !isHTMLElement(currentTabStop))
       return;
     currentTabStop.focus();
-  }
-}
-class AnimationsComplete {
-  #opts;
-  #currentFrame = null;
-  constructor(opts) {
-    this.#opts = opts;
-  }
-  #cleanup() {
-    if (!this.#currentFrame)
-      return;
-    window.cancelAnimationFrame(this.#currentFrame);
-    this.#currentFrame = null;
-  }
-  run(fn) {
-    this.#cleanup();
-    const node = this.#opts.ref.current;
-    if (!node)
-      return;
-    if (typeof node.getAnimations !== "function") {
-      this.#executeCallback(fn);
-      return;
-    }
-    this.#currentFrame = window.requestAnimationFrame(() => {
-      const animations = node.getAnimations();
-      if (animations.length === 0) {
-        this.#executeCallback(fn);
-        return;
-      }
-      Promise.allSettled(animations.map((animation) => animation.finished)).then(() => {
-        this.#executeCallback(fn);
-      });
-    });
-  }
-  #executeCallback(fn) {
-    const execute = () => {
-      fn();
-    };
-    if (this.#opts.afterTick) {
-      afterTick(execute);
-    } else {
-      execute();
-    }
-  }
-}
-class PresenceManager {
-  #opts;
-  #enabled;
-  #afterAnimations;
-  #shouldRender = false;
-  constructor(opts) {
-    this.#opts = opts;
-    this.#shouldRender = opts.open.current;
-    this.#enabled = opts.enabled ?? true;
-    this.#afterAnimations = new AnimationsComplete({ ref: this.#opts.ref, afterTick: this.#opts.open });
-    watch(() => this.#opts.open.current, (isOpen) => {
-      if (isOpen) this.#shouldRender = true;
-      if (!this.#enabled) return;
-      this.#afterAnimations.run(() => {
-        if (isOpen === this.#opts.open.current) {
-          if (!this.#opts.open.current) {
-            this.#shouldRender = false;
-          }
-          this.#opts.onComplete?.();
-        }
-      });
-    });
-  }
-  get shouldRender() {
-    return this.#shouldRender;
   }
 }
 const accordionAttrs = createBitsAttrs({
@@ -2272,11 +1632,11 @@ function focus(element2, { select = false } = {}) {
     element2.select();
   }
 }
-function focusFirst(candidates, { select = false } = {}, getActiveElement2) {
-  const previouslyFocusedElement = getActiveElement2();
+function focusFirst(candidates, { select = false } = {}, getActiveElement) {
+  const previouslyFocusedElement = getActiveElement();
   for (const candidate of candidates) {
     focus(candidate, { select });
-    if (getActiveElement2() !== previouslyFocusedElement)
+    if (getActiveElement() !== previouslyFocusedElement)
       return true;
   }
 }
@@ -4034,6 +3394,346 @@ function Dialog_trigger($$renderer, $$props) {
     bind_props($$props, { ref });
   });
 }
+function Button($$renderer, $$props) {
+  $$renderer.component(($$renderer2) => {
+    let {
+      href,
+      type,
+      children,
+      disabled = false,
+      ref = null,
+      $$slots,
+      $$events,
+      ...restProps
+    } = $$props;
+    element(
+      $$renderer2,
+      href ? "a" : "button",
+      () => {
+        $$renderer2.push(`${attributes({
+          "data-button-root": true,
+          type: href ? void 0 : type,
+          href: href && !disabled ? href : void 0,
+          disabled: href ? void 0 : disabled,
+          "aria-disabled": href ? disabled : void 0,
+          role: href && disabled ? "link" : void 0,
+          tabindex: href && disabled ? -1 : 0,
+          ...restProps
+        })}`);
+      },
+      () => {
+        children?.($$renderer2);
+        $$renderer2.push(`<!---->`);
+      }
+    );
+    bind_props($$props, { ref });
+  });
+}
+const checkboxAttrs = createBitsAttrs({
+  component: "checkbox",
+  parts: ["root", "group", "group-label", "input"]
+});
+const CheckboxGroupContext = new Context("Checkbox.Group");
+const CheckboxRootContext = new Context("Checkbox.Root");
+class CheckboxRootState {
+  static create(opts, group = null) {
+    return CheckboxRootContext.set(new CheckboxRootState(opts, group));
+  }
+  opts;
+  group;
+  #trueName = derived(() => {
+    if (this.group && this.group.opts.name.current) return this.group.opts.name.current;
+    return this.opts.name.current;
+  });
+  get trueName() {
+    return this.#trueName();
+  }
+  set trueName($$value) {
+    return this.#trueName($$value);
+  }
+  #trueRequired = derived(() => {
+    if (this.group && this.group.opts.required.current) return true;
+    return this.opts.required.current;
+  });
+  get trueRequired() {
+    return this.#trueRequired();
+  }
+  set trueRequired($$value) {
+    return this.#trueRequired($$value);
+  }
+  #trueDisabled = derived(() => {
+    if (this.group && this.group.opts.disabled.current) return true;
+    return this.opts.disabled.current;
+  });
+  get trueDisabled() {
+    return this.#trueDisabled();
+  }
+  set trueDisabled($$value) {
+    return this.#trueDisabled($$value);
+  }
+  #trueReadonly = derived(() => {
+    if (this.group && this.group.opts.readonly.current) return true;
+    return this.opts.readonly.current;
+  });
+  get trueReadonly() {
+    return this.#trueReadonly();
+  }
+  set trueReadonly($$value) {
+    return this.#trueReadonly($$value);
+  }
+  attachment;
+  constructor(opts, group) {
+    this.opts = opts;
+    this.group = group;
+    this.attachment = attachRef(this.opts.ref);
+    this.onkeydown = this.onkeydown.bind(this);
+    this.onclick = this.onclick.bind(this);
+    watch.pre(
+      [
+        () => snapshot(this.group?.opts.value.current),
+        () => this.opts.value.current
+      ],
+      ([groupValue, value]) => {
+        if (!groupValue || !value) return;
+        this.opts.checked.current = groupValue.includes(value);
+      }
+    );
+    watch.pre(() => this.opts.checked.current, (checked) => {
+      if (!this.group) return;
+      if (checked) {
+        this.group?.addValue(this.opts.value.current);
+      } else {
+        this.group?.removeValue(this.opts.value.current);
+      }
+    });
+  }
+  onkeydown(e) {
+    if (this.trueDisabled || this.trueReadonly) return;
+    if (e.key === ENTER) {
+      e.preventDefault();
+      if (this.opts.type.current === "submit") {
+        const form = e.currentTarget.closest("form");
+        form?.requestSubmit();
+      }
+      return;
+    }
+    if (e.key === SPACE) {
+      e.preventDefault();
+      this.#toggle();
+    }
+  }
+  #toggle() {
+    if (this.opts.indeterminate.current) {
+      this.opts.indeterminate.current = false;
+      this.opts.checked.current = true;
+    } else {
+      this.opts.checked.current = !this.opts.checked.current;
+    }
+  }
+  onclick(e) {
+    if (this.trueDisabled || this.trueReadonly) return;
+    if (this.opts.type.current === "submit") {
+      this.#toggle();
+      return;
+    }
+    e.preventDefault();
+    this.#toggle();
+  }
+  #snippetProps = derived(() => ({
+    checked: this.opts.checked.current,
+    indeterminate: this.opts.indeterminate.current
+  }));
+  get snippetProps() {
+    return this.#snippetProps();
+  }
+  set snippetProps($$value) {
+    return this.#snippetProps($$value);
+  }
+  #props = derived(() => ({
+    id: this.opts.id.current,
+    role: "checkbox",
+    type: this.opts.type.current,
+    disabled: this.trueDisabled,
+    "aria-checked": getAriaChecked(this.opts.checked.current, this.opts.indeterminate.current),
+    "aria-required": boolToStr(this.trueRequired),
+    "aria-readonly": boolToStr(this.trueReadonly),
+    "data-disabled": boolToEmptyStrOrUndef(this.trueDisabled),
+    "data-readonly": boolToEmptyStrOrUndef(this.trueReadonly),
+    "data-state": getCheckboxDataState(this.opts.checked.current, this.opts.indeterminate.current),
+    [checkboxAttrs.root]: "",
+    onclick: this.onclick,
+    onkeydown: this.onkeydown,
+    ...this.attachment
+  }));
+  get props() {
+    return this.#props();
+  }
+  set props($$value) {
+    return this.#props($$value);
+  }
+}
+class CheckboxInputState {
+  static create() {
+    return new CheckboxInputState(CheckboxRootContext.get());
+  }
+  root;
+  #trueChecked = derived(() => {
+    if (!this.root.group) return this.root.opts.checked.current;
+    if (this.root.opts.value.current !== void 0 && this.root.group.opts.value.current.includes(this.root.opts.value.current)) {
+      return true;
+    }
+    return false;
+  });
+  get trueChecked() {
+    return this.#trueChecked();
+  }
+  set trueChecked($$value) {
+    return this.#trueChecked($$value);
+  }
+  #shouldRender = derived(() => Boolean(this.root.trueName));
+  get shouldRender() {
+    return this.#shouldRender();
+  }
+  set shouldRender($$value) {
+    return this.#shouldRender($$value);
+  }
+  constructor(root) {
+    this.root = root;
+    this.onfocus = this.onfocus.bind(this);
+  }
+  onfocus(_) {
+    if (!isHTMLElement(this.root.opts.ref.current)) return;
+    this.root.opts.ref.current.focus();
+  }
+  #props = derived(() => ({
+    type: "checkbox",
+    checked: this.root.opts.checked.current === true,
+    disabled: this.root.trueDisabled,
+    required: this.root.trueRequired,
+    name: this.root.trueName,
+    value: this.root.opts.value.current,
+    readonly: this.root.trueReadonly,
+    onfocus: this.onfocus
+  }));
+  get props() {
+    return this.#props();
+  }
+  set props($$value) {
+    return this.#props($$value);
+  }
+}
+function getCheckboxDataState(checked, indeterminate) {
+  if (indeterminate) return "indeterminate";
+  return checked ? "checked" : "unchecked";
+}
+function Hidden_input($$renderer, $$props) {
+  $$renderer.component(($$renderer2) => {
+    let { value = void 0, $$slots, $$events, ...restProps } = $$props;
+    const mergedProps = mergeProps(restProps, {
+      "aria-hidden": "true",
+      tabindex: -1,
+      style: srOnlyStylesString
+    });
+    if (mergedProps.type === "checkbox") {
+      $$renderer2.push("<!--[-->");
+      $$renderer2.push(`<input${attributes({ ...mergedProps, value }, void 0, void 0, void 0, 4)}/>`);
+    } else {
+      $$renderer2.push("<!--[!-->");
+      $$renderer2.push(`<input${attributes({ value, ...mergedProps }, void 0, void 0, void 0, 4)}/>`);
+    }
+    $$renderer2.push(`<!--]-->`);
+    bind_props($$props, { value });
+  });
+}
+function Checkbox_input($$renderer, $$props) {
+  $$renderer.component(($$renderer2) => {
+    const inputState = CheckboxInputState.create();
+    if (inputState.shouldRender) {
+      $$renderer2.push("<!--[-->");
+      Hidden_input($$renderer2, spread_props([inputState.props]));
+    } else {
+      $$renderer2.push("<!--[!-->");
+    }
+    $$renderer2.push(`<!--]-->`);
+  });
+}
+function Checkbox($$renderer, $$props) {
+  $$renderer.component(($$renderer2) => {
+    const uid = props_id($$renderer2);
+    let {
+      checked = false,
+      ref = null,
+      onCheckedChange,
+      children,
+      disabled = false,
+      required = false,
+      name = void 0,
+      value = "on",
+      id = createId(uid),
+      indeterminate = false,
+      onIndeterminateChange,
+      child,
+      type = "button",
+      readonly,
+      $$slots,
+      $$events,
+      ...restProps
+    } = $$props;
+    const group = CheckboxGroupContext.getOr(null);
+    if (group && value) {
+      if (group.opts.value.current.includes(value)) {
+        checked = true;
+      } else {
+        checked = false;
+      }
+    }
+    watch.pre(() => value, () => {
+      if (group && value) {
+        if (group.opts.value.current.includes(value)) {
+          checked = true;
+        } else {
+          checked = false;
+        }
+      }
+    });
+    const rootState = CheckboxRootState.create(
+      {
+        checked: boxWith(() => checked, (v) => {
+          checked = v;
+          onCheckedChange?.(v);
+        }),
+        disabled: boxWith(() => disabled ?? false),
+        required: boxWith(() => required),
+        name: boxWith(() => name),
+        value: boxWith(() => value),
+        id: boxWith(() => id),
+        ref: boxWith(() => ref, (v) => ref = v),
+        indeterminate: boxWith(() => indeterminate, (v) => {
+          indeterminate = v;
+          onIndeterminateChange?.(v);
+        }),
+        type: boxWith(() => type),
+        readonly: boxWith(() => Boolean(readonly))
+      },
+      group
+    );
+    const mergedProps = mergeProps({ ...restProps }, rootState.props);
+    if (child) {
+      $$renderer2.push("<!--[-->");
+      child($$renderer2, { props: mergedProps, ...rootState.snippetProps });
+      $$renderer2.push(`<!---->`);
+    } else {
+      $$renderer2.push("<!--[!-->");
+      $$renderer2.push(`<button${attributes({ ...mergedProps })}>`);
+      children?.($$renderer2, rootState.snippetProps);
+      $$renderer2.push(`<!----></button>`);
+    }
+    $$renderer2.push(`<!--]--> `);
+    Checkbox_input($$renderer2);
+    $$renderer2.push(`<!---->`);
+    bind_props($$props, { checked, ref, indeterminate });
+  });
+}
 function get(valueOrGetValue) {
   return typeof valueOrGetValue === "function" ? valueOrGetValue() : valueOrGetValue;
 }
@@ -5720,65 +5420,1195 @@ function Tabs_trigger($$renderer, $$props) {
     bind_props($$props, { ref });
   });
 }
-function AddSourceDialog($$renderer, $$props) {
+function Tooltip($$renderer, $$props) {
   $$renderer.component(($$renderer2) => {
-    let name = "";
-    let host = "";
-    let port = 22;
-    let user = "";
-    let logPath = "";
-    let logLabel = "";
+    let {
+      open = false,
+      onOpenChange = noop,
+      onOpenChangeComplete = noop,
+      disabled,
+      delayDuration,
+      disableCloseOnTriggerClick,
+      disableHoverableContent,
+      ignoreNonKeyboardFocus,
+      children
+    } = $$props;
+    TooltipRootState.create({
+      open: boxWith(() => open, (v) => {
+        open = v;
+        onOpenChange(v);
+      }),
+      delayDuration: boxWith(() => delayDuration),
+      disableCloseOnTriggerClick: boxWith(() => disableCloseOnTriggerClick),
+      disableHoverableContent: boxWith(() => disableHoverableContent),
+      ignoreNonKeyboardFocus: boxWith(() => ignoreNonKeyboardFocus),
+      disabled: boxWith(() => disabled),
+      onOpenChangeComplete: boxWith(() => onOpenChangeComplete)
+    });
+    Floating_layer($$renderer2, {
+      tooltip: true,
+      children: ($$renderer3) => {
+        children?.($$renderer3);
+        $$renderer3.push(`<!---->`);
+      }
+    });
+    bind_props($$props, { open });
+  });
+}
+function Tooltip_content($$renderer, $$props) {
+  $$renderer.component(($$renderer2) => {
+    const uid = props_id($$renderer2);
+    let {
+      children,
+      child,
+      id = createId(uid),
+      ref = null,
+      side = "top",
+      sideOffset = 0,
+      align = "center",
+      avoidCollisions = true,
+      arrowPadding = 0,
+      sticky = "partial",
+      strategy,
+      hideWhenDetached = false,
+      collisionPadding = 0,
+      onInteractOutside = noop,
+      onEscapeKeydown = noop,
+      forceMount = false,
+      $$slots,
+      $$events,
+      ...restProps
+    } = $$props;
+    const contentState = TooltipContentState.create({
+      id: boxWith(() => id),
+      ref: boxWith(() => ref, (v) => ref = v),
+      onInteractOutside: boxWith(() => onInteractOutside),
+      onEscapeKeydown: boxWith(() => onEscapeKeydown)
+    });
+    const floatingProps = {
+      side,
+      sideOffset,
+      align,
+      avoidCollisions,
+      arrowPadding,
+      sticky,
+      hideWhenDetached,
+      collisionPadding,
+      strategy
+    };
+    const mergedProps = mergeProps(restProps, floatingProps, contentState.props);
+    if (forceMount) {
+      $$renderer2.push("<!--[-->");
+      {
+        let popper = function($$renderer3, { props, wrapperProps }) {
+          const mergedProps2 = mergeProps(props, { style: getFloatingContentCSSVars("tooltip") });
+          if (child) {
+            $$renderer3.push("<!--[-->");
+            child($$renderer3, {
+              props: mergedProps2,
+              wrapperProps,
+              ...contentState.snippetProps
+            });
+            $$renderer3.push(`<!---->`);
+          } else {
+            $$renderer3.push("<!--[!-->");
+            $$renderer3.push(`<div${attributes({ ...wrapperProps })}><div${attributes({ ...mergedProps2 })}>`);
+            children?.($$renderer3);
+            $$renderer3.push(`<!----></div></div>`);
+          }
+          $$renderer3.push(`<!--]-->`);
+        };
+        Popper_layer_force_mount($$renderer2, spread_props([
+          mergedProps,
+          contentState.popperProps,
+          {
+            enabled: contentState.root.opts.open.current,
+            id,
+            trapFocus: false,
+            loop: false,
+            preventScroll: false,
+            forceMount: true,
+            ref: contentState.opts.ref,
+            tooltip: true,
+            shouldRender: contentState.shouldRender,
+            contentPointerEvents: contentState.root.disableHoverableContent ? "none" : "auto",
+            popper,
+            $$slots: { popper: true }
+          }
+        ]));
+      }
+    } else {
+      $$renderer2.push("<!--[!-->");
+      if (!forceMount) {
+        $$renderer2.push("<!--[-->");
+        {
+          let popper = function($$renderer3, { props, wrapperProps }) {
+            const mergedProps2 = mergeProps(props, { style: getFloatingContentCSSVars("tooltip") });
+            if (child) {
+              $$renderer3.push("<!--[-->");
+              child($$renderer3, {
+                props: mergedProps2,
+                wrapperProps,
+                ...contentState.snippetProps
+              });
+              $$renderer3.push(`<!---->`);
+            } else {
+              $$renderer3.push("<!--[!-->");
+              $$renderer3.push(`<div${attributes({ ...wrapperProps })}><div${attributes({ ...mergedProps2 })}>`);
+              children?.($$renderer3);
+              $$renderer3.push(`<!----></div></div>`);
+            }
+            $$renderer3.push(`<!--]-->`);
+          };
+          Popper_layer($$renderer2, spread_props([
+            mergedProps,
+            contentState.popperProps,
+            {
+              open: contentState.root.opts.open.current,
+              id,
+              trapFocus: false,
+              loop: false,
+              preventScroll: false,
+              forceMount: false,
+              ref: contentState.opts.ref,
+              tooltip: true,
+              shouldRender: contentState.shouldRender,
+              contentPointerEvents: contentState.root.disableHoverableContent ? "none" : "auto",
+              popper,
+              $$slots: { popper: true }
+            }
+          ]));
+        }
+      } else {
+        $$renderer2.push("<!--[!-->");
+      }
+      $$renderer2.push(`<!--]-->`);
+    }
+    $$renderer2.push(`<!--]-->`);
+    bind_props($$props, { ref });
+  });
+}
+function Tooltip_trigger($$renderer, $$props) {
+  $$renderer.component(($$renderer2) => {
+    const uid = props_id($$renderer2);
+    let {
+      children,
+      child,
+      id = createId(uid),
+      disabled = false,
+      type = "button",
+      ref = null,
+      $$slots,
+      $$events,
+      ...restProps
+    } = $$props;
+    const triggerState = TooltipTriggerState.create({
+      id: boxWith(() => id),
+      disabled: boxWith(() => disabled ?? false),
+      ref: boxWith(() => ref, (v) => ref = v)
+    });
+    const mergedProps = mergeProps(restProps, triggerState.props, { type });
+    Floating_layer_anchor($$renderer2, {
+      id,
+      ref: triggerState.opts.ref,
+      tooltip: true,
+      children: ($$renderer3) => {
+        if (child) {
+          $$renderer3.push("<!--[-->");
+          child($$renderer3, { props: mergedProps });
+          $$renderer3.push(`<!---->`);
+        } else {
+          $$renderer3.push("<!--[!-->");
+          $$renderer3.push(`<button${attributes({ ...mergedProps })}>`);
+          children?.($$renderer3);
+          $$renderer3.push(`<!----></button>`);
+        }
+        $$renderer3.push(`<!--]-->`);
+      }
+    });
+    bind_props($$props, { ref });
+  });
+}
+const logs = writable([]);
+const selectedLog = writable(null);
+const levelFilter = writable(
+  /* @__PURE__ */ new Set(["info", "warn", "error"])
+);
+const defaultAttributes = {
+  outline: {
+    xmlns: "http://www.w3.org/2000/svg",
+    width: 24,
+    height: 24,
+    viewBox: "0 0 24 24",
+    fill: "none",
+    stroke: "currentColor",
+    "stroke-width": 2,
+    "stroke-linecap": "round",
+    "stroke-linejoin": "round"
+  },
+  filled: {
+    xmlns: "http://www.w3.org/2000/svg",
+    width: 24,
+    height: 24,
+    viewBox: "0 0 24 24",
+    fill: "currentColor",
+    stroke: "none"
+  }
+};
+function Icon($$renderer, $$props) {
+  const $$sanitized_props = sanitize_props($$props);
+  const $$restProps = rest_props($$sanitized_props, ["type", "name", "color", "size", "stroke", "iconNode"]);
+  $$renderer.component(($$renderer2) => {
+    let type = $$props["type"];
+    let name = $$props["name"];
+    let color = fallback($$props["color"], "currentColor");
+    let size2 = fallback($$props["size"], 24);
+    let stroke = fallback($$props["stroke"], 2);
+    let iconNode = $$props["iconNode"];
+    $$renderer2.push(`<svg${attributes(
+      {
+        ...defaultAttributes[type],
+        ...$$restProps,
+        width: size2,
+        height: size2,
+        class: `tabler-icon tabler-icon-${name} ${$$sanitized_props.class ?? ""}`,
+        ...type === "filled" ? { fill: color } : { "stroke-width": stroke, stroke: color }
+      },
+      void 0,
+      void 0,
+      void 0,
+      3
+    )}><!--[-->`);
+    const each_array = ensure_array_like(iconNode);
+    for (let $$index = 0, $$length = each_array.length; $$index < $$length; $$index++) {
+      let [tag, attrs] = each_array[$$index];
+      element($$renderer2, tag, () => {
+        $$renderer2.push(`${attributes({ ...attrs }, void 0, void 0, void 0, 3)}`);
+      });
+    }
+    $$renderer2.push(`<!--]--><!--[-->`);
+    slot($$renderer2, $$props, "default", {});
+    $$renderer2.push(`<!--]--></svg>`);
+    bind_props($$props, { type, name, color, size: size2, stroke, iconNode });
+  });
+}
+function Check($$renderer, $$props) {
+  const $$sanitized_props = sanitize_props($$props);
+  const iconNode = [["path", { "d": "M5 12l5 5l10 -10" }]];
+  Icon($$renderer, spread_props([
+    { type: "outline", name: "check" },
+    $$sanitized_props,
+    {
+      iconNode,
+      children: ($$renderer2) => {
+        $$renderer2.push(`<!--[-->`);
+        slot($$renderer2, $$props, "default", {});
+        $$renderer2.push(`<!--]-->`);
+      },
+      $$slots: { default: true }
+    }
+  ]));
+}
+function Disc($$renderer, $$props) {
+  const $$sanitized_props = sanitize_props($$props);
+  const iconNode = [
+    ["path", { "d": "M3 12a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" }],
+    ["path", { "d": "M11 12a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" }],
+    ["path", { "d": "M7 12a5 5 0 0 1 5 -5" }],
+    ["path", { "d": "M12 17a5 5 0 0 0 5 -5" }]
+  ];
+  Icon($$renderer, spread_props([
+    { type: "outline", name: "disc" },
+    $$sanitized_props,
+    {
+      iconNode,
+      children: ($$renderer2) => {
+        $$renderer2.push(`<!--[-->`);
+        slot($$renderer2, $$props, "default", {});
+        $$renderer2.push(`<!--]-->`);
+      },
+      $$slots: { default: true }
+    }
+  ]));
+}
+function File($$renderer, $$props) {
+  const $$sanitized_props = sanitize_props($$props);
+  const iconNode = [
+    ["path", { "d": "M14 3v4a1 1 0 0 0 1 1h4" }],
+    [
+      "path",
+      {
+        "d": "M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2"
+      }
+    ]
+  ];
+  Icon($$renderer, spread_props([
+    { type: "outline", name: "file" },
+    $$sanitized_props,
+    {
+      iconNode,
+      children: ($$renderer2) => {
+        $$renderer2.push(`<!--[-->`);
+        slot($$renderer2, $$props, "default", {});
+        $$renderer2.push(`<!--]-->`);
+      },
+      $$slots: { default: true }
+    }
+  ]));
+}
+function Forms($$renderer, $$props) {
+  const $$sanitized_props = sanitize_props($$props);
+  const iconNode = [
+    ["path", { "d": "M12 3a3 3 0 0 0 -3 3v12a3 3 0 0 0 3 3" }],
+    ["path", { "d": "M6 3a3 3 0 0 1 3 3v12a3 3 0 0 1 -3 3" }],
+    ["path", { "d": "M13 7h7a1 1 0 0 1 1 1v8a1 1 0 0 1 -1 1h-7" }],
+    ["path", { "d": "M5 7h-1a1 1 0 0 0 -1 1v8a1 1 0 0 0 1 1h1" }],
+    ["path", { "d": "M17 12h.01" }],
+    ["path", { "d": "M13 12h.01" }]
+  ];
+  Icon($$renderer, spread_props([
+    { type: "outline", name: "forms" },
+    $$sanitized_props,
+    {
+      iconNode,
+      children: ($$renderer2) => {
+        $$renderer2.push(`<!--[-->`);
+        slot($$renderer2, $$props, "default", {});
+        $$renderer2.push(`<!--]-->`);
+      },
+      $$slots: { default: true }
+    }
+  ]));
+}
+function Loader($$renderer, $$props) {
+  const $$sanitized_props = sanitize_props($$props);
+  const iconNode = [
+    ["path", { "d": "M12 6l0 -3" }],
+    ["path", { "d": "M16.25 7.75l2.15 -2.15" }],
+    ["path", { "d": "M18 12l3 0" }],
+    ["path", { "d": "M16.25 16.25l2.15 2.15" }],
+    ["path", { "d": "M12 18l0 3" }],
+    ["path", { "d": "M7.75 16.25l-2.15 2.15" }],
+    ["path", { "d": "M6 12l-3 0" }],
+    ["path", { "d": "M7.75 7.75l-2.15 -2.15" }]
+  ];
+  Icon($$renderer, spread_props([
+    { type: "outline", name: "loader" },
+    $$sanitized_props,
+    {
+      iconNode,
+      children: ($$renderer2) => {
+        $$renderer2.push(`<!--[-->`);
+        slot($$renderer2, $$props, "default", {});
+        $$renderer2.push(`<!--]-->`);
+      },
+      $$slots: { default: true }
+    }
+  ]));
+}
+function Minus($$renderer, $$props) {
+  const $$sanitized_props = sanitize_props($$props);
+  const iconNode = [["path", { "d": "M5 12l14 0" }]];
+  Icon($$renderer, spread_props([
+    { type: "outline", name: "minus" },
+    $$sanitized_props,
+    {
+      iconNode,
+      children: ($$renderer2) => {
+        $$renderer2.push(`<!--[-->`);
+        slot($$renderer2, $$props, "default", {});
+        $$renderer2.push(`<!--]-->`);
+      },
+      $$slots: { default: true }
+    }
+  ]));
+}
+function Password($$renderer, $$props) {
+  const $$sanitized_props = sanitize_props($$props);
+  const iconNode = [
+    ["path", { "d": "M12 10v4" }],
+    ["path", { "d": "M10 13l4 -2" }],
+    ["path", { "d": "M10 11l4 2" }],
+    ["path", { "d": "M5 10v4" }],
+    ["path", { "d": "M3 13l4 -2" }],
+    ["path", { "d": "M3 11l4 2" }],
+    ["path", { "d": "M19 10v4" }],
+    ["path", { "d": "M17 13l4 -2" }],
+    ["path", { "d": "M17 11l4 2" }]
+  ];
+  Icon($$renderer, spread_props([
+    { type: "outline", name: "password" },
+    $$sanitized_props,
+    {
+      iconNode,
+      children: ($$renderer2) => {
+        $$renderer2.push(`<!--[-->`);
+        slot($$renderer2, $$props, "default", {});
+        $$renderer2.push(`<!--]-->`);
+      },
+      $$slots: { default: true }
+    }
+  ]));
+}
+function Plus($$renderer, $$props) {
+  const $$sanitized_props = sanitize_props($$props);
+  const iconNode = [
+    ["path", { "d": "M12 5l0 14" }],
+    ["path", { "d": "M5 12l14 0" }]
+  ];
+  Icon($$renderer, spread_props([
+    { type: "outline", name: "plus" },
+    $$sanitized_props,
+    {
+      iconNode,
+      children: ($$renderer2) => {
+        $$renderer2.push(`<!--[-->`);
+        slot($$renderer2, $$props, "default", {});
+        $$renderer2.push(`<!--]-->`);
+      },
+      $$slots: { default: true }
+    }
+  ]));
+}
+function Server_2($$renderer, $$props) {
+  const $$sanitized_props = sanitize_props($$props);
+  const iconNode = [
+    [
+      "path",
+      {
+        "d": "M3 7a3 3 0 0 1 3 -3h12a3 3 0 0 1 3 3v2a3 3 0 0 1 -3 3h-12a3 3 0 0 1 -3 -3v-2"
+      }
+    ],
+    [
+      "path",
+      {
+        "d": "M3 15a3 3 0 0 1 3 -3h12a3 3 0 0 1 3 3v2a3 3 0 0 1 -3 3h-12a3 3 0 0 1 -3 -3l0 -2"
+      }
+    ],
+    ["path", { "d": "M7 8l0 .01" }],
+    ["path", { "d": "M7 16l0 .01" }],
+    ["path", { "d": "M11 8h6" }],
+    ["path", { "d": "M11 16h6" }]
+  ];
+  Icon($$renderer, spread_props([
+    { type: "outline", name: "server-2" },
+    $$sanitized_props,
+    {
+      iconNode,
+      children: ($$renderer2) => {
+        $$renderer2.push(`<!--[-->`);
+        slot($$renderer2, $$props, "default", {});
+        $$renderer2.push(`<!--]-->`);
+      },
+      $$slots: { default: true }
+    }
+  ]));
+}
+function Server($$renderer, $$props) {
+  const $$sanitized_props = sanitize_props($$props);
+  const iconNode = [
+    [
+      "path",
+      {
+        "d": "M3 7a3 3 0 0 1 3 -3h12a3 3 0 0 1 3 3v2a3 3 0 0 1 -3 3h-12a3 3 0 0 1 -3 -3"
+      }
+    ],
+    [
+      "path",
+      {
+        "d": "M3 15a3 3 0 0 1 3 -3h12a3 3 0 0 1 3 3v2a3 3 0 0 1 -3 3h-12a3 3 0 0 1 -3 -3l0 -2"
+      }
+    ],
+    ["path", { "d": "M7 8l0 .01" }],
+    ["path", { "d": "M7 16l0 .01" }]
+  ];
+  Icon($$renderer, spread_props([
+    { type: "outline", name: "server" },
+    $$sanitized_props,
+    {
+      iconNode,
+      children: ($$renderer2) => {
+        $$renderer2.push(`<!--[-->`);
+        slot($$renderer2, $$props, "default", {});
+        $$renderer2.push(`<!--]-->`);
+      },
+      $$slots: { default: true }
+    }
+  ]));
+}
+function Test_pipe($$renderer, $$props) {
+  const $$sanitized_props = sanitize_props($$props);
+  const iconNode = [
+    [
+      "path",
+      {
+        "d": "M20 8.04l-12.122 12.124a2.857 2.857 0 1 1 -4.041 -4.04l12.122 -12.124"
+      }
+    ],
+    ["path", { "d": "M7 13h8" }],
+    ["path", { "d": "M19 15l1.5 1.6a2 2 0 1 1 -3 0l1.5 -1.6" }],
+    ["path", { "d": "M15 3l6 6" }]
+  ];
+  Icon($$renderer, spread_props([
+    { type: "outline", name: "test-pipe" },
+    $$sanitized_props,
+    {
+      iconNode,
+      children: ($$renderer2) => {
+        $$renderer2.push(`<!--[-->`);
+        slot($$renderer2, $$props, "default", {});
+        $$renderer2.push(`<!--]-->`);
+      },
+      $$slots: { default: true }
+    }
+  ]));
+}
+function Button_1($$renderer, $$props) {
+  let {
+    variant = "primary",
+    size: size2 = "md",
+    loading = false,
+    disabled = false,
+    children,
+    $$slots,
+    $$events,
+    ...rest
+  } = $$props;
+  const base = "flex gap-1 items-center justify-center rounded-xl font-medium transition-all select-none text-sm";
+  const variants = {
+    primary: "bg-primary text-primary-foreground hover:bg-primary/90 active:bg-primary/80",
+    secondary: "bg-muted text-muted-foreground hover:bg-muted/90 active:bg-muted/80",
+    ghost: "bg-transparent text-foreground hover:bg-muted active:bg-muted",
+    destructive: "bg-destructive text-destructive-foreground hover:bg-destructive/90 active:bg-destructive/80"
+  };
+  const sizes = {
+    sm: "px-2 h-6 text-xs",
+    md: "px-3 h-8 text-sm",
+    lg: "px-4 h-10 text-md",
+    icon: "flex items-center justify-center size-8 text-sm",
+    "icon-sm": "flex items-center justify-center size-6 text-xs"
+  };
+  const isDisabled = disabled || loading;
+  const disabledClass = isDisabled ? "opacity-60 cursor-not-allowed" : "";
+  const className = `${base} ${variants[variant]} ${sizes[size2]} ${disabledClass}`;
+  $$renderer.push(`<!---->`);
+  Button?.($$renderer, spread_props([
+    rest,
+    {
+      class: className,
+      disabled: isDisabled,
+      children: ($$renderer2) => {
+        children?.($$renderer2);
+        $$renderer2.push(`<!---->`);
+      },
+      $$slots: { default: true }
+    }
+  ]));
+  $$renderer.push(`<!---->`);
+}
+function DialogClose($$renderer, $$props) {
+  Dialog_close($$renderer, {
+    children: ($$renderer2) => {
+      $$renderer2.push(`<!--[-->`);
+      slot($$renderer2, $$props, "default", {});
+      $$renderer2.push(`<!--]-->`);
+    },
+    $$slots: { default: true }
+  });
+}
+function Dialog_1($$renderer, $$props) {
+  $$renderer.component(($$renderer2) => {
+    let { open = false, children, $$slots, $$events, ...rest } = $$props;
     let $$settled = true;
     let $$inner_renderer;
     function $$render_inner($$renderer3) {
-      Dialog($$renderer3, {
+      $$renderer3.push(`<!---->`);
+      Dialog?.($$renderer3, {
+        get open() {
+          return open;
+        },
+        set open($$value) {
+          open = $$value;
+          $$settled = false;
+        },
         children: ($$renderer4) => {
-          Dialog_trigger($$renderer4, {
-            class: "\n            rounded-input bg-dark text-background shadow-mini hover:bg-dark/95\n            focus-visible:ring-foreground focus-visible:ring-offset-background\n            focus-visible:outline-hidden inline-flex h-12 items-center justify-center\n            whitespace-nowrap px-5 text-[15px] font-semibold transition-colors\n            focus-visible:ring-2 focus-visible:ring-offset-2 active:scale-[0.98]\n        ",
+          children?.($$renderer4);
+          $$renderer4.push(`<!---->`);
+        },
+        $$slots: { default: true }
+      });
+      $$renderer3.push(`<!---->`);
+    }
+    do {
+      $$settled = true;
+      $$inner_renderer = $$renderer2.copy();
+      $$render_inner($$inner_renderer);
+    } while (!$$settled);
+    $$renderer2.subsume($$inner_renderer);
+    bind_props($$props, { open });
+  });
+}
+function Input($$renderer, $$props) {
+  let value = fallback($$props["value"], "");
+  let type = fallback($$props["type"], "text");
+  let placeholder = fallback($$props["placeholder"], "");
+  let disabled = fallback($$props["disabled"], false);
+  $$renderer.push(`<input${attr("value", value)}${attr("type", type)}${attr("placeholder", placeholder)}${attr("disabled", disabled, true)} class="w-full px-2 py-1.5 rounded-xl border border-border bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring disabled:opacity-50 disabled:cursor-not-allowed text-sm"/>`);
+  bind_props($$props, { value, type, placeholder, disabled });
+}
+function DialogTrigger($$renderer, $$props) {
+  Dialog_trigger($$renderer, {
+    children: ($$renderer2) => {
+      $$renderer2.push(`<!--[-->`);
+      slot($$renderer2, $$props, "default", {});
+      $$renderer2.push(`<!--]-->`);
+    },
+    $$slots: { default: true }
+  });
+}
+function DialogContent($$renderer, $$props) {
+  Portal($$renderer, {
+    children: ($$renderer2) => {
+      {
+        let child = function($$renderer3, { props, open }) {
+          if (open) {
+            $$renderer3.push("<!--[-->");
+            $$renderer3.push(`<div${attributes({
+              ...props,
+              class: "fixed inset-0 bg-black/10 backdrop-blur-xs"
+            })}></div>`);
+          } else {
+            $$renderer3.push("<!--[!-->");
+          }
+          $$renderer3.push(`<!--]-->`);
+        };
+        Dialog_overlay($$renderer2, { forceMount: true, child, $$slots: { child: true } });
+      }
+      $$renderer2.push(`<!----> `);
+      {
+        let child = function($$renderer3, { props, open }) {
+          if (open) {
+            $$renderer3.push("<!--[-->");
+            $$renderer3.push(`<div class="fixed inset-0 grid place-items-center"><div${attributes({ ...props })}><!--[-->`);
+            slot($$renderer3, $$props, "default", {});
+            $$renderer3.push(`<!--]--></div></div>`);
+          } else {
+            $$renderer3.push("<!--[!-->");
+          }
+          $$renderer3.push(`<!--]-->`);
+        };
+        Dialog_content($$renderer2, {
+          class: "\n            rounded-3xl bg-background shadow-popover data-[state=open]:animate-in\n            data-[state=closed]:animate-out data-[state=closed]:fade-out-0\n            data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95\n            data-[state=open]:zoom-in-95 outline-hidden p-5\n            sm:max-w-122 md:w-full\n        ",
+          forceMount: true,
+          child,
+          $$slots: { child: true }
+        });
+      }
+      $$renderer2.push(`<!---->`);
+    }
+  });
+}
+function DialogTitle($$renderer, $$props) {
+  Dialog_title($$renderer, {
+    class: "text-lg font-semibold mb-4",
+    children: ($$renderer2) => {
+      $$renderer2.push(`<!--[-->`);
+      slot($$renderer2, $$props, "default", {});
+      $$renderer2.push(`<!--]-->`);
+    },
+    $$slots: { default: true }
+  });
+}
+function Tooltip_1($$renderer, $$props) {
+  $$renderer.component(($$renderer2) => {
+    let {
+      open = false,
+      children,
+      trigger,
+      triggerProps = {},
+      delayDuration = 500,
+      $$slots,
+      $$events,
+      ...restProps
+    } = $$props;
+    let $$settled = true;
+    let $$inner_renderer;
+    function $$render_inner($$renderer3) {
+      $$renderer3.push(`<!---->`);
+      Tooltip?.($$renderer3, spread_props([
+        restProps,
+        {
+          delayDuration,
+          get open() {
+            return open;
+          },
+          set open($$value) {
+            open = $$value;
+            $$settled = false;
+          },
+          children: ($$renderer4) => {
+            $$renderer4.push(`<!---->`);
+            Tooltip_trigger?.($$renderer4, spread_props([
+              triggerProps,
+              {
+                children: ($$renderer5) => {
+                  trigger($$renderer5);
+                  $$renderer5.push(`<!---->`);
+                },
+                $$slots: { default: true }
+              }
+            ]));
+            $$renderer4.push(`<!----> <!---->`);
+            Portal?.($$renderer4, {
+              children: ($$renderer5) => {
+                $$renderer5.push(`<!---->`);
+                {
+                  let child = function($$renderer6, { wrapperProps, props, open: open2 }) {
+                    if (open2) {
+                      $$renderer6.push("<!--[-->");
+                      $$renderer6.push(`<div${attributes({ ...wrapperProps })}><div${attributes({ ...props })}><div class="rounded-xl border-border bg-background shadow-sm outline-hidden z-0 flex items-center justify-center border px-3 py-1.5 text-xs font-medium">`);
+                      children?.($$renderer6);
+                      $$renderer6.push(`<!----></div></div></div>`);
+                    } else {
+                      $$renderer6.push("<!--[!-->");
+                    }
+                    $$renderer6.push(`<!--]-->`);
+                  };
+                  Tooltip_content?.($$renderer5, {
+                    sideOffset: 8,
+                    forceMount: true,
+                    class: "z-60",
+                    child,
+                    $$slots: { child: true }
+                  });
+                }
+                $$renderer5.push(`<!---->`);
+              }
+            });
+            $$renderer4.push(`<!---->`);
+          },
+          $$slots: { default: true }
+        }
+      ]));
+      $$renderer3.push(`<!---->`);
+    }
+    do {
+      $$settled = true;
+      $$inner_renderer = $$renderer2.copy();
+      $$render_inner($$inner_renderer);
+    } while (!$$settled);
+    $$renderer2.subsume($$inner_renderer);
+    bind_props($$props, { open });
+  });
+}
+function Tabs_1($$renderer, $$props) {
+  let value = $$props["value"];
+  let onValueChange = $$props["onValueChange"];
+  Tabs($$renderer, {
+    value,
+    onValueChange,
+    children: ($$renderer2) => {
+      $$renderer2.push(`<!--[-->`);
+      slot($$renderer2, $$props, "default", {});
+      $$renderer2.push(`<!--]-->`);
+    },
+    $$slots: { default: true }
+  });
+  bind_props($$props, { value, onValueChange });
+}
+function TabsList($$renderer, $$props) {
+  Tabs_list($$renderer, {
+    class: "\n        flex gap-1 w-fit\n        p-1 text-xs font-semibold\n        border border-border rounded-xl\n    ",
+    children: ($$renderer2) => {
+      $$renderer2.push(`<!--[-->`);
+      slot($$renderer2, $$props, "default", {});
+      $$renderer2.push(`<!--]-->`);
+    },
+    $$slots: { default: true }
+  });
+}
+function TabsTrigger($$renderer, $$props) {
+  let value = $$props["value"];
+  Tabs_trigger($$renderer, {
+    value,
+    class: "\n        flex items-center justify-center gap-1\n        h-6 px-3 rounded-lg\n        bg-transparent\n        transition-colors\n        data-[state=active]:bg-muted\n        dark:data-[state=active]:bg-muted\n    ",
+    children: ($$renderer2) => {
+      $$renderer2.push(`<!--[-->`);
+      slot($$renderer2, $$props, "default", {});
+      $$renderer2.push(`<!--]-->`);
+    },
+    $$slots: { default: true }
+  });
+  bind_props($$props, { value });
+}
+function TabsContent($$renderer, $$props) {
+  let value = $$props["value"];
+  Tabs_content($$renderer, {
+    value,
+    class: "select-none pt-3",
+    children: ($$renderer2) => {
+      $$renderer2.push(`<!--[-->`);
+      slot($$renderer2, $$props, "default", {});
+      $$renderer2.push(`<!--]-->`);
+    },
+    $$slots: { default: true }
+  });
+  bind_props($$props, { value });
+}
+class Client {
+  "Conn";
+  /** Creates a new Client instance. */
+  constructor($$source = {}) {
+    if (!("Conn" in $$source)) {
+      this["Conn"] = null;
+    }
+    Object.assign(this, $$source);
+  }
+  /**
+   * Creates a new Client instance from a string or object.
+   */
+  static createFrom($$source = {}) {
+    let $$parsedSource = typeof $$source === "string" ? JSON.parse($$source) : $$source;
+    return new Client($$parsedSource);
+  }
+}
+function TestConnection(creds) {
+  return Call.ByID(734208430, creds);
+}
+const $$createType0 = Client.createFrom;
+Create.Nullable($$createType0);
+function AddSourceDialog($$renderer, $$props) {
+  $$renderer.component(($$renderer2) => {
+    let dialogOpen = false;
+    const connTypesList = [
+      { name: "local", title: "Local", icon: Disc },
+      { name: "ssh", title: "SSH", icon: Server }
+    ];
+    let selectedConnType = connTypesList[0].name;
+    const onChangeConnTab = (tab) => {
+      selectedConnType = tab;
+    };
+    const authTypesList = [
+      { name: "pass", title: "Password", icon: Password },
+      { name: "pub_key", title: "Passphrase", icon: Forms }
+    ];
+    let selectedAuthType = authTypesList[0].name;
+    console.log(selectedAuthType);
+    const onChangeAuthTab = (tab) => {
+      selectedAuthType = tab;
+    };
+    let name = "";
+    let host = "164.92.194.64";
+    let port = 22;
+    let user = "root";
+    let pass = "";
+    let passphrase = "";
+    let logPath = "";
+    let logLabel = "";
+    const connection = {
+      testingesting: false,
+      success: false,
+      failed: false,
+      showMessage: false
+    };
+    let submitLoading = false;
+    function sleep(ms) {
+      return new Promise((resolve) => setTimeout(resolve, ms));
+    }
+    async function submit() {
+      submitLoading = true;
+      const payload = {
+        selectedConnType,
+        connection: selectedConnType === "local" ? null : { name, host, port, user },
+        log: { path: logPath, label: logLabel || logPath.split("/").pop() }
+      };
+      console.log("ADD SOURCE", payload);
+      await sleep(2e3);
+      submitLoading = false;
+      dialogOpen = false;
+    }
+    async function testConnection() {
+      if (connection.testingesting) return;
+      connection.testingesting = true;
+      const creds = { host, port: String(port), user, password: pass, passphrase };
+      const res = await TestConnection(creds);
+      if (!res) {
+        connection.failed = true;
+      } else {
+        connection.success = true;
+      }
+      connection.testingesting = false;
+      connection.showMessage = true;
+      setTimeout(
+        () => {
+          connection.failed = false;
+          connection.success = false;
+          connection.showMessage = false;
+        },
+        2e3
+      );
+    }
+    function defaultInputs($$renderer3) {
+      $$renderer3.push(`<div class="space-y-2">`);
+      Input($$renderer3, {
+        placeholder: "/var/log/app.log",
+        get value() {
+          return logPath;
+        },
+        set value($$value) {
+          logPath = $$value;
+          $$settled = false;
+        }
+      });
+      $$renderer3.push(`<!----> `);
+      Input($$renderer3, {
+        placeholder: "Display name (optional)",
+        get value() {
+          return logLabel;
+        },
+        set value($$value) {
+          logLabel = $$value;
+          $$settled = false;
+        }
+      });
+      $$renderer3.push(`<!----></div>`);
+    }
+    let $$settled = true;
+    let $$inner_renderer;
+    function $$render_inner($$renderer3) {
+      Dialog_1($$renderer3, {
+        get open() {
+          return dialogOpen;
+        },
+        set open($$value) {
+          dialogOpen = $$value;
+          $$settled = false;
+        },
+        children: ($$renderer4) => {
+          DialogTrigger($$renderer4, {
+            class: "w-fit",
             children: ($$renderer5) => {
-              $$renderer5.push(`<!---->Add log source`);
+              Button_1($$renderer5, {
+                size: "icon-sm",
+                variant: "ghost",
+                children: ($$renderer6) => {
+                  Plus($$renderer6, { size: 14 });
+                },
+                $$slots: { default: true }
+              });
             },
             $$slots: { default: true }
           });
           $$renderer4.push(`<!----> `);
-          Portal($$renderer4, {
+          DialogContent($$renderer4, {
             children: ($$renderer5) => {
-              Dialog_overlay($$renderer5, {
-                class: "\n                data-[state=open]:animate-in data-[state=closed]:animate-out\n                data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0\n                fixed inset-0 z-50 bg-black/80\n            "
+              DialogTitle($$renderer5, {
+                children: ($$renderer6) => {
+                  $$renderer6.push(`<!---->Add log source`);
+                },
+                $$slots: { default: true }
               });
               $$renderer5.push(`<!----> `);
-              Dialog_content($$renderer5, {
-                class: "\n                rounded-xl bg-background shadow-popover data-[state=open]:animate-in\n                data-[state=closed]:animate-out data-[state=closed]:fade-out-0\n                data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95\n                data-[state=open]:zoom-in-95 outline-hidden fixed\n                left-[50%] top-[50%] z-50 w-full max-w-[calc(100%-2rem)]\n                translate-x-[-50%] translate-y-[-50%] border p-5\n                sm:max-w-122 md:w-full",
+              Tabs_1($$renderer5, {
+                value: selectedConnType,
+                onValueChange: onChangeConnTab,
                 children: ($$renderer6) => {
-                  Dialog_title($$renderer6, {
-                    class: "text-lg font-semibold mb-4",
+                  $$renderer6.push(`<div class="flex items-center justify-between">`);
+                  TabsList($$renderer6, {
                     children: ($$renderer7) => {
-                      $$renderer7.push(`<!---->Add log source`);
+                      $$renderer7.push(`<!--[-->`);
+                      const each_array = ensure_array_like(connTypesList);
+                      for (let $$index = 0, $$length = each_array.length; $$index < $$length; $$index++) {
+                        let tab = each_array[$$index];
+                        TabsTrigger($$renderer7, {
+                          value: tab.name,
+                          children: ($$renderer8) => {
+                            $$renderer8.push(`<!---->`);
+                            tab.icon?.($$renderer8, { class: "size-4 shrink-0" });
+                            $$renderer8.push(`<!----> ${escape_html(tab.title)}`);
+                          },
+                          $$slots: { default: true }
+                        });
+                      }
+                      $$renderer7.push(`<!--]-->`);
                     },
                     $$slots: { default: true }
                   });
                   $$renderer6.push(`<!----> `);
-                  Tabs($$renderer6, {
+                  if (selectedConnType === "ssh") {
+                    $$renderer6.push("<!--[-->");
+                    $$renderer6.push(`<div class="flex items-center space-x-1">`);
+                    if (connection.showMessage) {
+                      $$renderer6.push("<!--[-->");
+                      $$renderer6.push(`<span${attr_class("text-xs", void 0, {
+                        "text-secondary": connection.success,
+                        "text-destructive": connection.failed
+                      })}>`);
+                      if (connection.failed) {
+                        $$renderer6.push("<!--[-->");
+                        $$renderer6.push(`Не удалось подключиться`);
+                      } else {
+                        $$renderer6.push("<!--[!-->");
+                        if (connection.success) {
+                          $$renderer6.push("<!--[-->");
+                          $$renderer6.push(`Успешно подключились`);
+                        } else {
+                          $$renderer6.push("<!--[!-->");
+                        }
+                        $$renderer6.push(`<!--]-->`);
+                      }
+                      $$renderer6.push(`<!--]--></span>`);
+                    } else {
+                      $$renderer6.push("<!--[!-->");
+                    }
+                    $$renderer6.push(`<!--]--> `);
+                    {
+                      let trigger = function($$renderer7) {
+                        Button_1($$renderer7, {
+                          variant: "ghost",
+                          size: "icon",
+                          loading: connection.testingesting,
+                          onclick: () => testConnection(),
+                          children: ($$renderer8) => {
+                            if (connection.testingesting) {
+                              $$renderer8.push("<!--[-->");
+                              Loader($$renderer8, { size: 16, class: "animate-spin" });
+                            } else {
+                              $$renderer8.push("<!--[!-->");
+                              Test_pipe($$renderer8, { size: 16 });
+                            }
+                            $$renderer8.push(`<!--]-->`);
+                          },
+                          $$slots: { default: true }
+                        });
+                      };
+                      Tooltip_1($$renderer6, {
+                        trigger,
+                        children: ($$renderer7) => {
+                          $$renderer7.push(`<!---->Test SSH connection`);
+                        },
+                        $$slots: { trigger: true, default: true }
+                      });
+                    }
+                    $$renderer6.push(`<!----></div>`);
+                  } else {
+                    $$renderer6.push("<!--[!-->");
+                  }
+                  $$renderer6.push(`<!--]--></div> `);
+                  TabsContent($$renderer6, {
                     value: "local",
-                    class: "bg-background-alt shadow-card w-full",
                     children: ($$renderer7) => {
-                      Tabs_list($$renderer7, {
-                        class: "\n                        grid w-full grid-cols-2 gap-1 p-1 text-sm font-semibold\n                        border border-border rounded-lg\n                    ",
+                      defaultInputs($$renderer7);
+                    },
+                    $$slots: { default: true }
+                  });
+                  $$renderer6.push(`<!----> `);
+                  TabsContent($$renderer6, {
+                    value: "ssh",
+                    children: ($$renderer7) => {
+                      $$renderer7.push(`<div class="space-y-2 mb-4">`);
+                      Input($$renderer7, {
+                        placeholder: "Connection name",
+                        get value() {
+                          return name;
+                        },
+                        set value($$value) {
+                          name = $$value;
+                          $$settled = false;
+                        }
+                      });
+                      $$renderer7.push(`<!----> `);
+                      Input($$renderer7, {
+                        placeholder: "Host",
+                        get value() {
+                          return host;
+                        },
+                        set value($$value) {
+                          host = $$value;
+                          $$settled = false;
+                        }
+                      });
+                      $$renderer7.push(`<!----> <div class="flex gap-2">`);
+                      Input($$renderer7, {
+                        placeholder: "User",
+                        get value() {
+                          return user;
+                        },
+                        set value($$value) {
+                          user = $$value;
+                          $$settled = false;
+                        }
+                      });
+                      $$renderer7.push(`<!----> `);
+                      Input($$renderer7, {
+                        type: "number",
+                        placeholder: "Port",
+                        get value() {
+                          return port;
+                        },
+                        set value($$value) {
+                          port = $$value;
+                          $$settled = false;
+                        }
+                      });
+                      $$renderer7.push(`<!----></div></div> `);
+                      Tabs_1($$renderer7, {
+                        value: selectedAuthType,
+                        onValueChange: onChangeAuthTab,
                         children: ($$renderer8) => {
-                          Tabs_trigger($$renderer8, {
-                            value: "local",
-                            class: "\n                            dark:data-[state=active]:bg-muted text-sm\n                            h-8 rounded-md bg-transparent py-1 data-[state=active]:bg-white\n                        ",
+                          TabsList($$renderer8, {
                             children: ($$renderer9) => {
-                              $$renderer9.push(`<!---->Local`);
+                              $$renderer9.push(`<!--[-->`);
+                              const each_array_1 = ensure_array_like(authTypesList);
+                              for (let $$index_1 = 0, $$length = each_array_1.length; $$index_1 < $$length; $$index_1++) {
+                                let tab = each_array_1[$$index_1];
+                                TabsTrigger($$renderer9, {
+                                  value: tab.name,
+                                  children: ($$renderer10) => {
+                                    $$renderer10.push(`<!---->`);
+                                    tab.icon?.($$renderer10, { class: "size-4 shrink-0" });
+                                    $$renderer10.push(`<!----> ${escape_html(tab.title)}`);
+                                  },
+                                  $$slots: { default: true }
+                                });
+                              }
+                              $$renderer9.push(`<!--]-->`);
                             },
                             $$slots: { default: true }
                           });
                           $$renderer8.push(`<!----> `);
-                          Tabs_trigger($$renderer8, {
-                            value: "ssh",
-                            class: "\n                            data-[state=active]:shadow-mini dark:data-[state=active]:bg-muted\n                            h-8 rounded-md bg-transparent py-1 data-[state=active]:bg-white\n                        ",
+                          TabsContent($$renderer8, {
+                            value: "pass",
                             children: ($$renderer9) => {
-                              $$renderer9.push(`<!---->SSH`);
+                              Input($$renderer9, {
+                                type: "password",
+                                placeholder: "Password",
+                                get value() {
+                                  return pass;
+                                },
+                                set value($$value) {
+                                  pass = $$value;
+                                  $$settled = false;
+                                }
+                              });
+                            },
+                            $$slots: { default: true }
+                          });
+                          $$renderer8.push(`<!----> `);
+                          TabsContent($$renderer8, {
+                            value: "pub_key",
+                            children: ($$renderer9) => {
+                              Input($$renderer9, {
+                                type: "password",
+                                placeholder: "Key passphrase (optional)",
+                                get value() {
+                                  return passphrase;
+                                },
+                                set value($$value) {
+                                  passphrase = $$value;
+                                  $$settled = false;
+                                }
+                              });
                             },
                             $$slots: { default: true }
                           });
@@ -5787,140 +6617,10 @@ function AddSourceDialog($$renderer, $$props) {
                         $$slots: { default: true }
                       });
                       $$renderer7.push(`<!----> `);
-                      Tabs_content($$renderer7, {
-                        value: "local",
-                        class: "select-none pt-3",
-                        children: ($$renderer8) => {
-                          $$renderer8.push(`<div class="space-y-2">`);
-                          Input($$renderer8, {
-                            placeholder: "/var/log/app.log",
-                            get value() {
-                              return logPath;
-                            },
-                            set value($$value) {
-                              logPath = $$value;
-                              $$settled = false;
-                            }
-                          });
-                          $$renderer8.push(`<!----> `);
-                          Input($$renderer8, {
-                            placeholder: "Display name (optional)",
-                            get value() {
-                              return logLabel;
-                            },
-                            set value($$value) {
-                              logLabel = $$value;
-                              $$settled = false;
-                            }
-                          });
-                          $$renderer8.push(`<!----></div>`);
-                        },
-                        $$slots: { default: true }
-                      });
+                      Separator($$renderer7, { class: "bg-muted -mx-5 mb-6 mt-5 block h-px" });
                       $$renderer7.push(`<!----> `);
-                      Tabs_content($$renderer7, {
-                        value: "ssh",
-                        class: "select-none pt-3",
-                        children: ($$renderer8) => {
-                          $$renderer8.push(`<div class="space-y-2 mb-4">`);
-                          Input($$renderer8, {
-                            placeholder: "Connection name",
-                            get value() {
-                              return name;
-                            },
-                            set value($$value) {
-                              name = $$value;
-                              $$settled = false;
-                            }
-                          });
-                          $$renderer8.push(`<!----> `);
-                          Input($$renderer8, {
-                            placeholder: "Host",
-                            get value() {
-                              return host;
-                            },
-                            set value($$value) {
-                              host = $$value;
-                              $$settled = false;
-                            }
-                          });
-                          $$renderer8.push(`<!----> <div class="flex gap-2">`);
-                          Input($$renderer8, {
-                            placeholder: "User",
-                            get value() {
-                              return user;
-                            },
-                            set value($$value) {
-                              user = $$value;
-                              $$settled = false;
-                            }
-                          });
-                          $$renderer8.push(`<!----> `);
-                          Input($$renderer8, {
-                            type: "number",
-                            placeholder: "Port",
-                            get value() {
-                              return port;
-                            },
-                            set value($$value) {
-                              port = $$value;
-                              $$settled = false;
-                            }
-                          });
-                          $$renderer8.push(`<!----></div></div> `);
-                          Separator($$renderer8, { class: "bg-muted -mx-5 mb-6 mt-5 block h-px" });
-                          $$renderer8.push(`<!----> <div class="space-y-2">`);
-                          Input($$renderer8, {
-                            placeholder: "/var/log/app.log",
-                            get value() {
-                              return logPath;
-                            },
-                            set value($$value) {
-                              logPath = $$value;
-                              $$settled = false;
-                            }
-                          });
-                          $$renderer8.push(`<!----> `);
-                          Input($$renderer8, {
-                            placeholder: "Display name (optional)",
-                            get value() {
-                              return logLabel;
-                            },
-                            set value($$value) {
-                              logLabel = $$value;
-                              $$settled = false;
-                            }
-                          });
-                          $$renderer8.push(`<!----></div>`);
-                        },
-                        $$slots: { default: true }
-                      });
+                      defaultInputs($$renderer7);
                       $$renderer7.push(`<!---->`);
-                    },
-                    $$slots: { default: true }
-                  });
-                  $$renderer6.push(`<!----> `);
-                  Dialog_close($$renderer6, {
-                    children: ($$renderer7) => {
-                      Button($$renderer7, {
-                        variant: "secondary",
-                        children: ($$renderer8) => {
-                          $$renderer8.push(`<!---->Cancel`);
-                        },
-                        $$slots: { default: true }
-                      });
-                    },
-                    $$slots: { default: true }
-                  });
-                  $$renderer6.push(`<!----> `);
-                  Dialog_close($$renderer6, {
-                    children: ($$renderer7) => {
-                      Button($$renderer7, {
-                        children: ($$renderer8) => {
-                          $$renderer8.push(`<!---->Add`);
-                        },
-                        $$slots: { default: true }
-                      });
                     },
                     $$slots: { default: true }
                   });
@@ -5928,8 +6628,37 @@ function AddSourceDialog($$renderer, $$props) {
                 },
                 $$slots: { default: true }
               });
-              $$renderer5.push(`<!---->`);
-            }
+              $$renderer5.push(`<!----> <div class="mt-4 flex"><div class="flex space-x-1 ml-auto">`);
+              DialogClose($$renderer5, {
+                children: ($$renderer6) => {
+                  Button_1($$renderer6, {
+                    variant: "secondary",
+                    children: ($$renderer7) => {
+                      $$renderer7.push(`<!---->Cancel`);
+                    },
+                    $$slots: { default: true }
+                  });
+                },
+                $$slots: { default: true }
+              });
+              $$renderer5.push(`<!----> `);
+              Button_1($$renderer5, {
+                onclick: submit,
+                loading: submitLoading,
+                children: ($$renderer6) => {
+                  if (submitLoading) {
+                    $$renderer6.push("<!--[-->");
+                    Loader($$renderer6, { class: "size-4 animate-spin" });
+                  } else {
+                    $$renderer6.push("<!--[!-->");
+                  }
+                  $$renderer6.push(`<!--]--> Add`);
+                },
+                $$slots: { default: true }
+              });
+              $$renderer5.push(`<!----></div></div>`);
+            },
+            $$slots: { default: true }
           });
           $$renderer4.push(`<!---->`);
         },
@@ -5946,17 +6675,21 @@ function AddSourceDialog($$renderer, $$props) {
 }
 function TreeItem_1($$renderer, $$props) {
   $$renderer.component(($$renderer2) => {
+    var $$store_subs;
     let isSelected;
     let item = $$props["item"];
     let depth = fallback($$props["depth"], 0);
     let selected = $$props["selected"];
     let onSelect = $$props["onSelect"];
+    const openNodes = writable(/* @__PURE__ */ new Set());
     isSelected = selected === item.id;
     $$renderer2.push(`<li>`);
     if (item.children) {
       $$renderer2.push("<!--[-->");
       Accordion($$renderer2, {
-        type: "single",
+        type: "multiple",
+        value: [...store_get($$store_subs ??= {}, "$openNodes", openNodes)],
+        onValueChange: (v) => openNodes.set(new Set(v)),
         children: ($$renderer3) => {
           Accordion_item($$renderer3, {
             value: item.id,
@@ -5967,14 +6700,19 @@ function TreeItem_1($$renderer, $$props) {
                     class: `
                             group flex items-center gap-2 w-full px-2 py-1 rounded-md
                             hover:bg-muted
-                            ${stringify(isSelected && "bg-primary/15 text-primary")}
+                            ${stringify(isSelected && "bg-primary/15 hover:bg-primary/15 text-primary")}
                         `,
-                    style: `padding-left: ${stringify(depth * 12 + 8)}px`,
+                    style: `padding-left: ${stringify(depth + 0.5)}rem`,
                     children: ($$renderer6) => {
-                      Chevron_right($$renderer6, {
-                        class: "h-4 w-4 transition-transform group-data-[state=open]:rotate-90"
-                      });
-                      $$renderer6.push(`<!----> <span>${escape_html(item.label)}</span>`);
+                      if (item.icon) {
+                        $$renderer6.push("<!--[-->");
+                        $$renderer6.push(`<!---->`);
+                        item.icon?.($$renderer6, { class: "size-4 shrink-0" });
+                        $$renderer6.push(`<!---->`);
+                      } else {
+                        $$renderer6.push("<!--[!-->");
+                      }
+                      $$renderer6.push(`<!--]--> <span>${escape_html(item.label)}</span>`);
                     },
                     $$slots: { default: true }
                   });
@@ -5982,18 +6720,24 @@ function TreeItem_1($$renderer, $$props) {
                 $$slots: { default: true }
               });
               $$renderer4.push(`<!----> `);
-              Accordion_content($$renderer4, {
-                children: ($$renderer5) => {
-                  $$renderer5.push(`<ul class="relative ml-2"><div class="absolute left-1 top-0 bottom-0 w-px bg-border"></div> <!--[-->`);
-                  const each_array = ensure_array_like(item.children);
-                  for (let $$index = 0, $$length = each_array.length; $$index < $$length; $$index++) {
-                    let child = each_array[$$index];
-                    TreeItem_1($$renderer5, { item: child, depth: depth + 1, selected, onSelect });
+              {
+                let child = function($$renderer5, { props, open }) {
+                  if (open) {
+                    $$renderer5.push("<!--[-->");
+                    $$renderer5.push(`<div${attributes({ ...props })}><ul class="relative"><div class="absolute top-0 bottom-0 w-px bg-border z-50"${attr_style(`left: ${stringify(depth + 1)}rem`)}></div> <!--[-->`);
+                    const each_array = ensure_array_like(item.children);
+                    for (let $$index = 0, $$length = each_array.length; $$index < $$length; $$index++) {
+                      let child2 = each_array[$$index];
+                      TreeItem_1($$renderer5, { item: child2, depth: depth + 1, selected, onSelect });
+                    }
+                    $$renderer5.push(`<!--]--></ul></div>`);
+                  } else {
+                    $$renderer5.push("<!--[!-->");
                   }
-                  $$renderer5.push(`<!--]--></ul>`);
-                },
-                $$slots: { default: true }
-              });
+                  $$renderer5.push(`<!--]-->`);
+                };
+                Accordion_content($$renderer4, { forceMount: true, child, $$slots: { child: true } });
+              }
               $$renderer4.push(`<!---->`);
             },
             $$slots: { default: true }
@@ -6003,11 +6747,12 @@ function TreeItem_1($$renderer, $$props) {
       });
     } else {
       $$renderer2.push("<!--[!-->");
-      $$renderer2.push(`<button${attr_class(` flex items-center gap-2 w-full px-2 py-1 rounded-md hover:bg-muted ${stringify(isSelected && "bg-primary/15 text-primary")} `)}${attr_style(`padding-left: ${stringify(depth * 12 + 28)}px`)}>`);
-      File($$renderer2, { class: "h-4 w-4 opacity-60" });
-      $$renderer2.push(`<!----> <span>${escape_html(item.label)}</span></button>`);
+      $$renderer2.push(`<div class="py-px"><button${attr_class(` flex items-center gap-2 w-full px-2 py-1 rounded-md hover:bg-muted ${stringify(isSelected && "bg-primary/15 hover:bg-primary/15 text-primary")} `)}${attr_style(`padding-left: ${stringify(depth + 0.5)}rem`)}>`);
+      File($$renderer2, { class: "size-4 shrink-0" });
+      $$renderer2.push(`<!----> <span>${escape_html(item.label)}</span></button></div>`);
     }
     $$renderer2.push(`<!--]--></li>`);
+    if ($$store_subs) unsubscribe_stores($$store_subs);
     bind_props($$props, { item, depth, selected, onSelect });
   });
 }
@@ -6029,6 +6774,7 @@ function LogsSidebar($$renderer) {
     {
       id: "local",
       label: "Local",
+      icon: Disc,
       children: [
         { id: "local-syslog", label: "syslog", path: "/var/log/syslog" },
         { id: "local-app", label: "app.log", path: "~/logs/app.log" }
@@ -6037,6 +6783,7 @@ function LogsSidebar($$renderer) {
     {
       id: "ssh",
       label: "SSH",
+      icon: Server_2,
       children: [
         {
           id: "ssh-1",
@@ -6057,13 +6804,18 @@ function LogsSidebar($$renderer) {
       ]
     }
   ];
-  $$renderer.push(`<div class="w-56 h-full overflow-hidden border-r border-border"><div class="flex items-center gap-2 border-b border-border h-11 px-2">`);
+  let selectedItem = "";
+  $$renderer.push(`<div class="flex flex-col w-56 h-full overflow-hidden border-r border-border"><div class="flex items-center gap-2 border-b border-border h-11 px-2">`);
   Input($$renderer, { placeholder: "Search file..." });
   $$renderer.push(`<!----> `);
   AddSourceDialog($$renderer);
-  $$renderer.push(`<!----></div> `);
-  Tree($$renderer, { items, onSelect: console.log });
-  $$renderer.push(`<!----></div>`);
+  $$renderer.push(`<!----></div> <div class="flex-1 h-full overflow-auto p-2">`);
+  Tree($$renderer, {
+    items,
+    onSelect: (id) => selectedItem = id,
+    selected: selectedItem
+  });
+  $$renderer.push(`<!----></div></div>`);
 }
 function LogRow($$renderer, $$props) {
   $$renderer.component(($$renderer2) => {
@@ -6103,9 +6855,192 @@ function LogsStream($$renderer, $$props) {
     if ($$store_subs) unsubscribe_stores($$store_subs);
   });
 }
+function Checkbox_1($$renderer, $$props) {
+  $$renderer.component(($$renderer2) => {
+    let {
+      id = useId(),
+      checked = false,
+      ref = null,
+      labelRef = null,
+      $$slots,
+      $$events,
+      ...restProps
+    } = $$props;
+    let $$settled = true;
+    let $$inner_renderer;
+    function $$render_inner($$renderer3) {
+      $$renderer3.push(`<!---->`);
+      {
+        let children = function($$renderer4, { checked: checked2, indeterminate }) {
+          $$renderer4.push(`<div class="text-background inline-flex items-center justify-center">`);
+          if (indeterminate) {
+            $$renderer4.push("<!--[-->");
+            Minus($$renderer4, { class: "size-3" });
+          } else {
+            $$renderer4.push("<!--[!-->");
+            if (checked2) {
+              $$renderer4.push("<!--[-->");
+              Check($$renderer4, { class: "size-3" });
+            } else {
+              $$renderer4.push("<!--[!-->");
+            }
+            $$renderer4.push(`<!--]-->`);
+          }
+          $$renderer4.push(`<!--]--></div>`);
+        };
+        Checkbox?.($$renderer3, spread_props([
+          { id },
+          restProps,
+          {
+            class: "border-muted bg-foreground data-[state=unchecked]:border-border-input data-[state=unchecked]:bg-background data-[state=unchecked]:hover:border-dark-40 peer inline-flex size-4 items-center justify-center rounded-md border transition-all duration-150 ease-in-out active:scale-[0.98]",
+            get checked() {
+              return checked;
+            },
+            set checked($$value) {
+              checked = $$value;
+              $$settled = false;
+            },
+            get ref() {
+              return ref;
+            },
+            set ref($$value) {
+              ref = $$value;
+              $$settled = false;
+            },
+            children,
+            $$slots: { default: true }
+          }
+        ]));
+      }
+      $$renderer3.push(`<!---->`);
+    }
+    do {
+      $$settled = true;
+      $$inner_renderer = $$renderer2.copy();
+      $$render_inner($$inner_renderer);
+    } while (!$$settled);
+    $$renderer2.subsume($$inner_renderer);
+    bind_props($$props, { checked, ref, labelRef });
+  });
+}
+function DropdownMenu_1($$renderer, $$props) {
+  $$renderer.component(($$renderer2) => {
+    let {
+      open = false,
+      children,
+      buttonText,
+      items,
+      contentProps,
+      $$slots,
+      $$events,
+      ...restProps
+    } = $$props;
+    let selectedItems = [];
+    let $$settled = true;
+    let $$inner_renderer;
+    function $$render_inner($$renderer3) {
+      $$renderer3.push(`<!---->`);
+      Menu?.($$renderer3, spread_props([
+        restProps,
+        {
+          get open() {
+            return open;
+          },
+          set open($$value) {
+            open = $$value;
+            $$settled = false;
+          },
+          children: ($$renderer4) => {
+            $$renderer4.push(`<!---->`);
+            Menu_trigger?.($$renderer4, {
+              class: "\n            px-2 py-1.5 rounded-xl\n            border border-border\n            bg-background text-foreground\n            placeholder:text-muted-foreground\n            focus:outline-none focus:ring-2 focus:ring-ring\n            disabled:opacity-50 disabled:cursor-not-allowed\n            text-sm\n        ",
+              children: ($$renderer5) => {
+                $$renderer5.push(`<!---->${escape_html(buttonText)}`);
+              },
+              $$slots: { default: true }
+            });
+            $$renderer4.push(`<!----> <!---->`);
+            Portal?.($$renderer4, {
+              children: ($$renderer5) => {
+                $$renderer5.push(`<!---->`);
+                {
+                  let child = function($$renderer6, { wrapperProps, props, open: open2 }) {
+                    if (open2) {
+                      $$renderer6.push("<!--[-->");
+                      $$renderer6.push(`<div${attributes({ ...wrapperProps })}><div${attributes({ ...props })}><!---->`);
+                      Menu_checkbox_group?.($$renderer6, {
+                        "aria-label": buttonText,
+                        get value() {
+                          return selectedItems;
+                        },
+                        set value($$value) {
+                          selectedItems = $$value;
+                          $$settled = false;
+                        },
+                        children: ($$renderer7) => {
+                          $$renderer7.push(`<!--[-->`);
+                          const each_array = ensure_array_like(items);
+                          for (let $$index = 0, $$length = each_array.length; $$index < $$length; $$index++) {
+                            let item = each_array[$$index];
+                            $$renderer7.push(`<!---->`);
+                            {
+                              let children2 = function($$renderer8, { checked }) {
+                                Checkbox_1($$renderer8, { checked: checked === true, labelText: item });
+                                $$renderer8.push(`<!----> ${escape_html(item)}`);
+                              };
+                              Menu_checkbox_item?.($$renderer7, {
+                                value: item,
+                                closeOnSelect: false,
+                                class: "flex items-center gap-1 hover:bg-muted px-2 py-1 transition-all rounded-lg",
+                                children: children2,
+                                $$slots: { default: true }
+                              });
+                            }
+                            $$renderer7.push(`<!---->`);
+                          }
+                          $$renderer7.push(`<!--]-->`);
+                        },
+                        $$slots: { default: true }
+                      });
+                      $$renderer6.push(`<!----></div></div>`);
+                    } else {
+                      $$renderer6.push("<!--[!-->");
+                    }
+                    $$renderer6.push(`<!--]-->`);
+                  };
+                  Dropdown_menu_content?.($$renderer5, spread_props([
+                    contentProps,
+                    {
+                      class: "p-1 border border-border bg-background shadow-md rounded-xl",
+                      forceMount: true,
+                      align: "end",
+                      sideOffset: 8,
+                      child,
+                      $$slots: { child: true }
+                    }
+                  ]));
+                }
+                $$renderer5.push(`<!---->`);
+              }
+            });
+            $$renderer4.push(`<!---->`);
+          },
+          $$slots: { default: true }
+        }
+      ]));
+      $$renderer3.push(`<!---->`);
+    }
+    do {
+      $$settled = true;
+      $$inner_renderer = $$renderer2.copy();
+      $$render_inner($$inner_renderer);
+    } while (!$$settled);
+    $$renderer2.subsume($$inner_renderer);
+    bind_props($$props, { open });
+  });
+}
 function LogsTopbar($$renderer, $$props) {
   $$renderer.component(($$renderer2) => {
-    var $$store_subs;
     let search = "";
     const levels = ["trace", "debug", "info", "warn", "error", "fatal"];
     let $$settled = true;
@@ -6123,42 +7058,7 @@ function LogsTopbar($$renderer, $$props) {
         }
       });
       $$renderer3.push(`<!----> <div class="flex gap-1">`);
-      Menu($$renderer3, {
-        children: ($$renderer4) => {
-          Menu_trigger($$renderer4, {
-            children: ($$renderer5) => {
-              $$renderer5.push(`<!---->Level`);
-            },
-            $$slots: { default: true }
-          });
-          $$renderer4.push(`<!----> `);
-          Dropdown_menu_content($$renderer4, {
-            children: ($$renderer5) => {
-              Menu_checkbox_group($$renderer5, {
-                children: ($$renderer6) => {
-                  $$renderer6.push(`<!--[-->`);
-                  const each_array = ensure_array_like(levels);
-                  for (let $$index = 0, $$length = each_array.length; $$index < $$length; $$index++) {
-                    let lvl = each_array[$$index];
-                    Menu_checkbox_item($$renderer6, {
-                      checked: store_get($$store_subs ??= {}, "$levelFilter", levelFilter).has(lvl),
-                      children: ($$renderer7) => {
-                        $$renderer7.push(`<!---->${escape_html(lvl.toUpperCase())}`);
-                      },
-                      $$slots: { default: true }
-                    });
-                  }
-                  $$renderer6.push(`<!--]-->`);
-                },
-                $$slots: { default: true }
-              });
-            },
-            $$slots: { default: true }
-          });
-          $$renderer4.push(`<!---->`);
-        },
-        $$slots: { default: true }
-      });
+      DropdownMenu_1($$renderer3, { buttonText: "Level", items: levels });
       $$renderer3.push(`<!----></div></div>`);
     }
     do {
@@ -6167,7 +7067,6 @@ function LogsTopbar($$renderer, $$props) {
       $$render_inner($$inner_renderer);
     } while (!$$settled);
     $$renderer2.subsume($$inner_renderer);
-    if ($$store_subs) unsubscribe_stores($$store_subs);
   });
 }
 function LogsViewer($$renderer) {

@@ -28,19 +28,26 @@
 </script>
 
 <DropdownMenu.Root bind:open {...restProps}>
-    <DropdownMenu.Trigger>
-        <Button variant="ghost">
-            {buttonText}
-        </Button>
+    <DropdownMenu.Trigger
+        class="
+            px-2 py-1.5 rounded-xl
+            border border-border
+            bg-background text-foreground
+            placeholder:text-muted-foreground
+            focus:outline-none focus:ring-2 focus:ring-ring
+            disabled:opacity-50 disabled:cursor-not-allowed
+            text-sm
+        "
+    >
+        {buttonText}
     </DropdownMenu.Trigger>
     <DropdownMenu.Portal>
         <DropdownMenu.Content
             {...contentProps}
-            class="
-                p-1 border border-border bg-background shadow-md rounded-xl
-            "
+            class="p-1 border border-border bg-background shadow-md rounded-xl"
             forceMount
             align="end"
+            sideOffset={8}
         >
             {#snippet child({ wrapperProps, props, open })}
                 {#if open}

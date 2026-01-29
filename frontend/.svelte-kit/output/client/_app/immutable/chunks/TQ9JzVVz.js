@@ -10,34 +10,8 @@ var __privateAdd = (obj, member, value) => member.has(obj) ? __typeError("Cannot
 var __privateSet = (obj, member, value, setter) => (__accessCheck(obj, member, "write to private field"), setter ? setter.call(obj, value) : member.set(obj, value), value);
 var __privateMethod = (obj, member, method) => (__accessCheck(obj, member, "access private method"), method);
 var _anchor, _hydrate_open, _props, _children, _effect, _main_effect, _pending_effect, _failed_effect, _offscreen_fragment, _pending_anchor, _local_pending_count, _pending_count, _pending_count_update_queued, _is_creating_fallback, _dirty_effects, _maybe_dirty_effects, _effect_pending, _effect_pending_subscriber, _Boundary_instances, hydrate_resolved_content_fn, hydrate_pending_content_fn, get_anchor_fn, run_fn, show_pending_snippet_fn, update_pending_count_fn;
-import { ae as effect_tracking, g as get, af as render_effect, d as untrack, ag as increment, ah as queue_micro_task, a4 as source, D as hydrate_node, h as hydrating, V as active_effect, G as block, a as hydrate_next, ac as COMMENT_NODE, J as HYDRATION_START_ELSE, C as branch, ai as Batch, A as pause_effect, B as create_text, aj as defer_effect, a6 as set_active_effect, ak as set_active_reaction, al as set_component_context, am as handle_error, an as active_reaction, c as component_context, E as move_effect, ao as set_signal_status, ap as DIRTY, aq as schedule_effect, ar as MAYBE_DIRTY, as as internal_set, z as destroy_effect, L as set_hydrate_node, at as next, K as skip_nodes, au as invoke_error_boundary, av as svelte_boundary_reset_onerror, H as EFFECT_TRANSPARENT, aw as EFFECT_PRESERVED, ax as BOUNDARY_EFFECT, ay as svelte_boundary_reset_noop, O as define_property, az as without_reactive_context, N as teardown, aA as init_operations, a7 as get_first_child, aB as HYDRATION_START, aC as get_next_sibling, aD as HYDRATION_ERROR, M as set_hydrating, aE as hydration_failed, aF as clear_text_content, aG as array_from, aH as component_root, p as push, aI as HYDRATION_END, aJ as hydration_mismatch, n as pop } from "./Bj_O7eFZ.js";
-import { b as assign_nodes } from "./DwVU-2a4.js";
-function createSubscriber(start) {
-  let subscribers = 0;
-  let version = source(0);
-  let stop;
-  return () => {
-    if (effect_tracking()) {
-      get(version);
-      render_effect(() => {
-        if (subscribers === 0) {
-          stop = untrack(() => start(() => increment(version)));
-        }
-        subscribers += 1;
-        return () => {
-          queue_micro_task(() => {
-            subscribers -= 1;
-            if (subscribers === 0) {
-              stop == null ? void 0 : stop();
-              stop = void 0;
-              increment(version);
-            }
-          });
-        };
-      });
-    }
-  };
-}
+import { L as hydrate_node, o as hydrating, _ as active_effect, v as block, q as hydrate_next, ab as COMMENT_NODE, H as HYDRATION_START_ELSE, K as branch, C as queue_micro_task, ac as Batch, I as pause_effect, J as create_text, ad as defer_effect, aa as set_active_effect, ae as set_active_reaction, af as set_component_context, ag as handle_error, ah as active_reaction, c as component_context, M as move_effect, ai as set_signal_status, aj as DIRTY, ak as schedule_effect, al as MAYBE_DIRTY, am as internal_set, g as get, G as destroy_effect, y as set_hydrate_node, an as next, x as skip_nodes, ao as invoke_error_boundary, ap as svelte_boundary_reset_onerror, E as EFFECT_TRANSPARENT, aq as EFFECT_PRESERVED, ar as BOUNDARY_EFFECT, as as svelte_boundary_reset_noop, a7 as source, at as init_operations, au as get_first_child, av as HYDRATION_START, aw as get_next_sibling, ax as HYDRATION_ERROR, z as set_hydrating, ay as hydration_failed, az as clear_text_content, aA as array_from, aB as component_root, p as push, aC as HYDRATION_END, aD as hydration_mismatch, k as pop } from "./DilKp9Ls.js";
+import { c as createSubscriber, b as all_registered_events, r as root_event_handles, h as handle_event_propagation, d as assign_nodes } from "./yiCpE6_S.js";
 var flags = EFFECT_TRANSPARENT | EFFECT_PRESERVED | BOUNDARY_EFFECT;
 function boundary(node, props, children) {
   new Boundary(node, props, children);
@@ -476,139 +450,9 @@ function is_raw_text_element(name) {
     name
   );
 }
-const all_registered_events = /* @__PURE__ */ new Set();
-const root_event_handles = /* @__PURE__ */ new Set();
-function create_event(event_name, dom, handler, options = {}) {
-  function target_handler(event2) {
-    if (!options.capture) {
-      handle_event_propagation.call(dom, event2);
-    }
-    if (!event2.cancelBubble) {
-      return without_reactive_context(() => {
-        return handler == null ? void 0 : handler.call(this, event2);
-      });
-    }
-  }
-  if (event_name.startsWith("pointer") || event_name.startsWith("touch") || event_name === "wheel") {
-    queue_micro_task(() => {
-      dom.addEventListener(event_name, target_handler, options);
-    });
-  } else {
-    dom.addEventListener(event_name, target_handler, options);
-  }
-  return target_handler;
-}
-function on(element, type, handler, options = {}) {
-  var target_handler = create_event(type, element, handler, options);
-  return () => {
-    element.removeEventListener(type, target_handler, options);
-  };
-}
-function event(event_name, dom, handler, capture, passive) {
-  var options = { capture, passive };
-  var target_handler = create_event(event_name, dom, handler, options);
-  if (dom === document.body || // @ts-ignore
-  dom === window || // @ts-ignore
-  dom === document || // Firefox has quirky behavior, it can happen that we still get "canplay" events when the element is already removed
-  dom instanceof HTMLMediaElement) {
-    teardown(() => {
-      dom.removeEventListener(event_name, target_handler, options);
-    });
-  }
-}
-function delegate(events) {
-  for (var i = 0; i < events.length; i++) {
-    all_registered_events.add(events[i]);
-  }
-  for (var fn of root_event_handles) {
-    fn(events);
-  }
-}
-let last_propagated_event = null;
-function handle_event_propagation(event2) {
-  var _a;
-  var handler_element = this;
-  var owner_document = (
-    /** @type {Node} */
-    handler_element.ownerDocument
-  );
-  var event_name = event2.type;
-  var path = ((_a = event2.composedPath) == null ? void 0 : _a.call(event2)) || [];
-  var current_target = (
-    /** @type {null | Element} */
-    path[0] || event2.target
-  );
-  last_propagated_event = event2;
-  var path_idx = 0;
-  var handled_at = last_propagated_event === event2 && event2.__root;
-  if (handled_at) {
-    var at_idx = path.indexOf(handled_at);
-    if (at_idx !== -1 && (handler_element === document || handler_element === /** @type {any} */
-    window)) {
-      event2.__root = handler_element;
-      return;
-    }
-    var handler_idx = path.indexOf(handler_element);
-    if (handler_idx === -1) {
-      return;
-    }
-    if (at_idx <= handler_idx) {
-      path_idx = at_idx;
-    }
-  }
-  current_target = /** @type {Element} */
-  path[path_idx] || event2.target;
-  if (current_target === handler_element) return;
-  define_property(event2, "currentTarget", {
-    configurable: true,
-    get() {
-      return current_target || owner_document;
-    }
-  });
-  var previous_reaction = active_reaction;
-  var previous_effect = active_effect;
-  set_active_reaction(null);
-  set_active_effect(null);
-  try {
-    var throw_error;
-    var other_errors = [];
-    while (current_target !== null) {
-      var parent_element = current_target.assignedSlot || current_target.parentNode || /** @type {any} */
-      current_target.host || null;
-      try {
-        var delegated = current_target["__" + event_name];
-        if (delegated != null && (!/** @type {any} */
-        current_target.disabled || // DOM could've been updated already by the time this is reached, so we check this as well
-        // -> the target could not have been disabled because it emits the event in the first place
-        event2.target === current_target)) {
-          delegated.call(current_target, event2);
-        }
-      } catch (error) {
-        if (throw_error) {
-          other_errors.push(error);
-        } else {
-          throw_error = error;
-        }
-      }
-      if (event2.cancelBubble || parent_element === handler_element || parent_element === null) {
-        break;
-      }
-      current_target = parent_element;
-    }
-    if (throw_error) {
-      for (let error of other_errors) {
-        queueMicrotask(() => {
-          throw error;
-        });
-      }
-      throw throw_error;
-    }
-  } finally {
-    event2.__root = handler_element;
-    delete event2.currentTarget;
-    set_active_reaction(previous_reaction);
-    set_active_effect(previous_effect);
-  }
+let should_intro = true;
+function set_should_intro(value) {
+  should_intro = value;
 }
 function set_text(text, value) {
   var str = value == null ? "" : typeof value === "object" ? value + "" : value;
@@ -716,7 +560,9 @@ function _mount(Component, { target, anchor, props = {}, events, context, intro 
             null
           );
         }
+        should_intro = intro;
         component = Component(anchor_node2, props) || {};
+        should_intro = true;
         if (hydrating) {
           active_effect.nodes.end = hydrate_node;
           if (hydrate_node === null || hydrate_node.nodeType !== COMMENT_NODE || /** @type {Comment} */
@@ -764,17 +610,14 @@ function unmount(component, options) {
   return Promise.resolve();
 }
 export {
-  is_capture_event as a,
-  can_delegate_event as b,
-  create_event as c,
-  delegate as d,
-  createSubscriber as e,
-  event as f,
+  should_intro as a,
+  set_should_intro as b,
+  is_capture_event as c,
+  can_delegate_event as d,
   hydrate as h,
   is_raw_text_element as i,
   mount as m,
   normalize_attribute as n,
-  on as o,
   set_text as s,
   unmount as u
 };

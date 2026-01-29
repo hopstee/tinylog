@@ -1,4 +1,4 @@
-import { j as run_all, k as deferred, l as includes, m as safe_equals, p as equals, o as object_prototype, q as array_prototype, t as get_descriptor, b as get_prototype_of, i as is_array, u as is_extensible, v as index_of, e as escape_html, n as noop, w as set_ssr_context, x as ssr_context, y as push$1, z as pop$1 } from "./context.js";
+import { j as run_all, k as deferred, l as includes, m as safe_equals, p as equals, o as object_prototype, q as array_prototype, t as get_descriptor, b as get_prototype_of, i as is_array, u as is_extensible, v as index_of, d as define_property, e as escape_html, n as noop, w as set_ssr_context, x as ssr_context, y as push$1, z as pop$1 } from "./context.js";
 import { clsx as clsx$1 } from "clsx";
 import { D as DEV } from "./false.js";
 import * as devalue from "devalue";
@@ -1768,6 +1768,119 @@ function is_raw_text_element(name) {
     name
   );
 }
+const all_registered_events = /* @__PURE__ */ new Set();
+const root_event_handles = /* @__PURE__ */ new Set();
+function create_event(event_name, dom, handler, options = {}) {
+  function target_handler(event) {
+    if (!options.capture) {
+      handle_event_propagation.call(dom, event);
+    }
+    if (!event.cancelBubble) {
+      return without_reactive_context(() => {
+        return handler?.call(this, event);
+      });
+    }
+  }
+  if (event_name.startsWith("pointer") || event_name.startsWith("touch") || event_name === "wheel") {
+    queue_micro_task(() => {
+      dom.addEventListener(event_name, target_handler, options);
+    });
+  } else {
+    dom.addEventListener(event_name, target_handler, options);
+  }
+  return target_handler;
+}
+function on(element2, type, handler, options = {}) {
+  var target_handler = create_event(type, element2, handler, options);
+  return () => {
+    element2.removeEventListener(type, target_handler, options);
+  };
+}
+let last_propagated_event = null;
+function handle_event_propagation(event) {
+  var handler_element = this;
+  var owner_document = (
+    /** @type {Node} */
+    handler_element.ownerDocument
+  );
+  var event_name = event.type;
+  var path = event.composedPath?.() || [];
+  var current_target = (
+    /** @type {null | Element} */
+    path[0] || event.target
+  );
+  last_propagated_event = event;
+  var path_idx = 0;
+  var handled_at = last_propagated_event === event && event.__root;
+  if (handled_at) {
+    var at_idx = path.indexOf(handled_at);
+    if (at_idx !== -1 && (handler_element === document || handler_element === /** @type {any} */
+    window)) {
+      event.__root = handler_element;
+      return;
+    }
+    var handler_idx = path.indexOf(handler_element);
+    if (handler_idx === -1) {
+      return;
+    }
+    if (at_idx <= handler_idx) {
+      path_idx = at_idx;
+    }
+  }
+  current_target = /** @type {Element} */
+  path[path_idx] || event.target;
+  if (current_target === handler_element) return;
+  define_property(event, "currentTarget", {
+    configurable: true,
+    get() {
+      return current_target || owner_document;
+    }
+  });
+  var previous_reaction = active_reaction;
+  var previous_effect = active_effect;
+  set_active_reaction(null);
+  set_active_effect(null);
+  try {
+    var throw_error;
+    var other_errors = [];
+    while (current_target !== null) {
+      var parent_element = current_target.assignedSlot || current_target.parentNode || /** @type {any} */
+      current_target.host || null;
+      try {
+        var delegated = current_target["__" + event_name];
+        if (delegated != null && (!/** @type {any} */
+        current_target.disabled || // DOM could've been updated already by the time this is reached, so we check this as well
+        // -> the target could not have been disabled because it emits the event in the first place
+        event.target === current_target)) {
+          delegated.call(current_target, event);
+        }
+      } catch (error) {
+        if (throw_error) {
+          other_errors.push(error);
+        } else {
+          throw_error = error;
+        }
+      }
+      if (event.cancelBubble || parent_element === handler_element || parent_element === null) {
+        break;
+      }
+      current_target = parent_element;
+    }
+    if (throw_error) {
+      for (let error of other_errors) {
+        queueMicrotask(() => {
+          throw error;
+        });
+      }
+      throw throw_error;
+    }
+  } finally {
+    event.__root = handler_element;
+    delete event.currentTarget;
+    set_active_reaction(previous_reaction);
+    set_active_effect(previous_effect);
+  }
+}
 const replacements = {
   translate: /* @__PURE__ */ new Map([
     [true, "yes"],
@@ -2772,7 +2885,7 @@ function derived(fn) {
   };
 }
 export {
-  lifecycle_function_unavailable as $,
+  render as $,
   internal_set as A,
   Batch as B,
   COMMENT_NODE as C,
@@ -2789,34 +2902,37 @@ export {
   get_first_child as N,
   hydration_failed as O,
   clear_text_content as P,
-  component_root as Q,
-  is_passive_event as R,
-  push as S,
-  pop as T,
-  set as U,
-  LEGACY_PROPS as V,
-  flushSync as W,
-  mutable_source as X,
-  render as Y,
-  slot as Z,
-  ATTACHMENT_KEY as _,
+  all_registered_events as Q,
+  root_event_handles as R,
+  component_root as S,
+  handle_event_propagation as T,
+  is_passive_event as U,
+  push as V,
+  pop as W,
+  set as X,
+  LEGACY_PROPS as Y,
+  flushSync as Z,
+  mutable_source as _,
   HYDRATION_END as a,
-  sanitize_props as a0,
-  rest_props as a1,
-  attributes as a2,
-  ensure_array_like as a3,
-  element as a4,
+  slot as a0,
+  derived as a1,
+  on as a2,
+  props_id as a3,
+  attributes as a4,
   bind_props as a5,
-  spread_props as a6,
-  attr as a7,
-  attr_class as a8,
-  derived as a9,
-  props_id as aa,
-  stringify as ab,
-  attr_style as ac,
-  store_get as ad,
-  unsubscribe_stores as ae,
-  without_reactive_context as af,
+  element as a6,
+  spread_props as a7,
+  sanitize_props as a8,
+  rest_props as a9,
+  ensure_array_like as aa,
+  attr as ab,
+  attr_class as ac,
+  stringify as ad,
+  attr_style as ae,
+  store_get as af,
+  unsubscribe_stores as ag,
+  ATTACHMENT_KEY as ah,
+  lifecycle_function_unavailable as ai,
   HYDRATION_START as b,
   HYDRATION_START_ELSE as c,
   get as d,

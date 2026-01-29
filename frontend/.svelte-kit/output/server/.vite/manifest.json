@@ -17,14 +17,6 @@
     "file": "chunks/environment.js",
     "name": "environment"
   },
-  "_events.js": {
-    "file": "chunks/events.js",
-    "name": "events",
-    "imports": [
-      "_index2.js",
-      "_context.js"
-    ]
-  },
   "_exports.js": {
     "file": "chunks/exports.js",
     "name": "exports"
@@ -54,7 +46,6 @@
     "imports": [
       "_index2.js",
       "_context.js",
-      "_events.js",
       "_environment.js"
     ]
   },
@@ -63,6 +54,14 @@
     "name": "shared",
     "imports": [
       "_utils.js"
+    ]
+  },
+  "_tooltip.svelte.js": {
+    "file": "chunks/tooltip.svelte.js",
+    "name": "tooltip.svelte",
+    "imports": [
+      "_index2.js",
+      "_context.js"
     ]
   },
   "_utils.js": {
@@ -113,10 +112,11 @@
     "src": "src/routes/+layout.svelte",
     "isEntry": true,
     "imports": [
-      "_index2.js"
+      "_index2.js",
+      "_tooltip.svelte.js"
     ],
     "css": [
-      "_app/immutable/assets/_layout.BcSWm5m_.css"
+      "_app/immutable/assets/_layout.Dx0wH7-F.css"
     ]
   },
   "src/routes/+layout.ts": {
@@ -132,8 +132,8 @@
     "isEntry": true,
     "imports": [
       "_index2.js",
+      "_tooltip.svelte.js",
       "_context.js",
-      "_events.js",
       "_index.js"
     ],
     "css": [

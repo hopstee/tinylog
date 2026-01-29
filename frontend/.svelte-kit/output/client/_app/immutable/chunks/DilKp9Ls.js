@@ -166,6 +166,7 @@ const PROPS_IS_RUNES = 1 << 1;
 const PROPS_IS_UPDATED = 1 << 2;
 const PROPS_IS_BINDABLE = 1 << 3;
 const PROPS_IS_LAZY_INITIAL = 1 << 4;
+const TRANSITION_GLOBAL = 1 << 2;
 const TEMPLATE_FRAGMENT = 1;
 const TEMPLATE_USE_IMPORT_NODE = 1 << 1;
 const HYDRATION_START = "[";
@@ -1204,6 +1205,13 @@ function mutable_source(initial_value, immutable = false, trackable = true) {
   }
   return s;
 }
+function mutate(source2, value) {
+  set(
+    source2,
+    untrack(() => get$1(source2))
+  );
+  return value;
+}
 function set(source2, value, should_proxy = false) {
   if (active_reaction !== null && // since we are untracking the function inside `$inspect.with` we need to add this check
   // to ensure we error if state is set inside an inspect effect
@@ -1262,7 +1270,7 @@ function flush_eager_effects() {
   eager_effects.clear();
 }
 function update(source2, d = 1) {
-  var value = get(source2);
+  var value = get$1(source2);
   var result = d === 1 ? value++ : value--;
   set(source2, value);
   return result;
@@ -1390,7 +1398,7 @@ function proxy(value) {
           sources.set(prop, s);
         }
         if (s !== void 0) {
-          var v = get(s);
+          var v = get$1(s);
           return v === UNINITIALIZED ? void 0 : v;
         }
         return Reflect.get(target, prop, receiver);
@@ -1399,7 +1407,7 @@ function proxy(value) {
         var descriptor = Reflect.getOwnPropertyDescriptor(target, prop);
         if (descriptor && "value" in descriptor) {
           var s = sources.get(prop);
-          if (s) descriptor.value = get(s);
+          if (s) descriptor.value = get$1(s);
         } else if (descriptor === void 0) {
           var source2 = sources.get(prop);
           var value2 = source2 == null ? void 0 : source2.v;
@@ -1430,7 +1438,7 @@ function proxy(value) {
             });
             sources.set(prop, s);
           }
-          var value2 = get(s);
+          var value2 = get$1(s);
           if (value2 === UNINITIALIZED) {
             return false;
           }
@@ -1484,7 +1492,7 @@ function proxy(value) {
         return true;
       },
       ownKeys(target) {
-        get(version);
+        get$1(version);
         var own_keys = Reflect.ownKeys(target).filter((key2) => {
           var source3 = sources.get(key2);
           return source3 === void 0 || source3.v !== UNINITIALIZED;
@@ -1855,7 +1863,7 @@ function render_effect(fn, flags = 0) {
 }
 function template_effect(fn, sync = [], async = [], blockers = []) {
   flatten(blockers, sync, async, (values) => {
-    create_effect(RENDER_EFFECT, () => fn(...values.map(get)), true);
+    create_effect(RENDER_EFFECT, () => fn(...values.map(get$1)), true);
   });
 }
 function block(fn, flags = 0) {
@@ -2311,7 +2319,7 @@ async function tick() {
 function settled() {
   return Batch.ensure().settled();
 }
-function get(signal) {
+function get$1(signal) {
   var flags = signal.f;
   var is_derived = (flags & DERIVED) !== 0;
   if (active_reaction !== null && !untracking) {
@@ -2457,146 +2465,218 @@ function deep_read(value, visited = /* @__PURE__ */ new Set()) {
     }
   }
 }
+function subscribe_to_store(store, run2, invalidate) {
+  if (store == null) {
+    run2(void 0);
+    return noop;
+  }
+  const unsub = untrack(
+    () => store.subscribe(
+      run2,
+      // @ts-expect-error
+      invalidate
+    )
+  );
+  return unsub.unsubscribe ? () => unsub.unsubscribe() : unsub;
+}
+const subscriber_queue = [];
+function writable(value, start = noop) {
+  let stop = null;
+  const subscribers = /* @__PURE__ */ new Set();
+  function set2(new_value) {
+    if (safe_not_equal(value, new_value)) {
+      value = new_value;
+      if (stop) {
+        const run_queue = !subscriber_queue.length;
+        for (const subscriber of subscribers) {
+          subscriber[1]();
+          subscriber_queue.push(subscriber, value);
+        }
+        if (run_queue) {
+          for (let i = 0; i < subscriber_queue.length; i += 2) {
+            subscriber_queue[i][0](subscriber_queue[i + 1]);
+          }
+          subscriber_queue.length = 0;
+        }
+      }
+    }
+  }
+  function update2(fn) {
+    set2(fn(
+      /** @type {T} */
+      value
+    ));
+  }
+  function subscribe(run2, invalidate = noop) {
+    const subscriber = [run2, invalidate];
+    subscribers.add(subscriber);
+    if (subscribers.size === 1) {
+      stop = start(set2, update2) || noop;
+    }
+    run2(
+      /** @type {T} */
+      value
+    );
+    return () => {
+      subscribers.delete(subscriber);
+      if (subscribers.size === 0 && stop) {
+        stop();
+        stop = null;
+      }
+    };
+  }
+  return { set: set2, update: update2, subscribe };
+}
+function get(store) {
+  let value;
+  subscribe_to_store(store, (_) => value = _)();
+  return value;
+}
 export {
-  PROPS_IS_LAZY_INITIAL as $,
-  pause_effect as A,
-  create_text as B,
-  branch as C,
-  hydrate_node as D,
-  move_effect as E,
-  should_defer_append as F,
-  block as G,
-  EFFECT_TRANSPARENT as H,
-  read_hydration_instruction as I,
-  HYDRATION_START_ELSE as J,
-  skip_nodes as K,
-  set_hydrate_node as L,
-  set_hydrating as M,
-  teardown as N,
-  define_property as O,
-  mutable_source as P,
-  set as Q,
-  get_descriptor as R,
-  props_invalid_value as S,
-  PROPS_IS_UPDATED as T,
-  proxy as U,
-  active_effect as V,
-  DESTROYED as W,
-  PROPS_IS_BINDABLE as X,
-  PROPS_IS_RUNES as Y,
-  PROPS_IS_IMMUTABLE as Z,
-  derived_safe_equal as _,
-  hydrate_next as a,
-  ELEMENT_NODE as a$,
-  is_destroying_effect as a0,
-  STATE_SYMBOL as a1,
-  LEGACY_PROPS as a2,
-  is_function as a3,
-  source as a4,
-  update as a5,
-  set_active_effect as a6,
-  get_first_child as a7,
-  is_firefox as a8,
-  TEMPLATE_FRAGMENT as a9,
-  init_operations as aA,
-  HYDRATION_START as aB,
-  get_next_sibling as aC,
-  HYDRATION_ERROR as aD,
-  hydration_failed as aE,
-  clear_text_content as aF,
-  array_from as aG,
-  component_root as aH,
-  HYDRATION_END as aI,
-  hydration_mismatch as aJ,
-  effect as aK,
-  flushSync as aL,
-  tick as aM,
-  state as aN,
-  user_derived as aO,
-  is_array as aP,
-  get_prototype_of as aQ,
-  object_prototype as aR,
-  ATTACHMENT_KEY as aS,
-  is_runes as aT,
-  EFFECT_OFFSCREEN as aU,
-  EACH_ITEM_REACTIVE as aV,
-  EACH_ITEM_IMMUTABLE as aW,
-  EACH_INDEX_REACTIVE as aX,
-  INERT as aY,
-  EACH_IS_CONTROLLED as aZ,
-  EACH_IS_ANIMATED as a_,
-  TEMPLATE_USE_IMPORT_NODE as aa,
-  EFFECT_RAN as ab,
-  COMMENT_NODE as ac,
-  TEXT_NODE as ad,
-  effect_tracking as ae,
-  render_effect as af,
-  increment as ag,
-  queue_micro_task as ah,
-  Batch as ai,
-  defer_effect as aj,
-  set_active_reaction as ak,
-  set_component_context as al,
-  handle_error as am,
-  active_reaction as an,
-  set_signal_status as ao,
-  DIRTY as ap,
-  schedule_effect as aq,
-  MAYBE_DIRTY as ar,
-  internal_set as as,
-  next as at,
-  invoke_error_boundary as au,
-  svelte_boundary_reset_onerror as av,
-  EFFECT_PRESERVED as aw,
-  BOUNDARY_EFFECT as ax,
-  svelte_boundary_reset_noop as ay,
-  without_reactive_context as az,
-  user_effect as b,
-  NAMESPACE_SVG as b0,
-  managed as b1,
-  select_multiple_invalid_value as b2,
-  is as b3,
-  add_form_reset_listener as b4,
-  LOADING_ATTR_SYMBOL as b5,
-  NAMESPACE_HTML as b6,
-  flatten as b7,
-  autofocus as b8,
-  UNINITIALIZED as b9,
-  get_descriptors as ba,
-  listen_to_event_and_reset_event as bb,
-  previous_batch as bc,
-  to_array as bd,
-  update_version as be,
-  hasContext as bf,
-  getContext as bg,
-  setContext as bh,
-  getAllContexts as bi,
-  effect_root as bj,
-  legacy_pre_effect as bk,
-  legacy_pre_effect_reset as bl,
-  settled as bm,
+  DESTROYED as $,
+  effect as A,
+  render_effect as B,
+  queue_micro_task as C,
+  current_batch as D,
+  EFFECT_TRANSPARENT as E,
+  resume_effect as F,
+  destroy_effect as G,
+  HYDRATION_START_ELSE as H,
+  pause_effect as I,
+  create_text as J,
+  branch as K,
+  hydrate_node as L,
+  move_effect as M,
+  should_defer_append as N,
+  teardown as O,
+  define_property as P,
+  noop as Q,
+  mutable_source as R,
+  STATE_SYMBOL as S,
+  subscribe_to_store as T,
+  get as U,
+  set as V,
+  get_descriptor as W,
+  props_invalid_value as X,
+  PROPS_IS_UPDATED as Y,
+  proxy as Z,
+  active_effect as _,
+  user_effect as a,
+  EACH_INDEX_REACTIVE as a$,
+  PROPS_IS_BINDABLE as a0,
+  PROPS_IS_RUNES as a1,
+  PROPS_IS_IMMUTABLE as a2,
+  derived_safe_equal as a3,
+  PROPS_IS_LAZY_INITIAL as a4,
+  is_destroying_effect as a5,
+  LEGACY_PROPS as a6,
+  source as a7,
+  is_function as a8,
+  update as a9,
+  array_from as aA,
+  component_root as aB,
+  HYDRATION_END as aC,
+  hydration_mismatch as aD,
+  flushSync as aE,
+  tick as aF,
+  state as aG,
+  user_derived as aH,
+  effect_tracking as aI,
+  increment as aJ,
+  without_reactive_context as aK,
+  is_firefox as aL,
+  TEMPLATE_FRAGMENT as aM,
+  TEMPLATE_USE_IMPORT_NODE as aN,
+  EFFECT_RAN as aO,
+  TEXT_NODE as aP,
+  ATTACHMENT_KEY as aQ,
+  hasContext as aR,
+  getContext as aS,
+  setContext as aT,
+  is_array as aU,
+  get_prototype_of as aV,
+  object_prototype as aW,
+  is_runes as aX,
+  EFFECT_OFFSCREEN as aY,
+  EACH_ITEM_REACTIVE as aZ,
+  EACH_ITEM_IMMUTABLE as a_,
+  set_active_effect as aa,
+  COMMENT_NODE as ab,
+  Batch as ac,
+  defer_effect as ad,
+  set_active_reaction as ae,
+  set_component_context as af,
+  handle_error as ag,
+  active_reaction as ah,
+  set_signal_status as ai,
+  DIRTY as aj,
+  schedule_effect as ak,
+  MAYBE_DIRTY as al,
+  internal_set as am,
+  next as an,
+  invoke_error_boundary as ao,
+  svelte_boundary_reset_onerror as ap,
+  EFFECT_PRESERVED as aq,
+  BOUNDARY_EFFECT as ar,
+  svelte_boundary_reset_noop as as,
+  init_operations as at,
+  get_first_child as au,
+  HYDRATION_START as av,
+  get_next_sibling as aw,
+  HYDRATION_ERROR as ax,
+  hydration_failed as ay,
+  clear_text_content as az,
+  untrack as b,
+  INERT as b0,
+  EACH_IS_CONTROLLED as b1,
+  EACH_IS_ANIMATED as b2,
+  BLOCK_EFFECT as b3,
+  TRANSITION_GLOBAL as b4,
+  ELEMENT_NODE as b5,
+  NAMESPACE_SVG as b6,
+  managed as b7,
+  select_multiple_invalid_value as b8,
+  is as b9,
+  add_form_reset_listener as ba,
+  LOADING_ATTR_SYMBOL as bb,
+  NAMESPACE_HTML as bc,
+  flatten as bd,
+  autofocus as be,
+  UNINITIALIZED as bf,
+  get_descriptors as bg,
+  listen_to_event_and_reset_event as bh,
+  previous_batch as bi,
+  update_version as bj,
+  getAllContexts as bk,
+  effect_root as bl,
+  writable as bm,
+  to_array as bn,
+  mutate as bo,
+  legacy_pre_effect as bp,
+  legacy_pre_effect_reset as bq,
+  settled as br,
   component_context as c,
-  untrack as d,
-  run as e,
-  deep_read_state as f,
-  get as g,
-  hydrating as h,
-  derived as i,
-  enable_legacy_mode_flag as j,
-  child as k,
-  reset as l,
-  first_child as m,
-  pop as n,
-  noop as o,
+  run as d,
+  deep_read_state as e,
+  derived as f,
+  get$1 as g,
+  legacy_mode_flag as h,
+  enable_legacy_mode_flag as i,
+  first_child as j,
+  pop as k,
+  lifecycle_outside_component as l,
+  child as m,
+  reset as n,
+  hydrating as o,
   push as p,
-  safe_not_equal as q,
+  hydrate_next as q,
   run_all as r,
   sibling as s,
   template_effect as t,
   user_pre_effect as u,
-  lifecycle_outside_component as v,
-  legacy_mode_flag as w,
-  current_batch as x,
-  resume_effect as y,
-  destroy_effect as z
+  block as v,
+  read_hydration_instruction as w,
+  skip_nodes as x,
+  set_hydrate_node as y,
+  set_hydrating as z
 };
